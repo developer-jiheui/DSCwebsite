@@ -1,0 +1,30 @@
+.ui.text.menu {
+  padding-top: 10px;
+}
+
+.ui.text.menu .item {
+  background-color: transparent;
+  margin: 10px;
+}
+
+.ui.text.menu .item:hover:first-child {
+  border-bottom: transparent;
+}
+.ui.text.menu .item:hover {
+  border-bottom: 2px solid #6930c3;
+  padding-bottom: 0.5rem;
+}
+
+.ui.text.menu .item:active {
+  border-bottom: 2px solid #6930c3;
+  padding-bottom: 0.5rem;
+}
+
+img {
+  height: 30px;
+  width: 50p;
+}
+
+span {
+  padding-left: 5px;
+}
