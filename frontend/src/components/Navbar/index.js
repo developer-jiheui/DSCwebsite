@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { Menu } from "semantic-ui-react";
+import { Icon, Menu, Modal, Button, Input } from "semantic-ui-react";
 import "./index.css";
 
 const Navbar = () => {
-  const [activeItem, setActiveItem] = useState("home");
+  const [activeItem, setActiveItem] = useState("");
+  const [open, setOpen] = React.useState(false);
 
   const onItemClick = (name) => {
     setActiveItem(name);
   };
 
-  console.log(activeItem);
+  <Icon className="logo" size="large"></Icon>;
 
   return (
     <Menu text>
       <Menu.Item
-        exact
         as={NavLink}
+        exact
         to="/"
+        icon={{ className: "logo" }}
         name="developer student club"
         active={activeItem === "developer student club"}
         onClick={(e) => onItemClick("developer student club")}
@@ -44,7 +46,7 @@ const Navbar = () => {
       <Menu.Item
         as={NavLink}
         to="/team"
-        name=" team"
+        name="team"
         icon="users"
         active={activeItem === "team"}
         onClick={() => onItemClick("team")}
@@ -65,14 +67,53 @@ const Navbar = () => {
         active={activeItem === "contact"}
         onClick={() => onItemClick("contact")}
       />
-      <Menu.Item
-        as={NavLink}
-        to="/login"
-        name="login"
-        icon="user circle"
-        active={activeItem === "login"}
-        onClick={() => onItemClick("login")}
-      />
+      <Modal
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        trigger={
+          <Button
+            color="violet"
+            // as={NavLink}
+            // to="/login"
+            // name="login"
+            // icon="user circle"
+            // active={activeItem === "login"}
+            // onClick={() => onItemClick("login")}
+            // className="basic round"
+          >
+            Login
+          </Button>
+        }
+      >
+        <Modal.Header>Log In</Modal.Header>
+        <Modal.Content>
+          <Input icon placeholder="Username/Email" iconPosition="left">
+            <input />
+            <Icon name="user circle" />
+          </Input>
+          <br />
+          <br />
+          <Input iconPosition="left" placeholder="Password" typep="password">
+            <Icon name="lock" />
+            <input />
+          </Input>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            content="Ok"
+            icon="checkmark"
+            onClick={() => setOpen(false)}
+            positive
+          />
+          <Button
+            content="Cancel"
+            icon="close"
+            onClick={() => setOpen(false)}
+            color="red"
+          />
+        </Modal.Actions>
+      </Modal>
     </Menu>
   );
 };
