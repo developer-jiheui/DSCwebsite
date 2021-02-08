@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-import { Icon, Menu, Modal, Button, Input } from "semantic-ui-react";
+import {
+  Icon,
+  Menu,
+  Modal,
+  Button,
+  Input,
+  Form,
+  Image,
+  ModalDescription,
+  Grid,
+} from "semantic-ui-react";
 import "./index.css";
 
 const Navbar = () => {
@@ -22,8 +32,8 @@ const Navbar = () => {
         to="/"
         icon={{ className: "logo" }}
         name="developer student club"
-        active={activeItem === "developer student club"}
-        onClick={(e) => onItemClick("developer student club")}
+        active={activeItem === "developer student clubs"}
+        onClick={(e) => onItemClick("developer student clubs")}
       />
       <Menu.Item
         as={NavLink}
@@ -71,43 +81,67 @@ const Navbar = () => {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={
-          <Button
-            color="violet"
-            // as={NavLink}
-            // to="/login"
-            // name="login"
-            // icon="user circle"
-            // active={activeItem === "login"}
-            // onClick={() => onItemClick("login")}
-            // className="basic round"
-          >
-            Login
-          </Button>
-        }
+        trigger={<Button className="theme-color">Login</Button>}
+        size="medium"
       >
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
-          <Input icon placeholder="Username/Email" iconPosition="left">
-            <input />
-            <Icon name="user circle" />
-          </Input>
-          <br />
-          <br />
-          <Input iconPosition="left" placeholder="Password" typep="password">
-            <Icon name="lock" />
-            <input />
-          </Input>
+          <Grid columns={2} divided textAlign="center">
+            <Grid.Column>
+              <Image
+                src="../../images/pngkey.com-google-cloud-logo-png-7884107.png"
+                wrapped
+                size="medium"
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <ModalDescription>
+                <Form>
+                  <Form.Field>
+                    <Input
+                      icon
+                      placeholder="Username/Email"
+                      iconPosition="left"
+                    >
+                      <input />
+                      <Icon name="user circle" />
+                    </Input>
+                  </Form.Field>
+                  <Form.Field>
+                    <Input
+                      iconPosition="left"
+                      placeholder="Password"
+                      type="password"
+                    >
+                      <Icon name="lock" />
+                      <input />
+                    </Input>
+                  </Form.Field>
+                  <span>
+                    Not a member yet?
+                    <Link to="/signup" exact>
+                      <span> </span>Click here
+                    </Link>
+                  </span>
+                  <br />
+                  <br />
+                  <Button type="submit" className="black-color">
+                    Submit
+                  </Button>
+                </Form>
+              </ModalDescription>
+            </Grid.Column>
+          </Grid>
         </Modal.Content>
         <Modal.Actions>
-          <Button
+          {/* <Button
             content="Ok"
             icon="checkmark"
             onClick={() => setOpen(false)}
             positive
-          />
+          /> */}
           <Button
-            content="Cancel"
+            content="Close"
             icon="close"
             onClick={() => setOpen(false)}
             color="red"
@@ -119,3 +153,16 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+{
+  /* <Input icon placeholder="Username/Email" iconPosition="left">
+            <input />
+            <Icon name="user circle" />
+          </Input>
+          <br />
+          <br />
+          <Input iconPosition="left" placeholder="Password" typep="password">
+            <Icon name="lock" />
+            <input />
+          </Input> */
+}

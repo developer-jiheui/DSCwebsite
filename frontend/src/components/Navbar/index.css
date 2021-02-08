@@ -4,37 +4,58 @@
 
 .ui.text.menu .item {
   background-color: transparent;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
-.ui.text.menu .item:hover:first-child {
-  border-bottom: transparent;
-}
 .ui.text.menu .item:hover {
-  border-bottom: 2px solid #6930c3;
+  color: black;
+  -webkit-text-fill-color: #6930c3;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #6930c3;
   padding-bottom: 0.5rem;
 }
 
-.ui.text.menu .item:active {
-  border-bottom: 2px solid #6930c3;
+.ui.text.menu .item.active {
+  color: black;
+  -webkit-text-fill-color: #6930c3;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #6930c3;
+  padding-bottom: 0.5rem;
+}
+
+.ui.text.menu .item.active:first-child,
+.ui.text.menu .item:hover:first-child {
+  color: black;
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke-width: 0px;
+  -webkit-text-stroke-color: black;
   padding-bottom: 0.5rem;
 }
 
 img {
-  height: 30px;
-  width: 50p;
+  width: 100%;
 }
 
 span {
   padding-left: 5px;
 }
 
-.logo {
-  /* background: url("./DSC logo_color.png") no-repeat center center/cover; */
-}
-
 i.icon.logo {
   background: url("./DSC logo_color.png") no-repeat center center/cover;
   height: 21px;
   width: 21px;
+}
+
+.ui.button.theme-color {
+  background-color: #6930c3;
+  color: white;
+}
+
+.ui.button.theme-color:hover {
+  opacity: 0.7;
+}
+
+.ui.button.black-color {
+  background-color: #3d3e50;
+  color: white;
 }
