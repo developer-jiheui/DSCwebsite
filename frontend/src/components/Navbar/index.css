@@ -41,7 +41,8 @@ span {
 }
 
 i.icon.logo {
-  background: url("./DSC logo_color.png") no-repeat center center/cover;
+  /* background: url("./DSC logo_color.png") no-repeat center center/cover; */
+  background: url("../../assets/DSC-logo-color.png");
   height: 21px;
   width: 21px;
 }

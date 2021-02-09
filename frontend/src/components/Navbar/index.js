@@ -82,18 +82,11 @@ const Navbar = () => {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={<Button className="theme-color">Login</Button>}
-        size="medium"
+        size="small"
       >
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
-          <Grid columns={2} divided textAlign="center">
-            <Grid.Column>
-              <Image
-                src="../../images/pngkey.com-google-cloud-logo-png-7884107.png"
-                wrapped
-                size="medium"
-              />
-            </Grid.Column>
+          <Grid columns={2} divided textAlign="center" verticalAlign="center">
             <Grid.Column>
               <ModalDescription>
                 <Form>
@@ -131,6 +124,13 @@ const Navbar = () => {
                 </Form>
               </ModalDescription>
             </Grid.Column>
+            <Grid.Column>
+              <Image
+                src="../../images/pngkey.com-google-cloud-logo-png-7884107.png"
+                wrapped
+                size="small"
+              />
+            </Grid.Column>
           </Grid>
         </Modal.Content>
         <Modal.Actions>
@@ -153,16 +153,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-{
-  /* <Input icon placeholder="Username/Email" iconPosition="left">
-            <input />
-            <Icon name="user circle" />
-          </Input>
-          <br />
-          <br />
-          <Input iconPosition="left" placeholder="Password" typep="password">
-            <Icon name="lock" />
-            <input />
-          </Input> */
-}
