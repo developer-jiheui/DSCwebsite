@@ -12,6 +12,7 @@ import {
   ModalDescription,
   Grid,
 } from "semantic-ui-react";
+import GoogleAuth from "../../api/GoogleAuth";
 import "./index.css";
 
 const Navbar = () => {
@@ -22,7 +23,7 @@ const Navbar = () => {
     setActiveItem(name);
   };
 
-  <Icon className="logo" size="large"></Icon>;
+  <Icon className="logo"></Icon>;
 
   return (
     <Menu text>
@@ -86,7 +87,7 @@ const Navbar = () => {
       >
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
-          <Grid columns={2} divided textAlign="center" verticalAlign="center">
+          <Grid columns={2} divided textAlign="center" verticalAlign="middle">
             <Grid.Column>
               <ModalDescription>
                 <Form>
@@ -110,17 +111,20 @@ const Navbar = () => {
                       <input />
                     </Input>
                   </Form.Field>
+                  <Button
+                    fluid
+                    type="submit"
+                    className="black-color"
+                    content="Submit"
+                  />
+                  <GoogleAuth />
+                  <br></br>
                   <span>
                     Not a member yet?
                     <Link to="/signup" exact>
-                      <span> </span>Click here
+                      <span> </span>Join us!
                     </Link>
                   </span>
-                  <br />
-                  <br />
-                  <Button type="submit" className="black-color">
-                    Submit
-                  </Button>
                 </Form>
               </ModalDescription>
             </Grid.Column>
@@ -128,18 +132,12 @@ const Navbar = () => {
               <Image
                 src="../../images/pngkey.com-google-cloud-logo-png-7884107.png"
                 wrapped
-                size="small"
+                size="large"
               />
             </Grid.Column>
           </Grid>
         </Modal.Content>
         <Modal.Actions>
-          {/* <Button
-            content="Ok"
-            icon="checkmark"
-            onClick={() => setOpen(false)}
-            positive
-          /> */}
           <Button
             content="Close"
             icon="close"

@@ -42,9 +42,16 @@ span {
 
 i.icon.logo {
   /* background: url("./DSC logo_color.png") no-repeat center center/cover; */
-  background: url("../../assets/DSC-logo-color.png");
+  /* background: url("../../assets/DSC-logo-color.png");
+  */
+  background: url("../../assets/DSC-logo-color.png") no-repeat center
+    center/cover;
   height: 21px;
   width: 21px;
+}
+
+.ui.button {
+  margin: 3px;
 }
 
 .ui.button.theme-color {
@@ -59,4 +66,8 @@ i.icon.logo {
 .ui.button.black-color {
   background-color: #3d3e50;
   color: white;
+}
+
+Button {
+  padding: 0.5rem;
 }
