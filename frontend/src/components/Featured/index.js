@@ -4,14 +4,13 @@ import MulticolorAnimation from "../MulticolorAnimation";
 import "./index.css";
 
 const Featured = () => {
-    return <Container>
+    return <Container id="featuredContent">
             <MulticolorAnimation></MulticolorAnimation>
-            <div id="featuredImageContainer" style={{backgroundImage: 'url(./images/CoverPhoto-Plain.png'}}>
-       
-
-            </div>
-            
-            </Container>;
+            <div id="featuredImageContainer" style={{backgroundImage: 'url(./images/CoverPhoto-Plain.png'}}></div>
+            <Image></Image>
+            <Image></Image>
+            <Image></Image>
+        </Container>;
 }
 
 export default Featured;
