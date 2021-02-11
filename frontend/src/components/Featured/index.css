@@ -1,11 +1,55 @@
 #featuredContent {
+    position: relative;
     height: 35rem;
+    overflow: hidden;
 }
 
-#featuredImageContainer{
-    width: 100%;
+#featuredContent .featured-circles {
+    position: absolute;
+}
+
+#featuredBkgImg {
+    position:absolute;
     height: 100%;
-    background-repeat: no-repeat;
-    background-size: contain;
+    z-index: 1;
 }
 
+#featuredCircleBlue {
+    height: 8rem;
+    width: 13rem;
+    top: 50px;
+    left: 70px;
+    z-index: 3;
+ }
+
+#featuredCirclePlain {
+    height: 15rem;
+    width: 20rem;
+    bottom: -72px;
+    right: -39px;
+    z-index: 3;
+}
+
+#featuredCircleLines {
+    height: 15rem;
+    width: 20rem;
+    left: -70px;
+    top: -30px;
+    z-index: 2;
+}
+
+button#getToKnowUs {
+    position: absolute;
+    background-color: white;
+    color: black;
+    z-index: 3;
+    height: 4rem;
+    width: 15rem;
+
+    bottom: 30px;
+    right: 110px;
+}
+
+button#getToKnowUs:hover {
+    background-color: #7400B8;
+}

@@ -1,16 +1,17 @@
 import React from "react";
-import {Container, Image} from 'semantic-ui-react';
+import { Button, Container, Image } from 'semantic-ui-react';
 import MulticolorAnimation from "../MulticolorAnimation";
 import "./index.css";
 
 const Featured = () => {
-    return <Container id="featuredContent">
+    return (<Container id="featuredContent">
             <MulticolorAnimation></MulticolorAnimation>
-            <div id="featuredImageContainer" style={{backgroundImage: 'url(./images/CoverPhoto-Plain.png'}}></div>
-            <Image></Image>
-            <Image></Image>
-            <Image></Image>
-        </Container>;
+            <Image id="featuredBkgImg" src="./images/CoverPhoto-Plain.png" />
+            <Image class="featured-circles" id="featuredCircleBlue" src="./images/CoverPhoto-CircleBlue.png" />
+            <Image class="featured-circles" id="featuredCirclePlain" src="./images/CoverPhoto-Circle.png" />
+            <Image class="featured-circles" id="featuredCircleLines" src="./images/CoverPhoto-CircleLines.png" />
+            <Button id="getToKnowUs">Get To Know Us</Button>
+           </Container>);
 }
 
 export default Featured;
