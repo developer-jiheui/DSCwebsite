@@ -1,17 +1,28 @@
 #featuredContent {
     position: relative;
-    height: 35rem;
+    height: 40rem;
     overflow: hidden;
 }
 
-#featuredContent .featured-circles {
+#multicolorAnimation {
+    position: absolute;
+    z-index: 3;
+    opacity: 0.5;
+}
+
+#featuredContent .ui.image {
     position: absolute;
 }
 
 #featuredBkgImg {
-    position:absolute;
     height: 100%;
     z-index: 1;
+}
+
+#featuredFace {
+    z-index: 6;
+    bottom: 0px;
+    height:100%;
 }
 
 #featuredCircleBlue {
@@ -27,7 +38,7 @@
     width: 20rem;
     bottom: -72px;
     right: -39px;
-    z-index: 3;
+    z-index: 6;
 }
 
 #featuredCircleLines {
@@ -42,7 +53,7 @@ button#getToKnowUs {
     position: absolute;
     background-color: white;
     color: black;
-    z-index: 3;
+    z-index: 7;
     height: 4rem;
     width: 15rem;
 
@@ -52,4 +63,14 @@ button#getToKnowUs {
 
 button#getToKnowUs:hover {
     background-color: #7400B8;
+    color: white;
+}
+
+#featuredText {
+    position:absolute;
+    z-index: 6;
+    color:white;
+    top: 24rem;
+    left: 5rem;
+    font-size: 4vw;
 }

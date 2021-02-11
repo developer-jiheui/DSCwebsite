@@ -7,10 +7,12 @@ const Featured = () => {
     return (<Container id="featuredContent">
             <MulticolorAnimation></MulticolorAnimation>
             <Image id="featuredBkgImg" src="./images/CoverPhoto-Plain.png" />
-            <Image class="featured-circles" id="featuredCircleBlue" src="./images/CoverPhoto-CircleBlue.png" />
-            <Image class="featured-circles" id="featuredCirclePlain" src="./images/CoverPhoto-Circle.png" />
-            <Image class="featured-circles" id="featuredCircleLines" src="./images/CoverPhoto-CircleLines.png" />
+            <Image id="featuredCircleBlue" src="./images/CoverPhoto-CircleBlue.png" />
+            <Image id="featuredCirclePlain" src="./images/CoverPhoto-Circle.png" />
+            <Image id="featuredCircleLines" src="./images/CoverPhoto-CircleLines.png" />
+            <Image id="featuredFace" src="./images/CoverPhoto-Face.png" />
             <Button id="getToKnowUs">Get To Know Us</Button>
+            <h1 id="featuredText">Creative Minds      </h1>
            </Container>);
 }
 
