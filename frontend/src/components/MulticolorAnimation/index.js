@@ -19,7 +19,6 @@ class MulticolorAnimation extends React.Component {
 
     componentDidMount(){
         new App();
-        alert("ALERERKLERJHEKJHR!!!!!!!!!!!!");
     }
 
     render(){
@@ -39,10 +38,10 @@ class App{
 
         this.pixelRatio = (window.devicePixelRatio >1) ? 2 :1;
 
-        this.totalParticales = 15;
+        this.totalParticales = 150;
         this.particles = [];
-        this.maxRadius = 90;
-        this.minRadius = 40;
+        this.maxRadius = 400;
+        this.minRadius = 300;
 
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
@@ -58,6 +57,8 @@ class App{
         this.canvas.width = this.stageWidth*this.pixelRatio;
         this.canvas.height = this.stageHeight*this.pixelRatio;
         this.ctx.scale(this.pixelRatio, this.pixelRatio);
+
+        this.ctx.globalCompositeOperation ='saturation';
 
         this.createParticles();
     }
@@ -97,14 +98,6 @@ class App{
         }
     }
 }
-
-// window.onload = () => {
-//    new App();
-// }
-
-
-
-
 
 
 export default MulticolorAnimation;
