@@ -11,10 +11,10 @@ const SocialMedia = () => {
             size="big"            
             name="instagram"></Icon>
             </a></li>
-        <li><a target="_blank" href="">
+        <li><a target="_blank" href="https://www.linkedin.com/groups/8879294/">
             <Icon 
             size="big"             
-            name="whatsapp"></Icon>
+            name="linkedin"></Icon>
             </a></li>
         <li><a target="_blank" href="https://github.com/dsudevelopersclub">
             <Icon 
