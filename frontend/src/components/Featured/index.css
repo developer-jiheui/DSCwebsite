@@ -43,13 +43,14 @@
     width: 21rem;
     left: -70px;
     top: -30px;
+    opacity: 0.5;
     z-index: 2;
 }
 
 button#getToKnowUs {
     position: absolute;
-    background-color: white;
-    color: black;
+    background-color: #B9AAFF;
+    color: white;
     z-index: 7;
     height: 4rem;
     width: 15rem;
@@ -67,7 +68,16 @@ button#getToKnowUs:hover {
     position:absolute;
     z-index: 6;
     color:white;
-    top: 24rem;
+    top: 20rem;
     left: 5rem;
-    font-size: 4vw;
+    font-size: 5vw;
+}
+
+#featuredText2 {
+    position:absolute;
+    z-index: 6;
+    color:white;
+    top: 20rem;
+    right: 6rem;
+    font-size: 5vw;
 }
