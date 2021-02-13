@@ -1,11 +1,9 @@
 import React from "react";
 import { Button, Container, Image } from 'semantic-ui-react';
-import MulticolorAnimation from "../MulticolorAnimation";
 import "./index.css";
 
 const Featured = () => {
     return (<Container id="featuredContent">
-            {/* <MulticolorAnimation></MulticolorAnimation> */}
             <Image id="featuredBkgImg" src="./images/CoverPhoto-Plain.png" />
             <Image id="featuredCircleBlue" src="./images/CoverPhoto-CircleBlue.png" />
             <Image id="featuredCirclePlain" src="./images/CoverPhoto-Circle.png" />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Image, Card, Icon } from "semantic-ui-react";
+import { Grid, Card  } from "semantic-ui-react";
 import Featured from "../../components/Featured";
 import Footer from "../../components/Footer";
 
