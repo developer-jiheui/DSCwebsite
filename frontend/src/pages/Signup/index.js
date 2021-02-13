@@ -24,44 +24,44 @@ const Signup = () => {
       <Navbar></Navbar>
       <Container id="sign-up-container">
         <h2>Sign Up Now!</h2>
-
         <Form>
           <Form.Field>
-            {/* <Grid columns={1} textAlign="justify" verticalAlign="middle">
-              <Grid.Column width="8"> */}
-                <Form.Field label="First Name" control="input" type="text" placeholder="First Name"></Form.Field>
-                <Form.Field label="Last Name" control="input" type="text" placeholder="Last Name"></Form.Field>
-                {/* </Grid.Column>
-                  <Grid.Column> */}
-                {/* <Form.Field label="Preferred Pronoun:" control="select">
-                  <option value="select">Select</option>
-                  <option value="he">He/Him</option>
-                  <option value="she">She/Her</option>
-                  <option value="they">They/Them</option>
-                  <option value="not-listed">A pronoum not listed</option>
-                  <option value="no-preference">No pronoum preference</option>
-                </Form.Field> */}                
-                <Form.Field label="Email" control="input" type="email" placeholder="email@email.com"></Form.Field>                
-                <Form.Group inline>
-                  <label>Preferred Pronouns</label>
-                  <Form.Field label='He/Him' control='input' type='checkbox' />
-                  <Form.Field label='She/Her' control='input' type='checkbox' />
-                  <Form.Field label='They/Them' control='input' type='checkbox' />
-                </Form.Group>
-                <Form.Field
-                  control={Checkbox}
-                  label={{ children: 'I agree to the Terms and Conditions' }}
-                />
-                <Button
-                  content="Set focused"
-                  fluid
-                  type="submit"
-                  className="black-color"
-                  content="Submit"
-                />
-                <GoogleAuth />
-              {/* </Grid.Column>
-            </Grid> */}
+            <Form.Field
+              label="First Name"
+              control="input"
+              type="text"
+              placeholder="First Name"
+            ></Form.Field>
+            <Form.Field
+              label="Last Name"
+              control="input"
+              type="text"
+              placeholder="Last Name"
+            ></Form.Field>
+            <Form.Field
+              label="Email"
+              control="input"
+              type="email"
+              placeholder="email@email.com"
+            ></Form.Field>
+            <Form.Group inline>
+              <label>Preferred Pronouns</label>
+              <Form.Field label="He/Him" control="input" type="checkbox" />
+              <Form.Field label="She/Her" control="input" type="checkbox" />
+              <Form.Field label="They/Them" control="input" type="checkbox" />
+            </Form.Group>
+            <Form.Field
+              control={Checkbox}
+              label={{ children: "I agree to the Terms and Conditions" }}
+            />
+            <Button
+              content="Set focused"
+              fluid
+              type="submit"
+              className="black-color"
+              content="Submit"
+            />
+            <GoogleAuth />
           </Form.Field>
         </Form>
       </Container>
