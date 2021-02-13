@@ -5,7 +5,7 @@ import "./index.css";
 
 const News = () => {
     return <Card href='#' fluid>
-        <Image size="tiny" centered src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+        <Image size="tiny" ce ntered src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
         <Card.Content>
             <Card.Header>COVID 19 Updates</Card.Header>
             <Card.Description>

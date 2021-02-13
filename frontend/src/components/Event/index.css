@@ -16,3 +16,7 @@
     background-color: var(--deep-purple) !important;
     color: white !important;
 }
+
+.event-more-button:hover {
+    background-color: var(--light-purple) !important;
+}

@@ -1,8 +1,7 @@
 #featuredContent {
     position: relative;
     height: 40rem;
-    overflow: hidden;
-    margin-bottom: 3rem;
+    /* overflow: hidden; */
 }
 
 #featuredContent .ui.image {
@@ -12,13 +11,15 @@
 #featuredBkgImg {
     height: 100%;
     z-index: 1;
-    opacity: 0;
+    opacity: 0.0;
 }
 
 #featuredFace {
     z-index: 6;
     bottom: 0px;
     height:100%;
+    width: auto;
+    right: 1rem;
 }
 
 #featuredCircleBlue {
