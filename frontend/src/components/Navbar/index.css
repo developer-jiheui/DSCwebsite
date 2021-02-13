@@ -83,5 +83,12 @@ i.icon.logo {
 }
 .contact {
   display: flex;
- flex-direction: column;
+  flex-direction: column;
+}
+
+.stick {
+  position: sticky;
+  top: 0;
+  background: transparent;
+  z-index: 10;
 }
