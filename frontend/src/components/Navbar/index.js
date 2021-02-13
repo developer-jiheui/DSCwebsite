@@ -167,10 +167,18 @@ const Navbar = () => {
                     <Button
                       content="Set focused"
                       fluid
-                      type="submit"
+                      type="sign up"
                       className="black-color"
-                      content="Submit"
+                      content="Sign Up!"
                     />
+                    <div className="my"></div>
+                    <Button fluid color="facebook">
+                      <Icon name="facebook" /> Facebook
+                    </Button>
+                    <div className="my"></div>
+                    <Button fluid color="google plus">
+                      <Icon name="google plus" /> Google
+                    </Button>
                     {/* <GoogleAuth /> */}
                     <Divider horizontal>Or</Divider>
                     <span>

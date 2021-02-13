@@ -13,8 +13,9 @@ const Events = () => {
         <h1>Events</h1>
         <Item>
           <Item.Image
+            rounded
             size="medium"
-            circular
+            // circular
             src="https://curiocity.com/edmonton/wp-content/uploads/2020/09/canada_games_council_niagara_2021_canada_summer_games_postponed.jpg"
           />
 
@@ -39,7 +40,7 @@ const Events = () => {
           <Item.Image
             rounded
             size="medium"
-            circular
+            // circular
             src="https://images.dailyhive.com/20180625114454/shutterstock_198202814.jpg"
           />
 
