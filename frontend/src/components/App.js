@@ -7,10 +7,12 @@ import Team from "../pages/Team";
 import Community from "../pages/Community";
 import Contact from "../pages/Contact";
 import Signup from "../pages/Signup";
+import MulticolorAnimation from "./MulticolorAnimation";
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div className="ui container">      
+      <MulticolorAnimation/>
       <Router>
         <Route exact path="/" render={() => <Homepage />}></Route>
         <Route exact path="/events" render={() => <Events />}></Route>

@@ -2,12 +2,7 @@
     position: relative;
     height: 40rem;
     overflow: hidden;
-}
-
-#multicolorAnimation {
-    position: absolute;
-    z-index: 3;
-    opacity: 0.5;
+    margin-bottom: 3rem;
 }
 
 #featuredContent .ui.image {
@@ -17,6 +12,7 @@
 #featuredBkgImg {
     height: 100%;
     z-index: 1;
+    opacity: 0;
 }
 
 #featuredFace {
@@ -62,7 +58,7 @@ button#getToKnowUs {
 }
 
 button#getToKnowUs:hover {
-    background-color: #7400B8;
+    background-color: var(--basic-purple);
     color: white;
 }
 

@@ -9,17 +9,17 @@
 
 .ui.text.menu .item:hover {
   color: black;
-  -webkit-text-fill-color: #6930c3;
+  -webkit-text-fill-color: var(--basic-purple);
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #6930c3;
+  -webkit-text-stroke-color: var(--basic-purple);
   padding-bottom: 0.5rem;
 }
 
 .ui.text.menu .item.active {
   color: black;
-  -webkit-text-fill-color: #6930c3;
+  -webkit-text-fill-color: var(--basic-purple);
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #6930c3;
+  -webkit-text-stroke-color: var(--basic-purple);
   padding-bottom: 0.5rem;
 }
 
@@ -48,7 +48,7 @@ i.icon.logo {
 }
 
 .ui.button.theme-color {
-  background-color: #6930c3;
+  background-color: var(--basic-purple);
   color: white;
 }
 
@@ -57,6 +57,6 @@ i.icon.logo {
 }
 
 .ui.button.black-color {
-  background-color: #3d3e50;
+  background-color: var(--douglas-gray);
   color: white;
 }

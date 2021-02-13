@@ -1,0 +1,15 @@
+#events-news-container {
+    background: white;
+    padding: 3rem;
+    color: black;
+    margin-bottom: 2rem;
+}
+
+#events-news-container h1 {
+    text-align: center;
+}
+
+#events-news-container p {
+    text-align: justify;
+    display: inline-block;
+}

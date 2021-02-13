@@ -5,7 +5,7 @@ import "./index.css";
 
 const Featured = () => {
     return (<Container id="featuredContent">
-            <MulticolorAnimation></MulticolorAnimation>
+            {/* <MulticolorAnimation></MulticolorAnimation> */}
             <Image id="featuredBkgImg" src="./images/CoverPhoto-Plain.png" />
             <Image id="featuredCircleBlue" src="./images/CoverPhoto-CircleBlue.png" />
             <Image id="featuredCirclePlain" src="./images/CoverPhoto-Circle.png" />

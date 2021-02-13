@@ -3,7 +3,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0; */
-    background-color: #3D3E50;
+    /* background-color: var(--douglas-gray) */
     color: white;
     text-align: center;
     padding: 1.5rem;

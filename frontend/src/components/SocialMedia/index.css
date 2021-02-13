@@ -1,5 +1,6 @@
 ul {
     padding: 0;
+    margin-bottom: 1rem;
 }
 
 a {
@@ -7,7 +8,7 @@ a {
 }
 
 a:hover {
-    color: #DDCAED;
+    color: var(--basic-purple);
 }
 
 li {
