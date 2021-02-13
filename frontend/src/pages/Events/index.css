@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  width: 100vh;
+  height: 100vh;
+  flex-direction: column;
+ 
+}
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 37px var(--douglas-gray)
+
+
+}
+.main h1 {
+  padding: 10px;
+  border-bottom: 2px solid black;
+}
+Button {
+  margin: 15px;
+  padding: 5px;
+  width: 200px;
+  font-size: 1rem;
+
+  align-self: center;
+  background-color: var(--deep-purple) !important;
+  
+}
+.ui.button.theme-color {
+  background-color: var(--basic-purple);
+  color: white;
+}
+
+
+.importante-info {
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+}
+.info {
+  font-size: 18px;
+  font-weight: bold;
+}
+.importante-info label {
+  margin-left: 10px;
+}
