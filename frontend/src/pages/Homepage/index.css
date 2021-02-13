@@ -3,6 +3,7 @@
     padding: 3rem;
     color: black;
     margin-bottom: 2rem;
+    box-shadow: 0px 0px 37px var(--douglas-gray)
 }
 
 #events-news-container h1 {
