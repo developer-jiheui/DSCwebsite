@@ -12,7 +12,9 @@ const Featured = () => {
             <Image id="featuredCircleLines" src="./images/CoverPhoto-CircleLines.png" />
             <Image id="featuredFace" src="./images/CoverPhoto-Face.png" />
             <Button id="getToKnowUs">Get To Know Us</Button>
-            <h1 id="featuredText">Creative Minds      </h1>
+            <h1 id="featuredText">&#123;Creative Minds </h1>
+            <h1 id="featuredText2">&#125;</h1>
+            
            </Container>);
 }
 

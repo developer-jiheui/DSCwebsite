@@ -27,6 +27,7 @@ const Navbar = () => {
   return (
     <Menu text>
       <Menu.Item
+        id = "logoText"
         as={NavLink}
         exact
         to="/"
@@ -81,7 +82,7 @@ const Navbar = () => {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button className="theme-color">Login</Button>}
+        trigger={<Button id="loginButton" className="theme-color">Login</Button>}
         size="small"
       >
         <Modal.Header>Log In</Modal.Header>
