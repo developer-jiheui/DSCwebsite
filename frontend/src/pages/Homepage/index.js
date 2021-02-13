@@ -13,8 +13,8 @@ const Homepage = () => {
     <div>
       <Navbar></Navbar>
       <Featured></Featured>
-      <Grid id="events-news-container">
-        <Grid.Column stackable width={10} id="events-container">
+      <Grid stackable id="events-news-container">
+        <Grid.Column width={10} id="events-container">
           <h1>Events</h1>
           <Card.Group>
             <Event></Event>
@@ -23,7 +23,7 @@ const Homepage = () => {
             <Event></Event>
           </Card.Group>
         </Grid.Column >
-        <Grid.Column stackable width={6} id="news-container">
+        <Grid.Column width={6} id="news-container">
           <h1>News</h1>
           <Card.Group>
             <News></News>
