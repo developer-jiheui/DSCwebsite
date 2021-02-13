@@ -7,6 +7,7 @@ import Team from "../pages/Team";
 import Community from "../pages/Community";
 import Contact from "../pages/Contact";
 import Signup from "../pages/Signup";
+import Event from '../pages/event'
 import MulticolorAnimation from "./MulticolorAnimation";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
       <Router>
         <Route exact path="/" render={() => <Homepage />}></Route>
         <Route exact path="/event/1" render={() => <Events />}></Route>
+        <Route path="/events" render={() => <Event />}></Route>
         <Route path="/team" render={() => <Team />}></Route>
         <Route path="/community" render={() => <Community />}></Route>
         <Route path="/contact" render={() => <Contact />}></Route>
