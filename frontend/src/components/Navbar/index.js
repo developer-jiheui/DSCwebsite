@@ -56,6 +56,7 @@ const Navbar = () => {
       />
       <Menu.Item
         as={NavLink}
+        login
         to="/team"
         name="team"
         icon="users"
@@ -112,6 +113,7 @@ const Navbar = () => {
                     </Input>
                   </Form.Field>
                   <Button
+                    content="Set focused"
                     fluid
                     type="submit"
                     className="black-color"
