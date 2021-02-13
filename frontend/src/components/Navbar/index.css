@@ -41,12 +41,11 @@ span {
   padding-left: 5px;
 }
 
-#logoText{
+#logoText {
   font-size: 16px;
-  color:white;
+  color: white;
   /* font-family: 'Product Sans'; */
 }
-
 
 i.icon.logo {
   /* background: url("./DSC logo_color.png") no-repeat center center/cover; */
@@ -62,7 +61,6 @@ i.icon.logo {
   margin-left: 15px;
   margin-top: 0.1rem;
   margin-bottom: 0.2rem;
-  
 }
 
 .ui.button.theme-color {
@@ -70,11 +68,28 @@ i.icon.logo {
   color: white;
 }
 
-.ui.button.theme-color:hover {
-  opacity: 0.7;
+.ui.fluid.button.black-color {
+  /* background-color: var(--douglas-gray); */
+  background-color: #3d3e50;
+  color: white;
 }
 
-.ui.button.black-color {
-  background-color: var(--douglas-gray);
-  color: white;
+.ui.button.black-color:hover,
+.ui.button.theme-color:hover {
+  opacity: 0.9;
+}
+
+.link-color {
+  color: blue;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.stick {
+  position: sticky;
+  top: 0;
+  background: transparent;
+  z-index: 10;
 }

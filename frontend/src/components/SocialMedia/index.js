@@ -3,7 +3,6 @@ import { Icon } from "semantic-ui-react";
 import "./index.css";
 
 const SocialMedia = () => {
-
     return <ul>
         <li><a target="_blank" rel="noreferrer" href="https://www.instagram.com/douglas.developer/">
             <Icon 
