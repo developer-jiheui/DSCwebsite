@@ -81,3 +81,7 @@ i.icon.logo {
 .link-color {
   color: blue;
 }
+.contact {
+  display: flex;
+ flex-direction: column;
+}

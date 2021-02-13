@@ -16,7 +16,7 @@ const App = () => {
       <MulticolorAnimation/>
       <Router>
         <Route exact path="/" render={() => <Homepage />}></Route>
-        <Route exact path="/event/1" render={() => <Events />}></Route>
+        <Route exact path="/eventfeed" render={() => <Events />}></Route>
         <Route path="/events" render={() => <Event />}></Route>
         <Route path="/team" render={() => <Team />}></Route>
         <Route path="/community" render={() => <Community />}></Route>

@@ -8,7 +8,7 @@ import "./index.css";
 
 const Events = () => {
   return (
-    <div>
+    <div >
       <Navbar></Navbar>
       <Item.Group className="wrapper">
         <h1>Events</h1>

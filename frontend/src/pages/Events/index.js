@@ -11,7 +11,8 @@ import "./index.css";
 
 const Events = () => {
   return (
-    <div className="wrapper">
+    
+    <div className= "listevent" >
       <Navbar></Navbar>
       <div className="main" >
         <h1>Event Name: DSC Douglas college</h1>

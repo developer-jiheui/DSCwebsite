@@ -1,14 +1,9 @@
-.wrapper {
-  display: flex;
-  width: 100vh;
-  height: 100vh;
-  flex-direction: column;
- 
-}
+
 .main {
   display: flex;
   flex: 1;
   flex-direction: column;
+ 
   justify-content: space-between;
   background-color: white;
   padding: 20px;
@@ -16,6 +11,14 @@
   box-shadow: 0px 0px 37px var(--douglas-gray)
 
 
+}
+.listevent {
+  display: flex;
+  width: 100vh;
+  height: 100vh;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
 }
 .main h1 {
   padding: 10px;

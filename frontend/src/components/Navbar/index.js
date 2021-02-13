@@ -11,6 +11,8 @@ import {
   Image,
   ModalDescription,
   Grid,
+  Header,
+  TextArea,
   Divider,
 } from "semantic-ui-react";
 import GoogleAuth from "../../api/GoogleAuth";
@@ -19,6 +21,7 @@ import "./index.css";
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [opencontact, setopencontact] = React.useState(false);
 
   const onItemClick = (name) => {
     setActiveItem(name);
@@ -72,14 +75,53 @@ const Navbar = () => {
         active={activeItem === "community"}
         onClick={() => onItemClick("community")}
       />
-      <Menu.Item
-        as={NavLink}
-        to="/contact"
-        name="contact"
-        icon="address book"
-        active={activeItem === "contact"}
-        onClick={() => onItemClick("contact")}
-      />
+      <Modal
+      onClose={() => setopencontact(false)}
+      onOpen={() => setopencontact(true)}
+      open={opencontact}
+      trigger={<Menu.Item  className="theme-color">Contact</Menu.Item>}
+    >
+      <Modal.Header >Contact</Modal.Header>
+      <Modal.Content image>
+        <Image size='medium' src='https://www.nonotes.com/assets/img/contact-img.svg' wrapped />
+        <Modal.Description >
+          <Header>Contact Us</Header>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam magnam reiciendis, 
+            sit corrupti ullam ducimus in sunt, doloribus inventore eos eius porro, neque 
+            ipsum temporibus sapiente suscipit nobis iste voluptatum?
+          </p>
+          <div className="contact">
+          <label >Name</label>
+         <Input></Input>
+         <label >Fone</label>
+         <Input></Input>
+          <label >E-mail</label>
+         <Input></Input>
+         <label >Subject</label>
+         <Input></Input>
+         <label >Message</label>
+         <TextArea></TextArea>
+          </div>
+        
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color='black' onClick={() => setopencontact(false)}>
+          Cancel
+        </Button>
+        <Button
+          content="Send"
+          labelPosition='right'
+          icon='checkmark'
+          onClick={() => setopencontact(false)}
+          positive
+        />
+      </Modal.Actions>
+    </Modal>
+
+
+      
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}

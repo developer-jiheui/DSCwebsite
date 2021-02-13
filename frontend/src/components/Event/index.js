@@ -26,7 +26,7 @@ const Event = () => {
             <Card.Content extra>
                 <i class="calendar alternate outline icon"></i> 
                 February 19th, 2020
-                <Link to="/event/1" >
+                <Link to="/eventfeed" >
                 <Button className="event-more-button">See More</Button>
                 </Link>
             </Card.Content>
