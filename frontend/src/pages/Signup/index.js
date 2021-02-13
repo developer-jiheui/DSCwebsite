@@ -7,7 +7,9 @@ import {
   Button,
   Input,
   Form,
+  Checkbox,
   Grid,
+  Container,
   ModalDescription,
 } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
@@ -20,35 +22,36 @@ const Signup = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="ui container">
-        <h2>Sign Up Now</h2>
+      <Container id="sign-up-container">
+        <h2>Sign Up Now!</h2>
 
         <Form>
           <Form.Field>
-            <Grid columns={1} textAlign="justify" verticalAlign="middle">
-              <Grid.Column width="8">
-                <label>First Name</label>
-                <Input placeholder="First name"></Input>
-                <br />
-                <br />
-                <label>Last Name</label>
-                <Input placeholder="Last name"></Input>
-                <br />
-                <br />
+            {/* <Grid columns={1} textAlign="justify" verticalAlign="middle">
+              <Grid.Column width="8"> */}
+                <Form.Field label="First Name" control="input" type="text" placeholder="First Name"></Form.Field>
+                <Form.Field label="Last Name" control="input" type="text" placeholder="Last Name"></Form.Field>
                 {/* </Grid.Column>
-              <Grid.Column> */}
-                <Form.Field label="Preferred Pronoun:" control="select">
+                  <Grid.Column> */}
+                {/* <Form.Field label="Preferred Pronoun:" control="select">
                   <option value="select">Select</option>
-                  <option value="he">He</option>
-                  <option value="she">She</option>
-                  <option value="they">They</option>
+                  <option value="he">He/Him</option>
+                  <option value="she">She/Her</option>
+                  <option value="they">They/Them</option>
                   <option value="not-listed">A pronoum not listed</option>
                   <option value="no-preference">No pronoum preference</option>
-                </Form.Field>
-                {/* <br /> */}
-                {/* <br /> */}
-                <label>Email</label>
-                <Input placeholder="example@email.com"></Input>
+                </Form.Field> */}                
+                <Form.Field label="Email" control="input" type="email" placeholder="email@email.com"></Form.Field>                
+                <Form.Group inline>
+                  <label>Preferred Pronouns</label>
+                  <Form.Field label='He/Him' control='input' type='checkbox' />
+                  <Form.Field label='She/Her' control='input' type='checkbox' />
+                  <Form.Field label='They/Them' control='input' type='checkbox' />
+                </Form.Group>
+                <Form.Field
+                  control={Checkbox}
+                  label={{ children: 'I agree to the Terms and Conditions' }}
+                />
                 <Button
                   content="Set focused"
                   fluid
@@ -57,11 +60,11 @@ const Signup = () => {
                   content="Submit"
                 />
                 <GoogleAuth />
-              </Grid.Column>
-            </Grid>
+              {/* </Grid.Column>
+            </Grid> */}
           </Form.Field>
         </Form>
-      </div>
+      </Container>
     </div>
   );
 };

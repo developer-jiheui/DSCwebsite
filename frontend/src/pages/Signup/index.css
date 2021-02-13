@@ -5,3 +5,7 @@
 .grid-layout {
   margin: auto;
 }
+
+#sign-up-container {
+  width: 50%;
+}
