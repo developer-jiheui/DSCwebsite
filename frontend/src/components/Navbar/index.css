@@ -68,8 +68,9 @@ i.icon.logo {
   color: white;
 }
 
-.ui.button.black-color {
-  background-color: var(--douglas-gray);
+.ui.fluid.button.black-color {
+  /* background-color: var(--douglas-gray); */
+  background-color: #3d3e50;
   color: white;
 }
 

@@ -30,7 +30,8 @@ const Navbar = () => {
   <Icon className="logo"></Icon>;
 
   return (
-    <div className="stick">
+    // <div className="stick">
+    <div>
       <Menu text id="navbar">
         <Menu.Item
           as={NavLink}
@@ -81,7 +82,7 @@ const Navbar = () => {
           open={opencontact}
           trigger={<Menu.Item className="theme-color">Contact</Menu.Item>}
         >
-          <Modal.Header>Contact</Modal.Header>
+          <Modal.Header>Contact Us</Modal.Header>
           <Modal.Content image>
             <Image
               size="medium"
@@ -89,7 +90,7 @@ const Navbar = () => {
               wrapped
             />
             <Modal.Description>
-              <Header>Contact Us</Header>
+              <Header>Send us a message</Header>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
                 magnam reiciendis, sit corrupti ullam ducimus in sunt, doloribus
@@ -111,16 +112,16 @@ const Navbar = () => {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color="black" onClick={() => setopencontact(false)}>
-              Cancel
-            </Button>
             <Button
               content="Send"
-              labelPosition="right"
-              icon="checkmark"
+              // labelPosition="right"
+              // icon="checkmark"
               onClick={() => setopencontact(false)}
               positive
             />
+            <Button color="red" onClick={() => setopencontact(false)}>
+              Cancel
+            </Button>
           </Modal.Actions>
         </Modal>
 
