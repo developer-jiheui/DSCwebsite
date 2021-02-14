@@ -1,7 +1,7 @@
 import { getByDisplayValue } from "@testing-library/react";
 import React from "react";
 import Footer from "../../components/Footer";
-import { Button, Form, Checkbox, Container, Divider } from "semantic-ui-react";
+import { Button, Form, Checkbox, Container, Icon } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import "./index.css";
 
@@ -53,13 +53,27 @@ const Signup = () => {
               control={Checkbox}
               label={{ children: "I agree to the Terms and Conditions" }}
             />
-            <Button
-              content="Set focused"
-              fluid
-              type="sign up"
-              className="black-color"
-              content="Sign Up!"
-            />
+            <div className="button-stack">
+              <Button
+                content="Set focused"
+                fluid
+                type="sign up"
+                className="black-color"
+                content="Sign Up!"
+              />
+              <div className="my"></div>
+              <Button fluid color="facebook">
+                <Icon name="facebook" /> Facebook
+              </Button>
+              <div className="my"></div>
+              <Button fluid color="google plus">
+                <Icon name="google plus" /> Google
+              </Button>
+              {/* <div className="my"></div>
+              <Button fluid color="linkedin">
+                <Icon name="linkedin" /> LinkedIn
+              </Button> */}
+            </div>
           </Form.Field>
         </Form>
       </Container>

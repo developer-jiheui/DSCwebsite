@@ -9,3 +9,12 @@
   box-shadow: 0px 0px 37px var(--douglas-gray);
   border-radius: 10px;
 }
+
+.my {
+  margin-top: 5px;
+}
+
+.button-stack {
+  display: flex;
+  flex-direction: column;
+}

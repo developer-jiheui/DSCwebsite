@@ -1,16 +1,13 @@
-
 .main {
   display: flex;
   flex: 1;
   flex-direction: column;
- 
+
   justify-content: space-between;
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0px 0px 37px var(--douglas-gray)
-
-
+  box-shadow: 0px 0px 37px var(--douglas-gray);
 }
 .listevent {
   display: flex;
@@ -24,7 +21,7 @@
   padding: 10px;
   border-bottom: 2px solid black;
 }
-Button {
+/* Button {
   margin: 15px;
   padding: 5px;
   width: 200px;
@@ -33,12 +30,11 @@ Button {
   align-self: center;
   background-color: var(--deep-purple) !important;
   
-}
+} */
 .ui.button.theme-color {
   background-color: var(--basic-purple);
   color: white;
 }
-
 
 .importante-info {
   display: flex;

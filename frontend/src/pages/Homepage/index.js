@@ -22,18 +22,18 @@ const Homepage = () => {
             <Event></Event>
             <Event></Event>
           </Card.Group>
-        </Grid.Column >
+        </Grid.Column>
         <Grid.Column width={6} id="news-container">
           <h1>News</h1>
           <Card.Group>
             <News></News>
             <News></News>
-          </Card.Group>          
-        </Grid.Column >
-      </Grid >
+          </Card.Group>
+        </Grid.Column>
+      </Grid>
       <Footer></Footer>
-    </div >
-  )
+    </div>
+  );
 };
 
 export default Homepage;
