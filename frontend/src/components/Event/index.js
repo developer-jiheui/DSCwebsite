@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Divider, Button, Card } from "semantic-ui-react";
+import { Divider, Button, Card, Image, Grid } from "semantic-ui-react";
 
 import "./index.css";
 
@@ -11,13 +11,20 @@ const Event = () => {
         <Card.Header>Title</Card.Header>
         <Divider></Divider>
         <Card.Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          <Grid>
+            <Grid.Column width={6}>
+        <Image src='https://react.semantic-ui.com/images/wireframe/image.png' size='small'  /> 
+        </Grid.Column>
+        <Grid.Column width={10}>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
+          </Grid.Column>
+          </Grid>
         </Card.Description>
       </Card.Content>
       <Card.Content extra>

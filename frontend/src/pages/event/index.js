@@ -1,5 +1,7 @@
 import React from "react";
 import Footer from "../../components/Footer";
+import Event from "../../components/Event";
+
 import { Item } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
