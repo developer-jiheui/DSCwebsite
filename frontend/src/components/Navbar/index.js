@@ -22,6 +22,7 @@ const Navbar = () => {
   const [activeItem, setActiveItem] = useState("");
   const [open, setOpen] = React.useState(false);
   const [opencontact, setopencontact] = React.useState(false);
+  const [login, setLogin] = React.useState(false);
 
   const onItemClick = (name) => {
     setActiveItem(name);
@@ -129,10 +130,25 @@ const Navbar = () => {
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
-          trigger={<Button className="theme-color">Login</Button>}
+          trigger={
+            login ? (
+              <Button className="theme-color">Login</Button>
+            ) : (
+              <Button
+                className="theme-color"
+                onClick={() => {
+                  setOpen(false);
+                  setLogin(true);
+                }}
+              >
+                Logout
+              </Button>
+            )
+          }
           size="small"
         >
           <Modal.Header>Log In</Modal.Header>
+
           <Modal.Content>
             <Grid columns={2} divided textAlign="center" verticalAlign="middle">
               <Grid.Column>
@@ -167,9 +183,12 @@ const Navbar = () => {
                     <Button
                       content="Set focused"
                       fluid
-                      type="sign up"
                       className="black-color"
-                      content="Sign Up!"
+                      content="Login"
+                      onClick={() => {
+                        setLogin(false);
+                        setOpen(false);
+                      }}
                     />
                     <div className="my"></div>
                     <Button fluid color="facebook">
