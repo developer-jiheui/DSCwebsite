@@ -10,8 +10,7 @@ import Navbar from "../../components/Navbar";
 import "./index.css";
 
 const Events = () => {
-  return (
-    
+  return  (
     <div className= "listevent" >
       <Navbar></Navbar>
       <div className="main" >

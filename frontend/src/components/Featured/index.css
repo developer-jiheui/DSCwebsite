@@ -20,6 +20,12 @@
     height:100%;
     width: auto;
     right: 1rem;
+    margin:auto;
+}
+
+#face-container {
+    display: grid;
+    height:100%;
 }
 
 #featuredCircleBlue {
