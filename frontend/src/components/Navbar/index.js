@@ -99,16 +99,33 @@ const Navbar = () => {
                 suscipit nobis iste voluptatum?
               </p>
               <div className="contact">
-                <label>Name</label>
-                <Input></Input>
-                <label>Fone</label>
-                <Input></Input>
-                <label>E-mail</label>
-                <Input></Input>
-                <label>Subject</label>
-                <Input></Input>
-                <label>Message</label>
-                <TextArea></TextArea>
+                <Form>
+                  <Form.Field
+                    label="Full name"
+                    control="input"
+                    type="text"
+                    placeholder="Full name"
+                  ></Form.Field>
+                  <Form.Field
+                    label="Phone"
+                    control="input"
+                    type="text"
+                    placeholder="(xxx) xxx-xxxx"
+                  ></Form.Field>
+                  <Form.Field
+                    label="Email"
+                    control="input"
+                    type="email"
+                    placeholder="example@email.com"
+                  ></Form.Field>
+                  <Form.Field
+                    label="Subject"
+                    control="input"
+                    type="text"
+                    placeholder="Subject"
+                  ></Form.Field>
+                  <TextArea label="Message"></TextArea>
+                </Form>
               </div>
             </Modal.Description>
           </Modal.Content>
