@@ -12,7 +12,14 @@ const Events = () => {
   return (
     <div >
       <Navbar></Navbar>
-      <Item.Group className="wrapper">
+      <div className="wrapper">
+      <h1>Events</h1>
+      <Event></Event>
+      <Event></Event>
+      <Event></Event>
+      <Event></Event>
+      </div>
+      {/* <Item.Group className="wrapper">
         <h1>Events</h1>
     <Item>
       <Item.Image size='medium' circular src='https://curiocity.com/edmonton/wp-content/uploads/2020/09/canada_games_council_niagara_2021_canada_summer_games_postponed.jpg' />
@@ -34,7 +41,7 @@ const Events = () => {
          <Item.Extra className="details">Additional Details</Item.Extra>
       </Item.Content>
     </Item>
-  </Item.Group>
+  </Item.Group> */}
       
       <Footer></Footer>
     </div>
