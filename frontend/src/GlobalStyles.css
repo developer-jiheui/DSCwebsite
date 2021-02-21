@@ -1,0 +1,43 @@
+:root {
+  --douglas-gray: #3d3e50;
+  --deep-purple: #7400b8;
+  --basic-purple: #6930c3;
+  --light-purple: #ddcaed;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--douglas-gray);
+  color: #fff;
+
+  background: linear-gradient(
+    -45deg,
+    var(--light-purple),
+    var(--basic-purple),
+    var(--deep-purple)
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+img {
+  width: 100%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,95 +1,20 @@
-.ui.text.menu {
-  padding-top: 10px;
-}
-
 .ui.text.menu .item {
-  background-color: transparent;
-  padding-inline: 10px;
-  /* margin: 10px; */
-}
-
-.ui.text.menu .item:hover {
-  color: black;
-  -webkit-text-fill-color: var(--basic-purple);
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--basic-purple);
-  padding-bottom: 0.5rem;
+  color: #fff;
 }
 
 .ui.text.menu .item.active {
-  color: black;
-  -webkit-text-fill-color: var(--basic-purple);
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--basic-purple);
-  padding-bottom: 0.5rem;
+  /* color: var(--basic-purple); */
 }
 
-.ui.text.menu .item.active:first-child,
-.ui.text.menu .item:hover:first-child {
-  color: black;
-  -webkit-text-fill-color: black;
-  -webkit-text-stroke-width: 0px;
-  -webkit-text-stroke-color: black;
-  padding-bottom: 0.5rem;
-}
-
-img {
-  width: 100%;
-}
-
-span {
-  padding-left: 5px;
-}
-
-#logoText {
-  font-size: 16px;
-  color: white;
-  /* font-family: 'Product Sans'; */
+.ui.text.menu .item:hover {
+  color: var(--basic-purple);
 }
 
 i.icon.logo {
-  /* background: url("./DSC logo_color.png") no-repeat center center/cover; */
-  background: url("../../assets/DSC-logo-color.png");
+  background: url("../../assets/DSC_logo_color.png");
   height: 30px;
   width: 30px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-}
-
-#loginButton {
-  margin-left: 15px;
-  margin-top: 0.1rem;
-  margin-bottom: 0.2rem;
-}
-
-.ui.button.theme-color {
-  background-color: var(--basic-purple);
-  color: white;
-}
-
-.ui.fluid.button.black-color {
-  /* background-color: var(--douglas-gray); */
-  background-color: #3d3e50;
-  color: white;
-}
-
-.ui.button.black-color:hover,
-.ui.button.theme-color:hover {
-  opacity: 0.9;
-}
-
-.link-color {
-  color: blue;
-}
-.contact {
-  display: flex;
-  flex-direction: column;
-}
-
-.stick {
-  position: sticky;
-  top: 0;
-  background: transparent;
-  z-index: 10;
 }

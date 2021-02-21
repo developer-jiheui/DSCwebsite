@@ -1,16 +1,17 @@
 import React from "react";
-import Footer from "../../components/Footer";
-
+import { Container } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
-import "./index.css";
+import Footer from "../../components/Footer";
 
 const Team = () => {
   return (
-    <div>
-      <Navbar></Navbar>
-      <Footer></Footer>
-    </div>
-    );
+    <>
+      <Container>
+        <Navbar />
+        <Footer />
+      </Container>
+    </>
+  );
 };
 
 export default Team;

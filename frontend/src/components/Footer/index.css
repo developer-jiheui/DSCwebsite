@@ -1,10 +1,29 @@
 footer {
-    /* position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0; */
-    /* background-color: var(--douglas-gray) */
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
+  /* position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0; */
+  /* background-color: var(--douglas-gray) */
+  /* color: white; */
+  text-align: center;
+  padding: 1.5rem;
+}
+
+ul {
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--basic-purple);
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+  margin: 0rem 0.5rem;
 }

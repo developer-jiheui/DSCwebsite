@@ -3,7 +3,7 @@ import { Container } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
-const Community = () => {
+const News = () => {
   return (
     <>
       <Container>
@@ -13,5 +13,4 @@ const Community = () => {
     </>
   );
 };
-
-export default Community;
+export default News;
