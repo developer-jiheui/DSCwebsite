@@ -43,14 +43,6 @@ const Navbar = () => {
         />
         <Menu.Item
           as={NavLink}
-          to="/news"
-          name="news"
-          icon="newspaper outline"
-          active={activeItem === "news"}
-          onClick={() => handleOnItemClick("news")}
-        />
-        <Menu.Item
-          as={NavLink}
           to="/team"
           name="team"
           icon="users"

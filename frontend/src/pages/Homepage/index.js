@@ -1,6 +1,13 @@
 import React from "react";
-import { Container, Image, Grid, Card } from "semantic-ui-react";
-
+import {
+  Container,
+  Image,
+  Grid,
+  Card,
+  Button,
+  Divider,
+} from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CardComponent from "../../components/CardComponent";
@@ -22,7 +29,7 @@ const Homepage = () => {
           <Grid.Column width={10} id="events-container">
             <h1>Events</h1>
             <Card.Group>
-              <CardComponent title="Title" isEvent date="February 19th, 2020">
+              <CardComponent title="Title" date="February 19th, 2020">
                 <Grid>
                   <Grid.Column width={6}>
                     <Image
@@ -41,8 +48,16 @@ const Homepage = () => {
                     deserunt mollit anim id est laborum.
                   </Grid.Column>
                 </Grid>
+                <Divider></Divider>
+                <Card.Content extra>
+                  <i className="calendar alternate outline icon"></i>
+                  February 19th, 2020
+                  <Link to={"/events"}>
+                    <Button className="event-more-button">See More</Button>
+                  </Link>
+                </Card.Content>
               </CardComponent>
-              <CardComponent title="Title" isEvent date="February 19th, 2020">
+              <CardComponent title="Title" date="February 19th, 2020">
                 <Grid>
                   <Grid.Column width={6}>
                     <Image
