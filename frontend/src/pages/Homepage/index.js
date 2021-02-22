@@ -76,6 +76,14 @@ const Homepage = () => {
                     deserunt mollit anim id est laborum.
                   </Grid.Column>
                 </Grid>
+                <Divider></Divider>
+                <Card.Content extra>
+                  <i className="calendar alternate outline icon"></i>
+                  February 19th, 2020
+                  <Link to={"/events"}>
+                    <Button className="event-more-button">See More</Button>
+                  </Link>
+                </Card.Content>
               </CardComponent>
             </Card.Group>
           </Grid.Column>

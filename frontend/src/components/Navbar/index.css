@@ -18,3 +18,11 @@ i.icon.logo {
   background-size: contain;
   background-position: center;
 }
+
+.my {
+  margin: 5px;
+}
+
+span {
+  color: black;
+}
