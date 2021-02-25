@@ -1,7 +1,16 @@
 import React from "react";
+import { Container } from "semantic-ui-react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <>
+      <Navbar />
+      <Container></Container>
+      <Footer />
+    </>
+  );
 };
 
 export default Profile;

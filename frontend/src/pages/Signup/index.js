@@ -52,7 +52,6 @@ const Signup = () => {
               control={Checkbox}
               label={{ children: "I agree to the Terms and Conditions" }}
             />
-
             <Button
               content="Set focused"
               fluid
@@ -61,8 +60,9 @@ const Signup = () => {
                 backgroundColor: "var(--douglas-gray)",
                 color: "white",
               }}
-              content="Sign Up!"
-            />
+            >
+              Sign Up
+            </Button>
             <div className="my"></div>
             <Button fluid color="facebook">
               <Icon name="facebook" /> Facebook

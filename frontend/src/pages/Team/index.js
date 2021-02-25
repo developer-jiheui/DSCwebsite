@@ -6,10 +6,9 @@ import Footer from "../../components/Footer";
 const Team = () => {
   return (
     <>
-      <Container>
-        <Navbar />
-        <Footer />
-      </Container>
+      <Navbar />
+      <Container></Container>
+      <Footer />
     </>
   );
 };

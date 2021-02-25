@@ -29,9 +29,17 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <Menu text>
+    <div className="stick">
+      <Menu
+        text
+        style={{
+          backgroundColor: "var(--douglas-gray)",
+          margin: "0px",
+          padding: "10px 20px",
+        }}
+      >
         <Menu.Item
+          style={{ color: "white" }}
           as={NavLink}
           exact
           to="/"
@@ -255,7 +263,7 @@ const Navbar = () => {
           </Modal>
         )}
       </Menu>
-    </>
+    </div>
   );
 };
 

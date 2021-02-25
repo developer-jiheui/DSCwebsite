@@ -3,11 +3,13 @@
 }
 
 .ui.text.menu .item.active {
-  /* color: var(--basic-purple); */
+  /* color: var(--light-purple); */
+  color: #ffd600;
 }
 
 .ui.text.menu .item:hover {
-  color: var(--basic-purple);
+  /* color: var(--light-purple); */
+  color: #ffd600;
 }
 
 i.icon.logo {
@@ -28,8 +30,9 @@ span {
 }
 
 .stick {
-  position: sticky;
+  position: fixed;
   top: 0;
-  background: transparent;
+  /* background: transparent; */
+  width: 100%;
   z-index: 10;
 }
