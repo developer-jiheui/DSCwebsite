@@ -13,6 +13,7 @@ import {
   Divider,
   TextArea,
   Dropdown,
+  GridColumn,
 } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -101,47 +102,55 @@ const Navbar = () => {
               }}
             >
               <Image
-                size="medium"
+                size="large"
                 // src="https://www.nonotes.com/assets/img/contact-img.svg"
                 src="./images/Contact2.jpg"
                 wrapped
               />
             </div>
           </Modal.Content>
-          <Modal.Description style={{ padding: "20px 80px" }}>
+
+          <Modal.Description style={{ padding: "30px 120px" }}>
             <Form>
-              <Form.Field>
-                <Input
-                  icon="user circle"
-                  placeholder="Name"
-                  iconPosition="left"
-                  type="text"
-                ></Input>
-              </Form.Field>
-              <Form.Field>
-                <Input
-                  iconPosition="left"
-                  placeholder="email@example.com"
-                  type="email"
-                  icon="envelope outline"
-                ></Input>
-              </Form.Field>
-              <Form.Field>
-                <Input
-                  iconPosition="left"
-                  placeholder="+x (xxx) xxx-xxxx"
-                  type="text"
-                  icon="phone"
-                ></Input>
-              </Form.Field>
-              <Form.Field>
-                <Input
-                  iconPosition="left"
-                  placeholder="Subject"
-                  type="text"
-                  icon="pencil alternate"
-                ></Input>
-              </Form.Field>
+              <Grid columns="equal">
+                <GridColumn>
+                  <Form.Field>
+                    <Input
+                      icon="user circle"
+                      placeholder="Name"
+                      iconPosition="left"
+                      type="text"
+                    ></Input>
+                  </Form.Field>
+                  <Form.Field>
+                    <Input
+                      iconPosition="left"
+                      placeholder="+x (xxx) xxx-xxxx"
+                      type="text"
+                      icon="phone"
+                    ></Input>
+                  </Form.Field>
+                </GridColumn>
+                <GridColumn>
+                  <Form.Field>
+                    <Input
+                      iconPosition="left"
+                      placeholder="email@example.com"
+                      type="email"
+                      icon="envelope outline"
+                    ></Input>
+                  </Form.Field>
+                  <Form.Field>
+                    <Input
+                      iconPosition="left"
+                      placeholder="Subject"
+                      type="text"
+                      icon="pencil alternate"
+                    ></Input>
+                  </Form.Field>
+                </GridColumn>
+              </Grid>
+              <br></br>
               <Form.Field>
                 <TextArea placeholder="Tell us more"></TextArea>
               </Form.Field>
