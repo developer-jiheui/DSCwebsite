@@ -26,3 +26,10 @@ i.icon.logo {
 span {
   color: black;
 }
+
+.stick {
+  position: sticky;
+  top: 0;
+  background: transparent;
+  z-index: 10;
+}

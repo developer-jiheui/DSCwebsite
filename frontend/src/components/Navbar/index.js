@@ -11,6 +11,7 @@ import {
   Input,
   Image,
   Divider,
+  TextArea,
 } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -18,7 +19,8 @@ import "./index.css";
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState("");
-  const [open, setOpen] = React.useState(false);
+  const [openContact, setOpenContact] = React.useState(false);
+  const [openLogin, setOpenLogin] = React.useState(false);
 
   const handleOnItemClick = (name) => {
     setActiveItem(name);
@@ -26,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Menu text className="navbar">
+      <Menu text>
         <Menu.Item
           as={NavLink}
           exact
@@ -71,43 +73,122 @@ const Navbar = () => {
           onClick={() => handleOnItemClick("community")}
         />
         <Modal
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
-          trigger={
-            <Button
-              style={{ backgroundColor: "var(--basic-purple", color: "white" }}
+          onClose={() => setOpenContact(false)}
+          onOpen={() => setOpenContact(true)}
+          open={openContact}
+          style={{ color: "black" }}
+          trigger={<Menu.Item icon="address book" name="contact" />}
+          size="small"
+        >
+          <Modal.Header>Get In Touch</Modal.Header>
+          {/* <Grid columns={2}>
+            <Grid.Column> */}
+          <Modal.Content image>
+            <div
+              style={{
+                display: "block",
+                width: "90%",
+                textAlign: "center",
+                margin: "auto",
+              }}
             >
-              Login
-            </Button>
-          }
+              <Image
+                size="medium"
+                // src="https://www.nonotes.com/assets/img/contact-img.svg"
+                src="./images/Contact2.jpg"
+                wrapped
+              />
+            </div>
+          </Modal.Content>
+          {/* </Grid.Column>
+            <Grid.Column> */}
+          <Modal.Description style={{ padding: "20px 80px" }}>
+            <Form>
+              <Form.Field>
+                <Input
+                  icon="user circle"
+                  placeholder="Name"
+                  iconPosition="left"
+                  type="text"
+                ></Input>
+              </Form.Field>
+              <Form.Field>
+                <Input
+                  iconPosition="left"
+                  placeholder="email@example.com"
+                  type="email"
+                  icon="envelope outline"
+                ></Input>
+              </Form.Field>
+              <Form.Field>
+                <Input
+                  iconPosition="left"
+                  placeholder="+x (xxx) xxx-xxxx"
+                  type="text"
+                  icon="phone"
+                ></Input>
+              </Form.Field>
+              <Form.Field>
+                <Input
+                  iconPosition="left"
+                  placeholder="Subject"
+                  type="text"
+                  icon="pencil alternate"
+                ></Input>
+              </Form.Field>
+              <Form.Field>
+                <TextArea placeholder="Tell us more"></TextArea>
+              </Form.Field>
+              <Button
+                fluid
+                type="submit"
+                style={{
+                  backgroundColor: "var(--douglas-gray)",
+                  color: "white",
+                }}
+              >
+                Send
+              </Button>
+            </Form>
+          </Modal.Description>
+          {/* </Grid.Column>
+          </Grid> */}
+          <Modal.Actions>
+            <Button
+              content="Close"
+              icon="close"
+              onClick={() => setOpenContact(false)}
+              color="red"
+            />
+          </Modal.Actions>
+        </Modal>
+        <Modal
+          onClose={() => setOpenLogin(false)}
+          onOpen={() => setOpenLogin(true)}
+          open={openLogin}
+          trigger={<Menu.Item name="login" icon="user circle" />}
           size="small"
         >
           <Modal.Header>Log In</Modal.Header>
           <ModalContent>
-            <Grid columns={2} divided textAlign="center" verticalAlign="center">
+            <Grid columns={2} divided textAlign="center" verticalAlign="middle">
               <Grid.Column>
                 <ModalDescription>
                   <Form>
                     <Form.Field>
                       <Input
-                        icon
+                        icon="user circle"
                         placeholder="Username/Email"
                         iconPosition="left"
-                      >
-                        <input />
-                        <Icon name="user circle" />
-                      </Input>
+                      ></Input>
                     </Form.Field>
                     <Form.Field>
                       <Input
                         iconPosition="left"
                         placeholder="Password"
                         type="password"
-                      >
-                        <Icon name="lock" />
-                        <input />
-                      </Input>
+                        icon="lock"
+                      ></Input>
                     </Form.Field>
                     <Button
                       fluid
@@ -124,9 +205,9 @@ const Navbar = () => {
                       <Icon name="google plus" /> Google
                     </Button>
                     <div className="my"></div>
-                    <Button fluid color="facebook">
+                    {/* <Button fluid color="facebook">
                       <Icon name="facebook" /> Facebook
-                    </Button>
+                    </Button> */}
                     <Divider horizontal>Or</Divider>
                     <span>
                       Not a member yet?
@@ -150,7 +231,7 @@ const Navbar = () => {
             <Button
               content="Close"
               icon="close"
-              onClick={() => setOpen(false)}
+              onClick={() => setOpenLogin(false)}
               color="red"
             />
           </Modal.Actions>
