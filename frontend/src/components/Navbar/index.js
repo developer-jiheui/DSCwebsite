@@ -12,6 +12,7 @@ import {
   Image,
   Divider,
   TextArea,
+  Dropdown,
 } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -19,8 +20,9 @@ import "./index.css";
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState("");
-  const [openContact, setOpenContact] = React.useState(false);
-  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openContact, setOpenContact] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
   const handleOnItemClick = (name) => {
     setActiveItem(name);
@@ -81,8 +83,6 @@ const Navbar = () => {
           size="small"
         >
           <Modal.Header>Get In Touch</Modal.Header>
-          {/* <Grid columns={2}>
-            <Grid.Column> */}
           <Modal.Content image>
             <div
               style={{
@@ -100,8 +100,6 @@ const Navbar = () => {
               />
             </div>
           </Modal.Content>
-          {/* </Grid.Column>
-            <Grid.Column> */}
           <Modal.Description style={{ padding: "20px 80px" }}>
             <Form>
               <Form.Field>
@@ -151,8 +149,6 @@ const Navbar = () => {
               </Button>
             </Form>
           </Modal.Description>
-          {/* </Grid.Column>
-          </Grid> */}
           <Modal.Actions>
             <Button
               content="Close"
@@ -162,80 +158,102 @@ const Navbar = () => {
             />
           </Modal.Actions>
         </Modal>
-        <Modal
-          onClose={() => setOpenLogin(false)}
-          onOpen={() => setOpenLogin(true)}
-          open={openLogin}
-          trigger={<Menu.Item name="login" icon="user circle" />}
-          size="small"
-        >
-          <Modal.Header>Log In</Modal.Header>
-          <ModalContent>
-            <Grid columns={2} divided textAlign="center" verticalAlign="middle">
-              <Grid.Column>
-                <ModalDescription>
-                  <Form>
-                    <Form.Field>
-                      <Input
-                        icon="user circle"
-                        placeholder="Username/Email"
-                        iconPosition="left"
-                      ></Input>
-                    </Form.Field>
-                    <Form.Field>
-                      <Input
-                        iconPosition="left"
-                        placeholder="Password"
-                        type="password"
-                        icon="lock"
-                      ></Input>
-                    </Form.Field>
-                    <Button
-                      fluid
-                      type="submit"
-                      style={{
-                        backgroundColor: "var(--douglas-gray)",
-                        color: "white",
-                      }}
-                    >
-                      Login
-                    </Button>
-                    <div className="my"></div>
-                    <Button fluid color="google plus">
-                      <Icon name="google plus" /> Google
-                    </Button>
-                    <div className="my"></div>
-                    {/* <Button fluid color="facebook">
-                      <Icon name="facebook" /> Facebook
-                    </Button> */}
-                    <Divider horizontal>Or</Divider>
-                    <span>
-                      Not a member yet?
-                      <Link to="/signup" style={{ color: "blue" }}>
-                        <span> </span>Join us!
-                      </Link>
-                    </span>
-                  </Form>
-                </ModalDescription>
-              </Grid.Column>
-              <Grid.Column>
-                <Image
-                  src="./images/DSC_logo_brand.png"
-                  wrapped
-                  size="medium"
-                />
-              </Grid.Column>
-            </Grid>
-          </ModalContent>
-          <Modal.Actions>
-            <Button
-              content="Close"
-              icon="close"
-              onClick={() => setOpenLogin(false)}
-              color="red"
-            />
-          </Modal.Actions>
-        </Modal>
+        {openProfile ? (
+          <Dropdown item icon="user circle">
+            <Dropdown.Menu>
+              <Dropdown.Item icon="edit" text="Edit Profile" />
+              <Dropdown.Item icon="settings" text="Account Settings" />
+              <Dropdown.Item
+                icon="sign-out"
+                text="Logout"
+                onClick={() => {
+                  setOpenProfile(false);
+                  setOpenLogin(false);
+                }}
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+        ) : (
+          <Modal
+            onClose={() => setOpenLogin(false)}
+            onOpen={() => setOpenLogin(true)}
+            open={openLogin}
+            trigger={<Menu.Item name="login" icon="sign-in" />}
+            size="small"
+          >
+            <Modal.Header>Log In</Modal.Header>
+            <ModalContent>
+              <Grid
+                columns={2}
+                divided
+                textAlign="center"
+                verticalAlign="middle"
+              >
+                <Grid.Column>
+                  <ModalDescription>
+                    <Form>
+                      <Form.Field>
+                        <Input
+                          icon="user"
+                          placeholder="Username/Email"
+                          iconPosition="left"
+                        ></Input>
+                      </Form.Field>
+                      <Form.Field>
+                        <Input
+                          iconPosition="left"
+                          placeholder="Password"
+                          type="password"
+                          icon="lock"
+                        ></Input>
+                      </Form.Field>
+                      <Button
+                        fluid
+                        type="submit"
+                        style={{
+                          backgroundColor: "var(--douglas-gray)",
+                          color: "white",
+                        }}
+                        onClick={() => {
+                          setOpenProfile(true);
+                        }}
+                      >
+                        Login
+                      </Button>
+                      <div className="my"></div>
+                      <Button fluid color="google plus">
+                        <Icon name="google plus" /> Google
+                      </Button>
+                      <div className="my"></div>
+                      <Divider horizontal>Or</Divider>
+                      <span>
+                        Not a member yet?
+                        <Link to="/signup" style={{ color: "blue" }}>
+                          <span> </span>Join us!
+                        </Link>
+                      </span>
+                    </Form>
+                  </ModalDescription>
+                </Grid.Column>
+                <Grid.Column>
+                  <Image
+                    src="./images/DSC_logo_brand.png"
+                    wrapped
+                    size="medium"
+                  />
+                </Grid.Column>
+              </Grid>
+            </ModalContent>
+            <Modal.Actions>
+              <Button
+                content="Close"
+                icon="close"
+                onClick={() => setOpenLogin(false)}
+                color="red"
+              />
+            </Modal.Actions>
+          </Modal>
+        )}
       </Menu>
     </>
   );
