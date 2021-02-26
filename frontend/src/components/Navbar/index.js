@@ -177,8 +177,17 @@ const Navbar = () => {
         </Modal>
         {openProfile ? (
           <Dropdown item icon="user circle">
-            <Dropdown.Menu>
-              <Dropdown.Item icon="edit" text="Edit Profile" />
+            <Dropdown.Menu
+              className="left"
+              style={{ backgroundColor: "var(--douglas-gray)" }}
+            >
+              <Dropdown.Item
+                icon="edit"
+                text="Edit Profile"
+                style={{ color: "white" }}
+                as={Link}
+                to="/profile"
+              />
               <Dropdown.Item icon="settings" text="Account Settings" />
               <Dropdown.Item
                 icon="sign-out"

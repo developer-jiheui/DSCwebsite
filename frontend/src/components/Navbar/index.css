@@ -36,3 +36,13 @@ span {
   width: 100%;
   z-index: 10;
 }
+
+i,
+span {
+  color: #fff;
+}
+
+/* i.active,
+span.active {
+  color: #ffd600;
+} */

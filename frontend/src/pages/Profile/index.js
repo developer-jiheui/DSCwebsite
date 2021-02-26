@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
+import { Container, Form, Image } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -7,7 +7,46 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <Container></Container>
+      <Container>
+        <div style={{ background: "white" }}>
+          <Image></Image>
+          <Form>
+            <Form.Field>
+              <Form.Field
+                label="First Name"
+                control="input"
+                type="text"
+                placeholder="First Name"
+              ></Form.Field>
+              <Form.Field
+                label="Last Name"
+                control="input"
+                type="text"
+                placeholder="Last Name"
+              ></Form.Field>
+
+              <Form.Field
+                label="Email"
+                control="input"
+                type="email"
+                placeholder="example@email.com"
+              ></Form.Field>
+              <Form.Field
+                label="Password"
+                control="input"
+                type="password"
+                placeholder="Password"
+              ></Form.Field>
+              <Form.Field
+                label="Reenter the password"
+                control="input"
+                type="password"
+                placeholder="Reenter the password"
+              ></Form.Field>
+            </Form.Field>
+          </Form>
+        </div>
+      </Container>
       <Footer />
     </>
   );
