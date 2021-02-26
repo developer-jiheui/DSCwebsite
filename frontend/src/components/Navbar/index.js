@@ -110,7 +110,7 @@ const Navbar = () => {
             </div>
           </Modal.Content>
 
-          <Modal.Description style={{ padding: "30px 120px" }}>
+          <Modal.Description style={{ padding: "30px 60px" }}>
             <Form>
               <Grid columns="equal">
                 <GridColumn>
