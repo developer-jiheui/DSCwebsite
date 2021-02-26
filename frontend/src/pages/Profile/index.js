@@ -3,17 +3,19 @@ import { Container, Form, Image } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
+import "./index.css";
+
 const Profile = () => {
   return (
     <>
       <Navbar />
       <Container>
-        <div style={{ background: "white" }}>
-          <Image></Image>
+        <div className="body">
+          <Image src="https://unsplash.com/photos/Xi0SAAHOc-k"></Image>
           <Form>
             <Form.Field>
               <Form.Field
-                label="First Name"
+                label="Name"
                 control="input"
                 type="text"
                 placeholder="First Name"

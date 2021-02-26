@@ -50,6 +50,7 @@ button#getToKnowUs:hover {
   color: black;
   margin-bottom: 2rem;
   box-shadow: 0px 0px 37px var(--douglas-gray);
+  border-radius: 5px;
 }
 
 #events-news-container h1 {
