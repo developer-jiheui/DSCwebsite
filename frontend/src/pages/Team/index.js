@@ -36,8 +36,8 @@ const members = [
 const Team = () => {
   return (
     <>
+      <Navbar />
       <Container>
-        <Navbar />
         <ContentContainer>
           <h1>Meet the Admins</h1>
           <Grid columns="4" stackable centered>
@@ -82,8 +82,8 @@ const Team = () => {
             )}
           </Grid>
         </ContentContainer>
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };

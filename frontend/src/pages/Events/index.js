@@ -7,13 +7,15 @@ import ContentContainer from "../../components/ContentContainer";
 const Events = () => {
   return (
     <>
-      <Container>
         <Navbar />
+
+      <Container>
         <ContentContainer>
           Under construction...
         </ContentContainer>
-        <Footer />
       </Container>
+      <Footer />
+
     </>
   );
 };

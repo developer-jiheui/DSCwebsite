@@ -26,6 +26,10 @@ body {
   animation: gradient 15s ease infinite;
 }
 
+div.ui.container {
+  margin-top: 60px; /*height of the navbar*/
+}
+
 img {
   width: 100%;
 }
