@@ -11,7 +11,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
+
 import "./index.css";
+import ContentContainer from "../../components/ContentContainer";
 
 const Homepage = () => {
   return (
@@ -24,7 +26,8 @@ const Homepage = () => {
         </Button>
         <h1 id="featuredText">&#123;Creative Minds </h1>
         <h1 id="featuredText2">&#125;</h1> */}
-        <Grid stackable id="events-news-container">
+        <ContentContainer>
+        <Grid stackable>
           <Grid.Column width={10} id="events-container">
             <h1>Events</h1>
             <Card.Group>
@@ -127,6 +130,7 @@ const Homepage = () => {
             </Card.Group>
           </Grid.Column>
         </Grid>
+        </ContentContainer>
         <Footer />
       </Container>
     </>
