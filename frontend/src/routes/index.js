@@ -5,6 +5,7 @@ import Signup from "../pages/Signup";
 import Community from "../pages/Community";
 import Events from "../pages/Events";
 import Team from "../pages/Team";
+import Profile from "../pages/Profile";
 
 export default function Routes() {
   return (
@@ -14,6 +15,7 @@ export default function Routes() {
       <Route path="/community" component={Community} />
       <Route path="/events" component={Events} />
       <Route path="/team" component={Team} />
+      <Route path="/profile" component={Profile} />
     </Switch>
   );
 }

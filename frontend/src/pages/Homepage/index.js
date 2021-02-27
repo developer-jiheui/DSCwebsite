@@ -18,8 +18,8 @@ import ContentContainer from "../../components/ContentContainer";
 const Homepage = () => {
   return (
     <>
+      <Navbar />
       <Container>
-        <Navbar />
         <Image src="./images/cover.png"></Image>
         {/* <Button id="getToKnowUs" floated="right">
           Get To Know Us
@@ -44,14 +44,15 @@ const Homepage = () => {
                         />
                       </Grid.Column>
                       <Grid.Column width={10}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                        do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
                       </Grid.Column>
                     </Grid>
                     <Divider></Divider>
@@ -78,14 +79,15 @@ const Homepage = () => {
                         />
                       </Grid.Column>
                       <Grid.Column width={10}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                        do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
                       </Grid.Column>
                     </Grid>
                     <Divider></Divider>
@@ -119,9 +121,9 @@ const Homepage = () => {
                     <Card.Content>
                       <br></br>
                       <Card.Description>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                        do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
                       </Card.Description>
                     </Card.Content>
                   </Card.Description>
@@ -131,8 +133,8 @@ const Homepage = () => {
           </Grid.Column>
         </Grid>
         </ContentContainer>
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };

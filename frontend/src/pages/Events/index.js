@@ -10,7 +10,7 @@ const Events = () => {
       <Container>
         <Navbar />
         <ContentContainer>
-          Events
+          Under construction...
         </ContentContainer>
         <Footer />
       </Container>

@@ -6,10 +6,9 @@ import Footer from "../../components/Footer";
 const Community = () => {
   return (
     <>
-      <Container>
-        <Navbar />
-        <Footer />
-      </Container>
+      <Navbar />
+      <Container></Container>
+      <Footer />
     </>
   );
 };
