@@ -223,6 +223,7 @@ const Navbar = () => {
                           icon="user"
                           placeholder="Username/Email"
                           iconPosition="left"
+                          style={{ color: "black" }}
                         ></Input>
                       </Form.Field>
                       <Form.Field>
