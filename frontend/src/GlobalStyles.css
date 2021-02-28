@@ -27,7 +27,7 @@ body {
 }
 
 div.ui.container {
-  margin-top: 60px; /*height of the navbar*/
+  margin-top: 80px; /*height of the navbar + 20px*/
 }
 
 img {

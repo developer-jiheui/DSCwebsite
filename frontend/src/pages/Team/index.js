@@ -60,7 +60,19 @@ const Team = () => {
                   <a target="_blank" rel="noreferrer"
                     href="">
                     <Icon size="large" name="github"></Icon>
-                  </a>                                        
+                  </a>  
+                  <a target="_blank" rel="noreferrer"
+                    href="">
+                    <Icon size="large" name="facebook"></Icon>
+                  </a> 
+                  <a target="_blank" rel="noreferrer"
+                    href="">
+                    <Icon size="large" name="instagram"></Icon>
+                  </a> 
+                  <a target="_blank" rel="noreferrer"
+                    href="">
+                    <Icon size="large" name="linkedin"></Icon>
+                  </a>                                       
                   </Card.Content>
                 </Card>
               </Grid.Column>
