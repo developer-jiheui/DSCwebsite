@@ -4,5 +4,26 @@ h1 {
 }
 
 i.chess {
-    color: var(--basic-purple);
+    color: #ffc107; 
+}
+
+div.member-info-container {
+    text-align: center;
+}
+
+div.member-info-container h2 {
+    margin-bottom: 0;
+}
+ 
+div.member-info-container .member-headline {
+    color: var(--douglas-gray);
+    font-size: smaller;
+}
+
+div.member-media-links a {
+    color: var(--douglas-gray);
+}
+
+div.member-media-links a:hover {
+    color: var(--deep-purple);
 }

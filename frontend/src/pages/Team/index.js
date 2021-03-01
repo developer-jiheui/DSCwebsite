@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   Container,
   Grid,
   Image,
   Reveal,
-  Icon
+  Icon,
+  Modal,
+  Button
 }
   from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
@@ -14,6 +16,8 @@ import ContentContainer from "../../components/ContentContainer";
 
 
 import './index.css';
+
+const defaultProfilePicURL = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=6&m=1214428300&s=612x612&w=0&h=rvt5KGND3z8kfrHELplF9zmr8d6COZQ-1vYK9mvSxnc=";
 
 const admins = [
   { firstname: "", lastname: "", bio: "", img: "" },
@@ -34,67 +38,114 @@ const members = [
 ];
 
 const Team = () => {
+  const [openMemberModal, setOpenMemberModal] = useState(false);
+
+  const handleMemberClick = (member) => {
+    console.log(member);
+    console.log("oop");
+    console.log(this);
+  }
   return (
     <>
       <Navbar />
       <Container>
         <ContentContainer>
           <h1>Meet the Admins</h1>
-          <Grid columns="4" stackable centered>
-            {admins.map((admin) =>
-              <Grid.Column>
-                <Card>
-                  <Image circular src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} />
-                  <Card.Content>
-                    <Card.Header><i class="chess queen icon"></i>Daniel</Card.Header>
-                    <Card.Meta>Joined in 2016</Card.Meta>
-                    <Card.Description>
-                      Daniel is a comedian living in Nashville.
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra textAlign="center">
-                  <a target="_blank" rel="noreferrer"
-                    href="">
-                    <Icon size="large" name="linkedin"></Icon>
-                  </a>        
-                  <a target="_blank" rel="noreferrer"
-                    href="">
-                    <Icon size="large" name="github"></Icon>
-                  </a>  
-                  <a target="_blank" rel="noreferrer"
-                    href="">
-                    <Icon size="large" name="facebook"></Icon>
-                  </a> 
-                  <a target="_blank" rel="noreferrer"
-                    href="">
-                    <Icon size="large" name="instagram"></Icon>
-                  </a> 
-                  <a target="_blank" rel="noreferrer"
-                    href="">
-                    <Icon size="large" name="linkedin"></Icon>
-                  </a>                                       
-                  </Card.Content>
-                </Card>
+          <Grid columns="4" stackable centered doubling>
+            {admins.map((admin, id) =>
+              <Grid.Column key={`admin-${id}`}>
+                <Image onClick={() => { handleMemberClick(admin); }}
+                  centered
+                  circular
+                  src={defaultProfilePicURL}
+                  size="medium" />
+                <div class="member-info-container">
+                  <h2>Jiheui Lee </h2>
+                  <p class="member-headline">4th Year Student</p>
+                  <p class="member-bio">
+                    Quisque pharetra nisi nec ex aliquet pellentesque. Aliquam sit amet risus aliquam, sagittis odio at, convallis orci. Donec neque erat, cursus sed erat a, dapibus posuere tellus. Donec non lectus aliquet, sodales arcu in, efficitur lacus.
+                    </p>
+                  <div class="member-media-links">
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="linkedin"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="github"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="facebook"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="instagram"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="twitter"></Icon>
+                    </a>
+                  </div>
+                </div>
               </Grid.Column>
             )}
           </Grid>
           <h1>Meet the Members</h1>
-          <Grid columns="4" stackable centered>
-            {members.map((member) =>
-              <Grid.Column>
-                <Reveal animated='small fade'>
-                  <Reveal.Content visible>
-                    <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' size='small' />
-                  </Reveal.Content>
-                  <Reveal.Content hidden>
-                    <Image src='https://react.semantic-ui.com/images/avatar/large/ade.jpg' size='small' />
-                  </Reveal.Content>
-                </Reveal>
+          <Grid columns="4" stackable centered doubling>
+            {members.map((member, id) =>
+              <Grid.Column key={`member-${id}`}>
+                <Image size="medium" centered circular src={defaultProfilePicURL} />
+                <div class="member-info-container">
+                  <h2>Daniel</h2>
+                  <p class="member-headline">4th Year Student</p>
+                  <p class="member-bio">
+                    Quisque pharetra nisi nec ex aliquet pellentesque. Aliquam sit amet risus aliquam, sagittis odio at, convallis orci. Donec neque erat, cursus sed erat a, dapibus posuere tellus. Donec non lectus aliquet, sodales arcu in, efficitur lacus.
+                    </p>
+                  <div class="member-media-links">
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="linkedin"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="github"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="facebook"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="instagram"></Icon>
+                    </a>
+                    <a target="_blank" rel="noreferrer"
+                      href="">
+                      <Icon size="large" name="twitter"></Icon>
+                    </a>
+                  </div>
+                </div>
               </Grid.Column>
             )}
           </Grid>
         </ContentContainer>
       </Container>
+      <Modal>
+        <Modal.Header>Member Info Modal</Modal.Header>
+        <Modal.Content>Stuff goes here</Modal.Content>
+        <Modal.Actions>
+          <Button color='black' onClick={() => setOpenMemberModal(false)}>
+            Nope
+        </Button>
+          <Button
+            content="Yep, that's me"
+            labelPosition='right'
+            icon='checkmark'
+            onClick={() => setOpenMemberModal(false)}
+            positive
+          />
+        </Modal.Actions>
+      </Modal>
       <Footer />
     </>
   );
