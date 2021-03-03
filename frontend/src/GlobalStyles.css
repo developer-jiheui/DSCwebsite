@@ -3,6 +3,7 @@
   --deep-purple: #7400b8;
   --basic-purple: #6930c3;
   --light-purple: #ddcaed;
+  --transparent-douglas-gray: #0e0e0e2e;
 }
 
 * {
@@ -13,12 +14,11 @@
 
 html,
 body {
-  background-color: var(--light-purple);
   color: #fff;
 }
 
 div.ui.container {
-  margin-top: 80px; /*height of the navbar + 20px*/
+  margin-top: 50px; /*height of the navbar + 20px*/
 }
 
 img {
@@ -29,22 +29,26 @@ img {
   overflow: hidden;
   font-size: 14px;
   line-height: normal;
+  background-color: var(--light-purple);
+  min-height:100%;
 }
 
 /* Fancy Background Stuff below With Clip text effect*/
-html {
+/* html {
   overflow: hidden;
-}
+} */
 
-body, head { 
+#fancy-background, head{/* body, head {  */
   display: block;
   font-size: 60px; /* for the content property ie dot size*/
   color: transparent;
 }
 
+/* head::before, head::after,
+body::before, body::after { */
 head::before, head::after,
-body::before, body::after {
-  position: fixed;
+#fancy-background::before, #fancy-background::after {  
+position: fixed;
   top: 50%;
   left: 50%;
   width: 3em;
@@ -52,16 +56,18 @@ body::before, body::after {
   /* this content property mimics the colorful dots we had before*/
   content: ". ... .. . .  .. . . . . ..";
   mix-blend-mode: screen;
-  animation: 44s -27s move infinite cubic-bezier(0.25,0.1,0.25,1) alternate;
+  animation: 44s -27s move infinite cubic-bezier(0.4, 0, 1, 1) alternate;
 }
 
-body::before {
+/* body::before { */
+  #fancy-background::before{
   text-shadow: -0.3910129987em 0.2813561486em 3px rgba(59, 0, 255, 1), 1.2744881082em 0.1854671597em 3px rgba(133, 255, 0, 1), 2.0566218635em 1.0219592075em 3px rgba(0, 170, 255, 1), 2.2673151098em 0.5337384562em 3px rgba(255, 168, 0, 1), 0.9540745803em -0.2796585145em 3px rgba(0, 227, 255, 1), 0.1963496244em -0.3414232621em 3px rgba(166, 255, 0, 1), 1.8798071133em 1.722207776em 3px rgba(255, 14, 0, 1), 0.7861888961em 1.5940169802em 3px rgba(255, 224, 0, 1), -0.4245764367em 0.8590607581em 3px rgba(255, 0, 112, 1), 1.3232197836em 1.7227361654em 3px rgba(0, 131, 255, 1), 0.4942675201em -0.2018743101em 3px rgba(255, 0, 232, 1), 0.7132012804em 1.5145153104em 3px rgba(255, 0, 220, 1), 0.7975866028em 1.1760062798em 3px rgba(255, 0, 236, 1), 1.4249412835em 1.8042084173em 3px rgba(0, 232, 255, 1), -0.2057264916em 0.0462592975em 3px rgba(255, 0, 196, 1), 0.7940655794em 1.0424884071em 3px rgba(189, 0, 255, 1), 2.4303751116em 0.4530944992em 3px rgba(181, 255, 0, 1), 1.3518771375em 1.7774763414em 3px rgba(245, 0, 255, 1), -0.3904124153em 1.1545926368em 3px rgba(255, 141, 0, 1), 0.7898936113em 0.3197135577em 3px rgba(255, 63, 0, 1), 1.7269362008em 1.1879052434em 3px rgba(206, 0, 255, 1), 0.0435465995em 0.3819009032em 3px rgba(140, 0, 255, 1), 1.5461582502em -0.2960006623em 3px rgba(0, 255, 114, 1), 1.0584299535em -0.1801122542em 3px rgba(255, 44, 0, 1), 0.7779046684em 0.0081917957em 3px rgba(0, 255, 98, 1), 1.9673152964em 0.0912455991em 3px rgba(0, 255, 85, 1), 2.3056953229em -0.4102849201em 3px rgba(0, 245, 255, 1), 2.2967913421em 2.027639647em 3px rgba(255, 0, 41, 1), 0.0788354128em 0.8642962223em 3px rgba(71, 0, 255, 1), 0.5163653776em 0.4507374852em 3px rgba(255, 0, 231, 1), 0.5198984881em 1.6673898268em 3px rgba(4, 255, 0, 1), 0.2078652906em 1.3171322176em 3px rgba(91, 0, 255, 1), -0.2042398808em -0.339725252em 3px rgba(1, 0, 255, 1), 0.9894116563em 0.7251385713em 3px rgba(255, 0, 62, 1), 1.8077888552em 0.6268279499em 3px rgba(151, 255, 0, 1), 0.8840628258em 2.2298291812em 3px rgba(11, 255, 0, 1), 0.1369078939em -0.3720130558em 3px rgba(201, 0, 255, 1), 1.4738417027em 1.7469236347em 3px rgba(0, 255, 184, 1), 0.6464042074em 0.6585433761em 3px rgba(0, 255, 148, 1), -0.1608418em 2.2824251496em 3px rgba(0, 255, 248, 1), 1.0791391435em 0.9811875314em 3px rgba(0, 255, 35, 1);
   animation-duration: 44s;
   animation-delay: -27s;
 }
 
-body::after {
+/* body::after { */
+  #fancy-background::after{
   text-shadow: 1.8635605415em 0.8014583259em 3px rgba(255, 0, 115, 1), 2.2263983792em 1.6028932511em 3px rgba(0, 43, 255, 1), 1.3989877804em 0.446876044em 3px rgba(0, 255, 35, 1), 2.1281084731em 2.3059304934em 3px rgba(178, 255, 0, 1), 1.7791309727em 1.1114806484em 3px rgba(255, 0, 45, 1), 1.1311696687em 2.074036833em 3px rgba(0, 255, 193, 1), -0.3448858368em 2.4898993478em 3px rgba(0, 255, 221, 1), -0.481113129em -0.2660490011em 3px rgba(255, 0, 116, 1), 0.2363070571em 1.3379588033em 3px rgba(255, 0, 138, 1), 1.9704105803em 2.391943741em 3px rgba(0, 255, 87, 1), 0.0570085273em 1.421119667em 3px rgba(0, 255, 197, 1), 2.4956538073em 1.0154380919em 3px rgba(73, 0, 255, 1), 0.7082165414em 0.0989275765em 3px rgba(255, 0, 69, 1), 0.215918414em -0.3922664817em 3px rgba(0, 228, 255, 1), 0.384158293em 1.3987355577em 3px rgba(0, 93, 255, 1), 1.4054332761em 1.4036873373em 3px rgba(0, 47, 255, 1), 1.3316993521em 0.0253911274em 3px rgba(255, 0, 188, 1), 1.2923494564em 0.6642307432em 3px rgba(0, 130, 255, 1), 1.2289143782em 1.537246704em 3px rgba(255, 189, 0, 1), 1.6508526883em 2.4129005604em 3px rgba(255, 117, 0, 1), 0.1242461927em 2.427859618em 3px rgba(90, 255, 0, 1), 0.5497210861em 1.9330524731em 3px rgba(0, 255, 78, 1), -0.4816216207em 1.4417450816em 3px rgba(165, 0, 255, 1), 2.2601291656em 0.7622980864em 3px rgba(114, 0, 255, 1), 0.535647949em -0.1069402337em 3px rgba(0, 255, 10, 1), 0.3773821242em 0.8938601323em 3px rgba(255, 0, 117, 1), 2.219193261em -0.2249709101em 3px rgba(255, 0, 181, 1), 2.2579113659em 1.738099469em 3px rgba(0, 255, 219, 1), 0.3662231773em 1.144813443em 3px rgba(0, 255, 80, 1), 1.4760560781em -0.3676645437em 3px rgba(233, 0, 255, 1), -0.31139715em 0.1813890873em 3px rgba(0, 242, 255, 1), 2.0168820976em 1.3905925606em 3px rgba(255, 191, 0, 1), 1.8347443134em 0.2822614843em 3px rgba(106, 0, 255, 1), 0.6145875328em -0.3067883434em 3px rgba(0, 169, 255, 1), 2.3675233423em 0.7159523179em 3px rgba(255, 182, 0, 1), 0.2593663542em 1.1794636798em 3px rgba(0, 255, 27, 1), 1.3427917825em 1.2962193607em 3px rgba(255, 14, 0, 1), 1.4748758799em 1.4335000712em 3px rgba(0, 207, 255, 1), 0.1584483765em 2.328155985em 3px rgba(255, 101, 0, 1), 1.5999127851em 0.7994995583em 3px rgba(0, 255, 177, 1), -0.442989791em -0.4591480056em 3px rgba(255, 0, 70, 1);
   animation-duration: 43s;
   animation-delay: -32s;

@@ -1,15 +1,24 @@
+.ui.text.menu {
+    /* background-color: var(--douglas-gray); */
+    margin: 0px;
+    padding: 2px 20px;
+}
+
 .ui.text.menu .item {
   color: #fff;
+  text-shadow: -1px 0px 2px black, 2px 1px 3px black;
 }
 
 .ui.text.menu .item.active {
   /* color: var(--light-purple); */
-  color: #ffd600;
+  color: white;
+  text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
 }
 
 .ui.text.menu .item:hover {
   /* color: var(--light-purple); */
-  color: #ffd600;
+  color: white;
+  text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
 }
 
 i.icon.logo {
@@ -32,7 +41,7 @@ span {
 .stick {
   position: fixed;
   top: 0;
-  /* background: transparent; */
+  background: var(--transparent-douglas-gray);
   width: 100%;
   z-index: 10;
 }

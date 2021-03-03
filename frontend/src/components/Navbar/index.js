@@ -33,11 +33,6 @@ const Navbar = () => {
     <div className="stick">
       <Menu
         text
-        style={{
-          backgroundColor: "var(--douglas-gray)",
-          margin: "0px",
-          padding: "10px 20px",
-        }}
       >
         <Menu.Item
           style={{ color: "white" }}

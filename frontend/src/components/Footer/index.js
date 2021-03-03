@@ -13,7 +13,7 @@ const Footer = () => {
             rel="noreferrer"
             href="https://www.instagram.com/douglas.developer/"
           >
-            <Icon link="" size="big" name="instagram"></Icon>
+            <Icon size="big" name="instagram"></Icon>
           </a>
         </li>
         <li>

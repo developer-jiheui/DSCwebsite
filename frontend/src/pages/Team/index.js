@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import {
-  Card,
   Container,
   Grid,
   Image,
-  Reveal,
   Icon,
   Modal,
   Button
@@ -59,13 +57,13 @@ const Team = () => {
                   circular
                   src={defaultProfilePicURL}
                   size="medium" />
-                <div class="member-info-container">
+                <div className="member-info-container">
                   <h2>Jiheui Lee </h2>
-                  <p class="member-headline">4th Year Student</p>
-                  <p class="member-bio">
+                  <p className="member-headline">4th Year Student</p>
+                  <p className="member-bio">
                     Quisque pharetra nisi nec ex aliquet pellentesque. Aliquam sit amet risus aliquam, sagittis odio at, convallis orci. Donec neque erat, cursus sed erat a, dapibus posuere tellus. Donec non lectus aliquet, sodales arcu in, efficitur lacus.
                     </p>
-                  <div class="member-media-links">
+                  <div className="member-media-links">
                     <a target="_blank" rel="noreferrer"
                       href="">
                       <Icon size="large" name="linkedin"></Icon>
@@ -96,13 +94,13 @@ const Team = () => {
             {members.map((member, id) =>
               <Grid.Column key={`member-${id}`}>
                 <Image size="medium" centered circular src={defaultProfilePicURL} />
-                <div class="member-info-container">
+                <div className="member-info-container">
                   <h2>Daniel</h2>
-                  <p class="member-headline">4th Year Student</p>
-                  <p class="member-bio">
+                  <p className="member-headline">4th Year Student</p>
+                  <p className="member-bio">
                     Quisque pharetra nisi nec ex aliquet pellentesque. Aliquam sit amet risus aliquam, sagittis odio at, convallis orci. Donec neque erat, cursus sed erat a, dapibus posuere tellus. Donec non lectus aliquet, sodales arcu in, efficitur lacus.
                     </p>
-                  <div class="member-media-links">
+                  <div className="member-media-links">
                     <a target="_blank" rel="noreferrer"
                       href="">
                       <Icon size="large" name="linkedin"></Icon>
