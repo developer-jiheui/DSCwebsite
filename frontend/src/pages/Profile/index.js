@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button, Card, Container, Form, Image } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  Container,
+  Form,
+  FormField,
+  Image,
+  TextArea,
+} from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -43,38 +51,40 @@ const Profile = () => {
             </Card>
           ) : (
             <Form>
-              <Form.Field>
-                <Form.Field
-                  label="Name"
-                  control="input"
-                  type="text"
-                  placeholder="Name"
-                ></Form.Field>
-                <Form.Field
-                  label="Email"
-                  control="input"
-                  type="email"
-                  placeholder="example@email.com"
-                ></Form.Field>
-                <Form.Field
-                  label="Github"
-                  control="input"
-                  type="text"
-                  placeholder="Github"
-                ></Form.Field>
-                <Form.Field
-                  label="LinkedIn"
-                  control="input"
-                  type="text"
-                  placeholder="LinkedIn"
-                ></Form.Field>
-                <Form.Field
-                  label="Website"
-                  control="input"
-                  type="text"
-                  placeholder="Website"
-                ></Form.Field>
-              </Form.Field>
+              <Form.Field
+                label="Name"
+                control="input"
+                type="text"
+                placeholder="Name"
+              ></Form.Field>
+              <Form.Field
+                label="Email"
+                control="input"
+                type="email"
+                placeholder="example@email.com"
+              ></Form.Field>
+              <Form.Field
+                label="Github"
+                control="input"
+                type="text"
+                placeholder="Github"
+              ></Form.Field>
+              <Form.Field
+                label="LinkedIn"
+                control="input"
+                type="text"
+                placeholder="LinkedIn"
+              ></Form.Field>
+              <Form.Field
+                label="Website"
+                control="input"
+                type="text"
+                placeholder="Website"
+              ></Form.Field>
+              <FormField>
+                <label>Bio</label>
+                <TextArea placeholder="Tell us a bit about yourself..."></TextArea>
+              </FormField>
               <Button
                 type="submit"
                 onClick={() => {
