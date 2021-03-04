@@ -2,12 +2,17 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import ContentContainer from "../../components/ContentContainer";
 
 const Community = () => {
   return (
     <>
       <Navbar />
-      <Container></Container>
+      <Container>
+        <ContentContainer>
+          Under construction...
+        </ContentContainer>
+      </Container>
       <Footer />
     </>
   );
