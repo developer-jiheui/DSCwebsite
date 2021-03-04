@@ -24,6 +24,10 @@ const Profile = () => {
             <Card>
               <div>Name: Joana Doe</div>
               <div>Email: joanadoe@gmail.com</div>
+              <div>Email: joanadoe@gmail.com</div>
+              <div>Github: </div>
+              <div>LinkedIn: </div>
+              <div>Website: </div>
               <Button
                 type="submit"
                 style={{
@@ -53,16 +57,22 @@ const Profile = () => {
                   placeholder="example@email.com"
                 ></Form.Field>
                 <Form.Field
-                  label="Password"
+                  label="Github"
                   control="input"
-                  type="password"
-                  placeholder="Password"
+                  type="text"
+                  placeholder="Github"
                 ></Form.Field>
                 <Form.Field
-                  label="Reenter the password"
+                  label="LinkedIn"
                   control="input"
-                  type="password"
-                  placeholder="Reenter the password"
+                  type="text"
+                  placeholder="LinkedIn"
+                ></Form.Field>
+                <Form.Field
+                  label="Website"
+                  control="input"
+                  type="text"
+                  placeholder="Website"
                 ></Form.Field>
               </Form.Field>
               <Button
