@@ -25,5 +25,20 @@ div.member-media-links a {
 }
 
 div.member-media-links a:hover {
-    color: var(--deep-purple);
+    color: var(--light-purple);
+}
+
+.member-profile-pic:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px var(--douglas-gray);
+}
+
+#member-modal {
+    color: black;
+    text-align: center;
+}
+
+#member-modal h1 {
+    margin: 0;
+    padding:0;
 }
