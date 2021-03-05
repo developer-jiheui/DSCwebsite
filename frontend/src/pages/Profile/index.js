@@ -33,40 +33,44 @@ const Profile = () => {
               label="Name"
               control="input"
               type="text"
-              placeholder="Name"
+              placeholder={edit ? "Joana Doe" : "Name"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
               label="Email"
               control="input"
               type="email"
-              placeholder="example@email.com"
+              placeholder={edit ? "joanadoe@email.com" : "example@email.com"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
               label="Github"
               control="input"
               type="text"
-              placeholder="Github"
+              placeholder={edit ? "https://github.com/joanadoe" : "Github"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
               label="LinkedIn"
               control="input"
               type="text"
-              placeholder="LinkedIn"
+              placeholder={edit ? "" : "LinkedIn"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
               label="Website"
               control="input"
               type="text"
-              placeholder="Website"
+              placeholder={edit ? "" : "Website"}
               disabled={edit}
             ></Form.Field>
             <FormField>
               <TextArea
-                placeholder="Tell us a bit about yourself..."
+                placeholder={
+                  edit
+                    ? "Hi there, My name is Joana and I am not good to talk about myself. Except that I like to code and make new friends."
+                    : "Tell us a bit about yourself..."
+                }
                 disabled={edit}
               ></TextArea>
             </FormField>
