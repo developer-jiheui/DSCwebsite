@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Image, Divider, Form, Comment, Button, Grid } from "semantic-ui-react";
 import ContentContainer from "../../components/ContentContainer";
+import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
 import './index.css';
@@ -115,6 +116,7 @@ const Event = () => {
                         </Form>
                     </Comment.Group>
                 </ContentContainer>
+                <Footer/>
             </Container>
         </>
     );
