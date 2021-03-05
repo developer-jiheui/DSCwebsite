@@ -14,6 +14,7 @@ import {
   TextArea,
   Dropdown,
   GridColumn,
+  Message,
 } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -24,16 +25,36 @@ const Navbar = () => {
   const [openContact, setOpenContact] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const [emailUsername, setEmailUsername] = useState("");
+  const [emailUsernameError, setEmailUsernameError] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleOnItemClick = (name) => {
     setActiveItem(name);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (emailUsername === "") {
+      setEmailUsernameError(true);
+    } else {
+      setEmailUsernameError(false);
+    }
+    if (password === "") {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+
+    if (emailUsernameError == false && passwordError == false) {
+      setOpenProfile(true);
+    }
+  };
+
   return (
     <div className="stick">
-      <Menu
-        text
-      >
+      <Menu text>
         <Menu.Item
           style={{ color: "white" }}
           as={NavLink}
@@ -204,6 +225,13 @@ const Navbar = () => {
           >
             <Modal.Header>Log In</Modal.Header>
             <ModalContent>
+              {emailUsernameError || passwordError ? (
+                <Message
+                  error
+                  header={"Submission Error"}
+                  content={"Check your credentials"}
+                />
+              ) : null}
               <Grid
                 columns={2}
                 divided
@@ -219,6 +247,10 @@ const Navbar = () => {
                           placeholder="Username/Email"
                           iconPosition="left"
                           style={{ color: "black" }}
+                          error={emailUsernameError}
+                          onChange={(e) => {
+                            setEmailUsername(e.target.value);
+                          }}
                         ></Input>
                       </Form.Field>
                       <Form.Field>
@@ -227,6 +259,10 @@ const Navbar = () => {
                           placeholder="Password"
                           type="password"
                           icon="lock"
+                          error={passwordError}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
                         ></Input>
                       </Form.Field>
                       <Button
@@ -236,8 +272,8 @@ const Navbar = () => {
                           backgroundColor: "var(--douglas-gray)",
                           color: "white",
                         }}
-                        onClick={() => {
-                          setOpenProfile(true);
+                        onClick={(e) => {
+                          handleSubmit(e);
                         }}
                       >
                         Login

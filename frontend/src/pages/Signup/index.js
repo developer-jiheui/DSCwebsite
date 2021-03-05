@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Footer from "../../components/Footer";
-import { Button, Form, Checkbox, Container, Message } from "semantic-ui-react";
+import { Form, Checkbox, Container, Message } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import "./index.css";
 
