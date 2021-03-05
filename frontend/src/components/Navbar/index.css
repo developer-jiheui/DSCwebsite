@@ -1,7 +1,7 @@
 .ui.text.menu {
-    /* background-color: var(--douglas-gray); */
-    margin: 0px;
-    padding: 2px 20px;
+  /* background-color: var(--douglas-gray); */
+  margin: 0px;
+  padding: 2px 20px;
 }
 
 .ui.text.menu .item {
@@ -55,3 +55,11 @@ span {
 span.active {
   color: #ffd600;
 } */
+
+span.text {
+  color: #fff;
+}
+
+i {
+  color: #fff;
+}
