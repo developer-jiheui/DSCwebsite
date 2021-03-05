@@ -54,7 +54,7 @@ position: fixed;
   width: 3em;
   height: 3em;
   /* this content property mimics the colorful dots we had before*/
-  content: ". ... .. . .  .. . . . . ..";
+  content: ". ... .. . .  .. . . ..";
   mix-blend-mode: screen;
   animation: 44s -27s move infinite cubic-bezier(0.4, 0, 1, 1) alternate;
 }

@@ -1,0 +1,13 @@
+.ui.comments {
+    margin:auto;
+    max-width: 90%;
+}
+
+#event-important-dates {
+    line-height: 2rem;
+}
+
+#event-page-image {
+    height: 20rem;
+    object-fit: cover;
+}

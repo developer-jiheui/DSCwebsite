@@ -67,23 +67,23 @@ const Team = () => {
                   </p>
                   <div className="member-media-links">
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="linkedin"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="github"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="facebook"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="instagram"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="twitter"></Icon>
                     </a>
                   </div>
@@ -111,23 +111,23 @@ const Team = () => {
                   </p>
                   <div className="member-media-links">
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="linkedin"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="github"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="facebook"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="instagram"></Icon>
                     </a>
                     <a target="_blank" rel="noreferrer"
-                      href="">
+                      href="#">
                       <Icon size="large" name="twitter"></Icon>
                     </a>
                   </div>
@@ -157,23 +157,23 @@ const Team = () => {
             <p>Check me out on social media!</p>
             <div className="member-media-links">
               <a target="_blank" rel="noreferrer"
-                href="">
+                href="#">
                 <Icon size="large" name="linkedin"></Icon>
               </a>
               <a target="_blank" rel="noreferrer"
-                href="">
+                href="#">
                 <Icon size="large" name="github"></Icon>
               </a>
               <a target="_blank" rel="noreferrer"
-                href="">
+                href="#">
                 <Icon size="large" name="facebook"></Icon>
               </a>
               <a target="_blank" rel="noreferrer"
-                href="">
+                href="#">
                 <Icon size="large" name="instagram"></Icon>
               </a>
               <a target="_blank" rel="noreferrer"
-                href="">
+                href="#">
                 <Icon size="large" name="twitter"></Icon>
               </a>
             </div>

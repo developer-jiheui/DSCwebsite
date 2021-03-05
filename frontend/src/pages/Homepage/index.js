@@ -61,7 +61,7 @@ const Homepage = () => {
                     <Card.Content extra>
                       <i className="calendar alternate outline icon"></i>
                       February 19th, 2020
-                      <Link to={"/events"}>
+                      <Link to={"/event/0"}>
                         <Button className="event-more-button">See More</Button>
                       </Link>
                     </Card.Content>
@@ -96,7 +96,7 @@ const Homepage = () => {
                     <Card.Content extra>
                       <i className="calendar alternate outline icon"></i>
                       February 19th, 2020
-                      <Link to={"/events"}>
+                      <Link to={"/event/0"}>
                         <Button className="event-more-button">See More</Button>
                       </Link>
                     </Card.Content>

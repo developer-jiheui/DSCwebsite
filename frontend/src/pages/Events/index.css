@@ -1,0 +1,62 @@
+.column.event-container {
+    text-align: justify !important;
+    color: black;
+}
+
+#event-featured-title {
+    color: white;
+    position: relative;
+    z-index: 2;
+    padding:0;
+    text-align: left;
+}
+#event-featured-description {
+    color: white;
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+#event-featured-headline {
+    color: white;
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+    padding:0;
+    
+}
+
+#event-featured-countdown {
+    color: white;
+    position: relative;
+    z-index: 2;
+    padding:0;
+    margin: 0;
+    font-size: 30px;
+}
+
+
+#event-featured-overlay {
+    height:100%;
+    width:100%;
+    background: black;
+    opacity: 0.5;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right:0;
+    z-index:1;
+}
+
+#event-featured {
+    background-image: url("https://react.semantic-ui.com/images/wireframe/image.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;    
+    background-position: 50% 50%;
+
+    position:relative;
+    padding: 4rem;
+
+    box-shadow: 0 0 3px black;
+}

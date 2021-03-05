@@ -1,8 +1,8 @@
-div#cover-container {
+#cover-container {
   position:relative;
 }
 
-button#getToKnowUs {
+#getToKnowUs {
   padding: 2.2vw;
   position: absolute;
   right: 10vw;
@@ -14,7 +14,7 @@ button#getToKnowUs {
   background: #ffffffcf;
 }
 
-button#getToKnowUs:hover {
+#getToKnowUs:hover {
   background-color: var(--basic-purple);
   color: white;
 }
