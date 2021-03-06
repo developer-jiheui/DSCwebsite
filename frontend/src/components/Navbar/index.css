@@ -16,6 +16,18 @@
   text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
 }
 
+.ui.text.menu .item.active:first-child {
+  color: transparent;
+  text-shadow: -1px 0px 2px black, 2px 1px 3px black;
+  margin: 0.5rem;
+}
+
+.ui.text.menu .item:first-child.item:hover {
+  color: transparent;
+  text-shadow: -1px 0px 2px black, 2px 1px 3px black;
+  margin: 0.5rem;
+}
+
 .ui.text.menu .item:hover {
   /* color: var(--light-purple); */
   color: white;

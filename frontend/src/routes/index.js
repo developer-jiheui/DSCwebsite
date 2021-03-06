@@ -10,6 +10,7 @@ import Event from "../pages/Event";
 import Admin from "../pages/Admin";
 import News from "../pages/News";
 import NewsItem from "../pages/NewsItem";
+import Policies from "../pages/Policies";
 
 export default function Routes() {
   return (
@@ -18,10 +19,11 @@ export default function Routes() {
       <Route path="/signup" component={Signup} />
       <Route path="/community" component={Community} />
       <Route path="/events" component={Events} />
-      <Route path="/event/:id" component={Event}/>
+      <Route path="/event/:id" component={Event} />
       <Route path="/team" component={Team} />
       <Route path="/profile" component={Profile} />
       <Route path="/admin" component={Admin} />
+      <Route path="/policies" component={Policies} />
       <Route path="/news" component={News} />
       <Route path="/newsitem/:id" component={NewsItem} />
     </Switch>

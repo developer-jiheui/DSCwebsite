@@ -125,6 +125,13 @@ const Navbar = () => {
               to="/team"
               color="white"
             />
+            <Dropdown.Item
+              icon="exclamation"
+              text="Policies & Bylaws"
+              as={Link}
+              to="/policies"
+              color="white"
+            />
           </Dropdown.Menu>
         </Dropdown>
         <Modal
