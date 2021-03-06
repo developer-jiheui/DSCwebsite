@@ -7,6 +7,7 @@ import Events from "../pages/Events";
 import Team from "../pages/Team";
 import Profile from "../pages/Profile";
 import Event from "../pages/Event";
+import Admin from "../pages/Admin";
 
 export default function Routes() {
   return (
@@ -18,6 +19,7 @@ export default function Routes() {
       <Route path="/event/:id" component={Event}/>
       <Route path="/team" component={Team} />
       <Route path="/profile" component={Profile} />
+      <Route path="/admin" component={Admin} />
     </Switch>
   );
 }

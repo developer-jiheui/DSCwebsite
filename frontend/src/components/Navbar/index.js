@@ -206,6 +206,13 @@ const Navbar = () => {
               />
               <Dropdown.Item icon="settings" text="Account Settings" />
               <Dropdown.Item
+                icon="settings"
+                text="Admin Settings"
+                as={Link}
+                to="/admin"
+                color="white"
+              />
+              <Dropdown.Item
                 icon="sign-out"
                 text="Logout"
                 onClick={() => {
@@ -216,102 +223,102 @@ const Navbar = () => {
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          <Modal
-            onClose={() => setOpenLogin(false)}
-            onOpen={() => setOpenLogin(true)}
-            open={openLogin}
-            trigger={<Menu.Item name="login" icon="sign-in" />}
-            size="small"
-          >
-            <Modal.Header>Log In</Modal.Header>
-            <ModalContent>
-              {emailUsernameError || passwordError ? (
-                <Message
-                  error
-                  header={"Submission Error"}
-                  content={"Check your credentials"}
-                />
-              ) : null}
-              <Grid
-                columns={2}
-                divided
-                textAlign="center"
-                verticalAlign="middle"
-              >
-                <Grid.Column>
-                  <ModalDescription>
-                    <Form>
-                      <Form.Field>
-                        <Input
-                          icon="user"
-                          placeholder="Username/Email"
-                          iconPosition="left"
-                          style={{ color: "black" }}
-                          error={emailUsernameError}
-                          onChange={(e) => {
-                            setEmailUsername(e.target.value);
-                          }}
-                        ></Input>
-                      </Form.Field>
-                      <Form.Field>
-                        <Input
-                          iconPosition="left"
-                          placeholder="Password"
-                          type="password"
-                          icon="lock"
-                          error={passwordError}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                        ></Input>
-                      </Form.Field>
-                      <Button
-                        fluid
-                        type="submit"
-                        style={{
-                          backgroundColor: "var(--douglas-gray)",
-                          color: "white",
-                        }}
-                        onClick={(e) => {
-                          handleSubmit(e);
-                        }}
-                      >
-                        Login
-                      </Button>
-                      <div className="my"></div>
-                      <Button fluid color="google plus">
-                        <Icon name="google plus" /> Google
-                      </Button>
-                      <div className="my"></div>
-                      <Divider horizontal>Or</Divider>
-                      <span>
-                        Not a member yet?
-                        <Link to="/signup" style={{ color: "blue" }}>
-                          <span> </span>Join us!
-                        </Link>
-                      </span>
-                    </Form>
-                  </ModalDescription>
-                </Grid.Column>
-                <Grid.Column>
-                  <Image
-                    src="./images/DSC_logo_brand.png"
-                    wrapped
-                    size="medium"
+            <Modal
+              onClose={() => setOpenLogin(false)}
+              onOpen={() => setOpenLogin(true)}
+              open={openLogin}
+              trigger={<Menu.Item name="login" icon="sign-in" />}
+              size="small"
+            >
+              <Modal.Header>Log In</Modal.Header>
+              <ModalContent>
+                {emailUsernameError || passwordError ? (
+                  <Message
+                    error
+                    header={"Submission Error"}
+                    content={"Check your credentials"}
                   />
-                </Grid.Column>
-              </Grid>
-            </ModalContent>
-            <Modal.Actions>
-              <Button
-                content="Close"
-                icon="close"
-                onClick={() => setOpenLogin(false)}
-                color="red"
-              />
-            </Modal.Actions>
-          </Modal>
-        )}
+                ) : null}
+                <Grid
+                  columns={2}
+                  divided
+                  textAlign="center"
+                  verticalAlign="middle"
+                >
+                  <Grid.Column>
+                    <ModalDescription>
+                      <Form>
+                        <Form.Field>
+                          <Input
+                            icon="user"
+                            placeholder="Username/Email"
+                            iconPosition="left"
+                            style={{ color: "black" }}
+                            error={emailUsernameError}
+                            onChange={(e) => {
+                              setEmailUsername(e.target.value);
+                            }}
+                          ></Input>
+                        </Form.Field>
+                        <Form.Field>
+                          <Input
+                            iconPosition="left"
+                            placeholder="Password"
+                            type="password"
+                            icon="lock"
+                            error={passwordError}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                          ></Input>
+                        </Form.Field>
+                        <Button
+                          fluid
+                          type="submit"
+                          style={{
+                            backgroundColor: "var(--douglas-gray)",
+                            color: "white",
+                          }}
+                          onClick={(e) => {
+                            handleSubmit(e);
+                          }}
+                        >
+                          Login
+                      </Button>
+                        <div className="my"></div>
+                        <Button fluid color="google plus">
+                          <Icon name="google plus" /> Google
+                      </Button>
+                        <div className="my"></div>
+                        <Divider horizontal>Or</Divider>
+                        <span>
+                          Not a member yet?
+                        <Link to="/signup" style={{ color: "blue" }}>
+                            <span> </span>Join us!
+                        </Link>
+                        </span>
+                      </Form>
+                    </ModalDescription>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Image
+                      src="./images/DSC_logo_brand.png"
+                      wrapped
+                      size="medium"
+                    />
+                  </Grid.Column>
+                </Grid>
+              </ModalContent>
+              <Modal.Actions>
+                <Button
+                  content="Close"
+                  icon="close"
+                  onClick={() => setOpenLogin(false)}
+                  color="red"
+                />
+              </Modal.Actions>
+            </Modal>
+          )}
       </Menu>
     </div>
   );
