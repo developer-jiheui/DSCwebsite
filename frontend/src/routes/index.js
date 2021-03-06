@@ -11,6 +11,7 @@ import Admin from "../pages/Admin";
 import News from "../pages/News";
 import NewsItem from "../pages/NewsItem";
 import Policies from "../pages/Policies";
+import GetToKnowUs from "../pages/GetToKnowUs";
 
 export default function Routes() {
   return (
@@ -22,6 +23,7 @@ export default function Routes() {
       <Route path="/event/:id" component={Event} />
       <Route path="/team" component={Team} />
       <Route path="/profile" component={Profile} />
+      <Route path="/gettoknowus" component={GetToKnowUs} />
       <Route path="/admin" component={Admin} />
       <Route path="/policies" component={Policies} />
       <Route path="/news" component={News} />

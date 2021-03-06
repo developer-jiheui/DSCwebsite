@@ -75,31 +75,7 @@ const Navbar = () => {
           active={activeItem === "home"}
           onClick={() => handleOnItemClick("home")}
         />
-        <Menu.Item
-          as={NavLink}
-          to="/events"
-          name="events"
-          icon="calendar alternate outline"
-          active={activeItem === "events"}
-          onClick={() => handleOnItemClick("events")}
-        />
-        {/* <Menu.Item
-          as={NavLink}
-          to="/team"
-          name="team"
-          icon="users"
-          active={activeItem === "team"}
-          onClick={() => handleOnItemClick("team")}
-        /> */}
-        {/* <Menu.Item
-          as={NavLink}
-          to="/community"
-          name="community"
-          icon="cubes"
-          active={activeItem === "community"}
-          onClick={() => handleOnItemClick("community")}
-        /> */}
-        <Dropdown item text="Community" floating button labeled>
+        <Dropdown item text="About Us" floating button labeled>
           <Dropdown.Menu
             className="left"
             style={{ backgroundColor: "var(--douglas-gray)" }}
@@ -108,7 +84,7 @@ const Navbar = () => {
               icon="object ungroup outline"
               text="Get to Know Us"
               as={Link}
-              to="/community"
+              to="/gettoknowus"
             />
             {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
             <Dropdown.Item
@@ -134,6 +110,22 @@ const Navbar = () => {
             />
           </Dropdown.Menu>
         </Dropdown>
+        <Menu.Item
+          as={NavLink}
+          to="/events"
+          name="events"
+          icon="calendar alternate outline"
+          active={activeItem === "events"}
+          onClick={() => handleOnItemClick("events")}
+        />
+        <Menu.Item
+          as={NavLink}
+          to="/community"
+          name="community"
+          icon="cubes"
+          active={activeItem === "community"}
+          onClick={() => handleOnItemClick("community")}
+        />
         <Modal
           onClose={() => setOpenContact(false)}
           onOpen={() => setOpenContact(true)}
