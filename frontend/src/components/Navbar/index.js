@@ -224,7 +224,7 @@ const Navbar = () => {
           </Modal.Actions>
         </Modal>
         {openProfile ? (
-          <Dropdown item icon="user circle">
+          <Dropdown item icon="user circle large">
             <Dropdown.Menu
               className="left"
               style={{ backgroundColor: "var(--douglas-gray)" }}
