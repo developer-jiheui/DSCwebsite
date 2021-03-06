@@ -16,8 +16,8 @@ import ContentContainer from "../../components/ContentContainer";
 
 const Homepage = () => {
 
-  const stubEvents = [{}, {}, {}, {}, {}];
-  const stubNews = [{}, {}, {}, {}];
+  const stubEvents = [{}, {}, {}, {},];
+  const stubNews = [{}, {}, {}];
 
   return (
     <>
