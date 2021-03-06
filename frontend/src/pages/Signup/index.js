@@ -11,8 +11,11 @@ import Navbar from "../../components/Navbar";
 import "./index.css";
 
 const Signup = () => {
-  const [fullName, setFullName] = useState("");
-  const [fullNameError, setFullNameError] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [firstNameError, setFirstNameError] = useState(false);
+
+  const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState(false);
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -29,10 +32,15 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (fullName === "") {
-      setFullNameError(true);
+    if (firstName === "") {
+      setFirstNameError(true);
     } else {
-      setFullNameError(false);
+      setFirstNameError(false);
+    }
+    if (lastName === "") {
+      setLastNameError(true);
+    } else {
+      setLastNameError(false);
     }
     if (email === "") {
       setEmailError(true);
@@ -89,15 +97,26 @@ const Signup = () => {
           }}
         >
           <Form.Field
-            id="name"
-            label="Name*"
+            id="firstName"
+            label="First Name*"
             control="input"
             type="text"
             // placeholder="Name"
             onChange={(e) => {
-              setFullName(e.target.value);
+              setFirstName(e.target.value);
             }}
-            error={fullNameError}
+            error={firstNameError ? "Please enter your first name" : null}
+          ></Form.Field>
+          <Form.Field
+            id="lastName"
+            label="Last Name*"
+            control="input"
+            type="text"
+            // placeholder="Name"
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+            error={lastNameError ? "Please enter your last name" : null}
           ></Form.Field>
           <Form.Field
             label="Nickname"
@@ -120,7 +139,7 @@ const Signup = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            error={emailError}
+            error={emailError ? "Please insert an email" : null}
           ></Form.Field>
           <Form.Field
             id="password"
@@ -131,7 +150,7 @@ const Signup = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            error={passwordError}
+            error={passwordError ? "Please insert a password" : null}
           ></Form.Field>
           <Form.Field
             id="confirmPassword"
@@ -142,7 +161,13 @@ const Signup = () => {
             onChange={(e) => {
               setConfirmPassword(e.target.value);
             }}
-            error={confirmPasswordError}
+            error={
+              confirmPasswordError
+                ? "please confirm the password"
+                : password !== confirmPassword
+                ? "please insert the same password"
+                : null
+            }
           ></Form.Field>
           <Form.Field
             label="Github"
