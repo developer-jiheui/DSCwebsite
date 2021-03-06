@@ -75,6 +75,41 @@ const Navbar = () => {
           active={activeItem === "home"}
           onClick={() => handleOnItemClick("home")}
         />
+        <Dropdown item text="About Us" floating button labeled>
+          <Dropdown.Menu
+            className="left"
+            style={{ backgroundColor: "var(--douglas-gray)" }}
+          >
+            <Dropdown.Item
+              icon="object ungroup outline"
+              text="Get to Know Us"
+              as={Link}
+              to="/gettoknowus"
+            />
+            {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
+            <Dropdown.Item
+              icon="bullhorn"
+              text="News"
+              as={Link}
+              to="/news"
+              color="white"
+            />
+            <Dropdown.Item
+              icon="users"
+              text="Team"
+              as={Link}
+              to="/team"
+              color="white"
+            />
+            <Dropdown.Item
+              icon="exclamation"
+              text="Policies & Bylaws"
+              as={Link}
+              to="/policies"
+              color="white"
+            />
+          </Dropdown.Menu>
+        </Dropdown>
         <Menu.Item
           as={NavLink}
           to="/events"
@@ -82,14 +117,6 @@ const Navbar = () => {
           icon="calendar alternate outline"
           active={activeItem === "events"}
           onClick={() => handleOnItemClick("events")}
-        />
-        <Menu.Item
-          as={NavLink}
-          to="/team"
-          name="team"
-          icon="users"
-          active={activeItem === "team"}
-          onClick={() => handleOnItemClick("team")}
         />
         <Menu.Item
           as={NavLink}
@@ -204,6 +231,13 @@ const Navbar = () => {
                 to="/profile"
               />
               {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
+              <Dropdown.Item
+                icon="settings"
+                text="Admin Settings"
+                as={Link}
+                to="/admin"
+                color="white"
+              />
               <Dropdown.Item
                 icon="sign-out"
                 text="Logout"

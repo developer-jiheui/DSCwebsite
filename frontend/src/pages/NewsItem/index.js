@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Image, Divider, Form, Comment, Button, Grid } from "semantic-ui-react";
+import { Button, Container, Image, Comment, Divider, Form } from "semantic-ui-react";
 import ContentContainer from "../../components/ContentContainer";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
+
 import './index.css';
 
+const news = [{}, {}, {}, {}, {}];
 const defaultProfilePicURL = "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=6&m=1214428300&s=612x612&w=0&h=rvt5KGND3z8kfrHELplF9zmr8d6COZQ-1vYK9mvSxnc=";
 
 const stubComments = [
@@ -15,7 +17,7 @@ const stubComments = [
     { name: "Harry Potter", timestamp: "Fri Mar 03 2021", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada sollicitudin consectetur. Ut egestas lobortis venenatis. Pellentesque magna augue, tempor in rhoncus dignissim, congue nec turpis. Nullam vehicula sed orci maximus aliquam. Quisque interdum nec dui eget maximus." },
 ];
 
-const Event = () => {
+const NewsItem = () => {
     const { id } = useParams();
 
     const [emptyComment, setEmptyComment] = useState(false);
@@ -25,11 +27,11 @@ const Event = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(comment === "") {
+        if (comment === "") {
             setEmptyComment(true);
         } else {
             setComment("");
-            comments.push({name: "Bob", timestamp: new Date().toDateString(), text: comment});
+            comments.push({ name: "Bob", timestamp: new Date().toDateString(), text: comment });
             setEmptyComment(false);
         }
     };
@@ -39,22 +41,11 @@ const Event = () => {
             <Navbar />
             <Container>
                 <ContentContainer>
-                    <Grid columns="2" stackable centered textAlign="justified">
-                        <Grid.Row>
-                            <Image id="event-page-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={3}>
-                                <h2>Date</h2>                                
-                                <p><i>March 2, 2021</i></p>                                
-                            </Grid.Column>
-                            <Grid.Column width={12}>
-                                <h2>Event Title</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </Grid.Column>                            
-                        </Grid.Row>
-                    </Grid>
+                    <Image fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                    <h1>COVID 19 - UPDATES</h1>
+                    <p class="no-shine-text" id="news-item-date"><i>March 2, 2021</i></p>
+                    <p class="no-shine-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="no-shine-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <Divider horizontal>Comments</Divider>
                     <Comment.Group threaded minimal>
                         {comments.map((c, id) =>
@@ -66,27 +57,7 @@ const Event = () => {
                                         <div>{c.timestamp}</div>
                                     </Comment.Metadata>
                                     <Comment.Text>{c.text}</Comment.Text>
-                                    {/* Uncomment below for Reply link to be visible */}
-                                    {/* <Comment.Actions>
-                                        <Comment.Action>Reply</Comment.Action>
-                                    </Comment.Actions> */}
                                 </Comment.Content>
-                                {/* Adding replies to a comment - uncomment below*/}
-                                {/* <Comment.Group>
-                                    <Comment>
-                                        <Comment.Avatar src={defaultProfilePicURL} />
-                                        <Comment.Content>
-                                            <Comment.Author>Jenny Hess</Comment.Author>
-                                            <Comment.Metadata>
-                                                <div>Just now</div>
-                                            </Comment.Metadata>
-                                            <Comment.Text>Elliot you are always so right :)</Comment.Text>
-                                            <Comment.Actions>
-                                                <Comment.Action>Reply</Comment.Action>
-                                            </Comment.Actions>
-                                        </Comment.Content>
-                                    </Comment>
-                                </Comment.Group> */}
                             </Comment>
                         )}
                         <Form
@@ -112,10 +83,10 @@ const Event = () => {
                         </Form>
                     </Comment.Group>
                 </ContentContainer>
-                <Footer/>
             </Container>
+            <Footer />
         </>
     );
 }
 
-export default Event;
+export default NewsItem;

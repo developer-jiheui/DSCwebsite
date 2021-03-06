@@ -1,0 +1,38 @@
+.admin-search {
+    margin: auto;
+    width: 100%;
+}
+
+.admin-search .input {
+    width: 100%;
+}
+
+.admin-edit-modal {
+    color: black;
+}
+
+.admin-modal-image {
+    margin-bottom: 1rem;
+    height: 20rem;
+    object-fit: cover;
+}
+
+td.select-td {
+    overflow: visible !important;
+}
+.admin-select.ui.selection.dropdown {
+    min-width: 6rem;
+    width:9rem;
+}
+
+td.no-ellipsis {
+    text-overflow: clip !important;
+}
+
+.admin-select span {
+    color: black !important;
+}
+
+.admin-select .dropdown {
+    color: black !important;
+}
