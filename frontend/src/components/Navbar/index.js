@@ -200,11 +200,10 @@ const Navbar = () => {
               <Dropdown.Item
                 icon="edit"
                 text="Edit Profile"
-                style={{ color: "white" }}
                 as={Link}
                 to="/profile"
               />
-              <Dropdown.Item icon="settings" text="Account Settings" />
+              {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
               <Dropdown.Item
                 icon="sign-out"
                 text="Logout"

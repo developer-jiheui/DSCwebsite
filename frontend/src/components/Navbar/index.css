@@ -56,10 +56,15 @@ span.active {
   color: #ffd600;
 } */
 
-span.text {
+/* span.text {
   color: #fff;
 }
 
 i {
+  color: #fff;
+} */
+
+.ui.dropdown span,
+.ui.dropdown i {
   color: #fff;
 }
