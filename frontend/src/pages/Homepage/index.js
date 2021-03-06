@@ -15,6 +15,10 @@ import "./index.css";
 import ContentContainer from "../../components/ContentContainer";
 
 const Homepage = () => {
+
+  const stubEvents = [{}, {}, {}, {}, {}];
+  const stubNews = [{}, {}, {}, {}];
+
   return (
     <>
       <Navbar />
@@ -30,88 +34,57 @@ const Homepage = () => {
             <Grid.Column width={10} id="events-container">
               <h1>Events</h1>
               <Card.Group>
-                <Card className="card" fluid>
-                  <Card.Content>
-                    <Card.Header>Title</Card.Header>
-                    <Divider></Divider>
-                    <Card.Description>
-                      <Grid>
-                        <Grid.Column width={6}>
-                          <Image
-                            src="https://react.semantic-ui.com/images/wireframe/image.png"
-                            size="small"
-                          />
-                        </Grid.Column>
-                        <Grid.Column width={10}>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat. Duis aute irure dolor in
-                          reprehenderit in voluptate velit esse cillum dolore eu
-                          fugiat nulla pariatur. Excepteur sint occaecat
-                          cupidatat non proident, sunt in culpa qui officia
-                          deserunt mollit anim id est laborum.
-                        </Grid.Column>
-                      </Grid>
+                {stubEvents.map((eventItem, id) =>
+                  <Card className="card" fluid key={id}>
+                    <Card.Content>
+                      <Card.Header>Title</Card.Header>
                       <Divider></Divider>
-                      <Card.Content extra>
-                        <i className="calendar alternate outline icon"></i>
+                      <Card.Description>
+                        <Grid>
+                          <Grid.Column width={6}>
+                            <Image
+                              src="https://react.semantic-ui.com/images/wireframe/image.png"
+                              size="small"
+                            />
+                          </Grid.Column>
+                          <Grid.Column width={10}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.
+                        </Grid.Column>
+                        </Grid>
+                        <Divider></Divider>
+                        <Card.Content extra>
+                          <i className="calendar alternate outline icon"></i>
                         February 19th, 2020
                         <Link to={"/event/0"}>
-                          <Button className="event-more-button">
-                            See More
+                            <Button className="event-more-button">
+                              See More
                           </Button>
-                        </Link>
-                      </Card.Content>
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
-                <Card className="card" fluid>
-                  <Card.Content>
-                    <Card.Header>Title</Card.Header>
-                    <Divider></Divider>
-                    <Card.Description>
-                      <Grid>
-                        <Grid.Column width={6}>
-                          <Image
-                            src="https://react.semantic-ui.com/images/wireframe/image.png"
-                            size="small"
-                          />
-                        </Grid.Column>
-                        <Grid.Column width={10}>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat. Duis aute irure dolor in
-                          reprehenderit in voluptate velit esse cillum dolore eu
-                          fugiat nulla pariatur. Excepteur sint occaecat
-                          cupidatat non proident, sunt in culpa qui officia
-                          deserunt mollit anim id est laborum.
-                        </Grid.Column>
-                      </Grid>
-                      <Divider></Divider>
-                      <Card.Content extra>
-                        <i className="calendar alternate outline icon"></i>
-                        February 19th, 2020
-                        <Link to={"/event/0"}>
-                          <Button className="event-more-button">
-                            See More
-                          </Button>
-                        </Link>
-                      </Card.Content>
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
+                          </Link>
+                        </Card.Content>
+                      </Card.Description>
+                    </Card.Content>
+                  </Card>
+                )}                
               </Card.Group>
             </Grid.Column>
             <Grid.Column width={6} id="news-container">
               <h1>News</h1>
               <Card.Group>
-                <Card className="card" fluid>
+              {stubNews.map((newsItem, id) =>
+                <Card className="card" fluid key={id}>
                   <Card.Content>
-                    <Card.Header>Title</Card.Header>
+                    <Card.Header>COVID 19 - UPDATES</Card.Header>
+                    <Card.Meta>
+                      <span className='date'>February 19th, 2020</span>
+                    </Card.Meta>
                     <Divider></Divider>
                     <Card.Description>
                       <Image
@@ -128,10 +101,17 @@ const Homepage = () => {
                           elit, sed do eiusmod tempor incididunt ut labore et
                           dolore magna aliqua.
                         </Card.Description>
+                        <Divider></Divider>
+                        <Link to={"/event/0"}>
+                          <Button className="event-more-button">
+                            See More
+                          </Button>
+                        </Link>
                       </Card.Content>
                     </Card.Description>
                   </Card.Content>
                 </Card>
+              )}
               </Card.Group>
             </Grid.Column>
           </Grid>
