@@ -102,7 +102,7 @@ const Homepage = () => {
                           dolore magna aliqua.
                         </Card.Description>
                         <Divider></Divider>
-                        <Link to={"/event/0"}>
+                        <Link to={"/newsitem/0"}>
                           <Button className="event-more-button">
                             See More
                           </Button>

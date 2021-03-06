@@ -8,6 +8,8 @@ import Team from "../pages/Team";
 import Profile from "../pages/Profile";
 import Event from "../pages/Event";
 import Admin from "../pages/Admin";
+import News from "../pages/News";
+import NewsItem from "../pages/NewsItem";
 
 export default function Routes() {
   return (
@@ -20,6 +22,8 @@ export default function Routes() {
       <Route path="/team" component={Team} />
       <Route path="/profile" component={Profile} />
       <Route path="/admin" component={Admin} />
+      <Route path="/news" component={News} />
+      <Route path="/newsitem/:id" component={NewsItem} />
     </Switch>
   );
 }

@@ -1,0 +1,9 @@
+.no-shine-text {
+    color: black;
+    position: relative;
+}
+
+#news-item-date {
+    text-align: center;
+}
+
