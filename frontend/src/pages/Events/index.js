@@ -61,11 +61,8 @@ const Events = () => {
                 />
                 <h2>Event Title</h2>
                 <p>Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
-                <h3>Important Dates</h3>
-                <ul>
-                  <li><b>Feb 12th, 2021 - 5pm:</b> Introductory Meeting</li>
-                  <li><b>Mar 4th, 2021 - 5pm:</b> Judgment Day</li>
-                </ul>
+                <h3 style={{display: "inline"}}>Date</h3>                  
+                <p><i>Mar 4th, 2021 - 5pm</i></p>
                 <Button
                   color="purple"
                   as={Link}

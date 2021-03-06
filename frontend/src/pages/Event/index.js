@@ -44,19 +44,15 @@ const Event = () => {
                             <Image id="event-page-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
                         </Grid.Row>
                         <Grid.Row>
+                            <Grid.Column width={3}>
+                                <h2>Date</h2>                                
+                                <p><i>March 2, 2021</i></p>                                
+                            </Grid.Column>
                             <Grid.Column width={12}>
                                 <h2>Event Title</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                             </Grid.Column>                            
-                            <Grid.Column width={3} textAlign="center">
-                                <h2>Important Dates</h2>
-                                <ul id="event-important-dates">
-                                    <li><b>March 2, 2021</b><br/> <i>Online Meeting</i></li>
-                                    <li><b>March 2, 2021</b><br/> <i>Online Meeting</i></li>
-                                    <li><b>March 2, 2021</b><br/> <i>Online Meeting</i></li>
-                                </ul>
-                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
                     <Divider horizontal>Comments</Divider>
