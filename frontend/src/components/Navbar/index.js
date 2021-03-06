@@ -85,6 +85,7 @@ const Navbar = () => {
               text="Get to Know Us"
               as={Link}
               to="/gettoknowus"
+              color="white"
             />
             {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
             <Dropdown.Item

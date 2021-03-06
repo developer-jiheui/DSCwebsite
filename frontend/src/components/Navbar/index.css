@@ -18,14 +18,10 @@
 
 .ui.text.menu .item.active:first-child {
   color: transparent;
-  text-shadow: -1px 0px 1px black, 0px 1px 2px black;
-  margin: 0.5rem;
 }
 
 .ui.text.menu .item:first-child.item:hover {
   color: transparent;
-  text-shadow: -1px 0px 1px black, 0px 1px 2px black;
-  margin: 0.5rem;
 }
 
 .ui.text.menu .item:hover {
