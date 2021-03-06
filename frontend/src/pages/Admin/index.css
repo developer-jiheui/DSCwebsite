@@ -20,11 +20,19 @@
 td.select-td {
     overflow: visible !important;
 }
-.ui.selection.dropdown {
+.admin-select.ui.selection.dropdown {
     min-width: 6rem;
     width:9rem;
 }
 
 td.no-ellipsis {
     text-overflow: clip !important;
+}
+
+.admin-select span {
+    color: black !important;
+}
+
+.admin-select .dropdown {
+    color: black !important;
 }

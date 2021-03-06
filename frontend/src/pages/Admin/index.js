@@ -415,7 +415,7 @@ const Admin = () => {
                                                 onChange={() => handleAdminToggle(u)} />
                                         </Table.Cell>
                                         <Table.Cell className="select-td">
-                                            <Select placeholder={u.position} options={adminTypes} />
+                                            <Select className="admin-select" placeholder={u.position} options={adminTypes} />
                                         </Table.Cell>
                                     </Table.Row>
                                 )}
@@ -596,7 +596,7 @@ const Admin = () => {
                             // onChange={handlePostDataChange}
                             />
                             <Form.Field>
-                                <Select placeholder={postModalData.category} options={communityCategories} />
+                                <Select className="admin-select" placeholder={postModalData.category} options={communityCategories} />
                             </Form.Field>
                         </Form>
                     </Modal.Description>
