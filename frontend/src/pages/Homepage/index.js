@@ -40,11 +40,11 @@ const Homepage = () => {
                       <Card.Header>Title</Card.Header>
                       <Divider></Divider>
                       <Card.Description>
-                        <Grid>
+                        <Grid stackable>
                           <Grid.Column width={6}>
                             <Image
                               src="https://react.semantic-ui.com/images/wireframe/image.png"
-                              size="small"
+                              fluid
                             />
                           </Grid.Column>
                           <Grid.Column width={10}>
