@@ -1,6 +1,51 @@
+
+/********* Hover Animation *************/
+.profile-card:hover{
+    background-color: rgba(128, 128, 128, 0.418);
+}
+.profile-hover-div {
+    transition: .1s ease;
+    opacity: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-10%, -10%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.profile-hover-text {
+    background-color: var(--basic-purple);
+    color: white;
+    font-size: 16px;
+    padding: 1rem;
+}
+.member-profile-pic{
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .1s ease;
+    backface-visibility: hidden;
+}
+.profile-card:hover .member-profile-pic{
+    opacity: 0.4;
+}
+  
+.profile-card:hover .profile-hover-div {
+    opacity: 1;
+}
+/***********************************/
+
+
+.profile-card{
+    border: 2rem im !important;
+}
+
 h1 {
+
     text-align: center;
     padding:2rem;
+    font-size: 3rem;
 }
 
 i.chess {
@@ -13,13 +58,33 @@ div.member-info-container {
 
 div.member-info-container h2 {
     margin-bottom: 0;
+    margin-top: 1rem;
+    font-size: 2rem;
 }
- 
+div.member-info-container .member-type {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+}
 div.member-info-container .member-headline {
-    color: var(--douglas-gray);
+    margin-top: 0rem;
+    color: var(--basic-purple);
     font-size: smaller;
 }
-
+.member-headline {
+    margin-top: 0rem;
+    color: var(--basic-purple);
+    font-size: smaller;
+}
+div.member-info-container .member-bio {
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+.member-bio {
+    margin:2rem;
+    font-size: 1.3rem;
+}
 div.member-media-links a {
     color: var(--douglas-gray);
 }
@@ -41,4 +106,11 @@ div.member-media-links a:hover {
 #member-modal h1 {
     margin: 0;
     padding:0;
+}
+/** 
+* TODO: Check this color
+*/
+
+.profile-button{
+    background-color: var(--douglas-gray) !important;
 }
