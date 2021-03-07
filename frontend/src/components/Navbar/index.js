@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Menu,
@@ -16,7 +16,7 @@ import {
   GridColumn,
   Message,
   Segment,
-  Sidebar,
+  Sidebar, Header
 } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -56,7 +56,17 @@ const Navbar = () => {
     }
   };
 
-  const navbarWeb = () => {
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 780);
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 780);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
+  const NavbarWeb = () => {
     return (
       <Menu text>
         <Menu.Item
@@ -254,132 +264,176 @@ const Navbar = () => {
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          <Modal
-            onClose={() => setOpenLogin(false)}
-            onOpen={() => setOpenLogin(true)}
-            open={openLogin}
-            trigger={<Menu.Item name="login" icon="sign-in" />}
-            size="small"
-          >
-            <Modal.Header>Log In</Modal.Header>
-            <ModalContent>
-              {emailUsernameError || passwordError ? (
-                <Message
-                  error
-                  header={"Submission Error"}
-                  content={"Check your credentials"}
-                />
-              ) : null}
-              <Grid
-                columns={2}
-                divided
-                textAlign="center"
-                verticalAlign="middle"
-              >
-                <Grid.Column>
-                  <ModalDescription>
-                    <Form>
-                      <Form.Field>
-                        <Input
-                          icon="user"
-                          placeholder="Username/Email"
-                          iconPosition="left"
-                          style={{ color: "black" }}
-                          error={emailUsernameError}
-                          onChange={(e) => {
-                            setEmailUsername(e.target.value);
-                          }}
-                        ></Input>
-                      </Form.Field>
-                      <Form.Field>
-                        <Input
-                          iconPosition="left"
-                          placeholder="Password"
-                          type="password"
-                          icon="lock"
-                          error={passwordError}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                        ></Input>
-                      </Form.Field>
-                      <Button
-                        fluid
-                        type="submit"
-                        style={{
-                          backgroundColor: "var(--douglas-gray)",
-                          color: "white",
-                        }}
-                        onClick={(e) => {
-                          handleSubmit(e);
-                        }}
-                      >
-                        Login
-                      </Button>
-                      <div className="my"></div>
-                      <Button fluid color="google plus">
-                        <Icon name="google plus" /> Google
-                      </Button>
-                      <div className="my"></div>
-                      <Divider horizontal>Or</Divider>
-                      <span>
-                        Not a member yet?
-                        <Link to="/signup" style={{ color: "blue" }}>
-                          <span> </span>Join us!
-                        </Link>
-                      </span>
-                    </Form>
-                  </ModalDescription>
-                </Grid.Column>
-                <Grid.Column>
-                  <Image
-                    src="./images/DSC_logo_brand.png"
-                    wrapped
-                    size="medium"
+            <Modal
+              onClose={() => setOpenLogin(false)}
+              onOpen={() => setOpenLogin(true)}
+              open={openLogin}
+              trigger={<Menu.Item name="login" icon="sign-in" />}
+              size="small"
+            >
+              <Modal.Header>Log In</Modal.Header>
+              <ModalContent>
+                {emailUsernameError || passwordError ? (
+                  <Message
+                    error
+                    header={"Submission Error"}
+                    content={"Check your credentials"}
                   />
-                </Grid.Column>
-              </Grid>
-            </ModalContent>
-            <Modal.Actions>
-              <Button
-                content="Close"
-                icon="close"
-                onClick={() => setOpenLogin(false)}
-                color="red"
-              />
-            </Modal.Actions>
-          </Modal>
-        )}
+                ) : null}
+                <Grid
+                  columns={2}
+                  divided
+                  textAlign="center"
+                  verticalAlign="middle"
+                >
+                  <Grid.Column>
+                    <ModalDescription>
+                      <Form>
+                        <Form.Field>
+                          <Input
+                            icon="user"
+                            placeholder="Username/Email"
+                            iconPosition="left"
+                            style={{ color: "black" }}
+                            error={emailUsernameError}
+                            onChange={(e) => {
+                              setEmailUsername(e.target.value);
+                            }}
+                          ></Input>
+                        </Form.Field>
+                        <Form.Field>
+                          <Input
+                            iconPosition="left"
+                            placeholder="Password"
+                            type="password"
+                            icon="lock"
+                            error={passwordError}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                          ></Input>
+                        </Form.Field>
+                        <Button
+                          fluid
+                          type="submit"
+                          style={{
+                            backgroundColor: "var(--douglas-gray)",
+                            color: "white",
+                          }}
+                          onClick={(e) => {
+                            handleSubmit(e);
+                          }}
+                        >
+                          Login
+                      </Button>
+                        <div className="my"></div>
+                        <Button fluid color="google plus">
+                          <Icon name="google plus" /> Google
+                      </Button>
+                        <div className="my"></div>
+                        <Divider horizontal>Or</Divider>
+                        <span>
+                          Not a member yet?
+                        <Link to="/signup" style={{ color: "blue" }}>
+                            <span> </span>Join us!
+                        </Link>
+                        </span>
+                      </Form>
+                    </ModalDescription>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Image
+                      src="./images/DSC_logo_brand.png"
+                      wrapped
+                      size="medium"
+                    />
+                  </Grid.Column>
+                </Grid>
+              </ModalContent>
+              <Modal.Actions>
+                <Button
+                  content="Close"
+                  icon="close"
+                  onClick={() => setOpenLogin(false)}
+                  color="red"
+                />
+              </Modal.Actions>
+            </Modal>
+          )}
       </Menu>
     );
   };
 
-  const navbarTablet = () => {
+  const NavbarTablet = () => {
     return (
-      <Menu text>
-        <Menu.Item
-          style={{ color: "white" }}
-          as={NavLink}
-          exact
-          to="/"
-          icon={{ className: "logo" }}
-          name="developer student club"
-          active={activeItem === "developer student clubs"}
-          onClick={(e) => handleOnItemClick("developer student clubs")}
-        />
-        <Menu.Item as={Button} position="right">
-          <Dropdown item floating button labeled icon="bars">
-            <Dropdown.Menu
-              className="left"
-              style={{ backgroundColor: "var(--douglas-gray)" }}
-            >
+      <>
+        <Menu text>
+          <Menu.Item
+            style={{ color: "white" }}
+            as={NavLink}
+            exact
+            to="/"
+            icon={{ className: "logo" }}
+            name="developer student club"
+            active={activeItem === "developer student clubs"}
+            onClick={(e) => handleOnItemClick("developer student clubs")}
+          />
+          <Menu.Item as={Button} position="right">
+            <Dropdown item floating button labeled icon="bars">
+              <Dropdown.Menu
+                className="left"
+                style={{ backgroundColor: "var(--douglas-gray)" }}
+              >
+                <Dropdown.Item
+                  icon="object ungroup outline"
+                  text="Get to Know Us" Î
+                  as={Link}
+                  to="/gettoknowus"
+                />
+                <Dropdown.Item
+                  icon="bullhorn"
+                  text="News"
+                  as={Link}
+                  to="/news"
+                  color="white"
+                />
+                <Dropdown.Item
+                  icon="users"
+                  text="Team"
+                  as={Link}
+                  to="/team"
+                  color="white"
+                />
+                <Dropdown.Item
+                  icon="exclamation"
+                  text="Policies & Bylaws"
+                  as={Link}
+                  to="/policies"
+                  color="white"
+                />
+
+              <Dropdown.Item
+                as={NavLink}
+                // exact
+                to="/"
+                text="home"
+                icon="home"
+                position="right"
+                // active={activeItem === "home"}
+                // onClick={() => handleOnItemClick("home")}
+              />
+              {/* <Dropdown item text="About Us" floating button labeled> */}
+              {/* <Dropdown.Menu
+                  className="left"
+                  style={{ backgroundColor: "var(--douglas-gray)" }}
+                > */}
               <Dropdown.Item
                 icon="object ungroup outline"
                 text="Get to Know Us"
                 as={Link}
                 to="/gettoknowus"
+                color="white"
               />
-              {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
               <Dropdown.Item
                 icon="bullhorn"
                 text="News"
@@ -401,17 +455,43 @@ const Navbar = () => {
                 to="/policies"
                 color="white"
               />
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu.Item>
-      </Menu>
+              {/* </Dropdown.Menu> */}
+              {/* </Dropdown> */}
+              <Dropdown.Item
+                as={NavLink}
+                to="/events"
+                text="events"
+                icon="calendar alternate outline"
+                // active={activeItem === "events"}
+                // onClick={() => handleOnItemClick("events")}
+              />
+              <Dropdown.Item
+                as={NavLink}
+                to="/community"
+                text="community"
+                icon="cubes"
+                // active={activeItem === "community"}
+                // onClick={() => handleOnItemClick("community")}
+              />
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
+        </Menu>
+      </>
     );
   };
 
   return (
-    <div className="stick">
-      {window.innerWidth >= 760 ? navbarWeb() : navbarTablet()}
-    </div>
+    // <div className="stick">
+    //   {window.innerWidth >= 760 ? navbarWeb() : navbarTablet()}
+    // </div>
+    <>
+      {isDesktop ?
+        (<NavbarWeb></NavbarWeb>)
+
+        : (<NavbarTablet></NavbarTablet>)
+      }
+    </>
   );
 };
 
