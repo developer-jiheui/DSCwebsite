@@ -33,7 +33,7 @@ const Homepage = () => {
         <ContentContainer>
           <Grid stackable>
             <Grid.Column width={10} id="events-container">
-              <h1>Events</h1>
+              <h1>EVENTS</h1>
               <Card.Group>
                 {stubEvents.map((eventItem, id) =>
                   <Card className="card" fluid key={id}>
@@ -77,7 +77,7 @@ const Homepage = () => {
               </Card.Group>
             </Grid.Column>
             <Grid.Column width={6} id="news-container">
-              <h1>News</h1>
+              <h1>NEWS</h1>
               <Card.Group>
                 {stubNews.map((newsItem, id) =>
                   <Card className="card" fluid key={id}>

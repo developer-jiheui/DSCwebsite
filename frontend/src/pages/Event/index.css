@@ -8,6 +8,6 @@
 }
 
 #event-page-image {
-    height: 20rem;
+    height: 50vw;
     object-fit: cover;
 }

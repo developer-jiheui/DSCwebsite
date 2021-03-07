@@ -432,7 +432,7 @@ const Admin = () => {
             <Navbar >
             <Container>
                 <ContentContainer>
-                    <h1>Administrative Settings</h1>
+                    <h1>ADMINISTRATIVE SETTINGS</h1>
                     <Tab menu={{ secondary: true, pointing: true }} panes={panes} renderActiveOnly={true} />
                 </ContentContainer>
             </Container>

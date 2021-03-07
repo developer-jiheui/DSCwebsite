@@ -17,7 +17,7 @@ const News = () => {
           <Navbar>
           <Container>
             <ContentContainer>
-            <h1>News and Updates</h1>
+            <h1>NEWS AND UPDATES</h1>
             <Grid columns="3" stackable doubling>
             {news.map((newsItem, id) =>
               <Grid.Column key={`news-${id}`} className="event-container" textAlign="center">

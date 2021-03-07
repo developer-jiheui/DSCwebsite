@@ -11,6 +11,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 import "./index.css";
+import ContentContainer from "../../components/ContentContainer";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);
@@ -18,7 +19,7 @@ const Profile = () => {
     <>
       <Navbar>
       <Container>
-        <div className="body" style={{ borderRadius: "5px" }}>
+        <ContentContainer>
           <Image
             style={{ borderRadius: "50%" }}
             size="small"
@@ -111,7 +112,7 @@ const Profile = () => {
               </>
             )}
           </Form>
-        </div>
+        </ContentContainer>
       </Container>
       <Footer />
       </Navbar>
