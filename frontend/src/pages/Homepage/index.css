@@ -17,8 +17,8 @@
 }
 
 #getToKnowUs:hover {
-  background-color: var(--basic-purple);
-  color: white;
+  opacity: 0.5;
+  
 }
 .cover-image{
   z-index: 2 ;
