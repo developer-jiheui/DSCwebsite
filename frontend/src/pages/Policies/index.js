@@ -7,11 +7,12 @@ import ContentContainer from "../../components/ContentContainer";
 const Policies = () => {
   return (
     <>
-      <Navbar />
+      <Navbar>
       <Container>
         <ContentContainer>Under construction...</ContentContainer>
       </Container>
       <Footer />
+      </Navbar>
     </>
   );
 };

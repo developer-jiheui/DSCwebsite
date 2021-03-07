@@ -40,7 +40,7 @@ const Events = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar>
       <Container>
         <ContentContainer>
           <h1>Featured Event</h1>
@@ -72,6 +72,7 @@ const Events = () => {
           </Grid>
         </ContentContainer>
       </Container>
+      </Navbar>
       <Footer />
 
     </>

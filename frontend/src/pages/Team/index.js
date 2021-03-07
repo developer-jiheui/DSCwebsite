@@ -55,7 +55,7 @@ const Team = () => {
   }
   return (
     <>
-      <Navbar />
+      <Navbar>
       <Container>
         <ContentContainer>
           <h1>EXECUTIVES</h1>
@@ -185,6 +185,7 @@ const Team = () => {
         </Modal.Actions>
       </Modal>
       <Footer />
+      </Navbar>
     </>
   );
 };

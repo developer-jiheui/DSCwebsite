@@ -38,7 +38,7 @@ const NewsItem = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar>
             <Container>
                 <ContentContainer>
                     <Image fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
@@ -85,6 +85,7 @@ const NewsItem = () => {
                 </ContentContainer>
             </Container>
             <Footer />
+            </Navbar>
         </>
     );
 }

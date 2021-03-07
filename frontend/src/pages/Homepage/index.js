@@ -6,6 +6,7 @@ import {
   Card,
   Button,
   Divider,
+  Sidebar,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
@@ -21,7 +22,7 @@ const Homepage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar>
       <Container>
         <div id="cover-container">
           <Image className="cover-image" src="./images/newCover.png"></Image>
@@ -72,52 +73,53 @@ const Homepage = () => {
                       </Card.Description>
                     </Card.Content>
                   </Card>
-                )}                
+                )}
               </Card.Group>
             </Grid.Column>
             <Grid.Column width={6} id="news-container">
               <h1>News</h1>
               <Card.Group>
-              {stubNews.map((newsItem, id) =>
-                <Card className="card" fluid key={id}>
-                  <Card.Content>
-                    <Card.Header>COVID 19 - UPDATES</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>February 19th, 2020</span>
-                    </Card.Meta>
-                    <Divider></Divider>
-                    <Card.Description>
-                      <Image
-                        size="tiny"
-                        centered
-                        src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                        wrapped
-                        ui={false}
-                      />
-                      <Card.Content>
-                        <br></br>
-                        <Card.Description>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
+                {stubNews.map((newsItem, id) =>
+                  <Card className="card" fluid key={id}>
+                    <Card.Content>
+                      <Card.Header>COVID 19 - UPDATES</Card.Header>
+                      <Card.Meta>
+                        <span className='date'>February 19th, 2020</span>
+                      </Card.Meta>
+                      <Divider></Divider>
+                      <Card.Description>
+                        <Image
+                          size="tiny"
+                          centered
+                          src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                          wrapped
+                          ui={false}
+                        />
+                        <Card.Content>
+                          <br></br>
+                          <Card.Description>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.
                         </Card.Description>
-                        <Divider></Divider>
-                        <Link to={"/newsitem/0"}>
-                          <Button className="event-more-button">
-                            See More
+                          <Divider></Divider>
+                          <Link to={"/newsitem/0"}>
+                            <Button className="event-more-button">
+                              See More
                           </Button>
-                        </Link>
-                      </Card.Content>
-                    </Card.Description>
-                  </Card.Content>
-                </Card>
-              )}
+                          </Link>
+                        </Card.Content>
+                      </Card.Description>
+                    </Card.Content>
+                  </Card>
+                )}
               </Card.Group>
             </Grid.Column>
           </Grid>
         </ContentContainer>
       </Container>
       <Footer />
+      </Navbar>
     </>
   );
 };

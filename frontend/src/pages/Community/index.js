@@ -7,13 +7,14 @@ import ContentContainer from "../../components/ContentContainer";
 const Community = () => {
   return (
     <>
-      <Navbar />
+      <Navbar>
       <Container>
         <ContentContainer>
           Under construction...
         </ContentContainer>
       </Container>
       <Footer />
+      </Navbar>
     </>
   );
 };

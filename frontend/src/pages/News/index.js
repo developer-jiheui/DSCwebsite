@@ -14,7 +14,7 @@ const News = () => {
 
     return (
         <>
-          <Navbar />
+          <Navbar>
           <Container>
             <ContentContainer>
             <h1>News and Updates</h1>
@@ -38,6 +38,7 @@ const News = () => {
             </ContentContainer>
           </Container>
           <Footer />
+          </Navbar>
         </>
       );
 }

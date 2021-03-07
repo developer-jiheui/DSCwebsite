@@ -100,8 +100,8 @@ const Signup = () => {
     // console.log(termsAndConditions);
   };
   return (
-    <div>
-      <Navbar></Navbar>
+    <>
+      <Navbar>
       <Container id="sign-up-container">
         <h2 style={{ color: "black" }}>Create an account</h2>
         {equalPassword ? (
@@ -294,7 +294,8 @@ const Signup = () => {
         </Form>
       </Container>
       <Footer></Footer>
-    </div>
+      </Navbar>
+    </>
   );
 };
 

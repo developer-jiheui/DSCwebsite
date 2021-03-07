@@ -37,6 +37,15 @@ body {
   color: #fff;
 }
 
+.ui.segment.pushable {
+  background: none;  
+  min-height: 100vh;
+}
+
+.pusher.dimmed {
+  min-height: 100vh;
+}
+
 div.ui.container {
   margin-top: 70px; /*height of the navbar + 20px*/
 }

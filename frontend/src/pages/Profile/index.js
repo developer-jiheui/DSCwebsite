@@ -16,7 +16,7 @@ const Profile = () => {
   const [edit, setEdit] = useState(true);
   return (
     <>
-      <Navbar />
+      <Navbar>
       <Container>
         <div className="body" style={{ borderRadius: "5px" }}>
           <Image
@@ -114,6 +114,7 @@ const Profile = () => {
         </div>
       </Container>
       <Footer />
+      </Navbar>
     </>
   );
 };

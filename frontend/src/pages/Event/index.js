@@ -25,54 +25,54 @@ const Event = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(comment === "") {
+        if (comment === "") {
             setEmptyComment(true);
         } else {
             setComment("");
-            comments.push({name: "Bob", timestamp: new Date().toDateString(), text: comment});
+            comments.push({ name: "Bob", timestamp: new Date().toDateString(), text: comment });
             setEmptyComment(false);
         }
     };
 
     return (
         <>
-            <Navbar />
-            <Container>
-                <ContentContainer>
-                    <Grid columns="2" stackable centered textAlign="justified">
-                        <Grid.Row>
-                            <Image id="event-page-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={3}>
-                                <h2>Date</h2>                                
-                                <p><i>March 2, 2021</i></p>                                
-                            </Grid.Column>
-                            <Grid.Column width={12}>
-                                <h2>Event Title</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </Grid.Column>                            
-                        </Grid.Row>
-                    </Grid>
-                    <Divider horizontal>Comments</Divider>
-                    <Comment.Group threaded minimal>
-                        {comments.map((c, id) =>
-                            <Comment>
-                                <Comment.Avatar src={defaultProfilePicURL} />
-                                <Comment.Content>
-                                    <Comment.Author>{c.name}</Comment.Author>
-                                    <Comment.Metadata>
-                                        <div>{c.timestamp}</div>
-                                    </Comment.Metadata>
-                                    <Comment.Text>{c.text}</Comment.Text>
-                                    {/* Uncomment below for Reply link to be visible */}
-                                    {/* <Comment.Actions>
+            <Navbar>
+                <Container>
+                    <ContentContainer>
+                        <Grid columns="2" stackable centered textAlign="justified">
+                            <Grid.Row>
+                                <Image id="event-page-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column width={3}>
+                                    <h2>Date</h2>
+                                    <p><i>March 2, 2021</i></p>
+                                </Grid.Column>
+                                <Grid.Column width={12}>
+                                    <h2>Event Title</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                        <Divider horizontal>Comments</Divider>
+                        <Comment.Group threaded minimal>
+                            {comments.map((c, id) =>
+                                <Comment>
+                                    <Comment.Avatar src={defaultProfilePicURL} />
+                                    <Comment.Content>
+                                        <Comment.Author>{c.name}</Comment.Author>
+                                        <Comment.Metadata>
+                                            <div>{c.timestamp}</div>
+                                        </Comment.Metadata>
+                                        <Comment.Text>{c.text}</Comment.Text>
+                                        {/* Uncomment below for Reply link to be visible */}
+                                        {/* <Comment.Actions>
                                         <Comment.Action>Reply</Comment.Action>
                                     </Comment.Actions> */}
-                                </Comment.Content>
-                                {/* Adding replies to a comment - uncomment below*/}
-                                {/* <Comment.Group>
+                                    </Comment.Content>
+                                    {/* Adding replies to a comment - uncomment below*/}
+                                    {/* <Comment.Group>
                                     <Comment>
                                         <Comment.Avatar src={defaultProfilePicURL} />
                                         <Comment.Content>
@@ -87,33 +87,34 @@ const Event = () => {
                                         </Comment.Content>
                                     </Comment>
                                 </Comment.Group> */}
-                            </Comment>
-                        )}
-                        <Form
-                            reply
-                            onSubmit={(e) => {
-                                handleSubmit(e);
-                            }}>
-                            <Form.TextArea
-                                placeholder="What do you think?"
-                                error={emptyComment}
-                                value={comment}
-                                onChange={(e) => {
-                                    setComment(e.target.value);
-                                    setEmptyComment(comment.length < 1);
-                                }}
-                            />
-                            <Button
-                                content='Comment'
-                                labelPosition='left'
-                                icon='edit'
-                                color="purple"
-                            />
-                        </Form>
-                    </Comment.Group>
-                </ContentContainer>
-                <Footer/>
-            </Container>
+                                </Comment>
+                            )}
+                            <Form
+                                reply
+                                onSubmit={(e) => {
+                                    handleSubmit(e);
+                                }}>
+                                <Form.TextArea
+                                    placeholder="What do you think?"
+                                    error={emptyComment}
+                                    value={comment}
+                                    onChange={(e) => {
+                                        setComment(e.target.value);
+                                        setEmptyComment(comment.length < 1);
+                                    }}
+                                />
+                                <Button
+                                    content='Comment'
+                                    labelPosition='left'
+                                    icon='edit'
+                                    color="purple"
+                                />
+                            </Form>
+                        </Comment.Group>
+                    </ContentContainer>
+                </Container>
+                <Footer />
+            </Navbar>
         </>
     );
 }
