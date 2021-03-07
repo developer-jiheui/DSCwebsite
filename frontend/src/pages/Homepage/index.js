@@ -16,8 +16,8 @@ import ContentContainer from "../../components/ContentContainer";
 
 const Homepage = () => {
 
-  const stubEvents = [{}, {}, {}, {}, {}];
-  const stubNews = [{}, {}, {}, {}];
+  const stubEvents = [{}, {}, {}, {},];
+  const stubNews = [{}, {}, {}];
 
   return (
     <>
@@ -26,8 +26,8 @@ const Homepage = () => {
         <div id="cover-container">
           <Image src="./images/newCover.png"></Image>
           <Button id="getToKnowUs">Get To Know Us</Button>
-          <h1 id="featuredText">&#123;Creative Minds </h1>
-          <h1 id="featuredText2">&#125;</h1>
+          <h1 className="featured-text" id="featuredText">&#123;Creative Minds </h1>
+          <h1 className="featured-text" id="featuredText2">&#125;</h1>
         </div>
         <ContentContainer>
           <Grid stackable>

@@ -15,6 +15,8 @@ import {
   Dropdown,
   GridColumn,
   Message,
+  Segment,
+  Sidebar,
 } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -29,6 +31,8 @@ const Navbar = () => {
   const [emailUsernameError, setEmailUsernameError] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
+
+  const [visible, setVisible] = useState(false);
 
   const handleOnItemClick = (name) => {
     setActiveItem(name);
@@ -52,8 +56,8 @@ const Navbar = () => {
     }
   };
 
-  return (
-    <div className="stick">
+  const navbarWeb = () => {
+    return (
       <Menu text>
         <Menu.Item
           style={{ color: "white" }}
@@ -85,6 +89,7 @@ const Navbar = () => {
               text="Get to Know Us"
               as={Link}
               to="/gettoknowus"
+              color="white"
             />
             {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
             <Dropdown.Item
@@ -219,7 +224,7 @@ const Navbar = () => {
           </Modal.Actions>
         </Modal>
         {openProfile ? (
-          <Dropdown item icon="user circle">
+          <Dropdown item icon="user circle large">
             <Dropdown.Menu
               className="left"
               style={{ backgroundColor: "var(--douglas-gray)" }}
@@ -346,6 +351,66 @@ const Navbar = () => {
           </Modal>
         )}
       </Menu>
+    );
+  };
+
+  const navbarTablet = () => {
+    return (
+      <Menu text>
+        <Menu.Item
+          style={{ color: "white" }}
+          as={NavLink}
+          exact
+          to="/"
+          icon={{ className: "logo" }}
+          name="developer student club"
+          active={activeItem === "developer student clubs"}
+          onClick={(e) => handleOnItemClick("developer student clubs")}
+        />
+        <Menu.Item as={Button} position="right">
+          <Dropdown item floating button labeled icon="bars">
+            <Dropdown.Menu
+              className="left"
+              style={{ backgroundColor: "var(--douglas-gray)" }}
+            >
+              <Dropdown.Item
+                icon="object ungroup outline"
+                text="Get to Know Us"
+                as={Link}
+                to="/gettoknowus"
+              />
+              {/* <Dropdown.Item icon="settings" text="Account Settings" /> */}
+              <Dropdown.Item
+                icon="bullhorn"
+                text="News"
+                as={Link}
+                to="/news"
+                color="white"
+              />
+              <Dropdown.Item
+                icon="users"
+                text="Team"
+                as={Link}
+                to="/team"
+                color="white"
+              />
+              <Dropdown.Item
+                icon="exclamation"
+                text="Policies & Bylaws"
+                as={Link}
+                to="/policies"
+                color="white"
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Item>
+      </Menu>
+    );
+  };
+
+  return (
+    <div className="stick">
+      {window.innerWidth >= 760 ? navbarWeb() : navbarTablet()}
     </div>
   );
 };

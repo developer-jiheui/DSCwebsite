@@ -12,13 +12,28 @@
   box-sizing: border-box;
 }
 
+@media only screen and (min-width: 1550px) {
+  #getToKnowUs {
+    padding: 2vw 3vw; 
+    font-size:20px;   
+  }
+
+  h1.featured-text {
+    font-size: 5vw;
+  }  
+
+  div.ui.container {
+    width: 75%;
+  }
+}
+
 html,
 body {
   color: #fff;
 }
 
 div.ui.container {
-  margin-top: 50px; /*height of the navbar + 20px*/
+  margin-top: 70px; /*height of the navbar + 20px*/
 }
 
 img {
@@ -51,13 +66,15 @@ head::before, head::after,
 position: fixed;
   top: 50%;
   left: 50%;
-  width: 3em;
-  height: 3em;
+  width: 5em;
+  height: 4em;
   /* this content property mimics the colorful dots we had before*/
-  content: ". . . . . . . .";
+  content: "........";
   mix-blend-mode: screen;
   /* animation: 44s -27s move infinite cubic-bezier(0.4, 0, 1, 1) alternate; */
   animation: 10s -27s move infinite ease-in alternate;
+  /* background: #ffffff1f; lightenssss */
+  font-size: 7rem !important;
 }
 
 /* body::before { */

@@ -6,6 +6,7 @@ import {
   Container,
   Message,
   Breadcrumb,
+  FormField,
 } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import "./index.css";
@@ -16,6 +17,15 @@ const Signup = () => {
 
   const [lastName, setLastName] = useState("");
   const [lastNameError, setLastNameError] = useState(false);
+
+  const [studentNumber, setStudentNumber] = useState("");
+  const [studentNumberError, setStudentNumberError] = useState("");
+
+  const [wppNumber, setWppNumber] = useState("");
+  const [wppNumberError, setWppNumberError] = useState("");
+
+  const [number, setNumber] = useState("");
+  const [numberError, setNumberError] = useState("");
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -28,6 +38,8 @@ const Signup = () => {
 
   const [equalPassword, setEqualPassword] = useState(false);
   const [termsAndConditions, setTermsAndConditions] = useState(false);
+  const [wppNumberCheckbox, setWppNumberCheckbox] = useState(false);
+  const [numberCheckbox, setNumberCheckbox] = useState(false);
   const [conditionsError, setConditionsError] = useState(false);
 
   const handleSubmit = (e) => {
@@ -41,6 +53,21 @@ const Signup = () => {
       setLastNameError(true);
     } else {
       setLastNameError(false);
+    }
+    if (studentNumber === "") {
+      setStudentNumberError(true);
+    } else {
+      setStudentNumberError(false);
+    }
+    if (number === "") {
+      setNumberError(true);
+    } else {
+      setNumberError(false);
+    }
+    if (wppNumber === "") {
+      setWppNumberError(true);
+    } else {
+      setWppNumberError(false);
     }
     if (email === "") {
       setEmailError(true);
@@ -119,10 +146,77 @@ const Signup = () => {
             error={lastNameError ? "Please enter your last name" : null}
           ></Form.Field>
           <Form.Field
-            label="Nickname"
+            id="studentNumber"
+            label="Student Number*"
             control="input"
             type="text"
-            // placeholder="nickname"
+            onChange={(e) => {
+              setStudentNumber(e.target.value);
+            }}
+            error={
+              studentNumberError ? "Please insert your student number" : null
+            }
+          ></Form.Field>
+          <FormField>
+            <Form.Field
+              id="number"
+              label="Number*"
+              control="input"
+              type="text"
+              onChange={(e) => {
+                setNumber(e.target.value);
+              }}
+              error={
+                numberError && !numberCheckbox
+                  ? "Please insert your canadian number"
+                  : null
+              }
+            ></Form.Field>
+            <Checkbox
+              label="I do not posses a canadian number"
+              onClick={(e, data) => {
+                e.preventDefault();
+                setNumberCheckbox(data.checked);
+              }}
+            />
+          </FormField>
+          <FormField>
+            <Form.Field
+              id="number"
+              label="Whatsapp Number*"
+              control="input"
+              type="text"
+              onChange={(e) => {
+                setWppNumber(e.target.value);
+              }}
+              error={
+                wppNumberError && !wppNumberCheckbox
+                  ? "Please insert your Whatsapp number"
+                  : null
+              }
+            ></Form.Field>
+            <Checkbox
+              label="I do not posses a Whatssapp number"
+              onClick={(e, data) => {
+                e.preventDefault();
+                setWppNumberCheckbox(data.checked);
+              }}
+            />
+          </FormField>
+          <Form.Field
+            id="email"
+            label="Email*"
+            control="input"
+            type="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            error={emailError ? "Please insert an email" : null}
+          ></Form.Field>
+          <Form.Field
+            label="Preferred Name"
+            control="input"
+            type="text"
           ></Form.Field>
           <Form.Group inline>
             <label>Preferred Pronouns</label>
@@ -130,17 +224,6 @@ const Signup = () => {
             <Form.Field label="She/Her" control="input" type="checkbox" />
             <Form.Field label="They/Them" control="input" type="checkbox" />
           </Form.Group>
-          <Form.Field
-            id="email"
-            label="Email*"
-            control="input"
-            type="email"
-            // placeholder="example@email.com"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            error={emailError ? "Please insert an email" : null}
-          ></Form.Field>
           <Form.Field
             id="password"
             label="Password*"
