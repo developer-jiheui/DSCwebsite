@@ -24,7 +24,7 @@ const Homepage = () => {
       <Navbar />
       <Container>
         <div id="cover-container">
-          <Image src="./images/newCover.png"></Image>
+          <Image className="cover-image" src="./images/newCover.png"></Image>
           <Button id="getToKnowUs">Get To Know Us</Button>
           <h1 className="featured-text" id="featuredText">&#123;Creative Minds </h1>
           <h1 className="featured-text" id="featuredText2">&#125;</h1>
