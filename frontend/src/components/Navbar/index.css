@@ -80,12 +80,22 @@ i {
 
 #sidebar-hamburger-menu {
   background: var(--douglas-gray);
-  padding-top: 4rem
+  padding-top: 4rem;
+  font-size: 1.5rem;
 }
 
 #sidebar-hamburger-menu p {
   text-align: center;
   margin-top: 1rem;
+}
+
+#sidebar-hamburger-menu .icon {
+  float: none;
+  margin-right: 10px;
+}
+
+#sidebar-hamburger-menu .image {
+  margin: auto;
 }
 
 #sidebar-header {

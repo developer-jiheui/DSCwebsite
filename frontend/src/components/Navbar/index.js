@@ -53,6 +53,7 @@ const Navbar = ({ children }) => {
 
     if (emailUsernameError == false && passwordError == false) {
       setOpenProfile(true);
+      setOpenLogin(false);
     }
   };
 
@@ -216,7 +217,7 @@ const Navbar = ({ children }) => {
             onHide={() => setVisible(false)}
             vertical
             visible={visible}
-            width='thin'
+            width='wide'
             direction="right"
             inverted
           >       
@@ -261,7 +262,7 @@ const Navbar = ({ children }) => {
               as={Link}
               to="/policies">
               <Icon name="exclamation" />
-                Policies & Bylaws
+              Policies & Bylaws
             </Menu.Item>
             <Menu.Item
               onClick={() => setOpenContact(true)}>
@@ -270,7 +271,7 @@ const Navbar = ({ children }) => {
             </Menu.Item>
             {openProfile ? (
               <Menu.Item id="user-menu-sidebar">
-                <Image circular src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=6&m=1214428300&s=612x612&w=0&h=rvt5KGND3z8kfrHELplF9zmr8d6COZQ-1vYK9mvSxnc=" />
+                <Image circular size="small" src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=6&m=1214428300&s=612x612&w=0&h=rvt5KGND3z8kfrHELplF9zmr8d6COZQ-1vYK9mvSxnc=" />
                 <p>Hello Jiheui!</p>
                 <Menu.Menu>
                   <Menu.Item

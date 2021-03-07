@@ -30,9 +30,9 @@ const NewsItem = () => {
         if (comment === "") {
             setEmptyComment(true);
         } else {
-            setComment("");
             comments.push({ name: "Bob", timestamp: new Date().toDateString(), text: comment });
             setEmptyComment(false);
+            setComment("");
         }
     };
 
@@ -70,6 +70,7 @@ const NewsItem = () => {
                                 error={emptyComment}
                                 value={comment}
                                 onChange={(e) => {
+                                    e.preventDefault();
                                     setComment(e.target.value);
                                     setEmptyComment(comment.length < 1);
                                 }}
