@@ -50,7 +50,7 @@ span {
 .stick {
   position: fixed;
   top: 0;
-  background: var(--transparent-douglas-gray);
+  background: var(--transparent-douglas-gray) !important;
   width: 100%;
   z-index: 10;
 }
@@ -80,6 +80,7 @@ i {
 
 #sidebar-hamburger-menu {
   background: var(--douglas-gray);
+  padding-top: 4rem
 }
 
 #sidebar-hamburger-menu p {

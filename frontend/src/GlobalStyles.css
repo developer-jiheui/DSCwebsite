@@ -40,10 +40,12 @@ body {
 .ui.segment.pushable {
   background: none;  
   min-height: 100vh;
+  margin: 0;
 }
 
 .pusher.dimmed {
   min-height: 100vh;
+  margin:0;
 }
 
 div.ui.container {

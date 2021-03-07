@@ -69,7 +69,7 @@ const Navbar = ({ children }) => {
   const NavbarWeb = () => {
     return (
       <>
-        <Menu text>
+        <Menu text className="stick">
           <Menu.Item
             style={{ color: "white" }}
             as={NavLink}
@@ -183,9 +183,9 @@ const Navbar = ({ children }) => {
                 onClick={() => setOpenLogin(true)} />
             )}
         </Menu>
-        <div>
+        <>
           {children}
-        </div>
+        </>
       </>
     );
   };
@@ -193,6 +193,21 @@ const Navbar = ({ children }) => {
   const NavbarTablet = () => {
     return (
       <>
+      <Menu text className="stick">
+              <Menu.Item
+                as={NavLink}
+                exact
+                to="/"
+                icon={{ className: "logo" }}
+                name="developer student club"
+              />
+              <Menu.Item
+                as={Button}
+                position="right"
+                onClick={() => setVisible(true)}>
+                <Icon name="bars" size="large" />
+              </Menu.Item>
+            </Menu>
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             id="sidebar-hamburger-menu"
@@ -288,22 +303,8 @@ const Navbar = ({ children }) => {
                 </Menu.Item>
               )}
           </Sidebar>
+            
           <Sidebar.Pusher dimmed={visible}>
-            <Menu text>
-              <Menu.Item
-                as={NavLink}
-                exact
-                to="/"
-                icon={{ className: "logo" }}
-                name="developer student club"
-              />
-              <Menu.Item
-                as={Button}
-                position="right"
-                onClick={() => setVisible(true)}>
-                <Icon name="bars" size="large" />
-              </Menu.Item>
-            </Menu>
             {children}
           </Sidebar.Pusher>
         </Sidebar.Pushable>
