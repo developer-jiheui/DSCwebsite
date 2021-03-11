@@ -7,11 +7,9 @@ const router = express.Router();
  * @access  Public
  */
 router.get("/", (req, res) => {
-  res.send({
-    id: "0",
-    username: "CaffeineJunkies",
-    password: "coffe",
-  });
+  //   res.send(req.body);
+  console.log(req.body);
+  res.send("Request Received");
 });
 
 module.exports = router;
