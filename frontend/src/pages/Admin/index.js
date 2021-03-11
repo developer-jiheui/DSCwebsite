@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Modal, Tab, Table, Radio, Form, Search, Icon, Input, TextArea, Image, Select, StepGroup } from "semantic-ui-react";
+import { Button, Container, Modal, Tab, Table, Radio, Form, Search, Icon, Input, TextArea, Image, Select } from "semantic-ui-react";
 import ContentContainer from "../../components/ContentContainer";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -70,20 +70,20 @@ const Admin = () => {
 
     // USERS AND ADMINS
     const handleAdminToggle = (u) => {
-        let i = users.findIndex((obj => obj.id == u.id));
+        let i = users.findIndex((obj => obj.id === u.id));
         users[i].isAdmin = !u.isAdmin;
         setUsers(users);
     }
 
     const handleUserDelete = (u) => {
         if (window.confirm(`Are you sure you want to delete ${u.firstname} ${u.lastname}?`)) {
-            setUsers(users.filter(x => x.id != u.id));
+            setUsers(users.filter(x => x.id !== u.id));
         }
     }
 
     const handleBanUser = (u) => {
         if (window.confirm(`Are you sure you want to ban ${u.firstname} ${u.lastname}?`)) {
-            let i = users.findIndex((obj => obj.id == u.id));
+            let i = users.findIndex((obj => obj.id === u.id));
             users[i].isBanned = true;
             setUsers(users);
         }
@@ -97,7 +97,7 @@ const Admin = () => {
 
     const handleDeleteEvent = (emd) => {
         if (window.confirm(`Are you sure you want to delete this event?`)) {
-            setEvents(events.filter(x => x.id != emd.id));
+            setEvents(events.filter(x => x.id !== emd.id));
         }
     }
 
@@ -124,7 +124,7 @@ const Admin = () => {
     // NEWS
     const handleDeleteNews = (n) => {
         if (window.confirm(`Are you sure you want to delete this news article?`)) {
-            setNews(news.filter(x => x.id != n.id));
+            setNews(news.filter(x => x.id !== n.id));
         }
     }
 
@@ -145,7 +145,7 @@ const Admin = () => {
 
     const handleDeletePost = (p) => {
         if (window.confirm(`Are you sure you want to delete this post?`)) {
-            setPosts(posts.filter(x => x.id != p.id));
+            setPosts(posts.filter(x => x.id !== p.id));
         }
     }
 

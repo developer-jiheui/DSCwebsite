@@ -5,8 +5,7 @@ import {
   Grid,
   Card,
   Button,
-  Divider,
-  Sidebar,
+  Divider
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";

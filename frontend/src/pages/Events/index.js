@@ -12,9 +12,9 @@ const EventCounter = () => {
   const [countDownHour, setCountDownHour] = useState(0);
   const [countDownMin, setCountDownMin] = useState(0);
   const [countDownSec, setCountDownSec] = useState(0);
-  const countDownDate = new Date("April 28, 2021 17:00:00").getTime();
-
+  
   useEffect(() => {
+    const countDownDate = new Date("April 28, 2021 17:00:00").getTime();
     const intervalId = setInterval(() => {
       const time = countDownDate - Date.parse(new Date());
       setCountDownSec(Math.floor((time / 1000) % 60));
