@@ -1,9 +1,4 @@
-.column.event-container {
-    text-align: justify !important;
-    color: black;
-}
-
-#event-featured-title {
+  #event-featured-title {
     color: white;
     position: relative;
     z-index: 2;

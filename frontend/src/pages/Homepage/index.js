@@ -45,7 +45,7 @@ const Homepage = () => {
                           <Grid.Column width={6}>
                             <Image
                               src="https://react.semantic-ui.com/images/wireframe/image.png"
-                              fluid
+                              className="poster-size-image"
                             />
                           </Grid.Column>
                           <Grid.Column width={10}>

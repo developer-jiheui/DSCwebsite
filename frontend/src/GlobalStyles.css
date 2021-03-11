@@ -56,6 +56,12 @@ img {
   width: 100%;
 }
 
+.poster-size-image {
+  height: 25vw;
+  object-fit: cover;
+  width: 20vw;
+}
+
 #root {
   overflow: hidden;
   font-size: 14px;
