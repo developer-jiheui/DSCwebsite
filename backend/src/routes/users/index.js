@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
+const User = require("../../model/User");
 /*
  * @route   GET /users
  * @desc    User routing test for the api
@@ -26,10 +27,19 @@ router.post(
 
     // try-catch block for mongoDB:
     try {
+      // check the user by emai:
+      let user = await User.findOne({ email });
+      if (user) {
+        res.status(400).json({ errors: [{ msg: "User already exists" }] });
+      }
+
+      // if not found, create a User object model and add it:
+      user = new User({ firstName, lastName, email });
+      await user.save();
+
       res.status(200).send({
-        firstName,
-        lastName,
-        email,
+        user,
+        msg: "User saved with success",
       });
     } catch (error) {
       console.error(error.message);
