@@ -38,7 +38,9 @@ router.post(
       // check the user by email:
       let user = await User.findOne({ email });
       if (user) {
-        res.status(400).json({ errors: [{ msg: "User already exists" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists" }] });
       }
 
       // if not found, create a User object model and add it to the mongoDB:
@@ -65,7 +67,7 @@ router.post(
         },
         (error, token) => {
           if (error) throw error;
-          res.json({ token });
+          return res.json({ token });
         }
       );
 
@@ -75,7 +77,7 @@ router.post(
       // });
     } catch (error) {
       console.error(error.message);
-      res.status(500).send("Server error!");
+      return res.status(500).send("Server error!");
     }
 
     // console.log(req.body);
