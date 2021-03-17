@@ -15,6 +15,8 @@ import Policies from "../pages/Policies";
 import GetToKnowUs from "../pages/GetToKnowUs";
 import TipsAndTricks from "../pages/Community/TipsAndTricks";
 import BuyAndSell from "../pages/Community/BuyAndSell";
+import Welcome from "../pages/Community/Welcome";
+import CommunityChat from "../pages/Community/CommunityChat";
 
 export default function Routes() {
   return (
@@ -25,6 +27,8 @@ export default function Routes() {
       <Route path="/community/career" component={CareerPage}/>
       <Route path="/community/tips" component={TipsAndTricks}/>
       <Route path="/community/buyandsell" component={BuyAndSell}/>
+      <Route path="/community/welcome" component={Welcome}/>
+      <Route path="/community/chat" component={CommunityChat}/>
       <Route path="/events" exact component={Events} />
       <Route path="/events/:id" component={Event} />
       <Route path="/team" component={Team} />
