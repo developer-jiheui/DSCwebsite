@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import Signup from "../pages/Signup";
 import Community from "../pages/Community";
+import CareerPage from "../pages/Community/Career";
 import Events from "../pages/Events";
 import Team from "../pages/Team";
 import Profile from "../pages/Profile";
@@ -18,16 +19,17 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={Homepage} />
       <Route path="/signup" component={Signup} />
-      <Route path="/community" component={Community} />
-      <Route path="/events" component={Events} />
-      <Route path="/event/:id" component={Event} />
+      <Route path="/community" exact component={Community} />
+      <Route path="/community/career" component={CareerPage}/>
+      <Route path="/events" exact component={Events} />
+      <Route path="/events/:id" component={Event} />
       <Route path="/team" component={Team} />
       <Route path="/profile" component={Profile} />
       <Route path="/gettoknowus" component={GetToKnowUs} />
       <Route path="/admin" component={Admin} />
       <Route path="/policies" component={Policies} />
-      <Route path="/news" component={News} />
-      <Route path="/newsitem/:id" component={NewsItem} />
+      <Route path="/news" exact component={News} />
+      <Route path="/news/:id" component={NewsItem} />
     </Switch>
   );
 }

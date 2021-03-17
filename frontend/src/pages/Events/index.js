@@ -64,7 +64,7 @@ const Events = () => {
                       <Button
                         color="purple"
                         as={Link}
-                        to={`/event/${id}`}>See More</Button>
+                        to={`/events/${id}`}>See More</Button>
                     </Grid.Column>
                   </Grid>
                 </Grid.Column>

@@ -31,7 +31,7 @@ const News = () => {
                 <Button
                   color="purple"
                   as={Link}
-                  to={`/newsitem/${id}`}>See More</Button>
+                  to={`/news/${id}`}>See More</Button>
               </Grid.Column>
             )}
           </Grid>

@@ -10,9 +10,9 @@ import {
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import ContentContainer from "../../components/ContentContainer";
 
 import "./index.css";
-import ContentContainer from "../../components/ContentContainer";
 
 const Homepage = () => {
 
@@ -63,7 +63,7 @@ const Homepage = () => {
                         <Card.Content extra>
                           <i className="calendar alternate outline icon"></i>
                         February 19th, 2020
-                        <Link to={"/event/0"}>
+                        <Link to={"/events/0"}>
                             <Button className="event-more-button">
                               See More
                           </Button>
@@ -102,7 +102,7 @@ const Homepage = () => {
                             dolore magna aliqua.
                         </Card.Description>
                           <Divider></Divider>
-                          <Link to={"/newsitem/0"}>
+                          <Link to={"/news/0"}>
                             <Button className="event-more-button">
                               See More
                           </Button>
