@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import "./index.css";
+import PhotoUploader from "../../components/PhotoUpload";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -123,6 +124,9 @@ const Signup = () => {
             handleSubmit(e);
           }}
         >
+          <Form.Field>
+            <PhotoUploader/>
+          </Form.Field>
           <Form.Field
             id="firstName"
             label="First Name*"

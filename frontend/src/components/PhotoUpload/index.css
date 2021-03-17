@@ -1,0 +1,25 @@
+#profile-photo-uploader {
+    text-align: center;
+}
+
+#profile-photo-uploader img {
+    border-radius: 50%;
+    border: thin solid var(--transparent-douglas-gray);
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+#profile-photo-uploader label {
+    color:white;
+    display: inline-block;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    background: var(--basic-purple);
+}
+
+#profile-photo-uploader label:hover {
+    background: var(--deep-purple);
+}

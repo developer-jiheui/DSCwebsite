@@ -12,6 +12,7 @@ import Footer from "../../components/Footer";
 
 import "./index.css";
 import ContentContainer from "../../components/ContentContainer";
+import PhotoUploader from "../../components/PhotoUpload";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);
@@ -20,15 +21,11 @@ const Profile = () => {
       <Navbar>
       <Container>
         <ContentContainer>
-          <Image
-            style={{ borderRadius: "50%" }}
-            size="small"
-            src="./images/profile.jpeg"
-            centered
-          />
           <h1 style={{ textAlign: "center" }}>Welcome Joana Doe</h1>
-
-          <Form>
+          <Form>      
+            <FormField>
+              <PhotoUploader src="./images/profile.jpeg"/>
+            </FormField>          
             <Form.Field
               label="Name"
               control="input"
