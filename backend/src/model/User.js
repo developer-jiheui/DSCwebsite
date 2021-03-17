@@ -10,10 +10,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   studentNumber: {
-    type: BigInt,
+    type: String,
     required: true,
   },
-  number: {
+  phoneNumber: {
     type: String,
     required: false,
   },
@@ -57,4 +57,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = User = mongoose.model("User", UserSchema);
+module.exports = User = mongoose.model("user", UserSchema);
