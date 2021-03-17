@@ -13,6 +13,7 @@ import News from "../pages/News";
 import NewsItem from "../pages/NewsItem";
 import Policies from "../pages/Policies";
 import GetToKnowUs from "../pages/GetToKnowUs";
+import TipsAndTricks from "../pages/Community/TipsAndTricks";
 
 export default function Routes() {
   return (
@@ -21,6 +22,7 @@ export default function Routes() {
       <Route path="/signup" component={Signup} />
       <Route path="/community" exact component={Community} />
       <Route path="/community/career" component={CareerPage}/>
+      <Route path="/community/tips" component={TipsAndTricks}/>
       <Route path="/events" exact component={Events} />
       <Route path="/events/:id" component={Event} />
       <Route path="/team" component={Team} />
