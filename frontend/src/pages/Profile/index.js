@@ -24,7 +24,7 @@ const Profile = () => {
           <h1 style={{ textAlign: "center" }}>Welcome Joana Doe</h1>
           <Form>      
             <FormField>
-              <PhotoUploader src="./images/profile.jpeg"/>
+              <PhotoUploader src="./images/profile.jpeg" circular/>
             </FormField>          
             <Form.Field
               label="Name"

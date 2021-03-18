@@ -125,7 +125,7 @@ const Signup = () => {
           }}
         >
           <Form.Field>
-            <PhotoUploader/>
+            <PhotoUploader circular/>
           </Form.Field>
           <Form.Field
             id="firstName"
