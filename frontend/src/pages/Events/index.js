@@ -12,7 +12,7 @@ const EventCounter = () => {
   const [countDownHour, setCountDownHour] = useState(0);
   const [countDownMin, setCountDownMin] = useState(0);
   const [countDownSec, setCountDownSec] = useState(0);
-  
+
   useEffect(() => {
     const countDownDate = new Date("April 28, 2021 17:00:00").getTime();
     const intervalId = setInterval(() => {
@@ -61,10 +61,9 @@ const Events = () => {
                       <p><i>Mar 4th, 2021 - 5pm</i></p>
                     </Grid.Column>
                     <Grid.Column floated="right" width="6">
-                      <Button
-                        color="purple"
-                        as={Link}
-                        to={`/events/${id}`}>See More</Button>
+                      <Link to={`/events/${id}`}>
+                        <Button color="purple">See More</Button>
+                      </Link>
                     </Grid.Column>
                   </Grid>
                 </Grid.Column>

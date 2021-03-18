@@ -60,6 +60,7 @@ const BuyAndSell = () => {
             </Grid>
             <Divider></Divider>
             <Card.Group centered stackable>
+              {stubPosts.length == 0 && <p>No posts to show...</p>} 
               {stubPosts.map((post, id) =>
                 <Card raised>
                   <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />

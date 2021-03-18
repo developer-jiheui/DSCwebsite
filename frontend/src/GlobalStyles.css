@@ -37,6 +37,10 @@ body {
   color: #fff;
 }
 
+a:hover {
+  color: var(--deep-purple) !important;
+}
+
 .ui.segment.pushable {
   background: none;  
   min-height: 100vh;
@@ -60,6 +64,14 @@ img {
   height: 25vw;
   object-fit: cover;
   width: 20vw;
+}
+
+/* full width of container search bar*/
+.full-width-search {
+  width: 100%;
+}
+.full-width-search .input {
+  width: 100%;
 }
 
 #root {
