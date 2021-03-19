@@ -12,7 +12,7 @@ import Footer from "../../components/Footer";
 
 import "./index.css";
 import ContentContainer from "../../components/ContentContainer";
-import PhotoUploader from "../../components/PhotoUpload";
+import PhotoUploader from "../../components/PhotoUploader";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);

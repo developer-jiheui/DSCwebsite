@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
 import "./index.css";
-import PhotoUploader from "../../components/PhotoUpload";
+import PhotoUploader from "../../components/PhotoUploader";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");

@@ -19,7 +19,7 @@ import {
 } from "semantic-ui-react";
 
 import "./index.css";
-import PhotoUploader from "../../../components/PhotoUpload";
+import PhotoUploader from "../../../components/PhotoUploader";
 
 const stubPosts = [
   {}, {}, {}, {}, {}, {}
@@ -51,7 +51,7 @@ const BuyAndSell = () => {
                 <Button color="purple" onClick={handleOpenCreateModal}>Create Post</Button>
               </Grid.Column>
               <Grid.Column width="9" textAlign="center">
-                <Search className="buyandsell-search " />
+                <Search className="full-width-search " placeholder="Search posts"/>
               </Grid.Column>
               <Grid.Column textAlign="right" width="3">
                 <Button icon="filter" color="purple"></Button>

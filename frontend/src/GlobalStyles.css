@@ -82,6 +82,10 @@ img {
   min-height:100%;
 }
 
+.centered-text {
+  text-align: center;
+}
+
 /* Fancy Background Stuff below With Clip text effect*/
 /* html {
   overflow: hidden;

@@ -3,30 +3,14 @@ import React, { useState } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
+import CommentFeed from "../../../components/CommentFeed";
+import ContentToggler from "../../../components/ContentToggler";
+
 import { Button, Card, Container, Divider, Form, Grid, Icon, Input, Modal, Search, TextArea } from "semantic-ui-react";
 
 import "./index.css";
-import CommentFeed from "../../../components/CommentFeed";
 
 const stubPosts = [{}, {}, {}];
-
-const ContentToggler = ({ children, title }) => {
-    const [openContent, setOpenContent] = useState(false);
-
-    return (
-        <>
-            <div className="content-toggle" onClick={() => setOpenContent(!openContent)}>
-                <i class="chat outline icon" />
-                {title}
-                <i class={openContent ? "icon caret down" : "icon caret right"} />
-            </div>
-            <div className={openContent ? "" : "hidden"}>
-                {children}
-            </div>
-        </>
-    )
-}
-
 
 const CareerPage = () => {
     const [openCreateCareerPostModal, setOpenCreateCareerPostModal] = useState(false);
@@ -48,7 +32,7 @@ const CareerPage = () => {
                                 <Button color="purple" onClick={() => setOpenCreateCareerPostModal(true)}>Create Post</Button>
                             </Grid.Column>
                             <Grid.Column width="9">
-                                <Search className="full-width-search" />
+                                <Search className="full-width-search" placeholder="Search posts" />
                             </Grid.Column>
                             <Grid.Column textAlign="right" width="3">
                                 <Button icon="filter" color="purple"></Button>
