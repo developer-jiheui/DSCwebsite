@@ -27,14 +27,15 @@ const CareerPage = () => {
                 <Container>
                     <ContentContainer>
                         <h1>Launch Your Career</h1>
+                        <p className="centered-text">Found a cool job post? Need career advice? This is where that all happens!</p>
                         <Grid columns="4">
-                            <Grid.Column width="3">
+                            <Grid.Column width="4">
                                 <Button color="purple" onClick={() => setOpenCreateCareerPostModal(true)}>Create Post</Button>
                             </Grid.Column>
-                            <Grid.Column width="9">
+                            <Grid.Column width="8">
                                 <Search className="full-width-search" placeholder="Search posts" />
                             </Grid.Column>
-                            <Grid.Column textAlign="right" width="3">
+                            <Grid.Column textAlign="right" width="4">
                                 <Button icon="filter" color="purple"></Button>
                                 <Button icon="list" color="purple"></Button>
                             </Grid.Column>

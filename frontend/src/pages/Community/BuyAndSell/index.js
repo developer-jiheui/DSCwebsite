@@ -46,14 +46,15 @@ const BuyAndSell = () => {
         <Container>
           <ContentContainer>
             <h1>Buy & Sell</h1>
+            <p className="centered-text">Got stuff to sell? Looking to strike a deal?</p>
             <Grid columns="3" stackable={false} relaxed>
               <Grid.Column width="4">
                 <Button color="purple" onClick={handleOpenCreateModal}>Create Post</Button>
               </Grid.Column>
-              <Grid.Column width="9" textAlign="center">
+              <Grid.Column width="8" textAlign="center">
                 <Search className="full-width-search " placeholder="Search posts"/>
               </Grid.Column>
-              <Grid.Column textAlign="right" width="3">
+              <Grid.Column textAlign="right" width="4">
                 <Button icon="filter" color="purple"></Button>
                 <Button icon="list" color="purple"></Button>
               </Grid.Column>
@@ -63,7 +64,7 @@ const BuyAndSell = () => {
               {stubPosts.length == 0 && <p>No posts to show...</p>} 
               {stubPosts.map((post, id) =>
                 <Card raised>
-                  <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                  <Image size="medium" src="https://react.semantic-ui.com/images/wireframe/image.png" />
                   <Card.Content>
                     <Card.Header>Post Title - $500</Card.Header>
                     <Card.Meta>Posted March 2nd, 2021</Card.Meta>

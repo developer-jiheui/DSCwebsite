@@ -41,19 +41,19 @@ const itemsDropdownCommunity = [
     path: "/gettoknowus",
   },
   {
-    label: "Carrer",
+    label: "Career",
     icon: "briefcase",
-    path: "/carrer",
+    path: "/community/career",
   },
   {
     label: "Tips",
     icon: "comment outline",
-    path: "/tips",
+    path: "/community/tips",
   },
   {
     label: "Buy & Sell",
     icon: "money bill alternate icon",
-    path: "buyandsell",
+    path: "/community/buyandsell",
   },
 ];
 
