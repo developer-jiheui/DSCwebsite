@@ -24,11 +24,11 @@ export default function Routes() {
       <Route path="/" exact component={Homepage} />
       <Route path="/signup" component={Signup} />
       <Route path="/community" exact component={Community} />
-      <Route path="/community/career" component={CareerPage}/>
-      <Route path="/community/tips" component={TipsAndTricks}/>
-      <Route path="/community/buyandsell" component={BuyAndSell}/>
-      <Route path="/community/welcome" component={Welcome}/>
-      <Route path="/community/chat" component={CommunityChat}/>
+      <Route path="/community/career" component={CareerPage} />
+      <Route path="/community/tips" component={TipsAndTricks} />
+      <Route path="/community/buyandsell" component={BuyAndSell} />
+      <Route path="/community/welcome" component={Welcome} />
+      <Route path="/community/chat" component={CommunityChat} />
       <Route path="/events" exact component={Events} />
       <Route path="/events/:id" component={Event} />
       <Route path="/team" component={Team} />

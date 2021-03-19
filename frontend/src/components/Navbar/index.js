@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
+import Dropdown from "../Dropdown";
 
 import Sidebar from "../Sidebar";
 
@@ -33,6 +34,29 @@ const items = [
   },
 ];
 
+const itemsDropdownCommunity = [
+  {
+    label: "Get to Know Us",
+    icon: "bullhorn",
+    path: "/gettoknowus",
+  },
+  {
+    label: "Carrer",
+    icon: "briefcase",
+    path: "/carrer",
+  },
+  {
+    label: "Tips",
+    icon: "comment outline",
+    path: "/tips",
+  },
+  {
+    label: "Buy & Sell",
+    icon: "money bill alternate icon",
+    path: "buyandsell",
+  },
+];
+
 const Navbar = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [toggle, setToggle] = useState(false);
@@ -44,14 +68,12 @@ const Navbar = ({ children }) => {
   };
 
   const itemList = items.map(({ label, icon, path }) => {
+    if (label === "Community") {
+      return <Dropdown label={label} itemList={itemsDropdownCommunity} />;
+    }
+
     return (
-      <NavLink
-        to={`${path}`}
-        exact={path === "/"}
-        // activeStyle={{ height: "100%", width: "100%" }}
-        // activeStyle={{ backgroundColor: "red" }}
-        key={icon}
-      >
+      <NavLink to={`${path}`} exact={path === "/"} key={icon}>
         <div className={`item`} key={label}>
           <i className={`${icon} icon`}></i> {label}
         </div>
