@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+import './index.css';
+
 const ContentToggler = ({ children, title }) => {
     const [openContent, setOpenContent] = useState(false);
 
