@@ -36,9 +36,9 @@ const items = [
 
 const itemsDropdownCommunity = [
   {
-    label: "Get to Know Us",
+    label: "Welcome Newcomers!",
     icon: "bullhorn",
-    path: "/gettoknowus",
+    path: "/community/welcome",
   },
   {
     label: "Career",
@@ -54,6 +54,11 @@ const itemsDropdownCommunity = [
     label: "Buy & Sell",
     icon: "money bill alternate icon",
     path: "/community/buyandsell",
+  },
+  {
+    label: "Chat",
+    icon: "chat icon",
+    path: "/community/chat",
   },
 ];
 

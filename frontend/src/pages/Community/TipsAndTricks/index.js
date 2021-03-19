@@ -13,8 +13,7 @@ import {
   Input,
   TextArea,
   Search,
-  Divider,
-  Segment
+  Divider
 } from "semantic-ui-react";
 
 import "./index.css";
@@ -52,7 +51,7 @@ const TipsAndTricks = () => {
                 <Button color="purple" onClick={handleOpenCreateModal}>Create Post</Button>
               </Grid.Column>
               <Grid.Column width="8" textAlign="center">
-                <Search className="full-width-search " placeholder="Search posts"/>
+                <Search className="full-width-search " placeholder="Search posts" />
               </Grid.Column>
               <Grid.Column textAlign="right" width="4">
                 <Button icon="filter" color="purple"></Button>
