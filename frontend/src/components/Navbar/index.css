@@ -2,6 +2,7 @@
   /* background-color: var(--douglas-gray); */
   margin: 0px;
   padding: 0px 20px;
+  align-items: center;
 }
 
 .ui.text.menu .item {
@@ -30,10 +31,18 @@
   text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
 }
 
-i.icon.logo {
+/* i.icon.logo {
   background: url("../../assets/DSC_logo_color.png");
   height: 30px;
   width: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+} */
+
+i.icon.logo {
+  height: 21px;
+  width: 21px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
