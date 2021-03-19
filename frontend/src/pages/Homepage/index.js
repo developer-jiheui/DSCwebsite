@@ -10,9 +10,9 @@ import {
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import ContentContainer from "../../components/ContentContainer";
 
 import "./index.css";
-import ContentContainer from "../../components/ContentContainer";
 
 const Homepage = () => {
   const stubEvents = [{}, {}, {}, {}];

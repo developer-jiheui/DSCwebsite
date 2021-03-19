@@ -1,0 +1,15 @@
+.hidden {
+    display: none;
+}
+
+.content-toggle {
+    cursor: pointer;
+}
+
+.content-toggle:hover {
+    color: var(--deep-purple)    
+}
+
+#create-career-post-modal {
+    color: black;
+}

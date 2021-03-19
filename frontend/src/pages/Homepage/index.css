@@ -61,9 +61,7 @@ h1.featured-text {
 }
 
 .event-more-button {
-  float: right;
-  background-color: var(--deep-purple) !important;
-  color: white !important;
+  float: right;  
 }
 
 #events-news-container h1 {
