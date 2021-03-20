@@ -42,7 +42,7 @@ const CareerPage = () => {
                         </Grid>
                         <Divider></Divider>
                         <Card.Group centered itemsPerRow="1">
-                            {stubPosts.length == 0 && <p>No posts to show...</p>}
+                            {stubPosts.length === 0 && <p>No posts to show...</p>}
                             {stubPosts.map((post, id) =>
                                 <Card raised>
                                     <Card.Content>

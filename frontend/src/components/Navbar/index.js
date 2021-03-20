@@ -36,7 +36,7 @@ const items = [
 
 const itemsDropdownCommunity = [
   {
-    label: "Welcome Newcomers!",
+    label: "Welcome!",
     icon: "bullhorn",
     path: "/community/welcome",
   },

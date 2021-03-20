@@ -61,7 +61,7 @@ const BuyAndSell = () => {
             </Grid>
             <Divider></Divider>
             <Card.Group centered stackable>
-              {stubPosts.length == 0 && <p>No posts to show...</p>} 
+              {stubPosts.length === 0 && <p>No posts to show...</p>} 
               {stubPosts.map((post, id) =>
                 <Card raised>
                   <Image size="medium" src="https://react.semantic-ui.com/images/wireframe/image.png" />
@@ -113,6 +113,13 @@ const BuyAndSell = () => {
                   placeholder="What are you selling?"
                   name="title"
                   label="Title"
+                />
+                <Form.Field
+                  control={Input}
+                  placeholder="What's your contact email?"
+                  name="email"
+                  label="Email"
+                  type="email"
                 />
                 <Form.Field
                   control={TextArea}

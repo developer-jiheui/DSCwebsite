@@ -60,7 +60,7 @@ const TipsAndTricks = () => {
             </Grid>
             <Divider />
             <Card.Group centered itemsPerRow="1">
-              {stubPosts.length == 0 && <p>No posts to show...</p>}
+              {stubPosts.length === 0 && <p>No posts to show...</p>}
               {stubPosts.map((post, id) =>
                 <Card raised>
                   <Card.Content>
@@ -69,12 +69,6 @@ const TipsAndTricks = () => {
                     <Card.Description>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Card.Description>
-                    {/* <Card.Meta id="post-tag-list">
-                      <a>#new</a>
-                      <a>#loremtag</a>
-                      <a>#ipsum</a>
-                      <a>#dolor</a>
-                    </Card.Meta> */}
                   </Card.Content>
                   <Card.Content extra>
                     <ContentToggler title="13 Comments">
