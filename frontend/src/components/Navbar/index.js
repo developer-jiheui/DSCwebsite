@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
+import Community from "../../pages/Community";
 import Dropdown from "../Dropdown";
 
 import Sidebar from "../Sidebar";
+import Modal from "../Modal";
 
 import "./index.css";
 
@@ -75,6 +77,35 @@ const Navbar = ({ children }) => {
   const itemList = items.map(({ label, icon, path }) => {
     if (label === "Community") {
       return <Dropdown label={label} itemList={itemsDropdownCommunity} />;
+    }
+
+    if (label === "Contact") {
+      return (
+        <div
+          className={`item`}
+          key={label}
+          onClick={() => {
+            console.log(label);
+          }}
+        >
+          <i className={`${icon} icon`}></i> {label}
+          {/* <Modal></Modal> */}
+        </div>
+      );
+    }
+
+    if (label === "Login") {
+      return (
+        <div
+          className={`item`}
+          key={label}
+          onClick={() => {
+            console.log(label);
+          }}
+        >
+          <i className={`${icon} icon`}></i> {label}
+        </div>
+      );
     }
 
     return (
