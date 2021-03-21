@@ -63,10 +63,18 @@ const itemsDropdownCommunity = [
     path: "/community/chat",
   },
 ];
+const itemsDropdownAbout = [
+  {
+    label: "Get to Know Us",
+    icon: "globe",
+    path: "/gettoknowus",
+  },
+];
 
 const Navbar = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [toggle, setToggle] = useState(false);
+  const [login, setLogin] = useState(false);
 
   const menuRef = useRef();
 
@@ -75,6 +83,10 @@ const Navbar = ({ children }) => {
   };
 
   const itemList = items.map(({ label, icon, path }) => {
+    if (label === "About Us") {
+      return <Dropdown label={label} itemList={itemsDropdownAbout} />;
+    }
+
     if (label === "Community") {
       return <Dropdown label={label} itemList={itemsDropdownCommunity} />;
     }
@@ -100,10 +112,11 @@ const Navbar = ({ children }) => {
           className={`item`}
           key={label}
           onClick={() => {
-            console.log(label);
+            setLogin(!login);
           }}
         >
           <i className={`${icon} icon`}></i> {label}
+          {login ? <Modal /> : null}
         </div>
       );
     }
