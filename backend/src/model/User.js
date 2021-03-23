@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
+  userLogin: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "userLogin",
+  },
   firstName: {
     type: String,
     required: true,
@@ -41,19 +45,24 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  socialMedia: {
-    github: {
-      type: String,
-      required: false,
+  socialMedia: [
+    {
+      github: {
+        type: String,
+        required: false,
+      },
+      linkedin: {
+        type: String,
+        required: false,
+      },
+      website: {
+        type: String,
+        required: false,
+      },
     },
-    linkedin: {
-      type: String,
-      required: false,
-    },
-    website: {
-      type: String,
-      required: false,
-    },
+  ],
+  bio: {
+    type: String,
   },
 });
 

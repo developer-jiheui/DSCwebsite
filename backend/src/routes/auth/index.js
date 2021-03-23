@@ -6,7 +6,7 @@ const { check, validationResult } = require("express-validator");
 const config = require("config");
 const bcrypt = require("bcryptjs");
 
-const User = require("../../model/User");
+const UserLogin = require("../../model/UserLogin");
 
 /*
  * @route   GET /auth
@@ -16,8 +16,10 @@ const User = require("../../model/User");
 router.get("/", auth, async (req, res) => {
   try {
     // search user by id and return the data, except the password!!!
-    const user = await User.findById(req.user.id).select("-password");
-    res.json(user);
+    const userLogin = await UserLogin.findById(req.userLogin.id).select(
+      "-password"
+    );
+    res.json(userLogin);
   } catch (error) {
     if (error) console.log(error.message);
     res.status(500).send("Server error");
@@ -48,20 +50,20 @@ router.post(
     // try-catch block for mongoDB:
     try {
       // check the user by email:
-      let user = await User.findOne({ email });
-      if (!user) {
+      let userLogin = await UserLogin.findOne({ email });
+      if (!userLogin) {
         return res.status(400).json({ msg: "Invalid credentials" });
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, userLogin.password);
       if (!isMatch) {
         return res.status(400).json({ msg: "Invalid credentials" });
       }
 
       // after validating the user, we set the login:
       const payload = {
-        user: {
-          id: user.id,
+        userLogin: {
+          id: userLogin.id,
         },
       };
 
