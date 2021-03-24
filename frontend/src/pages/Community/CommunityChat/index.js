@@ -12,7 +12,7 @@ const CommunityChat = () => {
         <>
           <Navbar>
           <Container>
-            <ContentContainer>CommunityChat Under construction...</ContentContainer>
+            <ContentContainer>Check us out on WhatsApp!</ContentContainer>
           </Container>
           <Footer />
           </Navbar>
