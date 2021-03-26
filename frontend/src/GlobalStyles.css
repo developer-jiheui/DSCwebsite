@@ -87,6 +87,11 @@ img {
   text-align: center;
 }
 
+.modal {
+  color: black;
+}
+
+
 /* Fancy Background Stuff below With Clip text effect*/
 /* html {
   overflow: hidden;

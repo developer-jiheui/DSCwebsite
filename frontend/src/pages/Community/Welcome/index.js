@@ -27,9 +27,16 @@ const Welcome = () => {
   const posts = [{}, {}, {}];
 
   const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
+  const [openContactModal, setOpenContactModal] = useState(false);
+  const [activeMember, setActiveMember] = useState({});
 
   const handleOpenCreateModal = () => {
     setOpenCreatePostModal(true);
+  }
+
+  const handleOpenContactModal = (member) => {
+    setActiveMember(member)
+    setOpenContactModal(true);
   }
 
   const handleSubmit = (e) => {
@@ -56,19 +63,28 @@ const Welcome = () => {
               </Grid.Column>
             </Grid>
             <Divider></Divider>
-            <Card.Group itemsPerRow="3">
+            <Card.Group itemsPerRow="1">
               {posts.map((post, id) =>
                 <Card raised >
                   <Card.Content>
-                  <Image size="huge" floated="left" circular avatar src="../images/Profiles/Jiheui.jpeg" />
-                    <Card.Header>Hello I am Jiheui!</Card.Header>
+                    <Image size="huge" floated="left" circular avatar src="../images/Profiles/Jiheui.jpeg" />
+                    <Card.Header>
+                      <Button
+                        color="blue"
+                        floated="right"
+                        onClick={() => handleOpenContactModal({})}
+                      >
+                        Get in Touch!
+                      </Button>
+                      Hello I am Jiheui!
+                    </Card.Header>
                     <Card.Meta>CSIS - 2nd Year</Card.Meta>
                     <Card.Description>I am new here, hello.</Card.Description>
                   </Card.Content>
                   <Card.Content extra>
-                    <Card.Meta textAlign="right">
-                      <Button color="blue">Get in Touch!</Button>
-                    </Card.Meta>
+                    <ContentToggler title="1 Comment">
+                      <CommentFeed centered comments={[{}]}></CommentFeed>
+                    </ContentToggler>
                   </Card.Content>
                 </Card>
               )}
@@ -97,7 +113,7 @@ const Welcome = () => {
                   placeholder="CSIS - 3rd year"
                   name="program"
                   label="What program are you in?"
-                />
+                />                                
                 <Form.Field
                   control={TextArea}
                   placeholder="Which courses are you taking? What are your dreams and goals?"
@@ -116,6 +132,59 @@ const Welcome = () => {
               content="Post"
               onClick={handleSubmit}
               positive
+            />
+          </Modal.Actions>
+        </Modal>
+        <Modal
+          id="contact-modal"
+          onClose={() => setOpenContactModal(false)}
+          onOpen={() => setOpenContactModal(true)}
+          open={openContactModal}
+          size="tiny">
+          <Modal.Content>
+            <Modal.Description>
+              <Grid columns="2" stackable>
+                <Grid.Column width="5" verticalAlign="middle">
+                  <Image
+                    size="small"
+                    circular
+                    src="../images/Profiles/Jiheui.jpeg"
+                    wrapped
+                  />
+                </Grid.Column>
+                <Grid.Column width="11" verticalAlign="middle">
+                  <Grid.Row><h1>Jiheui Lee</h1></Grid.Row>
+                  <Grid.Row className="centered-text">
+                    <p>You can reach me at the following:</p>
+                    <div className="member-media-links">
+                      <a target="_blank" rel="noreferrer"
+                        href="#">
+                        <Icon size="large" name="linkedin"></Icon>
+                      </a>
+                      <a target="_blank" rel="noreferrer"
+                        href="#">
+                        <Icon size="large" name="github"></Icon>
+                      </a>
+                      <a target="_blank" rel="noreferrer"
+                        href="#">
+                        <Icon size="large" name="globe icon"></Icon>
+                      </a>
+                      <a target="_blank" rel="noreferrer"
+                        href="#">
+                        <Icon size="large" name="mail icon"></Icon>
+                      </a>
+                    </div>
+                  </Grid.Row>
+                </Grid.Column>
+              </Grid>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button
+            content="Cool Beans"
+            labelPosition="right"
+            icon="thumbs up outline"
+            onClick={() => setOpenContactModal(false)}
             />
           </Modal.Actions>
         </Modal>

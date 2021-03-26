@@ -36,7 +36,7 @@ const CommentWithReplies = ({ data, key }) => {
 
 }
 
-const CommentFeed = ({ comments }) => {
+const CommentFeed = ({ centered, comments }) => {
     const [emptyComment, setEmptyComment] = useState(false);
     const [comment, setComment] = useState("");
 
