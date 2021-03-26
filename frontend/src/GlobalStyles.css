@@ -11,16 +11,36 @@
   margin: 0;
   box-sizing: border-box;
 }
-@media only screen and (min-width: 790px) and (max-width: 1550px) {
+
+@media only screen and (max-width: 700px) {
   #getToKnowUs {
-    padding: 2vw 3vw;
-    font-size: 16px;
+    font-size: 2vw;
+    right: 7.8%;
   }
 }
-@media only screen and (min-width: 1550px) {
+
+@media only screen and (min-width: 700px) and (max-width: 992px) {
   #getToKnowUs {
-    padding: 2vw 3vw;
-    font-size: 20px;
+    font-size: 1.0em;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  #getToKnowUs {
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1700px) {
+  #getToKnowUs {
+    font-size: 1.6em;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  #getToKnowUs {
+    font-size: 1.8vw;
+    right: 6%;
+    bottom: 6%;
   }
 
   h1.featured-text {
@@ -53,7 +73,7 @@ a:hover {
 }
 
 div.ui.container {
-  margin-top: 70px; /*height of the navbar + 20px*/
+  margin-top: 10px; /*height of the navbar + 20px*/
 }
 
 img {

@@ -23,8 +23,12 @@ const Homepage = () => {
       <Navbar>
         <Container>
           <div id="cover-container">
-            <Image className="cover-image" src="./images/newCover.png"></Image>
-            <Button id="getToKnowUs">Get To Know Us</Button>
+            <Image id="cover-image" src="./images/newCover.png"></Image>
+            <div id="getToKnowUs-container">
+              <Link to="/gettoknowus">
+                <Button id="getToKnowUs">Get To Know Us</Button>
+              </Link>
+            </div>
             <h1 className="featured-text" id="featuredText">
               &#123;Creative Minds{" "}
             </h1>
@@ -43,11 +47,12 @@ const Homepage = () => {
                         <Card.Header>Title</Card.Header>
                         <Divider></Divider>
                         <Card.Description>
-                          <Grid stackable>
-                            <Grid.Column width={6}>
+                          <Grid stackable={false}>
+                            <Grid.Column width={6} textAlign="center">
                               <Image
                                 src="https://react.semantic-ui.com/images/wireframe/image.png"
                                 className="poster-size-image"
+                                centered
                               />
                             </Grid.Column>
                             <Grid.Column width={10}>
@@ -87,7 +92,7 @@ const Homepage = () => {
                       <Card.Content>
                         <Card.Header>COVID 19 - UPDATES</Card.Header>
                         <Card.Meta>
-                          <span className="date">February 19th, 2020</span>
+                          February 19th, 2020
                         </Card.Meta>
                         <Divider></Divider>
                         <Card.Description>
