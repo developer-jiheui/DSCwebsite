@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
-import { Container } from "semantic-ui-react";
+import { Container, Icon } from "semantic-ui-react";
 
 import "./index.css";
 
@@ -12,7 +12,9 @@ const CommunityChat = () => {
         <>
           <Navbar>
           <Container>
-            <ContentContainer>CommunityChat Under construction...</ContentContainer>
+            <ContentContainer>
+              <p>The community chat page is under construction. For now, you can check us out on <b>WhatsApp!</b></p>
+            </ContentContainer>
           </Container>
           <Footer />
           </Navbar>
