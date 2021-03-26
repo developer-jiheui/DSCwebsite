@@ -67,8 +67,8 @@ const Homepage = () => {
                           <Card.Content extra>
                             <i className="calendar alternate outline icon"></i>
                             February 19th, 2020
-                            <Link to={"/event/0"}>
-                              <Button className="event-more-button">
+                            <Link to={"/events/0"}>
+                              <Button color="purple" floated="right">
                                 See More
                               </Button>
                             </Link>
@@ -106,8 +106,8 @@ const Homepage = () => {
                               et dolore magna aliqua.
                             </Card.Description>
                             <Divider></Divider>
-                            <Link to={"/newsitem/0"}>
-                              <Button className="event-more-button">
+                            <Link to={"/news/0"}>
+                              <Button color="purple" floated="right">
                                 See More
                               </Button>
                             </Link>
