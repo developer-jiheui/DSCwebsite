@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Grid, Image } from "semantic-ui-react";
+
 import ContentContainer from "../../components/ContentContainer";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
+import {
+  Button,
+  Container,
+  Grid,
+  Image
+} from "semantic-ui-react";
 
 import './index.css';
 

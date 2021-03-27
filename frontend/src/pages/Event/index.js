@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+
 import CommentFeed from "../../components/CommentFeed";
 import ContentContainer from "../../components/ContentContainer";
 import Footer from "../../components/Footer";

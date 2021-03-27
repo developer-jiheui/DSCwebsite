@@ -51,7 +51,7 @@ const CareerPage = () => {
                             <Button icon="list" color="purple"></Button>
                         </Grid.Column>
                     </Grid>
-                    <Divider></Divider>
+                    <Divider />
                     <Card.Group centered itemsPerRow="1">
                         {stubPosts.length === 0 && <p>No posts to show...</p>}
                         {stubPosts.map((post, id) =>
@@ -76,7 +76,6 @@ const CareerPage = () => {
                                     </ContentToggler>
                                 </Card.Content>
                             </Card>
-
                         )}
                     </Card.Group>
                 </ContentContainer>

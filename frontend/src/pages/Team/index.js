@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import ContentContainer from "../../components/ContentContainer";
+
 import {
   Container,
   Grid,
@@ -6,12 +11,7 @@ import {
   Icon,
   Modal,
   Button
-}
-  from "semantic-ui-react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import ContentContainer from "../../components/ContentContainer";
-
+} from "semantic-ui-react";
 
 import './index.css';
 

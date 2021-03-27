@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Image, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ContentContainer from "../../components/ContentContainer";
-import { Link } from "react-router-dom";
+
+import {
+  Container,
+  Grid,
+  Image,
+  Button
+} from "semantic-ui-react";
 
 import './index.css';
 

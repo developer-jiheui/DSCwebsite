@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import ContentContainer from "../../components/ContentContainer";
+import PhotoUploader from "../../components/PhotoUploader";
+
 import {
   Button,
   Container,
@@ -6,12 +12,8 @@ import {
   FormField,
   TextArea,
 } from "semantic-ui-react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 
 import "./index.css";
-import ContentContainer from "../../components/ContentContainer";
-import PhotoUploader from "../../components/PhotoUploader";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);

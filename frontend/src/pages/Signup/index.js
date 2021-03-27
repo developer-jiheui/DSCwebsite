@@ -1,5 +1,9 @@
 import React, { useRef, useState } from "react";
+
 import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
+import PhotoUploader from "../../components/PhotoUploader";
+
 import {
   Form,
   Checkbox,
@@ -7,9 +11,8 @@ import {
   Message,  
   FormField,
 } from "semantic-ui-react";
-import Navbar from "../../components/Navbar";
+
 import "./index.css";
-import PhotoUploader from "../../components/PhotoUploader";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
