@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
+import PhotoUploader from "../../../components/PhotoUploader";
+
 import {
   Button,
   Card,
@@ -19,7 +21,6 @@ import {
 } from "semantic-ui-react";
 
 import "./index.css";
-import PhotoUploader from "../../../components/PhotoUploader";
 
 const stubPosts = [
   {}, {}, {}, {}, {}, {}
@@ -42,7 +43,7 @@ const BuyAndSell = () => {
 
   return (
     <>
-      <Navbar>
+      <Navbar />
         <Container>
           <ContentContainer>
             <h1>Buy & Sell</h1>
@@ -149,7 +150,6 @@ const BuyAndSell = () => {
           </Modal.Actions>
         </Modal>
         <Footer />
-      </Navbar>
     </>
   );
 }

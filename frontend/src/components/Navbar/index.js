@@ -1,9 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
+import {
+  Button, 
+  Form, 
+  Grid, 
+  Image, 
+  Input, 
+  Message, 
+  Modal, 
+  TextArea,
+  Icon,
+  Divider
+} from "semantic-ui-react";
 import Dropdown from "../Dropdown";
-
 import Sidebar from "../Sidebar";
-import Modal from "../Modal";
 
 import "./index.css";
 
@@ -88,13 +98,228 @@ const itemsDropdownAbout = [
 const Navbar = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [toggle, setToggle] = useState(false);
-  const [login, setLogin] = useState(false);
+
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openContactUsModal, setOpenContactUsModal] = useState(false);
 
   const menuRef = useRef();
 
   const onToggleMenu = () => {
     setToggle(!toggle);
   };
+
+  const ContactModal = () => {
+    return (
+      <Modal
+        onClose={() => setOpenContactUsModal(false)}
+        onOpen={() => setOpenContactUsModal(true)}
+        open={openContactUsModal}
+        size="small"
+      >
+        <Modal.Header>Get In Touch</Modal.Header>
+        <Modal.Content image>
+          <div
+            style={{
+              display: "block",
+              width: "90%",
+              textAlign: "center",
+              margin: "auto",
+            }}
+          >
+            <Image
+              size="large"
+              src="./images/Contact2.jpg"
+              wrapped
+            />
+          </div>
+        </Modal.Content>
+        <Modal.Description style={{ padding: "30px 60px" }}>
+          <Form>
+            <Grid columns="equal">
+              <Grid.Column>
+                <Form.Field>
+                  <Input
+                    icon="user circle"
+                    placeholder="Name"
+                    iconPosition="left"
+                    type="text"
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Input
+                    iconPosition="left"
+                    placeholder="+x (xxx) xxx-xxxx"
+                    type="text"
+                    icon="phone"
+                  />
+                </Form.Field>
+              </Grid.Column>
+              <Grid.Column>
+                <Form.Field>
+                  <Input
+                    iconPosition="left"
+                    placeholder="email@example.com"
+                    type="email"
+                    icon="envelope outline"
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Input
+                    iconPosition="left"
+                    placeholder="Subject"
+                    type="text"
+                    icon="pencil alternate"
+                  />
+                </Form.Field>
+              </Grid.Column>
+            </Grid>
+            <br></br>
+            <Form.Field>
+              <TextArea placeholder="Tell us more" />
+            </Form.Field>
+            <Button
+              fluid
+              type="submit"
+              color="purple"
+            >
+              Send
+              </Button>
+          </Form>
+        </Modal.Description>
+        <Modal.Actions>
+          <Button
+            content="Cancel"
+            icon="close"
+            color="red"
+            onClick={() => setOpenContactUsModal(false)}
+          />
+        </Modal.Actions>
+      </Modal>
+    )
+  }
+
+  const LoginModal = () => {
+    const [emailUsername, setEmailUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailUsernameError, setEmailUsernameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const handleLoginSubmit = (e) => {
+      e.preventDefault();
+      if (emailUsername === "") {
+        setEmailUsernameError(true);
+      } else {
+        setEmailUsernameError(false);
+      }
+      if (password === "") {
+        setPasswordError(true);
+      } else {
+        setPasswordError(false);
+      }
+
+      if (emailUsernameError == false && passwordError == false) {
+        // setOpenProfile(true);
+        setOpenLoginModal(false);
+      }
+    };
+
+    return (
+      <Modal
+        onClose={() => setOpenLoginModal(false)}
+        onOpen={() => setOpenLoginModal(true)}
+        open={openLoginModal}
+        size="small"
+      >
+        <Modal.Header>Log In</Modal.Header>
+        <Modal.Content>
+          {emailUsernameError || passwordError ? (
+            <Message
+              error
+              header={"Submission Error"}
+              content={"Check your credentials"}
+            />
+          ) : null}
+          <Grid
+            columns={2}
+            divided
+            textAlign="center"
+            verticalAlign="middle"
+          >
+            <Grid.Column>
+              <Modal.Description>
+                <Form>
+                  <Form.Field>
+                    <Input
+                      icon="user"
+                      placeholder="Username/Email"
+                      iconPosition="left"
+                      style={{ color: "black" }}
+                      error={emailUsernameError}
+                      onChange={(e) => {
+                        setEmailUsername(e.target.value);
+                      }}
+                    ></Input>
+                  </Form.Field>
+                  <Form.Field>
+                    <Input
+                      iconPosition="left"
+                      placeholder="Password"
+                      type="password"
+                      icon="lock"
+                      error={passwordError}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                    ></Input>
+                  </Form.Field>
+                  <Button
+                    fluid
+                    type="submit"
+                    style={{
+                      backgroundColor: "var(--douglas-gray)",
+                      color: "white",
+                    }}
+                    onClick={(e) => {
+                      handleLoginSubmit(e);
+                    }}
+                  >
+                    Login
+                      </Button>
+                  <div className="my"></div>
+                  <Button fluid color="google plus">
+                    <Icon name="google plus" /> Google
+                      </Button>
+                  <div className="my"></div>
+                  <Divider horizontal>Or</Divider>
+                  <span>
+                    Not a member yet?
+                      <Link to="/signup" style={{ color: "blue" }}>
+                      Join us!
+                      </Link>
+                  </span>
+                </Form>
+              </Modal.Description>
+            </Grid.Column>
+            <Grid.Column>
+              <Image
+                src="./images/DSC_logo_brand.png"
+                wrapped
+                size="medium"
+              />
+            </Grid.Column>
+          </Grid>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            content="Close"
+            icon="close"
+            onClick={() => setOpenLoginModal(false)}
+            color="red"
+          />
+        </Modal.Actions>
+      </Modal>
+    )
+  }
 
   const itemList = items.map(({ label, icon, path }) => {
     if (label === "About Us") {
@@ -109,13 +334,11 @@ const Navbar = ({ children }) => {
       return (
         <div
           key={label}
-          onClick={() => {
-            console.log(label);
-          }}
+          onClick={() => { setOpenContactUsModal(true) }}
         >
           <div className="ui item">
             <i className={`${icon} icon`}></i> {label}
-            {/* <Modal></Modal> */}
+            <ContactModal />
           </div>
         </div>
       );
@@ -125,13 +348,11 @@ const Navbar = ({ children }) => {
       return (
         <div
           key={label}
-          onClick={() => {
-            setLogin(!login);
-          }}
+          onClick={() => { setOpenLoginModal(true) }}
         >
           <div className="ui item">
             <i className={`${icon} icon`}></i> {label}
-            {login ? <Modal /> : null}
+            <LoginModal />
           </div>
         </div>
       );
@@ -203,7 +424,6 @@ const Navbar = ({ children }) => {
             </>
           )}
       </div>
-      {children}
     </>
   );
 };

@@ -18,7 +18,7 @@ const Profile = () => {
   const [edit, setEdit] = useState(true);
   return (
     <>
-      <Navbar>
+      <Navbar />
       <Container>
         <ContentContainer>
           <h1 style={{ textAlign: "center" }}>Welcome Joana Doe</h1>
@@ -112,7 +112,6 @@ const Profile = () => {
         </ContentContainer>
       </Container>
       <Footer />
-      </Navbar>
     </>
   );
 };

@@ -429,7 +429,7 @@ const Admin = () => {
 
     return (
         <>
-            <Navbar >
+            <Navbar />
             <Container>
                 <ContentContainer>
                     <h1>ADMINISTRATIVE SETTINGS</h1>
@@ -614,7 +614,6 @@ const Admin = () => {
                 </Modal.Actions>
             </Modal>
             <Footer />
-            </Navbar>
         </>
     )
 }

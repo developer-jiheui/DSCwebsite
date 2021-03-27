@@ -4,8 +4,7 @@ import {
   Form,
   Checkbox,
   Container,
-  Message,
-  Breadcrumb,
+  Message,  
   FormField,
 } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";
@@ -102,7 +101,7 @@ const Signup = () => {
   };
   return (
     <>
-      <Navbar>
+      <Navbar />
       <Container id="sign-up-container">
         <h2 style={{ color: "black" }}>Create an account</h2>
         {equalPassword ? (
@@ -297,8 +296,7 @@ const Signup = () => {
           </Form.Button>
         </Form>
       </Container>
-      <Footer></Footer>
-      </Navbar>
+      <Footer/>
     </>
   );
 };
