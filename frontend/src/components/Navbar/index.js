@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
-import Community from "../../pages/Community";
 import Dropdown from "../Dropdown";
 
 import Sidebar from "../Sidebar";
 import Modal from "../Modal";
 
 import "./index.css";
+
+const MIN_WIDTH = 899;
 
 const items = [
   {
@@ -16,13 +17,16 @@ const items = [
   },
   {
     label: "About Us",
-    icon: "object group outline",
-    path: "/gettoknowus",
+    path: "#",
+  },
+  {
+    label: "Events",
+    icon: "calendar alternate outline",
+    path: "/events",
   },
   {
     label: "Community",
-    icon: "cubes",
-    path: "/community",
+    path: "#",
   },
   {
     label: "Contact",
@@ -31,7 +35,7 @@ const items = [
   },
   {
     label: "Login",
-    icon: "address card outline",
+    icon: "sign in",
     path: "#",
   },
 ];
@@ -69,6 +73,16 @@ const itemsDropdownAbout = [
     icon: "globe",
     path: "/gettoknowus",
   },
+  {
+    label: "News",
+    icon: "newspaper outline",
+    path: "/news",
+  },
+  {
+    label: "Team",
+    icon: "group",
+    path: "/team",
+  },
 ];
 
 const Navbar = ({ children }) => {
@@ -84,24 +98,25 @@ const Navbar = ({ children }) => {
 
   const itemList = items.map(({ label, icon, path }) => {
     if (label === "About Us") {
-      return <Dropdown label={label} itemList={itemsDropdownAbout} />;
+      return <Dropdown icon="group" label={label} itemList={itemsDropdownAbout} />;
     }
 
     if (label === "Community") {
-      return <Dropdown label={label} itemList={itemsDropdownCommunity} />;
+      return <Dropdown icon="cubes" label={label} itemList={itemsDropdownCommunity} />;
     }
 
     if (label === "Contact") {
       return (
         <div
-          className={`item`}
           key={label}
           onClick={() => {
             console.log(label);
           }}
         >
-          <i className={`${icon} icon`}></i> {label}
-          {/* <Modal></Modal> */}
+          <div className="ui item">
+            <i className={`${icon} icon`}></i> {label}
+            {/* <Modal></Modal> */}
+          </div>
         </div>
       );
     }
@@ -109,14 +124,15 @@ const Navbar = ({ children }) => {
     if (label === "Login") {
       return (
         <div
-          className={`item`}
           key={label}
           onClick={() => {
             setLogin(!login);
           }}
         >
-          <i className={`${icon} icon`}></i> {label}
-          {login ? <Modal /> : null}
+          <div className="ui item">
+            <i className={`${icon} icon`}></i> {label}
+            {login ? <Modal /> : null}
+          </div>
         </div>
       );
     }
@@ -159,37 +175,33 @@ const Navbar = ({ children }) => {
   return (
     <>
       <div
-        ref={width > 760 ? null : menuRef}
-        className="ui top text attached menu"
+        ref={width > MIN_WIDTH ? null : menuRef}
+        className="ui top text menu stick"
       >
         <NavLink to="/" exact>
           <div className={`item `}>
             <i className="icon logo">
               <img src="/images/DSC_logo_color.png" alt="" />
             </i>
-            {width > 760 ? (
-              <span style={{ color: "white" }}>Developer Student Clubs</span>
-            ) : null}
+            <span className="no-shadow">Developer Student Clubs</span>
           </div>
         </NavLink>
 
-        {width > 760 ? (
+        {width > MIN_WIDTH ? (
           <>
             <div className="right menu">{itemList}</div>
           </>
         ) : (
-          <>
-            <div
-              className="item right floated link"
-              onClick={() => {
-                onToggleMenu();
-              }}
-            >
-              <i className="bars large icon"></i>
-            </div>
-            <Sidebar toggle={toggle} itemList={itemList} />
-          </>
-        )}
+            <>
+              <div
+                className="item right floated link"
+                onClick={() => { onToggleMenu(); }}
+              >
+                <i className="bars large icon"></i>
+              </div>
+              <Sidebar toggle={toggle} itemList={itemList} />
+            </>
+          )}
       </div>
       {children}
     </>

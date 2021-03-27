@@ -1,5 +1,4 @@
 .ui.text.menu {
-  /* background-color: var(--douglas-gray); */
   margin: 0px;
   padding: 0px 20px;
   align-items: center;
@@ -7,53 +6,27 @@
 
 .ui.text.menu .item {
   color: #fff !important;
-  text-shadow: -1px 0px 1px black, 0px 1px 2px black;
+  text-shadow: var(--basic-text-shadow);
   margin: 0.5rem;
 }
 
-.ui.text.menu .item.active {
-  /* color: var(--light-purple); */
-  color: white;
-  text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
-}
-
-.ui.text.menu .item.active:first-child {
-  color: transparent;
-}
-
-.ui.text.menu .item:first-child.item:hover {
-  color: transparent;
+.ui.text.menu a.active .item {
+  text-shadow: var(--hover-text-shadow);
 }
 
 .ui.text.menu .item:hover {
-  /* color: var(--light-purple); */
-  color: white;
-  text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
+  text-shadow: var(--hover-text-shadow);
+  cursor: pointer;
 }
 
-/* i.icon.logo {
-  background: url("../../assets/DSC_logo_color.png");
-  height: 30px;
-  width: 30px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-} */
+.no-shadow {
+  text-shadow: var(--basic-text-shadow);
+}
 
 i.icon.logo {
-  height: 21px;
+  margin-top: 3px !important;
+  height: auto;
   width: 21px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-
-.my {
-  margin: 5px;
-}
-
-span {
-  color: black;
 }
 
 .stick {
@@ -64,50 +37,17 @@ span {
   z-index: 10;
 }
 
-/* i,
-span {
-  color: #fff;
-} */
-
-/* i.active,
-span.active {
-  color: #ffd600;
-} */
-
-/* span.text {
-  color: #fff;
-}
-
-i {
-  color: #fff;
-} */
-
-.ui.dropdown span,
-.ui.dropdown i {
-  color: #fff;
+.ui.dropdown .menu {
+  background: var(--douglas-gray) !important;  
 }
 
 #sidebar-hamburger-menu {
   background: var(--douglas-gray);
-  padding-top: 4rem;
-  font-size: 1.5rem;
+  padding-top: 2rem;
+  font-size: 1.4rem;
+  overflow: visible !important;
 }
 
-#sidebar-hamburger-menu p {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-#sidebar-hamburger-menu .icon {
-  float: none;
-  margin-right: 10px;
-}
-
-#sidebar-hamburger-menu .image {
-  margin: auto;
-}
-
-#sidebar-header {
-  text-align: center;
-  font-weight: bold;
+#sidebar-hamburger-menu div.item {
+  margin: 1.5rem;
 }

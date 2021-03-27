@@ -143,7 +143,7 @@ const Welcome = () => {
           size="tiny">
           <Modal.Content>
             <Modal.Description>
-              <Grid columns="2" stackable>
+              <Grid columns="2" stackable centered>
                 <Grid.Column width="5" verticalAlign="middle">
                   <Image
                     size="small"

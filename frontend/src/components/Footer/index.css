@@ -1,5 +1,4 @@
 footer {
-  /* background-color: var(--transparent-douglas-gray); */
   color: white;
   text-align: center;
   padding: 1.5rem;
@@ -19,7 +18,7 @@ footer a {
 
 footer a:hover {
   color: white !important;
-  text-shadow: 0px 0px 5px var(--basic-purple), 1px 0px 7px var(--light-purple);
+  text-shadow: var(--hover-text-shadow);
 }
 
 li {
