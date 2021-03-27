@@ -24,11 +24,9 @@ const Homepage = () => {
       <Container>
         <div id="cover-container">
           <Image id="cover-image" src="./images/newCover.png"></Image>
-          <div id="getToKnowUs-container">
-            <Link to="/gettoknowus">
-              <Button id="getToKnowUs">Get To Know Us</Button>
-            </Link>
-          </div>
+          <Link to="/gettoknowus">
+            <Button id="getToKnowUs">Get To Know Us</Button>
+          </Link>
           <h1 className="featured-text" id="featuredText">
             &#123;Creative Minds{" "}
           </h1>
