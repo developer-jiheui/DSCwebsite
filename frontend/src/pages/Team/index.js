@@ -71,8 +71,8 @@ const Team = () => {
     setOpenMemberModal(true);
   }
 
-  const admins = stubAllMembers.filter(m => m.admintype != undefined);
-  const members = stubAllMembers.filter(m => m.admintype == undefined);
+  const admins = stubAllMembers.filter(m => m.admintype !== undefined);
+  const members = stubAllMembers.filter(m => m.admintype === undefined);
 
   const MemberCard = ({ member, key }) => {
     return (

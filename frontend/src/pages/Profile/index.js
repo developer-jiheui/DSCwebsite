@@ -4,7 +4,6 @@ import {
   Container,
   Form,
   FormField,
-  Image,
   TextArea,
 } from "semantic-ui-react";
 import Navbar from "../../components/Navbar";

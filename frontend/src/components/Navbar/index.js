@@ -217,7 +217,7 @@ const Navbar = ({ children }) => {
         setPasswordError(false);
       }
 
-      if (emailUsernameError == false && passwordError == false) {
+      if (emailUsernameError === false && passwordError === false) {
         // setOpenProfile(true);
         setOpenLoginModal(false);
       }
@@ -323,11 +323,11 @@ const Navbar = ({ children }) => {
 
   const itemList = items.map(({ label, icon, path }) => {
     if (label === "About Us") {
-      return <Dropdown icon="group" label={label} itemList={itemsDropdownAbout} />;
+      return <Dropdown key={label} icon="group" label={label} itemList={itemsDropdownAbout} />;
     }
 
     if (label === "Community") {
-      return <Dropdown icon="cubes" label={label} itemList={itemsDropdownCommunity} />;
+      return <Dropdown key={label} icon="cubes" label={label} itemList={itemsDropdownCommunity} />;
     }
 
     if (label === "Contact") {
