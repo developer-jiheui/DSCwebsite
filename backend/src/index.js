@@ -10,7 +10,7 @@ connectDB();
 // Routes:
 app.use("/login", require("./routes/login"));
 app.use("/auth", require("./routes/auth"));
-// app.use("/users", require("./routes/users"));
+app.use("/user", require("./routes/user"));
 
 app.get("/", (req, res) => {
   res.send("Hello from Express.js");
