@@ -8,8 +8,9 @@ app.use(express.json({ extended: false }));
 connectDB();
 
 // Routes:
-app.use("/login", require("./routes/userLogin"));
-app.use("/auth", require("./routes/auth"));
+app.use("/login", require("./routes/login"));
+// app.use("/auth", require("./routes/auth"));
+// app.use("/users", require("./routes/users"));
 
 app.get("/", (req, res) => {
   res.send("Hello from Express.js");
