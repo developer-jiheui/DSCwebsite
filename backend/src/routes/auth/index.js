@@ -14,7 +14,7 @@ const config = require("config");
 
 route.get("/", auth, async (req, res) => {
   try {
-    const login = await Login.findById(req.user.id).select("-password");
+    const login = await Login.findById(req.login.id).select("-password");
     res.json({ login });
   } catch (error) {
     console.error(error.message);

@@ -7,25 +7,25 @@ const Login = require("../../model/Login");
 const User = require("../../model/User");
 const route = express.Router();
 const config = require("config");
-const { findOneAndUpdate } = require("../../model/Login");
 
 /* @route   GET /user
  * @desc    Get the current user profile
  * @access  private
  */
 
-route.get("/", auth, async (req, res) => {
-  //   let user = await User.findById({ login: req.login.id }).populate("login", [
-  //     "email",
-  //   ]);
-  //   res.send("User route!");
+route.get("/self", auth, async (req, res) => {
+  try {
+    let user = await User.findOne({ login: req.login.id });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.json({ msg: "Server error!" });
+  }
 });
-
-module.exports = route;
 
 /* @route   POST /user
  * @desc    Register/update a user
- * @access  public
+ * @access  private
  */
 
 route.post(
@@ -71,5 +71,61 @@ route.post(
     }
   }
 );
+
+/* @route   GET /user
+ * @desc    Fetch all user profiles
+ * @access  private
+ */
+
+route.get("/", async (req, res) => {
+  try {
+    let user = await Login.find().select("-password");
+
+    if (user) {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.json({ msg: "Server error!" });
+  }
+});
+
+/* @route   GET /user/:id
+ * @desc    Get user profile by id.
+ * @access  public
+ */
+
+route.get("/:id", async (req, res) => {
+  try {
+    let user = await User.find({ login: req.params.id }).select("-password");
+
+    if (user) {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.json({ msg: "Server error!" });
+  }
+});
+
+/* @route   DELETE /user
+ * @desc    Delete user profile and all related data.
+ * @access  private
+ */
+
+route.delete("/", auth, async (req, res) => {
+  try {
+    // @todo: remove posts
+
+    // remove profile:
+    await User.findOneAndRemove({ login: req.login.id });
+    // // remove login:
+    await Login.findOneAndRemove({ _id: req.login.id });
+    res.status(200).json({ msg: "User deleted!" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ msg: "Server error!" });
+  }
+});
 
 module.exports = route;
