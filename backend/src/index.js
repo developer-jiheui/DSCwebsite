@@ -9,7 +9,7 @@ connectDB();
 
 // Routes:
 app.use("/login", require("./routes/login"));
-// app.use("/auth", require("./routes/auth"));
+app.use("/auth", require("./routes/auth"));
 // app.use("/users", require("./routes/users"));
 
 app.get("/", (req, res) => {
