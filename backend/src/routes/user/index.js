@@ -55,7 +55,13 @@ route.post(
       phone,
       bio,
       social,
+      codingSkills,
     } = req.body;
+
+    const trimmedcodingSkills = codingSkills
+      .split(",")
+      .map((skill) => skill.trim());
+
     let user = await User.findOne({ login: req.login.id });
     if (user) {
       user = await User.findOneAndUpdate(
@@ -70,6 +76,7 @@ route.post(
             phone,
             bio,
             social,
+            codingSkills: trimmedcodingSkills,
           },
         },
         { new: true }

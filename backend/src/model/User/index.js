@@ -60,14 +60,10 @@ const UserSchema = new mongoose.Schema({
       required: false,
     },
   },
-  codingSkills: [
-    {
-      skill: {
-        type: String,
-        required: false,
-      },
-    },
-  ],
+  codingSkills: {
+    type: [String],
+    required: true,
+  },
   userType: {
     type: Number,
     required: true,
