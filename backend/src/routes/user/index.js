@@ -35,7 +35,7 @@ route.post(
     [
       check("firstName", "Please insert a valid first name").not().isEmpty(),
       check("lastName", "Please insert a valid last name").not().isEmpty(),
-      //   check("userType", "Please select user type").not().isEmpty(),
+      check("userType", "Please select user type").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -46,16 +46,30 @@ route.post(
       });
     }
 
-    const { firstName, lastName, userType } = req.body;
+    const {
+      firstName,
+      lastName,
+      userType,
+      studentNumber,
+      preferredPronoum,
+      phone,
+      bio,
+      social,
+    } = req.body;
     let user = await User.findOne({ login: req.login.id });
     if (user) {
       user = await User.findOneAndUpdate(
         { login: req.login.id },
         {
           $set: {
-            firstName: firstName,
-            lastName: lastName,
-            userType: userType,
+            firstName,
+            lastName,
+            userType,
+            studentNumber,
+            preferredPronoum,
+            phone,
+            bio,
+            social,
           },
         },
         { new: true }
