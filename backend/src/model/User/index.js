@@ -80,6 +80,14 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  courses: {
+    type: [String],
+    request: false,
+  },
+  isWorkingDeveloper: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

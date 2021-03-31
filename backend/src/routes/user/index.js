@@ -8,6 +8,9 @@ const User = require("../../model/User");
 const route = express.Router();
 const config = require("config");
 
+const fs = require("fs");
+const multer = require("multer");
+
 /* @route   GET /user
  * @desc    Get the current user profile
  * @access  private
@@ -59,12 +62,17 @@ route.post(
       isExec,
       program,
       expectedGraduationDate,
+      courses,
+      isWorkingDeveloper,
+      avatar,
     } = req.body;
 
     const graduationDate = new Date(expectedGraduationDate);
     const trimmedcodingSkills = codingSkills
       .split(",")
       .map((skill) => skill.trim());
+
+    const trimmedCourses = courses.split(",").map((course) => course.trim());
 
     let user = await User.findOne({ login: req.login.id });
     if (user) {
@@ -84,6 +92,8 @@ route.post(
             isExec,
             program,
             expectedGraduationDate: graduationDate,
+            courses: trimmedCourses,
+            isWorkingDeveloper,
           },
         },
         { new: true }
