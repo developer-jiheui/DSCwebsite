@@ -56,8 +56,12 @@ route.post(
       bio,
       social,
       codingSkills,
+      isExec,
+      program,
+      expectedGraduationDate,
     } = req.body;
 
+    const graduationDate = new Date(expectedGraduationDate);
     const trimmedcodingSkills = codingSkills
       .split(",")
       .map((skill) => skill.trim());
@@ -77,6 +81,9 @@ route.post(
             bio,
             social,
             codingSkills: trimmedcodingSkills,
+            isExec,
+            program,
+            expectedGraduationDate: graduationDate,
           },
         },
         { new: true }

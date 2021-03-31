@@ -68,6 +68,18 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  isExec: {
+    type: Boolean,
+    required: false,
+  },
+  program: {
+    type: String,
+    required: false,
+  },
+  expectedGraduationDate: {
+    type: Date,
+    required: false,
+  },
 });
 
 module.exports = User = mongoose.model("user", UserSchema);
