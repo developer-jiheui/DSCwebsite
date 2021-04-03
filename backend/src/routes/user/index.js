@@ -9,7 +9,18 @@ const route = express.Router();
 const config = require("config");
 
 const fs = require("fs");
+const path = require("path");
 const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "uploads");
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.filename + "-" + Date.now());
+  },
+});
+
+const upload = multer({ storage: storage });
 
 /* @route   GET /user
  * @desc    Get the current user profile
@@ -35,20 +46,11 @@ route.post(
   "/",
   [
     auth,
-    [
-      check("firstName", "Please insert a valid first name").not().isEmpty(),
-      check("lastName", "Please insert a valid last name").not().isEmpty(),
-      check("userType", "Please select user type").not().isEmpty(),
-    ],
+    check("firstName", "Please insert a valid first name").not().isEmpty(),
+    check("lastName", "Please insert a valid last name").not().isEmpty(),
+    check("userType", "Please select user type").not().isEmpty(),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
-    }
-
     const {
       firstName,
       lastName,
@@ -64,7 +66,6 @@ route.post(
       expectedGraduationDate,
       courses,
       isWorkingDeveloper,
-      avatar,
     } = req.body;
 
     const graduationDate = new Date(expectedGraduationDate);

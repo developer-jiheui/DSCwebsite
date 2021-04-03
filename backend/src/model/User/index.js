@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   // https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/
   // https://stackoverflow.com/questions/4796914/store-images-in-a-mongodb-database
   avatar: {
-    type: Buffer,
+    data: Buffer,
     contentType: String,
     required: false,
   },
