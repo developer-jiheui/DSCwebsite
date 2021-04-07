@@ -113,6 +113,11 @@ const itemsDropdownAbout = [
     icon: "group",
     path: "/team",
   },
+  {
+    label: "Q & A",
+    icon: "question circle outline icon",
+    path: "/qanda"
+  }
 ];
 
 const dropdowns = {
