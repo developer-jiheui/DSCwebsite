@@ -1,12 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
-import Community from "../../pages/Community";
 import Dropdown from "../Dropdown";
-
 import Sidebar from "../Sidebar";
-import Modal from "../Modal";
+import {
+  Button,
+  Form,
+  Grid,
+  Image,
+  Input,
+  Message,
+  Modal,
+  TextArea,
+  Icon,
+  Divider
+} from "semantic-ui-react";
 
 import "./index.css";
+
+const MIN_WIDTH = 899;
 
 const items = [
   {
@@ -16,13 +27,18 @@ const items = [
   },
   {
     label: "About Us",
-    icon: "object group outline",
-    path: "/gettoknowus",
+    icon: "group",
+    path: "#",
+  },
+  {
+    label: "Events",
+    icon: "calendar alternate outline",
+    path: "/events",
   },
   {
     label: "Community",
     icon: "cubes",
-    path: "/community",
+    path: "#",
   },
   {
     label: "Contact",
@@ -31,8 +47,26 @@ const items = [
   },
   {
     label: "Login",
-    icon: "address card outline",
+    icon: "sign in",
     path: "#",
+  },
+];
+
+const itemsDropdownUserMenu = [
+  {
+    label: "Profile",
+    icon: "user",
+    path: "/profile"
+  },
+  {
+    label: "Admin Settings",
+    icon: "cogs",
+    path: "/admin"
+  },
+  {
+    label: "Logout",
+    icon: "sign out",
+    path: "#"
   },
 ];
 
@@ -69,12 +103,32 @@ const itemsDropdownAbout = [
     icon: "globe",
     path: "/gettoknowus",
   },
+  {
+    label: "News",
+    icon: "newspaper outline",
+    path: "/news",
+  },
+  {
+    label: "Team",
+    icon: "group",
+    path: "/team",
+  },
 ];
 
-const Navbar = ({ children }) => {
+const dropdowns = {
+  "About Us": itemsDropdownAbout,
+  "Community": itemsDropdownCommunity,
+  "Login": itemsDropdownUserMenu
+}
+
+const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [width, setWidth] = useState(window.innerWidth);
   const [toggle, setToggle] = useState(false);
-  const [login, setLogin] = useState(false);
+
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openContactUsModal, setOpenContactUsModal] = useState(false);
 
   const menuRef = useRef();
 
@@ -82,43 +136,247 @@ const Navbar = ({ children }) => {
     setToggle(!toggle);
   };
 
-  const itemList = items.map(({ label, icon, path }) => {
-    if (label === "About Us") {
-      return <Dropdown label={label} itemList={itemsDropdownAbout} />;
-    }
+  const ContactModal = () => {
+    return (
+      <Modal
+        onClose={() => setOpenContactUsModal(false)}
+        onOpen={() => setOpenContactUsModal(true)}
+        open={openContactUsModal}
+        size="small"
+      >
+        <Modal.Header>Get In Touch</Modal.Header>
+        <Modal.Content image>
+          <div
+            style={{
+              display: "block",
+              width: "90%",
+              textAlign: "center",
+              margin: "auto",
+            }}
+          >
+            <Image
+              size="large"
+              src="../images/Contact2.jpg"
+              wrapped
+            />
+          </div>
+        </Modal.Content>
+        <Modal.Description style={{ padding: "30px 60px" }}>
+          <Form>
+            <Grid columns="equal">
+              <Grid.Column>
+                <Form.Field>
+                  <Input
+                    icon="user circle"
+                    placeholder="Name"
+                    iconPosition="left"
+                    type="text"
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Input
+                    iconPosition="left"
+                    placeholder="+x (xxx) xxx-xxxx"
+                    type="text"
+                    icon="phone"
+                  />
+                </Form.Field>
+              </Grid.Column>
+              <Grid.Column>
+                <Form.Field>
+                  <Input
+                    iconPosition="left"
+                    placeholder="email@example.com"
+                    type="email"
+                    icon="envelope outline"
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <Input
+                    iconPosition="left"
+                    placeholder="Subject"
+                    type="text"
+                    icon="pencil alternate"
+                  />
+                </Form.Field>
+              </Grid.Column>
+            </Grid>
+            <br></br>
+            <Form.Field>
+              <TextArea placeholder="Tell us more" />
+            </Form.Field>
+            <Button
+              fluid
+              type="submit"
+              color="purple"
+            >
+              Send
+              </Button>
+          </Form>
+        </Modal.Description>
+        <Modal.Actions>
+          <Button
+            content="Cancel"
+            icon="close"
+            color="red"
+            onClick={() => setOpenContactUsModal(false)}
+          />
+        </Modal.Actions>
+      </Modal>
+    )
+  }
 
-    if (label === "Community") {
-      return <Dropdown label={label} itemList={itemsDropdownCommunity} />;
+  const LoginModal = () => {
+    const [emailUsername, setEmailUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailUsernameError, setEmailUsernameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const handleLoginSubmit = (e) => {
+      e.preventDefault();
+      setEmailUsernameError(emailUsername === "");
+      setPasswordError(password === "");
+
+      if (emailUsernameError === false && passwordError === false) {
+        setIsLoggedIn(true);
+        setOpenLoginModal(false);
+      }
+    };
+
+    return (
+      <Modal
+        onClose={() => setOpenLoginModal(false)}
+        onOpen={() => setOpenLoginModal(true)}
+        open={openLoginModal}
+        size="small"
+      >
+        <Modal.Header>Log In</Modal.Header>
+        <Modal.Content>
+          {emailUsernameError || passwordError ? (
+            <Message
+              error
+              header={"Submission Error"}
+              content={"Check your credentials"}
+            />
+          ) : null}
+          <Grid
+            columns={2}
+            divided
+            textAlign="center"
+            verticalAlign="middle"
+          >
+            <Grid.Column>
+              <Modal.Description>
+                <Form>
+                  <Form.Field>
+                    <Input
+                      icon="user"
+                      placeholder="Username/Email"
+                      iconPosition="left"
+                      style={{ color: "black" }}
+                      error={emailUsernameError}
+                      onChange={(e) => {
+                        setEmailUsername(e.target.value);
+                      }}
+                    ></Input>
+                  </Form.Field>
+                  <Form.Field>
+                    <Input
+                      iconPosition="left"
+                      placeholder="Password"
+                      type="password"
+                      icon="lock"
+                      error={passwordError}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                    ></Input>
+                  </Form.Field>
+                  <Button
+                    fluid
+                    type="submit"
+                    style={{
+                      backgroundColor: "var(--douglas-gray)",
+                      color: "white",
+                    }}
+                    onClick={(e) => {
+                      handleLoginSubmit(e);
+                    }}
+                  >
+                    Login
+                      </Button>
+                  <div className="my"></div>
+                  <Button fluid color="google plus">
+                    <Icon name="google plus" /> Google
+                      </Button>
+                  <div className="my"></div>
+                  <Divider horizontal>Or</Divider>
+                  <span>
+                    Not a member yet?
+                      <Link to="/signup" style={{ color: "blue" }}>
+                      Join us!
+                      </Link>
+                  </span>
+                </Form>
+              </Modal.Description>
+            </Grid.Column>
+            <Grid.Column>
+              <Image
+                src="../images/DSC_logo_brand.png"
+                wrapped
+                size="medium"
+              />
+            </Grid.Column>
+          </Grid>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            content="Cancel"
+            icon="close"
+            onClick={() => setOpenLoginModal(false)}
+            color="red"
+          />
+        </Modal.Actions>
+      </Modal>
+    )
+  }
+
+  const itemList = items.map(({ label, icon, path }) => {
+    if (label === "About Us" 
+        || label === "Community") {
+      return <Dropdown key={label} icon={icon} label={label} itemList={dropdowns[label]} />;
     }
 
     if (label === "Contact") {
       return (
         <div
-          className={`item`}
           key={label}
-          onClick={() => {
-            console.log(label);
-          }}
+          onClick={() => { setOpenContactUsModal(true) }}
         >
-          <i className={`${icon} icon`}></i> {label}
-          {/* <Modal></Modal> */}
+          <div className="ui item">
+            <i className={`${icon} icon`}></i> {label}
+            <ContactModal />
+          </div>
         </div>
       );
     }
 
     if (label === "Login") {
-      return (
-        <div
-          className={`item`}
-          key={label}
-          onClick={() => {
-            setLogin(!login);
-          }}
-        >
-          <i className={`${icon} icon`}></i> {label}
-          {login ? <Modal /> : null}
-        </div>
-      );
+      if (isLoggedIn) {
+        return <Dropdown key="usermenu" label={"Hi, bob"} icon="user" itemList={itemsDropdownUserMenu} />
+      } else {
+        return (
+          <div
+            key={label}
+            onClick={() => { setOpenLoginModal(true) }}
+          >
+            <div className="ui item">
+              <i className={`${icon} icon`}></i> {label}
+              <LoginModal />
+            </div>
+          </div>
+        );
+      }
     }
 
     return (
@@ -159,39 +417,34 @@ const Navbar = ({ children }) => {
   return (
     <>
       <div
-        ref={width > 760 ? null : menuRef}
-        className="ui top text attached menu"
+        ref={width > MIN_WIDTH ? null : menuRef}
+        className="ui top text menu stick"
       >
         <NavLink to="/" exact>
           <div className={`item `}>
             <i className="icon logo">
               <img src="/images/DSC_logo_color.png" alt="" />
             </i>
-            {width > 760 ? (
-              <span style={{ color: "white" }}>Developer Student Clubs</span>
-            ) : null}
+            <span className="no-shadow">Developer Student Clubs</span>
           </div>
         </NavLink>
 
-        {width > 760 ? (
+        {width > MIN_WIDTH ? (
           <>
             <div className="right menu">{itemList}</div>
           </>
         ) : (
-          <>
-            <div
-              className="item right floated link"
-              onClick={() => {
-                onToggleMenu();
-              }}
-            >
-              <i className="bars large icon"></i>
-            </div>
-            <Sidebar toggle={toggle} itemList={itemList} />
-          </>
-        )}
+            <>
+              <div
+                className="item right floated link"
+                onClick={() => { onToggleMenu(); }}
+              >
+                <i className="bars large icon"></i>
+              </div>
+              <Sidebar toggle={toggle} itemList={itemList} />
+            </>
+          )}
       </div>
-      {children}
     </>
   );
 };
