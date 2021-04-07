@@ -28,7 +28,6 @@ h1.featured-text {
   position: absolute;
   z-index: 6;
   color: transparent;
-  font-size: 6.8vh;
   text-shadow: 0px 0px 1px #312424, 1px 0px 1px #000000;
   mix-blend-mode: color-burn;
 
@@ -39,7 +38,7 @@ h1.featured-text {
 }
 
 #featuredText {
-  left: 3%;
+  left: 0%;
 }
 
 #featuredText2 {

@@ -41,7 +41,7 @@ const Dropdown = ({ icon, label, itemList }) => {
         >
           <i className={`${icon} icon`}></i>{label}
           <i className="dropdown icon"></i>
-
+          
           <div className={`menu ${toggle ? "visible transition" : null}`}>
             {renderedItemList}
           </div>

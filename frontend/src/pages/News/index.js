@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 
 import {
   Button,
+  Card,
   Container,
   Grid,
   Image
@@ -26,7 +27,7 @@ const News = () => {
           <h1>NEWS AND UPDATES</h1>
           <Grid columns="3" stackable doubling>
             {news.map((newsItem, id) =>
-              <Grid.Column key={`news-${id}`} className="event-container" textAlign="center">
+              <Grid.Column key={`news-${id}`} className="event-container">
                 <Image
                   size="medium"
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
@@ -39,7 +40,7 @@ const News = () => {
                 </Link>
               </Grid.Column>
             )}
-          </Grid>
+          </Grid>          
         </ContentContainer>
       </Container>
       <Footer />

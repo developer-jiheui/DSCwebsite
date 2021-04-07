@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
+import Dropdown from "../Dropdown";
+import Sidebar from "../Sidebar";
 import {
-  Button, 
-  Form, 
-  Grid, 
-  Image, 
-  Input, 
-  Message, 
-  Modal, 
+  Button,
+  Form,
+  Grid,
+  Image,
+  Input,
+  Message,
+  Modal,
   TextArea,
   Icon,
   Divider
 } from "semantic-ui-react";
-import Dropdown from "../Dropdown";
-import Sidebar from "../Sidebar";
 
 import "./index.css";
 
@@ -27,6 +27,7 @@ const items = [
   },
   {
     label: "About Us",
+    icon: "group",
     path: "#",
   },
   {
@@ -36,6 +37,7 @@ const items = [
   },
   {
     label: "Community",
+    icon: "cubes",
     path: "#",
   },
   {
@@ -47,6 +49,24 @@ const items = [
     label: "Login",
     icon: "sign in",
     path: "#",
+  },
+];
+
+const itemsDropdownUserMenu = [
+  {
+    label: "Profile",
+    icon: "user",
+    path: "/profile"
+  },
+  {
+    label: "Admin Settings",
+    icon: "cogs",
+    path: "/admin"
+  },
+  {
+    label: "Logout",
+    icon: "sign out",
+    path: "#"
   },
 ];
 
@@ -95,7 +115,15 @@ const itemsDropdownAbout = [
   },
 ];
 
-const Navbar = ({ children }) => {
+const dropdowns = {
+  "About Us": itemsDropdownAbout,
+  "Community": itemsDropdownCommunity,
+  "Login": itemsDropdownUserMenu
+}
+
+const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [width, setWidth] = useState(window.innerWidth);
   const [toggle, setToggle] = useState(false);
 
@@ -128,7 +156,7 @@ const Navbar = ({ children }) => {
           >
             <Image
               size="large"
-              src="./images/Contact2.jpg"
+              src="../images/Contact2.jpg"
               wrapped
             />
           </div>
@@ -206,19 +234,11 @@ const Navbar = ({ children }) => {
 
     const handleLoginSubmit = (e) => {
       e.preventDefault();
-      if (emailUsername === "") {
-        setEmailUsernameError(true);
-      } else {
-        setEmailUsernameError(false);
-      }
-      if (password === "") {
-        setPasswordError(true);
-      } else {
-        setPasswordError(false);
-      }
+      setEmailUsernameError(emailUsername === "");
+      setPasswordError(password === "");
 
       if (emailUsernameError === false && passwordError === false) {
-        // setOpenProfile(true);
+        setIsLoggedIn(true);
         setOpenLoginModal(false);
       }
     };
@@ -302,7 +322,7 @@ const Navbar = ({ children }) => {
             </Grid.Column>
             <Grid.Column>
               <Image
-                src="./images/DSC_logo_brand.png"
+                src="../images/DSC_logo_brand.png"
                 wrapped
                 size="medium"
               />
@@ -311,7 +331,7 @@ const Navbar = ({ children }) => {
         </Modal.Content>
         <Modal.Actions>
           <Button
-            content="Close"
+            content="Cancel"
             icon="close"
             onClick={() => setOpenLoginModal(false)}
             color="red"
@@ -322,12 +342,9 @@ const Navbar = ({ children }) => {
   }
 
   const itemList = items.map(({ label, icon, path }) => {
-    if (label === "About Us") {
-      return <Dropdown key={label} icon="group" label={label} itemList={itemsDropdownAbout} />;
-    }
-
-    if (label === "Community") {
-      return <Dropdown key={label} icon="cubes" label={label} itemList={itemsDropdownCommunity} />;
+    if (label === "About Us" 
+        || label === "Community") {
+      return <Dropdown key={label} icon={icon} label={label} itemList={dropdowns[label]} />;
     }
 
     if (label === "Contact") {
@@ -345,17 +362,21 @@ const Navbar = ({ children }) => {
     }
 
     if (label === "Login") {
-      return (
-        <div
-          key={label}
-          onClick={() => { setOpenLoginModal(true) }}
-        >
-          <div className="ui item">
-            <i className={`${icon} icon`}></i> {label}
-            <LoginModal />
+      if (isLoggedIn) {
+        return <Dropdown key="usermenu" label={"Hi, bob"} icon="user" itemList={itemsDropdownUserMenu} />
+      } else {
+        return (
+          <div
+            key={label}
+            onClick={() => { setOpenLoginModal(true) }}
+          >
+            <div className="ui item">
+              <i className={`${icon} icon`}></i> {label}
+              <LoginModal />
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     }
 
     return (

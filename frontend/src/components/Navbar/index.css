@@ -38,7 +38,7 @@ i.icon.logo {
 }
 
 .ui.dropdown .menu {
-  background: var(--douglas-gray) !important;  
+  background: #3d3e50eb !important;  
 }
 
 #sidebar-hamburger-menu {
@@ -50,4 +50,11 @@ i.icon.logo {
 
 #sidebar-hamburger-menu div.item {
   margin: 1.5rem;
+}
+
+#sidebar-hamburger-menu .ui.dropdown .menu {
+  position: absolute;
+  left: -20px;
+  border: none;
+  box-shadow: none;
 }
