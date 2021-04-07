@@ -33,14 +33,21 @@ const News = () => {
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 />
                 <h2>COVID 19 Strikes Again!</h2>
-                <p>Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
-                <p>Feb 12th, 2021 - 5pm</p>
-                <Link to={`/news/${id}`}>
-                  <Button color="purple">See More</Button>
-                </Link>
+                <p class="justified-text">Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
+                <Grid columns="2" stackable>
+                  <Grid.Column>
+                    <h3 style={{ display: "inline" }}>Date</h3>
+                    <p><i>Mar 4th, 2021 - 5pm</i></p>
+                  </Grid.Column>
+                  <Grid.Column floated="right" width="7">
+                    <Link to={`/news/${id}`}>
+                      <Button color="purple">See More</Button>
+                    </Link>
+                  </Grid.Column>
+                </Grid>
               </Grid.Column>
             )}
-          </Grid>          
+          </Grid>
         </ContentContainer>
       </Container>
       <Footer />

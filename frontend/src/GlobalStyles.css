@@ -124,6 +124,10 @@ img {
   text-align: center;
 }
 
+.justified-text {
+  text-align: justify;
+}
+
 .modal {
   color: black;
 }
