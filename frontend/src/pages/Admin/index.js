@@ -476,7 +476,7 @@ const Admin = () => {
                                 control={Checkbox}
                                 name="isFeatured"
                                 type="checkbox"
-                                value={eventModalData.isFeatured}
+                                defaultChecked={eventModalData.isFeatured}
                                 onChange={handleEventDataChange}
                             />                                                        
                         </Form>
