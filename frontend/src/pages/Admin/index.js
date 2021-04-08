@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Modal, Tab, Table, Radio, Form, Search, Icon, Input, TextArea, Image, Select } from "semantic-ui-react";
+import { Button, Container, Modal, Tab, Table, Radio, Form, Search, Icon, Input, TextArea, Image, Select, Checkbox } from "semantic-ui-react";
 import ContentContainer from "../../components/ContentContainer";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -192,7 +192,7 @@ const Admin = () => {
                                             </Table.Cell>
                                         }
 
-                                        <Table.Cell className="no-ellipsis"> 
+                                        <Table.Cell className="no-ellipsis">
                                             <Button
                                                 size="tiny"
                                                 icon="trash alternate outline"
@@ -219,9 +219,7 @@ const Admin = () => {
                                 <Table.Row>
                                     <Table.HeaderCell width="1">id</Table.HeaderCell>
                                     <Table.HeaderCell>Title</Table.HeaderCell>
-                                    {/* <Table.HeaderCell>Description</Table.HeaderCell> */}
                                     <Table.HeaderCell>Date (yyyy-mm-dd)</Table.HeaderCell>
-                                    <Table.HeaderCell width="2">isFeatured</Table.HeaderCell>
                                     <Table.HeaderCell>Edit</Table.HeaderCell>
                                     <Table.HeaderCell>Delete</Table.HeaderCell>
                                 </Table.Row>
@@ -231,17 +229,10 @@ const Admin = () => {
                                     <Table.Row key={id}>
                                         <Table.Cell>{emd.id}</Table.Cell>
                                         <Table.Cell>{emd.title}</Table.Cell>
-                                        {/* <Table.Cell>{emd.description}</Table.Cell> */}
                                         <Table.Cell>{emd.date}</Table.Cell>
                                         <Table.Cell className="no-ellipsis">
-                                            <Radio
-                                                toggle
-                                                defaultChecked={emd.isFeatured}
-                                            />
-                                        </Table.Cell>
-                                        <Table.Cell className="no-ellipsis">
                                             <Button
-                                                size="tiny"                                                
+                                                size="tiny"
                                                 icon="edit"
                                                 content="Edit"
                                                 color="blue"
@@ -250,7 +241,7 @@ const Admin = () => {
                                         </Table.Cell>
                                         <Table.Cell className="no-ellipsis">
                                             <Button
-                                                size="tiny"                                                
+                                                size="tiny"
                                                 icon="trash alternate outline"
                                                 content="Delete"
                                                 color="red"
@@ -296,7 +287,7 @@ const Admin = () => {
                                         <Table.Cell>{n.date}</Table.Cell>
                                         <Table.Cell className="no-ellipsis">
                                             <Button
-                                                size="tiny"                                                
+                                                size="tiny"
                                                 icon="edit"
                                                 content="Edit"
                                                 color="blue"
@@ -305,7 +296,7 @@ const Admin = () => {
                                         </Table.Cell>
                                         <Table.Cell className="no-ellipsis">
                                             <Button
-                                                size="tiny"                                                
+                                                size="tiny"
                                                 icon="trash alternate outline"
                                                 content="Delete"
                                                 color="red"
@@ -355,7 +346,7 @@ const Admin = () => {
                                         </Table.Cell>
                                         <Table.Cell className="no-ellipsis">
                                             <Button
-                                                size="tiny"                                                
+                                                size="tiny"
                                                 icon="edit"
                                                 content="Edit"
                                                 color="blue"
@@ -364,7 +355,7 @@ const Admin = () => {
                                         </Table.Cell>
                                         <Table.Cell className="no-ellipsis">
                                             <Button
-                                                size="tiny"                                                
+                                                size="tiny"
                                                 icon="trash alternate outline"
                                                 content="Delete"
                                                 color="red"
@@ -436,6 +427,7 @@ const Admin = () => {
                     <Tab menu={{ secondary: true, pointing: true }} panes={panes} renderActiveOnly={true} />
                 </ContentContainer>
             </Container>
+            {/* EVENT MODAL */}
             <Modal
                 className="admin-edit-modal"
                 onClose={() => setOpenEventModal(false)}
@@ -479,79 +471,89 @@ const Admin = () => {
                                 value={new Date(eventModalData.date) || ""}
                                 onChange={handleEventDataChange}
                             />
+                            <Form.Field
+                                label="Featured Event"
+                                control={Checkbox}
+                                name="isFeatured"
+                                type="checkbox"
+                                value={eventModalData.isFeatured}
+                                onChange={handleEventDataChange}
+                            />                                                        
                         </Form>
                     </Modal.Description>
                 </Modal.Content>
-                <Modal.Actions>
-                    <Button
-                        content="Cancel"
-                        onClick={() => setOpenEventModal(false)}
+            <Modal.Actions>
+                <Button
+                    content="Cancel"
+                    onClick={() => setOpenEventModal(false)}
+                />
+                <Button
+                    content="Save"
+                    onClick={(event) => handleSaveEvent(event)}
+                    positive
+                />
+            </Modal.Actions>
+        </Modal>
+            {/* NEWS MODAL */ }
+    <Modal
+        className="admin-edit-modal"
+        onClose={() => setOpenNewsModal(false)}
+        onOpen={() => setOpenNewsModal(true)}
+        open={openNewsModal}
+        size="tiny"
+    >
+        <Modal.Content>
+            <Modal.Description>
+                {newsModalData.title
+                    ? <h1>Edit News</h1>
+                    : <h1>Create News</h1>
+                }
+                <Image className="admin-modal-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                <Form onSubmit={handleSaveNews}>
+                    <Form.Field
+                        control={Input}
+                        placeholder="What's happening?"
+                        name="title"
+                        label="Title"
+                        value={newsModalData.title || ""}
+                        error={newsModalData.title < 0}
+                        onChange={handleNewsDataChange}
                     />
-                    <Button
-                        content="Save"
-                        onClick={(event) => handleSaveEvent(event)}
-                        positive
+                    <Form.Field
+                        control={TextArea}
+                        placeholder="What is this about?"
+                        name="description"
+                        label="Description"
+                        rows="10"
+                        error={newsModalData.description < 0}
+                        value={newsModalData.description || ""}
+                        onChange={handleNewsDataChange}
                     />
-                </Modal.Actions>
-            </Modal>
-            <Modal
-                className="admin-edit-modal"
-                onClose={() => setOpenNewsModal(false)}
-                onOpen={() => setOpenNewsModal(true)}
-                open={openNewsModal}
-                size="tiny"
-            >
-                <Modal.Content>
-                    <Modal.Description>
-                        {newsModalData.title
-                            ? <h1>Edit News</h1>
-                            : <h1>Create News</h1>
-                        }
-                        <Image className="admin-modal-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                        <Form onSubmit={handleSaveNews}>
-                            <Form.Field
-                                control={Input}
-                                placeholder="What's happening?"
-                                name="title"
-                                label="Title"
-                                value={newsModalData.title || ""}
-                                error={newsModalData.title < 0}
-                                onChange={handleNewsDataChange}
-                            />
-                            <Form.Field
-                                control={TextArea}
-                                placeholder="What is this about?"
-                                name="description"
-                                label="Description"
-                                rows="10"
-                                error={newsModalData.description < 0}
-                                value={newsModalData.description || ""}
-                                onChange={handleNewsDataChange}
-                            />
-                            <Form.Field
-                                control={Input}
-                                placeholder={new Date().toDateString()}
-                                name="date"
-                                type="date"
-                                label="Date"
-                                value={new Date(newsModalData.date) || ""}
-                                onChange={handleNewsDataChange}
-                            />
-                        </Form>
-                    </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Button
-                        content="Cancel"
-                        onClick={() => setOpenNewsModal(false)}
+                    <Form.Field
+                        control={Input}
+                        placeholder={new Date().toDateString()}
+                        name="date"
+                        type="date"
+                        label="Date"
+                        value={new Date(newsModalData.date) || ""}
+                        onChange={handleNewsDataChange}
                     />
-                    <Button
-                        content="Save"
-                        onClick={() => handleSaveNews()}
-                        positive
-                    />
-                </Modal.Actions>
-            </Modal>
+                </Form>
+            </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions>
+            <Button
+                content="Cancel"
+                onClick={() => setOpenNewsModal(false)}
+            />
+            <Button
+                content="Save"
+                onClick={() => handleSaveNews()}
+                positive
+            />
+        </Modal.Actions>
+    </Modal>
+    {/* POST MODAL */ }
             <Modal
                 className="admin-edit-modal"
                 onClose={() => setOpenPostModal(false)}
