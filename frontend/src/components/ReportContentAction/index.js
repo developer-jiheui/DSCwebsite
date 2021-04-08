@@ -24,7 +24,7 @@ const ReportContentAction = () => {
 
     return (
         <>
-            <div onClick={() => setOpenCommentReportForm(true)}>Report <Icon name="flag outline" /></div>
+            <a onClick={() => setOpenCommentReportForm(true)}><Icon name="flag outline" /> Report </a>
             <Modal
                 onClose={() => setOpenCommentReportForm(false)}
                 onOpen={() => setOpenCommentReportForm(true)}
