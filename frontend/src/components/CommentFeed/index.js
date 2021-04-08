@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Comment, Form, Icon, Button, CommentGroup } from 'semantic-ui-react';
+import {
+    Comment,
+    Form,
+    Icon,
+    Button,
+    CommentGroup
+} from 'semantic-ui-react';
 
 import './index.css';
 
@@ -9,7 +15,7 @@ const CommentWithReplies = ({ data, key }) => {
     const [openReplyForm, setOpenReplyForm] = useState(false);
     const [replyText, setReplyText] = useState("");
     const [errorsReply, setErrorsReply] = useState(false);
-    
+
     const [upvotes, setUpvotes] = useState(0);
 
     const replies = (data.replies || []).map((reply, id) => {
@@ -18,17 +24,17 @@ const CommentWithReplies = ({ data, key }) => {
 
     const submitReply = () => {
         if (replyText.length > 0) {
-            if(!data.replies) {
+            if (!data.replies) {
                 data.replies = [];
             }
 
             data.replies.push({
-                name: "User Name",
+                name: "User Name", // TODO: use the currently loggged in's user name
                 timestamp: new Date().toDateString(),
                 text: replyText,
                 replies: []
             });
-            //TODO: save to db
+            //TODO: save new comment to db
             setReplyText("");
             setOpenReplyForm(false);
             setErrorsReply(false);
@@ -89,9 +95,9 @@ const CommentFeed = ({ centered, comments }) => {
         if (comment === "") {
             setEmptyComment(true);
         } else {
-            comments.unshift({ 
-                name: "Bob", 
-                timestamp: new Date().toDateString(), 
+            comments.unshift({
+                name: "Bob",
+                timestamp: new Date().toDateString(),
                 text: comment,
                 replies: []
             });
