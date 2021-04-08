@@ -5,6 +5,7 @@ import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
 import CommentFeed from "../../../components/CommentFeed";
 import ContentToggler from "../../../components/ContentToggler";
+import ReportContentAction from "../../../components/ReportContentAction";
 
 import {
     Button,
@@ -71,6 +72,7 @@ const CareerPage = () => {
                                     </Card.Meta>
                                 </Card.Content>
                                 <Card.Content extra>
+                                    <div style={{"float": "right"}}><ReportContentAction/></div>
                                     <ContentToggler title="13 Comments">
                                         <CommentFeed comments={[{}, {}]} />
                                     </ContentToggler>

@@ -22,6 +22,7 @@ import {
 } from "semantic-ui-react";
 
 import "./index.css";
+import ReportContentAction from "../../../components/ReportContentAction";
 
 const Welcome = () => {
   const posts = [{}, {}, {}];
@@ -70,18 +71,18 @@ const Welcome = () => {
                   <Image size="huge" floated="left" circular avatar src="../images/Profiles/Jiheui.jpeg" />
                   <Card.Header>
                     <Button
+                      content="Get in Touch!"
                       color="blue"
                       floated="right"
                       onClick={() => handleOpenContactModal({})}
-                    >
-                      Get in Touch!
-                      </Button>
+                    />
                       Hello I am Jiheui!
                     </Card.Header>
                   <Card.Meta>CSIS - 2nd Year</Card.Meta>
                   <Card.Description>I am new here, hello.</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
+                  <div style={{"float": "right"}}><ReportContentAction/></div>
                   <ContentToggler title="1 Comment">
                     <CommentFeed centered comments={[{}]}></CommentFeed>
                   </ContentToggler>

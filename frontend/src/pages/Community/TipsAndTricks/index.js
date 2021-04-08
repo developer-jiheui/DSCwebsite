@@ -20,6 +20,7 @@ import {
 } from "semantic-ui-react";
 
 import "./index.css";
+import ReportContentAction from "../../../components/ReportContentAction";
 
 const stubPosts = [
   {}, {}, {}, {}, {}, {}
@@ -72,6 +73,7 @@ const TipsAndTricks = () => {
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
+                  <div style={{"float": "right"}}><ReportContentAction /></div>
                   <ContentToggler title="13 Comments">
                     <CommentFeed comments={[{}, {}]} />
                   </ContentToggler>
