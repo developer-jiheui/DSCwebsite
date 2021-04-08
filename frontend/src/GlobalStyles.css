@@ -132,6 +132,9 @@ img {
   color: black;
 }
 
+.hidden {
+  display: none;
+}
 
 /* Fancy Background Stuff below With Clip text effect*/
 /* html {

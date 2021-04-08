@@ -5,6 +5,14 @@
     padding: 10px;
 }
 
+.ui.reply.form textarea {
+    height: 3em;
+}
+
 .ui.comments .comment .content .metadata span {
     color: rgba(0,0,0,.4);
+}
+
+#comment-create-form {
+    margin-top: 3em;
 }
