@@ -40,6 +40,7 @@ const ReportContentAction = () => {
                                 placeholder="Please provide as many details as you can"
                                 name="description"
                                 label="What is the reason for reporting this content?"
+                                rows="5"
                                 value={reportText}
                                 error={reportTextErrors}
                                 onChange={(e) => setReportText(e.target.value)}
