@@ -471,89 +471,99 @@ const Admin = () => {
                                 value={new Date(eventModalData.date) || ""}
                                 onChange={handleEventDataChange}
                             />
-                            <Form.Field
-                                label="Featured Event"
-                                control={Checkbox}
-                                name="isFeatured"
-                                type="checkbox"
-                                defaultChecked={eventModalData.isFeatured}
-                                onChange={handleEventDataChange}
-                            />                                                        
+                            <Form.Field>
+                                <label>Featured Event</label>
+                                <Checkbox
+                                    name="isFeatured"
+                                    toggle
+                                    defaultChecked={eventModalData.isFeatured}
+                                    onChange={handleEventDataChange} 
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>CountDown Event</label>
+                                <Checkbox
+                                    name="isCountdown"
+                                    toggle
+                                    defaultChecked={eventModalData.isCountdown}
+                                    onChange={handleEventDataChange} 
+                                />
+                            </Form.Field>
                         </Form>
                     </Modal.Description>
                 </Modal.Content>
-            <Modal.Actions>
-                <Button
-                    content="Cancel"
-                    onClick={() => setOpenEventModal(false)}
-                />
-                <Button
-                    content="Save"
-                    onClick={(event) => handleSaveEvent(event)}
-                    positive
-                />
-            </Modal.Actions>
-        </Modal>
-            {/* NEWS MODAL */ }
-    <Modal
-        className="admin-edit-modal"
-        onClose={() => setOpenNewsModal(false)}
-        onOpen={() => setOpenNewsModal(true)}
-        open={openNewsModal}
-        size="tiny"
-    >
-        <Modal.Content>
-            <Modal.Description>
-                {newsModalData.title
-                    ? <h1>Edit News</h1>
-                    : <h1>Create News</h1>
-                }
-                <Image className="admin-modal-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                <Form onSubmit={handleSaveNews}>
-                    <Form.Field
-                        control={Input}
-                        placeholder="What's happening?"
-                        name="title"
-                        label="Title"
-                        value={newsModalData.title || ""}
-                        error={newsModalData.title < 0}
-                        onChange={handleNewsDataChange}
+                <Modal.Actions>                    
+                    <Button
+                        content="Cancel"
+                        onClick={() => setOpenEventModal(false)}
                     />
-                    <Form.Field
-                        control={TextArea}
-                        placeholder="What is this about?"
-                        name="description"
-                        label="Description"
-                        rows="10"
-                        error={newsModalData.description < 0}
-                        value={newsModalData.description || ""}
-                        onChange={handleNewsDataChange}
+                    <Button
+                        content="Save"
+                        onClick={(event) => handleSaveEvent(event)}
+                        positive
                     />
-                    <Form.Field
-                        control={Input}
-                        placeholder={new Date().toDateString()}
-                        name="date"
-                        type="date"
-                        label="Date"
-                        value={new Date(newsModalData.date) || ""}
-                        onChange={handleNewsDataChange}
+                </Modal.Actions>
+            </Modal>
+            {/* NEWS MODAL */}
+            <Modal
+                className="admin-edit-modal"
+                onClose={() => setOpenNewsModal(false)}
+                onOpen={() => setOpenNewsModal(true)}
+                open={openNewsModal}
+                size="tiny"
+            >
+                <Modal.Content>
+                    <Modal.Description>
+                        {newsModalData.title
+                            ? <h1>Edit News</h1>
+                            : <h1>Create News</h1>
+                        }
+                        <Image className="admin-modal-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                        <Form onSubmit={handleSaveNews}>
+                            <Form.Field
+                                control={Input}
+                                placeholder="What's happening?"
+                                name="title"
+                                label="Title"
+                                value={newsModalData.title || ""}
+                                error={newsModalData.title < 0}
+                                onChange={handleNewsDataChange}
+                            />
+                            <Form.Field
+                                control={TextArea}
+                                placeholder="What is this about?"
+                                name="description"
+                                label="Description"
+                                rows="10"
+                                error={newsModalData.description < 0}
+                                value={newsModalData.description || ""}
+                                onChange={handleNewsDataChange}
+                            />
+                            <Form.Field
+                                control={Input}
+                                placeholder={new Date().toDateString()}
+                                name="date"
+                                type="date"
+                                label="Date"
+                                value={new Date(newsModalData.date) || ""}
+                                onChange={handleNewsDataChange}
+                            />
+                        </Form>
+                    </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button
+                        content="Cancel"
+                        onClick={() => setOpenNewsModal(false)}
                     />
-                </Form>
-            </Modal.Description>
-        </Modal.Content>
-        <Modal.Actions>
-            <Button
-                content="Cancel"
-                onClick={() => setOpenNewsModal(false)}
-            />
-            <Button
-                content="Save"
-                onClick={() => handleSaveNews()}
-                positive
-            />
-        </Modal.Actions>
-    </Modal>
-    {/* POST MODAL */ }
+                    <Button
+                        content="Save"
+                        onClick={() => handleSaveNews()}
+                        positive
+                    />
+                </Modal.Actions>
+            </Modal>
+            {/* POST MODAL */}
             <Modal
                 className="admin-edit-modal"
                 onClose={() => setOpenPostModal(false)}
