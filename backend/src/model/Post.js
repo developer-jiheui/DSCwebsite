@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-var autoIncrement = require('mongoose-auto-increment');
 
 const PostSchema = new mongoose.Schema({
     _id: {
