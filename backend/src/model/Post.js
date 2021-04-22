@@ -5,11 +5,15 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  seq: { type: Number, default: 0 },
-    post_type: {
+  post_type: {
     type: String,
-    required: true,
-  }
+    required: true
+  },
+  // seq: { type: Number, default: 0 },
+  //   post_type: {
+  //   type: String,
+  //   required: true,
+  // }
 });
 
 module.exports = Post = mongoose.model("post", PostSchema);
