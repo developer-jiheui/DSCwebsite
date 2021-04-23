@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const NewsSchema = new mongoose.Schema({
+    post_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -11,11 +16,11 @@ const NewsSchema = new mongoose.Schema({
     },
     is_featured: {
         type: Boolean,
-        required: true
+        default: false
     },
     post_date: {
-        type: String,
-        required: true
+        type: Date,
+        default: Date.now
     }
 });
 
