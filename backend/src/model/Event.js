@@ -15,6 +15,10 @@ const EventSchema = new mongoose.Schema({
     },
     is_featured: {
         type: Boolean,
+        default: true
+    },
+    is_countdown: {
+        type: Boolean,
         default: false
     },
     event_date: {

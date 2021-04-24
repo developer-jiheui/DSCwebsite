@@ -7,18 +7,39 @@ const News = require("../../model/News");
 const config = require("config");
 
 /*
- * @route   POST /posts
- * @desc    Post routing to get 
+ * @route   POST /posts/events
+ * @desc    Post routing to get Events
  * @access  Public
  */
-router.get("/", async (req, res) => {
-    const post_type = req.body.post_type;
-    // fetch posts of post type
-    let posts = await Post.find({ post_type });    
-    res.status(200).json({
-        message: `Retrived ${posts.length} posts of type ${post_type}`,
-        data: posts
-    });
+router.get("/events", async (req, res) => {
+    try {
+        // fetch posts based on post type
+        let posts = await Event.find();                
+        res.status(200).json({
+            message: `Retrived ${posts.length} posts of type ${post_type}`,
+            data: posts
+        });
+    } catch(error) {
+        return res.status(500).send("An error occured retrieving posts!");
+    }
+});
+
+/*
+ * @route   POST /posts/news
+ * @desc    Post routing to get News
+ * @access  Public
+ */
+router.get("/news", async (req, res) => {
+    try {
+        // fetch posts based on post type
+        let posts = await News.find();                
+        res.status(200).json({
+            message: `Retrived ${posts.length} posts of type News`,
+            data: posts
+        });
+    } catch(error) {
+        return res.status(500).send("An error occured retrieving posts!");
+    }
 });
 
 /* Create post */
@@ -47,7 +68,7 @@ router.post(
             switch(post_type) {
                 case "Event":
                     newPost = new Event({
-                        post,
+                        post_id: post,
                         title,
                         description,
                         is_featured,
@@ -69,7 +90,7 @@ router.post(
             } catch(error) {
                 console.error(error.message);
                 // DELETE THE POST
-                return res.status(500).send("Server Error!");
+                return res.status(500).send(`Error occured creating new post of type ${post_type}!`);
             }
 
             res.status(200).json({
@@ -78,17 +99,38 @@ router.post(
             });
         } catch(error) {
             console.error(error.message);
-            return res.status(500).send("Server Error!");
+            return res.status(500).send("Error occured creating new post!");
         }
     });
 
 /* Update a Post */
 router.put("/", async (req, res) => {
+    const {id} = req.body.id;
+    try {
+        let postToUpdate = await Post.find({id});
+        // find the post
+        // update the post details
+        // save it
+    } catch(error) {
+        return res.status(500).send("Error saving post!");
+    }
+
     res.status(200).send("Saving Post Success!")
 });
 
 /* Delete a Post */
 router.delete("/", async (req, res) => {
+    const {id} = req.body.id;
+
+    try {
+        let postToDelte = await Post.find({id});
+        // delete this post
+        // find the respective post based on post type
+        // delete that post
+    } catch(error) {
+        return res.status(500).send("Error deleting post");
+    }
+
     res.status(200).send("Delete Post Success!")
 });
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Grid, Image } from "semantic-ui-react";
 import ContentContainer from "../../components/ContentContainer";
@@ -9,9 +9,21 @@ import Navbar from "../../components/Navbar";
 import './index.css';
 
 const News = () => {
+  const [news, setNews] = useState([]);
 
-  const news = [{}, {}, {}, {}, {}];
-
+  useEffect(() => {    
+    fetch("http://localhost:5000/posts/news", {
+      method: 'GET',
+      headers: {
+        // 'Content-Type': 'application/json'      
+      }    
+    }).then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      setNews(data.data);
+    });    
+  }, []);
+    
   return (
     <>
       <Navbar>
@@ -25,9 +37,9 @@ const News = () => {
                     size="medium"
                     src="https://react.semantic-ui.com/images/wireframe/image.png"
                   />
-                  <h2>COVID 19 Strikes Again!</h2>
-                  <p>Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
-                  <p>Feb 12th, 2021 - 5pm</p>
+                  <h2>{newsItem.title}</h2>
+                  <p>{newsItem.description}</p>
+                  <p>{new Date(newsItem.post_date).toDateString()}</p>
                   <Link to={`/news/${id}`}>
                     <Button color="purple">See More</Button>
                   </Link>

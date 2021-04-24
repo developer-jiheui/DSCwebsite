@@ -30,7 +30,19 @@ const EventCounter = () => {
 }
 
 const Events = () => {
-  const events = [{}, {}, {}, {}];
+  const [events, setEvents] = useState([]);
+  useEffect(() => {    
+    fetch("http://localhost:5000/posts/events", {
+      method: 'GET',
+      headers: {
+        // 'Content-Type': 'application/json'      
+      }    
+    }).then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      setEvents(data.data);
+    });    
+  }, []);
 
   return (
     <>
@@ -53,12 +65,12 @@ const Events = () => {
                     className="poster-size-image"
                     src="https://react.semantic-ui.com/images/wireframe/image.png"
                   />
-                  <h2>Event Title</h2>
-                  <p>Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
+                  <h2>{event.title}</h2>
+                  <p>{event.description}</p>
                   <Grid columns="2" stackable>
                     <Grid.Column>
                       <h3 style={{ display: "inline" }}>Date</h3>
-                      <p><i>Mar 4th, 2021 - 5pm</i></p>
+                      <p><i>{event.event_date}</i></p>
                     </Grid.Column>
                     <Grid.Column floated="right" width="6">
                       <Link to={`/events/${id}`}>
