@@ -66,7 +66,15 @@ route.post(
       expectedGraduationDate,
       courses,
       isWorkingDeveloper,
+      avatar,
     } = req.body;
+
+    if (avatar === "" || typeof avatar === "undefined") {
+      defaultAvatar =
+        "https://stock.adobe.com/hu/Download/Watermarked/323309190";
+    } else {
+      defaultAvatar = avatar;
+    }
 
     const graduationDate = new Date(expectedGraduationDate);
     const trimmedcodingSkills = codingSkills
@@ -95,6 +103,7 @@ route.post(
             expectedGraduationDate: graduationDate,
             courses: trimmedCourses,
             isWorkingDeveloper,
+            avatar: defaultAvatar,
           },
         },
         { new: true }
