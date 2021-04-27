@@ -156,12 +156,17 @@ router.put("/news",
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { id, data } = req.body;
+        const { id, title, description, is_featured } = req.body;
 
         let updatedPost;
         try {
-            updatedPost = await News.findOneAndUpdate({ _id: id }, data, { new: true });
+            updatedPost = await News.findOneAndUpdate({ _id: id }, {
+                title: title,
+                description: description,
+                is_featured: is_featured
+            }, { new: true, useFindAndModify: false });
         } catch (error) {
+            console.log(error);
             return res.status(500).send("Error saving news!");
         }
 
@@ -187,7 +192,7 @@ router.put("/event",
 
         let updatedPost;
         try {
-            updatedPost = await Event.findOneAndUpdate({ _id: id }, data, { new: true });
+            updatedPost = await Event.findOneAndUpdate({ _id: id }, data, { new: true,useFindAndModify: false });
         } catch (error) {
             return res.status(500).send("Error saving event!");
         }
@@ -198,7 +203,11 @@ router.put("/event",
         });
     });
 
-/* Delete a Post */
+/*
+ * @route   DELETE /posts
+ * @desc    Posts routing to delete a post
+ * @access  Public
+ */
 router.delete("/", async (req, res) => {
     const { id, post_type, post_id } = req.body;
     try {
@@ -224,7 +233,7 @@ router.delete("/", async (req, res) => {
             console.log("Delete successful for generic Post");
         });
 
-        res.status(200).send("Delete Post Success!")
+        res.status(200).send("Delete Post Success!");
 
     } catch (error) {
         return res.status(500).send("Error deleting post");

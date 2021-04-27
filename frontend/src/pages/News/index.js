@@ -22,7 +22,7 @@ const News = () => {
     fetch("http://localhost:5000/posts/news", {
       method: 'GET',
       headers: {
-        // 'Content-Type': 'application/json'      
+        'Content-Type': 'application/json'      
       }    
     }).then(response => response.json())
     .then(data => {
