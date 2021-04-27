@@ -62,7 +62,6 @@ const NewsPane = () => {
                         console.log(data);                        
                         let index = news.findIndex(n => n._id === newsModalData._id);
                         news[index] = data.data;
-                        setNews(news);
                         setNewsModalData({});
                         setOpenNewsModal(false);
                     }).catch(error => {
@@ -80,12 +79,12 @@ const NewsPane = () => {
                         post_type: "News",
                         title: newsModalData.title,
                         description: newsModalData.description,
-                        is_featured: false
+                        is_featured: newsModalData.is_featured
                     })
                 }).then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        news.push(data.data)
+                        news.unshift(data.data)
                         setNews(news);
                         setNewsModalData({});
                         setOpenNewsModal(false);
@@ -106,6 +105,7 @@ const NewsPane = () => {
         setNewsModalData({
             title: n.title || "",
             description: n.description || "",
+            is_featured: n.is_featured || false,
             _id: n._id
         });
         setOpenNewsModal(true);
@@ -130,6 +130,7 @@ const NewsPane = () => {
                             <Table.HeaderCell>Title</Table.HeaderCell>
                             <Table.HeaderCell>Description</Table.HeaderCell>
                             <Table.HeaderCell>Posted Date</Table.HeaderCell>
+                            <Table.HeaderCell width="2">Featured</Table.HeaderCell>
                             <Table.HeaderCell>Edit</Table.HeaderCell>
                             <Table.HeaderCell>Delete</Table.HeaderCell>
                         </Table.Row>
@@ -141,6 +142,7 @@ const NewsPane = () => {
                                 <Table.Cell>{n.title}</Table.Cell>
                                 <Table.Cell>{n.description}</Table.Cell>
                                 <Table.Cell>{new Date(n.post_date).toDateString()}</Table.Cell>
+                                <Table.Cell>{n.is_featured ? "yes" : "no"}</Table.Cell>
                                 <Table.Cell className="no-ellipsis">
                                     <Button
                                         size="tiny"
@@ -204,6 +206,15 @@ const NewsPane = () => {
                                 defaultValue={newsModalData.description || ""}
                                 onChange={handleNewsDataChange}
                             />
+                            <Form.Field>
+                                <label>Is this Featured News?</label>
+                                <Radio
+                                    toggle
+                                    name="is_featured"
+                                    defaultChecked={newsModalData.is_featured}
+                                    onChange={() => newsModalData["is_featured"] = !newsModalData.is_featured}
+                                />
+                            </Form.Field>
                         </Form>
                     </Modal.Description>
                 </Modal.Content>

@@ -7,7 +7,6 @@ import Navbar from "../../components/Navbar";
 
 import {
   Button,
-  Card,
   Container,
   Grid,
   Image

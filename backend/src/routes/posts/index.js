@@ -14,7 +14,7 @@ const config = require("config");
 router.get("/events", async (req, res) => {
     try {
         // fetch posts based on post type
-        let posts = await Event.find();
+        let posts = await Event.find().sort([['event_date', 1]]);       
         res.status(200).json({
             message: `Retrived ${posts.length} posts of type Event`,
             data: posts
@@ -25,12 +25,12 @@ router.get("/events", async (req, res) => {
 });
 
 /*
- * @route   GET /posts/events/:id
- * @desc    Posts routing to get a single Event
+ * @route   GET /posts/events/filtered
+ * @desc    Posts routing to get specific events
  * @access  Public
  */
 
-// TODO: implement route for single event find
+// TODO: implement route for this
 
 /*
  * @route   GET /posts/news
@@ -40,7 +40,7 @@ router.get("/events", async (req, res) => {
 router.get("/news", async (req, res) => {
     try {
         // fetch posts based on post type
-        let posts = await News.find();
+        let posts = await News.find().sort([['post_date', -1]]);
         res.status(200).json({
             message: `Retrived ${posts.length} posts of type News`,
             data: posts
@@ -51,8 +51,8 @@ router.get("/news", async (req, res) => {
 });
 
 /*
- * @route   GET /posts/news/:id
- * @desc    Posts routing to get a single News
+ * @route   GET /posts/news/filtered
+ * @desc    Posts routing to get news with filter
  * @access  Public
  */
 
@@ -93,7 +93,8 @@ router.post(
             } = req.body;
 
             let newPost;
-
+            let d = new Date(event_date);
+            d = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
             switch (post_type) {
                 case "Event":
                     newPost = new Event({
@@ -102,7 +103,7 @@ router.post(
                         description,
                         is_featured,
                         is_countdown,
-                        event_date
+                        event_date: d
                     });
                     break;
                 case "News":
@@ -192,6 +193,8 @@ router.put("/event",
 
         let updatedPost;
         try {
+            let d = new Date(data.event_date);
+            data.event_date = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
             updatedPost = await Event.findOneAndUpdate({ _id: id }, data, { new: true,useFindAndModify: false });
         } catch (error) {
             return res.status(500).send("Error saving event!");
