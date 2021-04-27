@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Image,
@@ -15,8 +15,44 @@ import ContentContainer from "../../components/ContentContainer";
 import "./index.css";
 
 const Homepage = () => {
-  const stubEvents = [{}, {}, {}, {}];
-  const stubNews = [{}, {}, {}];
+  const [events, setEvents] = useState([]);
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    // fetch all the featured news
+    fetch("http://localhost:5000/posts/news/featured", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'applicaton/json'
+      }
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setNews(data.data);
+      }).catch(error => {
+        // in case there's a terrible error
+        // could use some refining
+        alert("Oops! Something went wrong :s");
+        console.log(error);
+      });
+
+    // fetch all the featured events
+    fetch("http://localhost:5000/posts/events/featured", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'applicaton/json'
+      }
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setEvents(data.data);
+      }).catch(error => {
+        // in case there's a terrible error
+        // could use some refining
+        alert("Oops! Something went wrong :s");
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
@@ -39,10 +75,10 @@ const Homepage = () => {
             <Grid.Column width={10} id="events-container">
               <h1>EVENTS</h1>
               <Card.Group>
-                {stubEvents.map((eventItem, id) => (
+                {events.map((eventItem, id) => (
                   <Card className="card" fluid key={id}>
                     <Card.Content>
-                      <Card.Header>Title</Card.Header>
+                      <Card.Header>{eventItem.title}</Card.Header>
                       <Divider></Divider>
                       <Card.Description>
                         <Grid stackable={false}>
@@ -53,24 +89,13 @@ const Homepage = () => {
                               centered
                             />
                           </Grid.Column>
-                          <Grid.Column width={10}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est
-                            laborum.
-                            </Grid.Column>
+                          <Grid.Column width={10}>{eventItem.description}</Grid.Column>
                         </Grid>
                         <Divider></Divider>
                         <Card.Content extra>
                           <i className="calendar alternate outline icon"></i>
                             February 19th, 2020
-                            <Link to={"/events/0"}>
+                            <Link to={`/events/${eventItem._id}`}>
                             <Button color="purple" floated="right">
                               See More
                               </Button>
@@ -85,13 +110,13 @@ const Homepage = () => {
             <Grid.Column width={6} id="news-container">
               <h1>NEWS</h1>
               <Card.Group>
-                {stubNews.map((newsItem, id) => (
-                  <Card className="card" fluid key={id}>
+                {news.map((newsItem, index) => (
+                  <Card className="card" fluid key={index}>
                     <Card.Content>
-                      <Card.Header>COVID 19 - UPDATES</Card.Header>
+                      <Card.Header>{newsItem.title}</Card.Header>
                       <Card.Meta>
-                        February 19th, 2020
-                        </Card.Meta>
+                        {new Date(newsItem.post_date).toDateString()}
+                      </Card.Meta>
                       <Divider></Divider>
                       <Card.Description>
                         <Image
@@ -103,13 +128,9 @@ const Homepage = () => {
                         />
                         <Card.Content>
                           <br></br>
-                          <Card.Description>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua.
-                            </Card.Description>
+                          <Card.Description>{newsItem.description}</Card.Description>
                           <Divider></Divider>
-                          <Link to={"/news/0"}>
+                          <Link to={`/news/${newsItem._id}`}>
                             <Button color="purple" floated="right">
                               See More
                               </Button>

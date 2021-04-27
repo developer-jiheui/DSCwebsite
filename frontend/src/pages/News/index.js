@@ -44,7 +44,7 @@ const News = () => {
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 />
                 <h2>{newsItem.title}</h2>
-                <p class="justified-text">{newsItem.description}</p>
+                <p className="justified-text">{newsItem.description}</p>
                 <Grid columns="2" stackable>
                   <Grid.Column>
                     <h3 style={{ display: "inline" }}>Date</h3>

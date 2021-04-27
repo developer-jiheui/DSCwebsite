@@ -13,7 +13,6 @@ const config = require("config");
  */
 router.get("/events", async (req, res) => {
     try {
-        // fetch posts based on post type
         let posts = await Event.find().sort([['event_date', 1]]);       
         res.status(200).json({
             message: `Retrived ${posts.length} posts of type Event`,
@@ -25,12 +24,22 @@ router.get("/events", async (req, res) => {
 });
 
 /*
- * @route   GET /posts/events/filtered
- * @desc    Posts routing to get specific events
+ * @route   GET /posts/events/featured
+ * @desc    Posts routing to get all featured Events
  * @access  Public
  */
+router.get("/events/featured", async (req, res) => {
+    try {
+        let posts = await Event.find({is_featured: true}).sort([['event_date', 1]]);       
+        res.status(200).json({
+            message: `Retrived ${posts.length} posts of featured Events`,
+            data: posts
+        });
+    } catch (error) {
+        return res.status(500).send("An error occured retrieving posts!");
+    }
+});
 
-// TODO: implement route for this
 
 /*
  * @route   GET /posts/news
@@ -38,8 +47,8 @@ router.get("/events", async (req, res) => {
  * @access  Public
  */
 router.get("/news", async (req, res) => {
+    console.log(req.params);
     try {
-        // fetch posts based on post type
         let posts = await News.find().sort([['post_date', -1]]);
         res.status(200).json({
             message: `Retrived ${posts.length} posts of type News`,
@@ -51,12 +60,21 @@ router.get("/news", async (req, res) => {
 });
 
 /*
- * @route   GET /posts/news/filtered
- * @desc    Posts routing to get news with filter
+ * @route   GET /posts/news/featured
+ * @desc    Posts routing to get all featured News
  * @access  Public
  */
-
-// TODO: implement route for single news find
+router.get("/news/featured", async (req, res) => {
+    try {
+        let posts = await News.find({is_featured: true}).sort([['post_date', -1]]);
+        res.status(200).json({
+            message: `Retrived ${posts.length} posts of featured News`,
+            data: posts
+        });
+    } catch (error) {
+        return res.status(500).send("An error occured retrieving posts!");
+    }
+});
 
 /*
  * @route   POST /posts
