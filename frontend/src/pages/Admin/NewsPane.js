@@ -9,6 +9,7 @@ const NewsPane = () => {
     const [errorTitle, setErrorTitle] = useState(false);
     const [errorDescription, setErrorDescription] = useState(false);
 
+    // Fetch all the news to populate our page
     useEffect(() => {
         fetch("http://localhost:5000/posts/news", {
             method: 'GET',
@@ -22,6 +23,8 @@ const NewsPane = () => {
             });
     }, []);
 
+    // This handles deleting a news item
+    // confirms with the user first, if yes, delete, else do nothing
     const handleDeleteNews = (n) => {
         if (window.confirm(`Are you sure you want to delete "${n.title}?"`)) {
             fetch("http://localhost:5000/posts", {
@@ -37,13 +40,20 @@ const NewsPane = () => {
             }).then(data => {
                 console.log(data);
                 setNews(news.filter(x => x._id !== n._id));
+            }).catch(error => {
+                // in case there's a terrible error
+                // could use some refining
+                alert("Oops! Something went wrong :s");
+                console.log(error);
             });
         }
     }
 
+    // This will handle saves done from the News Modal
+    // Could be either Create or Update
     const handleSaveNews = () => {
         if (validateData()) {
-            //update
+            //update news // an id will be specified
             if (newsModalData._id) {
                 fetch("http://localhost:5000/posts/news", {
                     method: 'PUT',
@@ -68,7 +78,7 @@ const NewsPane = () => {
                         alert("Oops! Something went wrong :s");
                         console.log(error);
                     })
-            //create new
+            //create new // no id specified
             } else {
                 fetch("http://localhost:5000/posts", {
                     method: 'POST',
@@ -83,10 +93,13 @@ const NewsPane = () => {
                     })
                 }).then(response => response.json())
                     .then(data => {
+                        // server success response
                         console.log(data);
+                        // add the new news item to our list
                         news.unshift(data.data)
-                        setNews(news);
+                        // reset our data model
                         setNewsModalData({});
+                        // close the modal
                         setOpenNewsModal(false);
                     }).catch(error => {
                         alert("Oops! Something went wrong :s");
@@ -96,23 +109,31 @@ const NewsPane = () => {
         }
     }
 
+    // For any input changes done on the News Modal form
+    // will update data model properties based on changed input
     const handleNewsDataChange = (event) => {
         newsModalData[event.target.name] = event.target.value;
         validateData();
     }
 
+    // Handles opening our News Modal, to create or edit
     const handleOpeningNewsModal = (n) => {
+        // initialize the data model
         setNewsModalData({
             title: n.title || "",
             description: n.description || "",
             is_featured: n.is_featured || false,
             _id: n._id
         });
-        setOpenNewsModal(true);
+        // initialize our form errors
         setErrorTitle(false);
         setErrorDescription(false);
+        // open the modal
+        setOpenNewsModal(true);
     }
 
+    // data validation for the form
+    // just make sure nothing is empty
     const validateData = () => {
         setErrorDescription(newsModalData.description === "");
         setErrorTitle(newsModalData.title === "");

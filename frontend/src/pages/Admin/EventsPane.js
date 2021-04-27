@@ -10,6 +10,7 @@ const EventsPane = () => {
     const [errorDescription, setErrorDescription] = useState(false);
     const [errorDate, setErrorDate] = useState(false);
 
+    // Fetch all the events to populate our page
     useEffect(() => {
         fetch("http://localhost:5000/posts/events", {
             method: 'GET',
@@ -23,9 +24,10 @@ const EventsPane = () => {
             });
     }, []);
 
+    // This will handle saves done from the Event Modal
     const handleSaveEvent = () => {
         if (validateData()) {
-            // update event
+            // update event // an id is specified
             if (eventModalData._id) {
                 fetch("http://localhost:5000/posts/event", {
                     method: 'PUT',
@@ -47,7 +49,7 @@ const EventsPane = () => {
                         alert("Oops! Something went wrong :s");
                         console.log(error);
                     });
-            // create new event
+            // create new event // no id linked yet
             } else {
                 fetch("http://localhost:5000/posts", {
                     method: 'POST',
@@ -64,11 +66,16 @@ const EventsPane = () => {
                     })
                 }).then(response => response.json())
                     .then(data => {
+                        // server response
                         console.log(data);
+                        // add the new item to our events list
                         events.unshift(data.data)
+                        // close the modal and reset our data model
                         setEventModalData({});
                         setOpenEventModal(false);
                     }).catch(error => {
+                        // in case there's a terrible error
+                        // could use some refining
                         alert("Oops! Something went wrong :s");
                         console.log(error);
                     });
@@ -76,6 +83,7 @@ const EventsPane = () => {
         }
     }
 
+    // Deleting an event happens here
     const handleDeleteEvent = (emd) => {
         if (window.confirm(`Are you sure you want to delete ${emd.title}?`)) {
             fetch("http://localhost:5000/posts", {
@@ -90,15 +98,24 @@ const EventsPane = () => {
                 })
             }).then(data => {
                 console.log(data);
+                // successful return we want to remove it from 
+                // the events list on the front end too
                 setEvents(events.filter(x => x._id !== emd._id));
+            }).catch(error => {
+                // in case there's a terrible error
+                // could use some refining
+                alert("Oops! Something went wrong :s");
+                console.log(error);
             });
         }
     }
 
+    // To format the date for the date input
+    // likes to have YYYY-MM-DD format
     const formatDate = (date) => {
         let d = new Date(date);
 
-        let month = d.getMonth() + 1;
+        let month = d.getMonth() + 1; // months start from 0
         let day = d.getDate();
         month = month < 10 ? "0" + month : month;
         day = day < 10 ? "0" + day : day;
@@ -106,7 +123,9 @@ const EventsPane = () => {
         return d.getFullYear() + "-" + month + "-" + day;;
     }
 
+    // This will open the Event Modal to either create or edit
     const handleOpenEditModal = (emd) => {
+        // initialize our data model (either an edit or create new)
         setEventModalData({
             _id: emd._id,
             title: emd.title || "",
@@ -115,25 +134,33 @@ const EventsPane = () => {
             is_featured: emd.is_featured || false,
             is_countdown: emd.is_countdown || false
         });
+        // initialize our errors for ui purposes
         setErrorDate(false);
         setErrorTitle(false);
         setErrorDescription(false);
+        // open the modal
         setOpenEventModal(true);
     }
 
+    // This handles changes on inputs in the modal
+    // it will update our data model according to the input type
     const handleEventDataChange = (event) => {
         eventModalData[event.target.name] = event.target.value;
         validateData();
     }
 
+    // This handles changes on the Radio inputs. More manual way
+    // than above    
     const handleEventToggleChange = (property, newValue) => {
         eventModalData[property] = newValue;
     }
 
+    // Front end data validation
     const validateData = () => {
         let timeNow = new Date();
         let eventTime = new Date(eventModalData.event_date);
 
+        // make sure nothing is empty and the date is valid
         setErrorDescription(eventModalData.description === "");
         setErrorTitle(eventModalData.title === "");
         setErrorDate(eventTime === "Invalid Date" || eventTime < timeNow);
