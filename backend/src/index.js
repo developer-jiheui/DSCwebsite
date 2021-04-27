@@ -8,8 +8,9 @@ app.use(express.json({ extended: false }));
 connectDB();
 
 // Routes:
-app.use("/login", require("./routes/userLogin"));
+app.use("/login", require("./routes/login"));
 app.use("/auth", require("./routes/auth"));
+app.use("/user", require("./routes/user"));
 app.use("/posts", require("./routes/posts"));
 
 app.get("/", (req, res) => {

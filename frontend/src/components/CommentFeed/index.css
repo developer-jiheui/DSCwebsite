@@ -1,14 +1,18 @@
-.ui.comments {
-    margin:auto;
-    max-width: 80%;
+.ui.comments {    
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding: 10px;
+}
+
+.ui.reply.form textarea {
+    height: 3em;
 }
 
 .ui.comments .comment .content .metadata span {
     color: rgba(0,0,0,.4);
 }
 
-.comments .ui.reply.form {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+#comment-create-form {
+    margin-top: 3em;
 }
