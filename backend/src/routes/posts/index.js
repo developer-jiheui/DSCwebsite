@@ -40,6 +40,25 @@ router.get("/events/featured", async (req, res) => {
     }
 });
 
+/*
+ * @route   GET /posts/events/:id
+ * @desc    Posts routing to get a specific Event
+ * @access  Public
+ */
+
+router.get("/events/:id", async (req, res) => {
+    const post_id = req.params.id;
+    try {
+        let posts = await Event.find({_id: post_id}).sort([['event_date', 1]]);       
+        res.status(200).json({
+            message: `Retrived event ${post_id}`,
+            data: posts
+        });
+    } catch (error) {
+        return res.status(500).send("An error occured retrieving posts!");
+    }
+});
+
 
 /*
  * @route   GET /posts/news
@@ -69,6 +88,25 @@ router.get("/news/featured", async (req, res) => {
         let posts = await News.find({is_featured: true}).sort([['post_date', -1]]);
         res.status(200).json({
             message: `Retrived ${posts.length} posts of featured News`,
+            data: posts
+        });
+    } catch (error) {
+        return res.status(500).send("An error occured retrieving posts!");
+    }
+});
+
+/*
+ * @route   GET /posts/news/:id
+ * @desc    Posts routing to get a specific News item
+ * @access  Public
+ */
+
+router.get("/news/:id", async (req, res) => {
+    const post_id = req.params.id;
+    try {
+        let posts = await News.find({_id: post_id}).sort([['event_date', 1]]);       
+        res.status(200).json({
+            message: `Retrived news item ${post_id}`,
             data: posts
         });
     } catch (error) {

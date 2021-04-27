@@ -94,7 +94,7 @@ const Homepage = () => {
                         <Divider></Divider>
                         <Card.Content extra>
                           <i className="calendar alternate outline icon"></i>
-                            February 19th, 2020
+                            {new Date(eventItem.event_date).toDateString()}
                             <Link to={`/events/${eventItem._id}`}>
                             <Button color="purple" floated="right">
                               See More

@@ -42,7 +42,7 @@ const Events = () => {
     fetch("http://localhost:5000/posts/events", {
       method: 'GET',
       headers: {
-        // 'Content-Type': 'application/json'      
+        'Content-Type': 'application/json'      
       }    
     }).then(response => response.json())
     .then(data => {
@@ -66,8 +66,8 @@ const Events = () => {
           </div>
           <h1>UPCOMING EVENTS</h1>
           <Grid columns="3" stackable doubling>
-            {events.map((event, id) =>
-              <Grid.Column key={`event-${id}`}>
+            {events.map((event, index) =>
+              <Grid.Column key={`event-${index}`}>
                 <Image
                   className="poster-size-image"
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
@@ -80,7 +80,7 @@ const Events = () => {
                     <p><i>{new Date(event.event_date).toDateString()}</i></p>
                   </Grid.Column>
                   <Grid.Column floated="right" width="7">
-                    <Link to={`/events/${id}`}>
+                    <Link to={`/events/${event._id}`}>
                       <Button color="purple">See More</Button>
                     </Link>
                   </Grid.Column>
