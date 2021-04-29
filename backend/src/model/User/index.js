@@ -68,7 +68,7 @@ const UserSchema = new mongoose.Schema({
   },
   userType: {
     type: Number,
-    required: true,
+    required: false,
   },
   isExec: {
     type: Boolean,
@@ -84,10 +84,14 @@ const UserSchema = new mongoose.Schema({
   },
   courses: {
     type: [String],
-    request: false,
+    required: false,
   },
   isWorkingDeveloper: {
     type: Boolean,
+    required: false,
+  },
+  isAdmin: {
+    type: Number,
     required: false,
   },
 });

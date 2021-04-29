@@ -34,7 +34,6 @@ route.post(
 
     try {
       let login = await Login.findOne({ email });
-
       if (login) {
         return res
           .status(400)
