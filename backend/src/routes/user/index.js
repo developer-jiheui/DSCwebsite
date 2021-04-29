@@ -48,7 +48,7 @@ route.post(
     auth,
     check("firstName", "Please insert a valid first name").not().isEmpty(),
     check("lastName", "Please insert a valid last name").not().isEmpty(),
-    // check("userType", "Please select user type").isNumeric({ min: 0, max: 3 }),
+    check("userType", "Please select user type").isNumeric({ min: 0, max: 3 }),
     // check("userType", "Please select user type").not().isInt({min:0,max:3}),
   ],
   async (req, res) => {
@@ -86,15 +86,21 @@ route.post(
     }
 
     let graduationDate;
-    if (graduationDate) {
-      const graduationDate = new Date(expectedGraduationDate);
+    if (expectedGraduationDate) {
+      graduationDate = new Date(expectedGraduationDate);
     }
 
-    const trimmedcodingSkills = codingSkills
-      .split(",")
-      .map((skill) => skill.trim());
+    let trimmedcodingSkills;
+    if (codingSkills) {
+      trimmedcodingSkills = codingSkills
+        .split(",")
+        .map((skill) => skill.trim());
+    }
 
-    const trimmedCourses = courses.split(",").map((course) => course.trim());
+    let trimmedCourses;
+    if (courses) {
+      trimmedCourses = courses.split(",").map((course) => course.trim());
+    }
 
     try {
       let user = await User.findOne({ login: req.login.id });
@@ -129,6 +135,7 @@ route.post(
           login: req.login.id,
           firstName: firstName,
           lastName: lastName,
+          userType: userType,
         });
         await user.save();
         res.status(200).json(user);
