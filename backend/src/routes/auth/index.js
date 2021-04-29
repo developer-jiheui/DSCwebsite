@@ -54,8 +54,6 @@ route.post(
         return res.status(400).json({ msg: "Invalid credentials" });
       }
 
-      console.log("Here");
-
       // return the jsonwebtokengm
       const payload = {
         login: {

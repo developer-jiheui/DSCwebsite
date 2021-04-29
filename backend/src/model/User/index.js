@@ -38,8 +38,10 @@ const UserSchema = new mongoose.Schema({
   // https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/
   // https://stackoverflow.com/questions/4796914/store-images-in-a-mongodb-database
   avatar: {
-    data: Buffer,
-    contentType: String,
+    // data: Buffer,
+    // contentType: String,
+    // required: false,
+    type: String,
     required: false,
   },
   bio: {
@@ -66,7 +68,7 @@ const UserSchema = new mongoose.Schema({
   },
   userType: {
     type: Number,
-    required: true,
+    required: false,
   },
   isExec: {
     type: Boolean,
@@ -82,10 +84,14 @@ const UserSchema = new mongoose.Schema({
   },
   courses: {
     type: [String],
-    request: false,
+    required: false,
   },
   isWorkingDeveloper: {
     type: Boolean,
+    required: false,
+  },
+  isAdmin: {
+    type: Number,
     required: false,
   },
 });
