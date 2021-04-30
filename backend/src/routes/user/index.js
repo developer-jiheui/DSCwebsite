@@ -78,6 +78,9 @@ route.post(
       isExec,
     } = req.body;
 
+    let isAdmin;
+    userType === 0 ? (isAdmin = true) : (isAdmin = false);
+
     if (avatar === "" || typeof avatar === "undefined") {
       defaultAvatar =
         "https://stock.adobe.com/hu/Download/Watermarked/323309190";
@@ -118,7 +121,7 @@ route.post(
               bio,
               social,
               codingSkills: trimmedcodingSkills,
-              isExec,
+              isExec: isAdmin /*isExec === null ? isAdmin : isExec,*/,
               program,
               expectedGraduationDate: graduationDate,
               courses: trimmedCourses,
@@ -183,24 +186,24 @@ route.get("/:id", async (req, res) => {
   }
 });
 
-/* @route   DELETE /user
- * @desc    Delete user profile and all related data.
- * @access  private
- */
+// /* @route   DELETE /user
+//  * @desc    Delete user profile and all related data.
+//  * @access  private
+//  */
 
-route.delete("/", auth, async (req, res) => {
-  try {
-    // @todo: remove posts
+// route.delete("/", auth, async (req, res) => {
+//   try {
+//     // @todo: remove posts
 
-    // remove profile:
-    await User.findOneAndRemove({ login: req.login.id });
-    // // remove login:
-    await Login.findOneAndRemove({ _id: req.login.id });
-    res.status(200).json({ msg: "User deleted!" });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ msg: "Server error!" });
-  }
-});
+//     // remove profile:
+//     await User.findOneAndRemove({ login: req.login.id });
+//     // // remove login:
+//     await Login.findOneAndRemove({ _id: req.login.id });
+//     res.status(200).json({ msg: "User deleted!" });
+//   } catch (error) {
+//     console.error(error.message);
+//     res.status(500).json({ msg: "Server error!" });
+//   }
+// });
 
 module.exports = route;
