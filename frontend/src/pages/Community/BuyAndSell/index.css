@@ -5,3 +5,16 @@
 #create-sale-post-modal {
     color: black;
 }
+
+.filter-menu{
+    display: none;
+}
+
+.form-control{
+    padding-bottom: 2%;
+}
+
+.input[type="radio"]
+{
+    padding-left: 3%;
+}
