@@ -16,6 +16,10 @@ var MongoClient = mongo.MongoClient;
  * @access  public
  */
 
+
+// TODO authentication and connection to our mongo db
+
+
 // URL for mongo connection
 var url = "mongodb://localhost:27017/";
 // Name of database to read from
