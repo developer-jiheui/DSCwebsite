@@ -30,9 +30,7 @@ import PhotoUploader from "../../../components/PhotoUploader";
 import { Router, useParams} from "react-router-dom";
 import TagItem from "../../../components/TagItem";
 
-// TEST CODE
-
-// 
+// TODO user authentication
 
 const post = null;
 
@@ -227,9 +225,12 @@ const BuyAndSell = () => {
                   </Card.Content>
                   <Divider></Divider>
                   <h2>Comments</h2>
-                    { commentList.length > 0 &&
+                    { commentList != undefined && commentList.length > 0 &&
                     // Pass in the comment list, postID, and the refetch function
                     <CommentFeed comments={commentList} postId={id} refetch={refetch}></CommentFeed>
+                    }
+                    {commentList == undefined &&
+                      <CommentFeed comments={[]} postId={id} refetch={refetch}></CommentFeed>
                     }
                   </>}
 

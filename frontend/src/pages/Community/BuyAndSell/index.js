@@ -32,9 +32,7 @@ import "./index.css";
 import PhotoUploader from "../../../components/PhotoUploader";
 import { Router } from "react-router-dom";
 
-// TEST CODE
-
-// 
+// TODO user authentication
 
 const stubPosts = [
   {}, {}, {}, {}, {}, {}
@@ -84,6 +82,7 @@ const BuyAndSell = () => {
   }
 
   // Fetches posts
+  //TODO needs interaction with filtering, run specific queries based on our criteria
   const loadPosts = async () =>
   {
       const posts1 = await fetch("http://localhost:5000/post/community/buyandsell/",
@@ -146,16 +145,20 @@ const BuyAndSell = () => {
 
     // Open post modal
     setOpenCreateSalePostModal(false);
+    window.location.reload();
   }
 
   // Create and add tags
   const handleTags = (e) => {
     // Set the new tag
     setTags(e.target.value)
+
     if (e.target.value.length > 0)
     {
       // When comma entered, add the new tag to the list
       var last = e.target.value[e.target.value.length-1];
+      // TODO check if tag already contained
+      // TODO check if tag is empty
       if (last == ",")
       {
           listOfTags.push(e.target.value.slice(0,-1))
@@ -207,8 +210,7 @@ const BuyAndSell = () => {
             <Card.Group centered stackable>
               {posts.length === 0 && <p>No posts to show...</p>} 
               { posts[0] && posts.map((post, id) =>
-              <a href={"http://localhost:3000/community/posting/" + post._id}>
-                <Card raised>
+                <Card raised onClick={() => {window.location.href = "http://localhost:3000/community/posting/" + post._id}}>
                   <Image size="medium" src="https://react.semantic-ui.com/images/wireframe/image.png" />
                   <Card.Content>
                     <Card.Header>{post._id} { post.title } - {post.price}</Card.Header>
@@ -235,7 +237,7 @@ const BuyAndSell = () => {
                     </Grid>
                   </Card.Content>
                 </Card>
-                </a>
+                
               )}
             </Card.Group>
             {/* Needs styling */}
