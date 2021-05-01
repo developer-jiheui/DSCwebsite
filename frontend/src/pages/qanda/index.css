@@ -1,0 +1,8 @@
+#qanda-content-container  {
+    position: relative;
+}
+
+#qanda-content-container .content-toggle {
+    font-size: 25px;
+    padding: 10px;   
+}

@@ -3,9 +3,9 @@ import React from "react";
 const Sidebar = ({ toggle, itemList }) => {
   return (
     <div
-      className={`ui sidebar thin overlay right inverted menu ${
-        toggle ? "visible" : null
-      }`}
+      id="sidebar-hamburger-menu"
+      className={`ui sidebar wide overlay right menu ${toggle ? "visible" : null
+        }`}
     >
       <div className="ui list">{itemList}</div>
     </div>

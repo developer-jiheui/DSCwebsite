@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import "./index.css";
 
-const Dropdown = ({ label, itemList }) => {
+const Dropdown = ({ icon, label, itemList }) => {
   const [toggle, setToggle] = useState(false);
   const dropdownRef = useRef();
 
@@ -39,9 +39,9 @@ const Dropdown = ({ label, itemList }) => {
             setToggle(!toggle);
           }}
         >
-          <span className="text">{label}</span>
-          <i className="dropdown icon" style={{ color: "black" }}></i>
-
+          <i className={`${icon} icon`}></i>{label}
+          <i className="dropdown icon"></i>
+          
           <div className={`menu ${toggle ? "visible transition" : null}`}>
             {renderedItemList}
           </div>
