@@ -244,7 +244,7 @@ const TipsAndTricks = () => {
                 <Button icon="filter" color="purple" onClick={flipToFilter}></Button>
                 <Button icon="list" color="purple" onClick={flipToSort}></Button>
                 { showDropDownFilter ? 
-                    <DropdownFilter label={["All", "Selling", "Free", "Books", "Computers"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Selling"), () => loadPosts("Free"), () => loadPosts("Books"), () => loadPosts("Computers")]}>
+                    <DropdownFilter label={["All", "Tip", "Trick", "Other"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Tip"), () => loadPosts("Trick"), () => loadPosts("Other")]}>
                     </DropdownFilter> : null }
                     
                     { showDropDownSort ? 

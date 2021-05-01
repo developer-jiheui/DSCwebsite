@@ -251,7 +251,7 @@ const CareerPage = () => {
                                 <Button icon="filter" color="purple" onClick={flipToFilter}></Button>
                                 <Button icon="list" color="purple" onClick={flipToSort}></Button>
                                 { showDropDownFilter ? 
-                                <DropdownFilter label={["All", "Selling", "Free", "Books", "Computers"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Selling"), () => loadPosts("Free"), () => loadPosts("Books"), () => loadPosts("Computers")]}>
+                                <DropdownFilter label={["All", "Full-time", "Part-time", "Remote"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Full-time"), () => loadPosts("Part-time"), () => loadPosts("Remote")]}>
                                 </DropdownFilter> : null }
                                 
                                 { showDropDownSort ? 
