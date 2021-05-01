@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -16,13 +16,31 @@ import {
 import "./index.css";
 
 const Profile = () => {
+  const [currUser, setCurrUser] = useState({});
   const [edit, setEdit] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/user/self", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': `${localStorage.getItem("jwt")}`
+      }
+    }).then(response => response.json())
+      .then(res => {
+        console.log(res);
+        if(res && res.firstName) {
+          setCurrUser(res);
+        }                
+      });
+  }, []);
+
   return (
     <>
       <Navbar />
       <Container>
         <ContentContainer>
-          <h1 style={{ textAlign: "center" }}>Welcome Joana Doe</h1>
+          <h1 style={{ textAlign: "center" }}>Welcome {currUser.firstName + " " + currUser.lastName}</h1>
           <Form>      
             <FormField>
               <PhotoUploader src="./images/profile.jpeg" circular/>
@@ -31,21 +49,21 @@ const Profile = () => {
               label="Name"
               control="input"
               type="text"
-              placeholder={edit ? "Joana Doe" : "Name"}
+              placeholder={edit ? currUser.firstName : "Name"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
               label="Email"
               control="input"
               type="email"
-              placeholder={edit ? "joanadoe@email.com" : "example@email.com"}
+              placeholder={edit ? currUser.email : "example@email.com"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
               label="Github"
               control="input"
               type="text"
-              placeholder={edit ? "https://github.com/joanadoe" : "Github"}
+              placeholder={edit ? currUser.avatar : "Github"}
               disabled={edit}
             ></Form.Field>
             <Form.Field
@@ -66,7 +84,7 @@ const Profile = () => {
               <TextArea
                 placeholder={
                   edit
-                    ? "Hi there, My name is Joana and I am not good to talk about myself. Except that I like to code and make new friends."
+                    ? currUser.bio
                     : "Tell us a bit about yourself..."
                 }
                 disabled={edit}
