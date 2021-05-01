@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connection with database:
-//connectDB();
+connectDB();
 //Using cors for testing
 app.use(cors({ origin: "http://localhost:3000" }));
 // Routes:

@@ -435,10 +435,6 @@ const Navbar = () => {
       }
     }).then(response => response.json())
       .then(res => {
-        console.log(res);
-        if(res && res.firstName) {
-          setUserFirstName(res.firstName);
-        }
         if (res && res.isExec) {
           //if this is admin, add their special menu
           itemsDropdownUserMenu.push({
@@ -447,15 +443,18 @@ const Navbar = () => {
             path: "/admin"
           });
         }
+        if(res && res.firstName && userFirstName !== res.firstName) {
+          setUserFirstName(res.firstName);
+        }
         if (res && res.msg) {
           // console.log("Setting isLoggedIn to false", res.error);
           // setIsLoggedIn(false);
           // localStorage.clear();
         } else {
-          setIsLoggedIn(localStorage.getItem("jwt") !== null);
+          // setIsLoggedIn(localStorage.getItem("jwt") !== null);
         }
       }, []);
-  })
+  });
 
   // use Effect to keep track of the browser window width:
   useEffect(() => {

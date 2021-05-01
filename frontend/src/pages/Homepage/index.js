@@ -23,7 +23,7 @@ const Homepage = () => {
     fetch("http://localhost:5000/posts/news/featured", {
       method: 'GET',
       headers: {
-        'Content-Type': 'applicaton/json',
+        'Content-Type': 'applicaton/json',        
       }
     }).then(response => response.json())
       .then(data => {
@@ -52,6 +52,7 @@ const Homepage = () => {
         alert("Oops! Something went wrong :s");
         console.log(error);
       });
+      
   }, []);
 
   return (
