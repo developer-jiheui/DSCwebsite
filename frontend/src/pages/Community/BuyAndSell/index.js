@@ -7,6 +7,7 @@ import ContentContainer from "../../../components/ContentContainer";
 import DropdownFilter from "../../../components/DropdownFilter";
 import TagItem from "../../../components/TagItem";
 
+import PhotoUploader from "../../../components/PhotoUploader";
 
 import {
   Button,
@@ -34,6 +35,8 @@ import PhotoUploader from "../../../components/PhotoUploader";
 import { Router } from "react-router-dom";
 
 // TODO user authentication
+
+import ReportContentAction from "../../../components/ReportContentAction";
 
 const stubPosts = [
   {}, {}, {}, {}, {}, {}

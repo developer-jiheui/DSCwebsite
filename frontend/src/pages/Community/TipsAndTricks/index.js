@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
+import CommentFeed from "../../../components/CommentFeed";
+import ContentToggler from "../../../components/ContentToggler";
+
 import {
   Container,
   Grid,
@@ -20,6 +23,7 @@ import "./index.css";
 import * as yup from "yup";
 import TagItem from "../../../components/TagItem";
 import DropdownFilter from "../../../components/DropdownFilter";
+import ReportContentAction from "../../../components/ReportContentAction";
 
 const stubPosts = [
   {}, {}, {}, {}, {}, {}

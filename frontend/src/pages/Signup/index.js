@@ -1,16 +1,18 @@
 import React, { useRef, useState } from "react";
+
 import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
+import PhotoUploader from "../../components/PhotoUploader";
+
 import {
   Form,
   Checkbox,
   Container,
-  Message,
-  Breadcrumb,
+  Message,  
   FormField,
 } from "semantic-ui-react";
-import Navbar from "../../components/Navbar";
+
 import "./index.css";
-import PhotoUploader from "../../components/PhotoUploader";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -102,7 +104,7 @@ const Signup = () => {
   };
   return (
     <>
-      <Navbar>
+      <Navbar />
       <Container id="sign-up-container">
         <h2 style={{ color: "black" }}>Create an account</h2>
         {equalPassword ? (
@@ -297,8 +299,7 @@ const Signup = () => {
           </Form.Button>
         </Form>
       </Container>
-      <Footer></Footer>
-      </Navbar>
+      <Footer/>
     </>
   );
 };

@@ -7,8 +7,20 @@ import CommentFeed from "../../../components/CommentFeedBuySell";
 import ContentToggler from "../../../components/ContentToggler";
 import TagItem from "../../../components/TagItem";
 import DropdownFilter from "../../../components/DropdownFilter";
+import ReportContentAction from "../../../components/ReportContentAction";
 
-import { Button, Card, Container, Divider, Form, Grid, Icon, Input, Modal, Search, TextArea } from "semantic-ui-react";
+import {
+    Button,
+    Card,
+    Container,
+    Divider,
+    Form,
+    Grid,
+    Input,
+    Modal,
+    Search,
+    TextArea
+} from "semantic-ui-react";
 
 import "./index.css";
 import * as yup from "yup"
@@ -123,6 +135,11 @@ const CareerPage = () => {
     // Posting Modal
     const handleOpenCreateModal = () => {
         setOpenCreateCareerPostModal(true);
+
+    const createJobPost = (e) => {
+        //TODO: validate
+        //TODO: create job post and add to jobs list
+        setOpenCreateCareerPostModal(false);
     }
 
     // Create and add tags

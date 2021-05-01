@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import ContentContainer from "../../components/ContentContainer";
+
 import {
   Container,
   Grid,
@@ -6,12 +11,7 @@ import {
   Icon,
   Modal,
   Button
-}
-  from "semantic-ui-react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import ContentContainer from "../../components/ContentContainer";
-
+} from "semantic-ui-react";
 
 import './index.css';
 
@@ -71,103 +71,102 @@ const Team = () => {
     setOpenMemberModal(true);
   }
 
-  const admins = stubAllMembers.filter(m => m.admintype != undefined);
-  const members = stubAllMembers.filter(m => m.admintype == undefined);
+  const admins = stubAllMembers.filter(m => m.admintype !== undefined);
+  const members = stubAllMembers.filter(m => m.admintype === undefined);
 
   const MemberCard = ({ member, key }) => {
     return (
-    <Grid.Column className="profile-card" key={`member-${key}`} onClick={() => { handleMemberClick(member); }}>
-      <div class="profile-hover-div">
-        <div class="profile-hover-text">Learn More about me</div>
-      </div>
-      <Image
-        centered
-        circular
-        src={member.img}
-        size="medium"
-        className="member-profile-pic"
-      />
-      <div className="member-info-container">
-        <h2>{member.firstname + " " + member.lastname}</h2>
-        {member.admintype &&
-          <p className="member-type">
-            {member.admintype}
-            <Icon color={member.color} name={member.icon} />
-          </p>
-        }
-        <p className="member-headline">{member.faculty}</p>
-      </div>
-    </Grid.Column>
+      <Grid.Column className="profile-card" key={`member-${key}`} onClick={() => { handleMemberClick(member); }}>
+        <div class="profile-hover-div">
+          <div class="profile-hover-text">Learn More about me</div>
+        </div>
+        <Image
+          centered
+          circular
+          src={member.img}
+          size="medium"
+          className="member-profile-pic"
+        />
+        <div className="member-info-container">
+          <h2>{member.firstname + " " + member.lastname}</h2>
+          {member.admintype &&
+            <p className="member-type">
+              {member.admintype}
+              <Icon color={member.color} name={member.icon} />
+            </p>
+          }
+          <p className="member-headline">{member.faculty}</p>
+        </div>
+      </Grid.Column>
     );
   }
 
   return (
     <>
-      <Navbar>
-        <Container>
-          <ContentContainer>
-            <h1>EXECUTIVES</h1>
-            <Grid columns="4" stackable centered doubling>
-              {admins.map((member, id) =>
-                <MemberCard member={member} key={id}></MemberCard>
-              )}
-            </Grid>
-            <h1>MEET THE TEAM</h1>
-            <Grid columns="4" stackable centered doubling >
-              {members.map((member, id) =>
-                <MemberCard member={member} key={id}></MemberCard>
-              )}
-            </Grid>
-          </ContentContainer>
-        </Container>
-        <Modal
-          id="member-modal"
-          onClose={() => setOpenMemberModal(false)}
-          onOpen={() => setOpenMemberModal(true)}
-          open={openMemberModal}
-          size="tiny"
-        >
-          <Modal.Content>
-            <Modal.Description>
-              <Image
-                size="medium"
-                circular
-                src={activeMember.img}
-                wrapped
-              />
-              <h1>{activeMember.firstname + " " + activeMember.lastname}</h1>
-              <p className="member-headline">{activeMember.faculty}</p>
-              <p className="member-bio">"{activeMember.bio}"</p>
-              <p> <Icon size="small" name="hand point down outline"></Icon>Check me out on social media!</p>
-              <div className="member-media-links">
-                <a target="_blank" rel="noreferrer"
-                  href="#">
-                  <Icon size="large" name="linkedin"></Icon>
-                </a>
-                <a target="_blank" rel="noreferrer"
-                  href="#">
-                  <Icon size="large" name="github"></Icon>
-                </a>
-                <a target="_blank" rel="noreferrer"
-                  href="#">
-                  <Icon size="large" name="globe icon"></Icon>
-                </a>
-              </div>
-            </Modal.Description>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button
-              className="profile-button"
-              content="Cool Beans"
-              labelPosition='right'
-              icon='thumbs up outline'
-              onClick={() => setOpenMemberModal(false)}
-              positive
+      <Navbar />
+      <Container>
+        <ContentContainer>
+          <h1>EXECUTIVES</h1>
+          <Grid columns="4" stackable centered doubling>
+            {admins.map((member, id) =>
+              <MemberCard member={member} key={id}></MemberCard>
+            )}
+          </Grid>
+          <h1>MEET THE TEAM</h1>
+          <Grid columns="4" stackable centered doubling >
+            {members.map((member, id) =>
+              <MemberCard member={member} key={id}></MemberCard>
+            )}
+          </Grid>
+        </ContentContainer>
+      </Container>
+      <Modal
+        id="member-modal"
+        onClose={() => setOpenMemberModal(false)}
+        onOpen={() => setOpenMemberModal(true)}
+        open={openMemberModal}
+        size="tiny"
+      >
+        <Modal.Content>
+          <Modal.Description>
+            <Image
+              size="medium"
+              circular
+              src={activeMember.img}
+              wrapped
             />
-          </Modal.Actions>
-        </Modal>
-        <Footer />
-      </Navbar>
+            <h1>{activeMember.firstname + " " + activeMember.lastname}</h1>
+            <p className="member-headline">{activeMember.faculty}</p>
+            <p className="member-bio">"{activeMember.bio}"</p>
+            <p> <Icon size="small" name="hand point down outline"></Icon>Check me out on social media!</p>
+            <div className="member-media-links">
+              <a target="_blank" rel="noreferrer"
+                href="#">
+                <Icon size="large" name="linkedin"></Icon>
+              </a>
+              <a target="_blank" rel="noreferrer"
+                href="#">
+                <Icon size="large" name="github"></Icon>
+              </a>
+              <a target="_blank" rel="noreferrer"
+                href="#">
+                <Icon size="large" name="globe icon"></Icon>
+              </a>
+            </div>
+          </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            className="profile-button"
+            content="Cool Beans"
+            labelPosition='right'
+            icon='thumbs up outline'
+            onClick={() => setOpenMemberModal(false)}
+            positive
+          />
+        </Modal.Actions>
+      </Modal>
+      <Footer />
     </>
   );
 };

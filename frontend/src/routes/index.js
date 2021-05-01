@@ -20,6 +20,7 @@ import PostingTipsAndTricks from "../pages/Community/PostingTipsAndTricks";
 import BuyAndSell from "../pages/Community/BuyAndSell";
 import Welcome from "../pages/Community/Welcome";
 import CommunityChat from "../pages/Community/CommunityChat";
+import QandA from "../pages/qanda";
 
 export default function Routes() {
   return (
@@ -46,6 +47,7 @@ export default function Routes() {
       <Route path="/gettoknowus" component={GetToKnowUs} />
       <Route path="/admin" component={Admin} />
       <Route path="/policies" component={Policies} />
+      <Route path="/qanda" component={QandA} />
       <Route path="/news" exact component={News} />
       <Route path="/news/:id" component={NewsItem} />
     </Switch>
