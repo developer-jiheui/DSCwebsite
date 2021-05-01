@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import _ from 'lodash'
 import { Component } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
-import DropdownSort from "../../../components/DropdownSort";
+import DropdownFilter from "../../../components/DropdownFilter";
 import TagItem from "../../../components/TagItem";
 
 
@@ -42,15 +43,17 @@ const stubPosts = [
 const BuyAndSell = () => {
   const [openCreateSalePostModal, setOpenCreateSalePostModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false)
-  const [posts, setPosts] = useState([{}, {}, {}, {}, {}, {}])
+  const [posts, setPosts] = useState([])
   const [title, setTitle] = useState("")
   const [email, setEmail] = useState("")
   const [description, setDescription] = useState("")
   const [tags, setTags] = useState("");
   const [price, setPrice] = useState(0)
-  const [images, setImages] = useState(null)
-
-  const [listOfTags, setListOfTags] = useState([]);
+  const [images, setImages] = useState(null)  
+  
+  const [searchValue, setSearchValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState([]);
 
   // YUP validation
   let schemaForInput = yup.object().shape({
@@ -63,7 +66,7 @@ const BuyAndSell = () => {
 
   // Runs on load and gets all posts
   useEffect(async () => {
-    const posts = await fetch("http://localhost:5000/post/community/buyandsell/",
+    const posts = await fetch("http://localhost:5000/buysell/community/buyandsell/",
     {
       method: "GET",
       headers: {
@@ -72,7 +75,6 @@ const BuyAndSell = () => {
   });
     const data = await posts.json();
     var postsList = data;
-    console.log(data);
     setPosts(postsList)
   }, []);
 
@@ -83,18 +85,19 @@ const BuyAndSell = () => {
 
   // Fetches posts
   //TODO needs interaction with filtering, run specific queries based on our criteria
-  const loadPosts = async () =>
+  const loadPosts = async (word) =>
   {
-      const posts1 = await fetch("http://localhost:5000/post/community/buyandsell/",
-      {
-        method: "GET",
-        headers: {
-            "Content-Type": "text/plain"
-        }
-     });
+
+    console.log("HERE " + word);
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({searchWords: word})
+    };
+      const posts1 = await fetch("http://localhost:5000/buysell/community/buysell/tag/", requestOptions);
       const data1 = await posts1.json();
-      var postsList1 = data1;
-      setPosts(postsList1)
+      console.log(data1)
+      setPosts(data1)
   }
 
   // Controls what hapens when user submits post info
@@ -126,6 +129,7 @@ const BuyAndSell = () => {
       title: title,
       email: email,
       description: description,
+      date: new Date(),
       tags: tagsList,
       price: price
     }
@@ -138,7 +142,7 @@ const BuyAndSell = () => {
     };
 
     // Post new posting
-    fetch("http://localhost:5000/post/community/createpost/", requestOptions)
+    fetch("http://localhost:5000/buysell/community/createpost/", requestOptions)
     .then(response => {
       //console.log(response.json());
     });
@@ -180,6 +184,34 @@ const BuyAndSell = () => {
     setShowDropDown(!showDropDown)
   }
 
+  const [listOfTags, setListOfTags] = useState([]);
+
+  const initialState = {
+    loading: false,
+    results: [],
+    value: '',
+  }
+ 
+  const handleSearchChange = async(e) => {
+
+    //console.log(e.target.value);
+    setResults([]);
+
+    setSearchValue(e.target.value);
+
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({searchWords: e.target.value})
+    };
+
+    // Post new posting
+    const dataset = await fetch("http://localhost:5000/buysell/community/posting/buysell/q/", requestOptions)
+    const info = await dataset.json();
+
+    setResults(info);
+  }
+
   return (
     <>
       <Navbar>
@@ -192,37 +224,47 @@ const BuyAndSell = () => {
                 <Button color="purple" onClick={handleOpenCreateModal}>Create Post</Button>
               </Grid.Column>
               <Grid.Column width="8" textAlign="center">
-                <Search className="full-width-search " placeholder="Search posts"/>
+                <Search onSearchChange={handleSearchChange} 
+                loading={loading} 
+                onResultSelect={
+                  (e, data) => {window.location.href = "http://localhost:3000/community/postingbuysell/"+ data.result._id;}
+                }
+                results={results}
+                value={searchValue} 
+                className="full-width-search" 
+                placeholder="Search posts"/>
               </Grid.Column>
 
               <Grid.Column textAlign="right" width="4">
                 <Button icon="filter" color="purple" onClick={toggleDropDown}></Button>
                 <Button icon="list" color="purple"></Button>
                 { showDropDown ? 
-                <DropdownSort label={["Looking For", "Selling", "Computer Equipment", "Books", "Free"]} components={5} clickFunction={loadPosts}>
-                </DropdownSort> : null }
+                <DropdownFilter label={["Selling", "Free", "Books", "Computer Equipment"]} components={4} clickFunction={loadPosts}>
+                </DropdownFilter> : null }
               </Grid.Column>
 
             </Grid>
             <Divider></Divider>
 
-            {/* Needs styling */}
             <Card.Group centered stackable>
               {posts.length === 0 && <p>No posts to show...</p>} 
               { posts[0] && posts.map((post, id) =>
-                <Card raised onClick={() => {window.location.href = "http://localhost:3000/community/posting/" + post._id}}>
+                <Card raised onClick={() => {window.location.href = "http://localhost:3000/community/postingbuysell/" + post._id}}>
                   <Image size="medium" src="https://react.semantic-ui.com/images/wireframe/image.png" />
                   <Card.Content>
                     <Card.Header>{post._id} { post.title } - {post.price}</Card.Header>
-                    <Card.Meta>Posted March 2nd, 2021</Card.Meta>
+                    <Card.Meta>{post.date}</Card.Meta>
                     <Card.Description>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      {post.description != undefined && post.description}
                     </Card.Description>
                     <Card.Meta id="post-tag-list">
-                      <a>#new</a>
-                      <a>#loremtag</a>
-                      <a>#ipsum</a>
-                      <a>#dolor</a>
+                    {post.tags != undefined && post.tags.split(",").map((tag, id) =>
+                      {
+                        // Show 5 tags
+                          if (id > 5)
+                            return "";
+                          return <a>#{tag.trim()}</a>
+                      })}
                     </Card.Meta>
                   </Card.Content>
                   <Card.Content extra>
@@ -293,7 +335,6 @@ const BuyAndSell = () => {
                 />
                 {listOfTags.map((tag, id) => 
                 <TagItem clickFunction={removeMe} id={id} item={tag} style={{display: "block"}}></TagItem>
-              // <TagItem text={tag}></TagItem>
             )}
                 <Form.Field
                   value={tags}

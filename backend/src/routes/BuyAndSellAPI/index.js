@@ -48,7 +48,7 @@ route.get(
     });
 
 // Route to get the info for a specific post
-route.get("/community/posting/:id", function(req, res){
+route.get("/community/posting/buysell/:id", function(req, res){
 
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
@@ -57,6 +57,45 @@ route.get("/community/posting/:id", function(req, res){
     dbo.collection(collectionName).find({"_id" : o_id}).toArray(function(err, result) {
       if (err) throw err;
       //console.log(result)
+      res.send(result)
+      db.close();
+    });
+  });
+
+});
+
+// Method for searching
+route.post("/community/posting/buysell/q/", function(req, res){
+
+  var textToSearch = req.body.searchWords;
+  //console.log(req);
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+
+    dbo.collection(collectionName).find({$or: [{title: new RegExp(textToSearch, 'i')}, {tags: new RegExp(textToSearch, 'i')}]}).toArray(function(err, result) {
+      if (err) throw err;
+      //console.log(result)
+      res.send(result)
+      db.close();
+    });
+  });
+
+});
+
+// Method for searching by tag (filtering)
+route.post("/community/buysell/tag/", function(req, res){
+
+  var textToSearch = req.body.searchWords;
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+
+    dbo.collection(collectionName).find({tags: textToSearch}).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result)
       res.send(result)
       db.close();
     });
@@ -82,7 +121,7 @@ route.post("/community/createpost/", function(req, res){
 
 
 // Needs to be filled out, allows updating of a post
-route.get("/community/updatepost/:id", function(req, res){
+// route.get("/community/updatepost/:id", function(req, res){
   //console.log(req.body);
   //console.log(req.params.id);
 
@@ -97,10 +136,10 @@ route.get("/community/updatepost/:id", function(req, res){
   //     db.close();
   //   });
   // });
-});
+// });
 
 // Adds a new comment or subcomment to the comment feed for a post
-route.post("/community/posting/comment/:id", function(req, res){
+route.post("/community/posting/buysell/comment/:id", function(req, res){
 
   MongoClient.connect(url, function(err, db) {
       if (err) throw err;
@@ -127,7 +166,7 @@ route.post("/community/posting/comment/:id", function(req, res){
         doc._id = newID;
         var o_id = mongo.ObjectID(req.params.id);
         
-        dbo.collection("posts").updateOne({"_id": o_id}, {$push: {"comments": doc}}, function(err, result) {
+        dbo.collection(collectionName).updateOne({"_id": o_id}, {$push: {"comments": doc}}, function(err, result) {
           if (err) throw err;
           db.close();
         });

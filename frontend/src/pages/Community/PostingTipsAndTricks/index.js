@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Component } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
-import CommentFeed from "../../../components/CommentFeed";
+import CommentFeed from "../../../components/CommentFeedTipsAndTricks";
 import ContentContainer from "../../../components/ContentContainer";
-import DropdownSort from "../../../components/DropdownSort";
+import DropdownSort from "../../../components/DropdownFilter";
 
 import {
   Button,
@@ -38,6 +38,7 @@ const BuyAndSell = () => {
   const [openCreateSalePostModal, setOpenCreateSalePostModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false)
   const [post, setPost] = useState(null)
+  const [description, setDescription] = useState("");
   const [comment, setComment] = useState("");
   const [replyingTo, setReplyingTo] = useState("");
   const [commentList, setCommentList] = useState([]);
@@ -104,7 +105,7 @@ const BuyAndSell = () => {
     };
 
     // Post the comment
-    fetch("http://localhost:5000/post/community/posting/comment/" + id, requestOptions)
+    fetch("http://localhost:5000/tipsandtricks/community/posting/comment/" + id, requestOptions)
     .then(response => {
       //console.log(response.json());
     });
@@ -150,7 +151,7 @@ const BuyAndSell = () => {
   useEffect(async () => {
 
     // Get the post with all info and comments
-    const post = await fetch("http://localhost:5000/post/community/posting/" + id,
+    const post = await fetch("http://localhost:5000/tipsandtricks/community/posting/tipsandtricks/" + id,
     {
       method: "GET",
       headers: {
@@ -163,11 +164,9 @@ const BuyAndSell = () => {
     var thePost = data[0];
 
     // Set the new information
-    setPost({post: thePost}, () =>{
-      //console.log(post);
-      
-    });
+    setPost(thePost);
     setTitle(thePost.title);
+    setDescription(thePost.description);
     setPrice(thePost.price);
     setCommentList(thePost.comments);
   }, [])
@@ -201,22 +200,21 @@ const BuyAndSell = () => {
         <Divider></Divider>
             { post != undefined && <>
               <Image size="large" centered src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                    <h1>{title} - {price}</h1>
-                    <p>Posted March 2nd, 2021</p>
+                    <h1>{title}</h1>
+                    <p>{post.date}</p>
                     <Card.Description>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      {description}
                     </Card.Description>
                     <Card.Meta id="post-tag-list">
-                      <a>#new</a>
-                      <a>#loremtag</a>
-                      <a>#ipsum</a>
-                      <a>#dolor</a>
+                    {post.tags != undefined && post.tags.split(",").map((tag) =>
+                      {
+                        return <a>#{tag.trim()}</a>
+                      })}
                     </Card.Meta>
                   <Card.Content extra>
                     <Grid columns="2">
                       <Grid.Column>
-                        <Icon name="point" />
-                      Vancouver, BC
+                        <Icon name="" />
                       </Grid.Column>
                       <Grid.Column textAlign="right">
                         <Button onClick={alert} color="purple">Contact</Button>
