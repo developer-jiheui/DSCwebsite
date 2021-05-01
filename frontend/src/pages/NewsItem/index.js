@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 
 import CommentFeed from "../../components/CommentFeed";
@@ -21,7 +21,22 @@ const stubComments = [
 ];
 
 const NewsItem = () => {
+    const [newsItem, setNews] = useState({});
     const { id } = useParams();
+
+     // Fetch the Event to populate our page
+     useEffect(() => {
+        fetch(`http://localhost:5000/posts/news/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setNews(data.data[0]);
+            });
+    }, []);
 
     return (
         <>
@@ -29,10 +44,9 @@ const NewsItem = () => {
             <Container>
                 <ContentContainer>
                     <Image fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                    <h1>COVID 19 - UPDATES</h1>
-                    <p class="no-shine-text" id="news-item-date"><i>March 2, 2021</i></p>
-                    <p class="no-shine-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p class="no-shine-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <h1>{newsItem.title}</h1>
+                    <p class="no-shine-text" id="news-item-date"><i>{new Date(newsItem.post_date).toDateString()}</i></p>
+                    <p class="no-shine-text">{newsItem.description}</p>
                     <Divider horizontal>Comments</Divider>
                     <CommentFeed comments={stubComments} />
                 </ContentContainer>

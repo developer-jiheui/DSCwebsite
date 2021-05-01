@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
 import ContentContainer from "../../components/ContentContainer";
@@ -7,7 +7,6 @@ import Navbar from "../../components/Navbar";
 
 import {
   Button,
-  Card,
   Container,
   Grid,
   Image
@@ -16,9 +15,21 @@ import {
 import './index.css';
 
 const News = () => {
+  const [news, setNews] = useState([]);
 
-  const news = [{}, {}, {}, {}, {}];
-
+  useEffect(() => {    
+    fetch("http://localhost:5000/posts/news", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'      
+      }    
+    }).then(response => response.json())
+    .then(data => {
+      // console.log(data.message);
+      setNews(data.data);
+    });    
+  }, []);
+    
   return (
     <>
       <Navbar />
@@ -26,21 +37,24 @@ const News = () => {
         <ContentContainer>
           <h1>NEWS AND UPDATES</h1>
           <Grid columns="3" stackable doubling>
-            {news.map((newsItem, id) =>
-              <Grid.Column key={`news-${id}`} className="event-container">
+            {news.map((newsItem, index) =>
+              <Grid.Column key={`news-${index}`} className="event-container">
                 <Image
                   size="medium"
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 />
-                <h2>COVID 19 Strikes Again!</h2>
-                <p class="justified-text">Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
+                <div className ="title_minheight">
+                <h2>{newsItem.title}</h2>
+                </div>
+                <div className="body_minheight">
+                <p className="justified-text maxlines">{newsItem.description}</p></div>
                 <Grid columns="2" stackable>
                   <Grid.Column>
                     <h3 style={{ display: "inline" }}>Date</h3>
-                    <p><i>Mar 4th, 2021 - 5pm</i></p>
+                    <p><i>{new Date(newsItem.post_date).toDateString()}</i></p>
                   </Grid.Column>
                   <Grid.Column floated="right" width="7">
-                    <Link to={`/news/${id}`}>
+                    <Link to={`/news/${newsItem._id}`}>
                       <Button color="purple">See More</Button>
                     </Link>
                   </Grid.Column>

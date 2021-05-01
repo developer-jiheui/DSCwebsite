@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 
 import CommentFeed from "../../components/CommentFeed";
@@ -27,7 +27,22 @@ const stubComments = [
 ];
 
 const Event = () => {
+    const [event, setEvent] = useState({});
     const { id } = useParams();
+
+    // Fetch the Event to populate our page
+    useEffect(() => {
+        fetch(`http://localhost:5000/posts/events/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+            .then(data => {
+                // console.log(data);
+                setEvent(data.data[0]);
+            });
+    }, []);
 
     return (
         <>
@@ -41,12 +56,11 @@ const Event = () => {
                         <Grid.Row>
                             <Grid.Column width={3}>
                                 <h2>Date</h2>
-                                <p><i>March 2, 2021</i></p>
+                                <p><i>{new Date(event.event_date).toDateString()}</i></p>
                             </Grid.Column>
                             <Grid.Column width={12}>
-                                <h2>Event Title</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <h2>{event.title}</h2>
+                                <p>{event.description}</p>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

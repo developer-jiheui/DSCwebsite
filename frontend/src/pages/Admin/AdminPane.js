@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Tab, Table, Radio, Search, Select } from "semantic-ui-react";
 
 const AdminPane = () => {

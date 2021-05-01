@@ -14,14 +14,14 @@ import {
 
 import './index.css';
 
-const EventCounter = () => {
+const EventCounter = ({ dateToCountDown }) => {
   const [countDownDay, setCountDownDay] = useState(0);
   const [countDownHour, setCountDownHour] = useState(0);
   const [countDownMin, setCountDownMin] = useState(0);
   const [countDownSec, setCountDownSec] = useState(0);
 
   useEffect(() => {
-    const countDownDate = new Date("April 28, 2021 17:00:00").getTime();
+    const countDownDate = new Date(dateToCountDown).getTime();
     const intervalId = setInterval(() => {
       const time = countDownDate - Date.parse(new Date());
       setCountDownSec(Math.floor((time / 1000) % 60));
@@ -33,42 +33,67 @@ const EventCounter = () => {
       clearInterval(intervalId);
     }
   }, []);
+
   return <>{countDownDay} days : {countDownHour} hrs : {countDownMin} mins : {countDownSec} sec</>;
 }
 
 const Events = () => {
-  const events = [{}, {}, {}, {}];
+  const [dateToCountDown, setDateToCountdown] = useState({});
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/posts/events", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => response.json())
+      .then(data => {
+        setEvents(data.data);
+        let countdownEvents = data.data.filter(d => d.is_countdown && (new Date(d.event_date) - new Date() > 0)).sort((a, b) => a.event_date - b.event_date);
+        setDateToCountdown(countdownEvents[0]);
+      });
+  }, []);
 
   return (
     <>
       <Navbar />
       <Container>
         <ContentContainer>
-          <h1>FEATURED EVENT</h1>
-          <div id="event-featured">
-            <div id="event-featured-overlay"></div>
-            <h1 id="event-featured-title">WEBSITE CONTEST <br /> - <i>Backend Edition</i></h1>
-            <p id="event-featured-description">Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada.</p>
-            <h2 id="event-featured-headline">Countdown to Deadline</h2>
-            <h1 id="event-featured-countdown"><EventCounter /></h1>
-          </div>
+          {dateToCountDown && dateToCountDown.event_date &&
+            <>
+              <h1>FEATURED EVENT</h1>
+              <div id="event-featured">
+                <div id="event-featured-overlay"></div>
+                <h1 id="event-featured-title">{dateToCountDown.title}</h1>
+                <p id="event-featured-description">{dateToCountDown.description}</p>
+                <h2 id="event-featured-headline">Countdown to Deadline</h2>
+                <h1 id="event-featured-countdown">
+                  <EventCounter dateToCountDown={dateToCountDown.event_date} />
+                </h1>
+              </div>
+            </>
+          }
           <h1>UPCOMING EVENTS</h1>
           <Grid columns="3" stackable doubling>
-            {events.map((event, id) =>
-              <Grid.Column key={`event-${id}`}>
+            {events.map((event, index) =>
+              <Grid.Column key={`event-${index}`}>
                 <Image
                   className="poster-size-image"
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 />
-                <h2>Event Title</h2>
-                <p class="justified-text">Pellentesque tempor urna sapien, at sollicitudin nunc scelerisque in. Nullam odio nibh, rhoncus ut quam sed, porttitor luctus sem. Proin maximus euismod lectus vitae fermentum. Fusce iaculis urna in massa efficitur, id porta felis malesuada. Maecenas odio elit, rutrum in pharetra sed, tristique sit amet est. Suspendisse in hendrerit mauris, ut aliquam quam.</p>
+                <div className ="title_minheight ">
+                <h2>{event.title}</h2>
+                </div>
+                <div className="body_minheight">
+                <p className="justified-text maxlines">{event.description}</p>
+                </div>
                 <Grid columns="2" stackable>
                   <Grid.Column>
                     <h3 style={{ display: "inline" }}>Date</h3>
-                    <p><i>Mar 4th, 2021 - 5pm</i></p>
+                    <p><i>{new Date(event.event_date).toDateString()}</i></p>
                   </Grid.Column>
                   <Grid.Column floated="right" width="7">
-                    <Link to={`/events/${id}`}>
+                    <Link to={`/events/${event._id}`}>
                       <Button color="purple">See More</Button>
                     </Link>
                   </Grid.Column>
