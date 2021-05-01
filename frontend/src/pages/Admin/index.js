@@ -14,21 +14,23 @@ import './index.css';
 const Admin = () => {  
     const [accessGranted, setAccessGranted] = useState(false);
 
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/user/self", {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
-    //         }
-    //     }).then(response => response.json())
-    //     .then(res => {
-    //         if(res && res.isExec) {
+    useEffect(() => {
+        fetch("http://localhost:5000/admin/dashboard", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': `${localStorage.getItem("jwt")}`
+            }
+        }).then(response => response.json())
+        .then(res => {
+            if(res && res.data) {
                 setAccessGranted(true);
-    //         } 
-    //         console.log(res);            
-    //     });
-    // });
+            } else {
+                setAccessGranted(false);
+            }
+            console.log(res);            
+        });
+    });
 
 
     const panes = [

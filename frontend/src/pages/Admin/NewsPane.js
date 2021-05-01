@@ -15,7 +15,7 @@ const NewsPane = () => {
         fetch("http://localhost:5000/posts/news", {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             }
         }).then(response => response.json())
             .then(data => {
@@ -31,7 +31,8 @@ const NewsPane = () => {
             fetch("http://localhost:5000/posts", {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-auth-token': `${localStorage.getItem("jwt")}`
                 },
                 body: JSON.stringify({
                     post_type: "News",
@@ -60,6 +61,7 @@ const NewsPane = () => {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'x-auth-token': `${localStorage.getItem("jwt")}`
                     },
                     body: JSON.stringify({
                         id: newsModalData._id,
@@ -82,6 +84,7 @@ const NewsPane = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'x-auth-token': `${localStorage.getItem("jwt")}`
                     },
                     body: JSON.stringify({
                         post_type: "News",

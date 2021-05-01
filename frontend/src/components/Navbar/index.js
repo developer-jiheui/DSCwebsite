@@ -27,7 +27,7 @@ const Navbar = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
+        'x-auth-token': `${localStorage.getItem("jwt")}`
       }
     }).then(response => response.json())
       .then(res => {
@@ -425,36 +425,36 @@ const Navbar = () => {
     );
   });
 
-  useEffect(() => {
-    console.log("BEFORE: ", localStorage.getItem("jwt"));
-    fetch("http://localhost:5000/user/self", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
-      }
-    }).then(response => response.json())
-      .then(res => {
-        console.log("AFTER: ", localStorage.getItem("jwt"));
-        console.log("HAHAHAHHAH", res);
-        if (res && res.isExec) {
-          //if this is admin, add their special menu
-          itemsDropdownUserMenu.push({
-            label: "Admin Settings",
-            icon: "cogs",
-            path: "/admin"
-          });
-        }
-        if (res.msg) {
-          // console.log("Setting isLoggedIn to false", res.error);
-          // setIsLoggedIn(false);
-          // localStorage.clear();
-        } else {
-          console.log("Setting isLoggedIn to Something: ", localStorage.getItem("jwt"));
-          setIsLoggedIn(localStorage.getItem("jwt") !== null);
-        }
-      }, []);
-  })
+  // useEffect(() => {
+  //   console.log("BEFORE: ", localStorage.getItem("jwt"));
+  //   fetch("http://localhost:5000/user/self", {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'x-auth-token': `${localStorage.getItem("jwt")}`
+  //     }
+  //   }).then(response => response.json())
+  //     .then(res => {
+  //       // console.log("AFTER: ", localStorage.getItem("jwt"));
+  //       // console.log("HAHAHAHHAH", res);
+  //       if (res && res.isExec) {
+  //         //if this is admin, add their special menu
+  //         itemsDropdownUserMenu.push({
+  //           label: "Admin Settings",
+  //           icon: "cogs",
+  //           path: "/admin"
+  //         });
+  //       }
+  //       if (res.msg) {
+  //         // console.log("Setting isLoggedIn to false", res.error);
+  //         // setIsLoggedIn(false);
+  //         // localStorage.clear();
+  //       } else {
+  //         console.log("Setting isLoggedIn to Something: ", localStorage.getItem("jwt"));
+  //         setIsLoggedIn(localStorage.getItem("jwt") !== null);
+  //       }
+  //     }, []);
+  // })
 
   // use Effect to keep track of the browser window width:
   useEffect(() => {

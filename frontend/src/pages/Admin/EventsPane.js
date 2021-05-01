@@ -34,6 +34,7 @@ const EventsPane = () => {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'x-auth-token': `${localStorage.getItem("jwt")}`
                     },
                     body: JSON.stringify({
                         id: eventModalData._id,
@@ -56,6 +57,7 @@ const EventsPane = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'x-auth-token': `${localStorage.getItem("jwt")}`
                     },
                     body: JSON.stringify({
                         post_type: "Event",
@@ -90,7 +92,8 @@ const EventsPane = () => {
             fetch("http://localhost:5000/posts", {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-auth-token': `${localStorage.getItem("jwt")}`
                 },
                 body: JSON.stringify({
                     post_type: "Event",
