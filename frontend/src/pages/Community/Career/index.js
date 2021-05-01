@@ -228,7 +228,7 @@ const CareerPage = () => {
 
     return (
         <>
-            {/* <Navbar> */}
+            <Navbar />
                 <Container>
                     <ContentContainer>
                         <h1>Launch Your Career</h1>
@@ -347,7 +347,6 @@ const CareerPage = () => {
                     </Modal.Actions>
                 </Modal>
                 <Footer />
-            {/* </Navbar> */}
         </>
     );                     
 }

@@ -221,7 +221,7 @@ const TipsAndTricks = () => {
 
   return (
     <>
-      {/* <Navbar> */}
+      <Navbar />
         <Container>
           <ContentContainer>
             <h1>Tips & Tricks For Success</h1>
@@ -329,7 +329,6 @@ const TipsAndTricks = () => {
           </Modal.Actions>
         </Modal>
         <Footer />
-      {/* </Navbar> */}
     </>
   );
 }

@@ -243,7 +243,7 @@ const BuyAndSell = () => {
 
   return (
     <>
-      {/* <Navbar> */}
+      <Navbar />
         <Container>
           <ContentContainer>
             <h1>Buy & Sell</h1>
@@ -391,7 +391,6 @@ const BuyAndSell = () => {
           </Modal.Actions>
         </Modal>
         <Footer />
-      {/* </Navbar> */}
     </>
   );
 }
