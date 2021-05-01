@@ -120,6 +120,10 @@ img {
   min-height: 100%;
 }
 
+.answer{
+  color: gray;
+  margin: 1em;
+}
 .centered-text {
   text-align: center;
 }
