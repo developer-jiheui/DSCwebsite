@@ -22,6 +22,7 @@ app.use("/user", require("./routes/user"));
 
 app.use("/buysell", require("./routes/BuyAndSellAPI"))
 app.use("/career", require("./routes/CareerPostingAPI"))
+app.use("/tipsandtricks", require("./routes/TipsAndTricksAPI"))
 
 app.get("/", (req, res) => {
   res.send("Hello from Express.js");
