@@ -101,7 +101,7 @@ img {
 .poster-size-image {
   height: 25vw;
   object-fit: cover;
-  width: 20vw;
+  width: 30vw;
 }
 
 /* full width of container search bar*/
@@ -127,6 +127,27 @@ img {
 .justified-text {
   text-align: justify;
 }
+
+.title_minheight {
+  height: 6em;
+  margin-top: 1em;
+  margin-bottom: 0.2em;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.body_minheight {
+  min-height: 10em;
+}
+
+.maxlines{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
 
 .modal {
   color: black;

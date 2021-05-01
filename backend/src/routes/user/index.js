@@ -120,7 +120,7 @@ route.post(
 
 route.get("/", async (req, res) => {
   try {
-    let user = await Login.find().select("-password");
+    let user = await User.find();
 
     if (user) {
       res.status(200).json(user);

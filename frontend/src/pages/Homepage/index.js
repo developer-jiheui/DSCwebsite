@@ -82,14 +82,14 @@ const Homepage = () => {
                       <Divider></Divider>
                       <Card.Description>
                         <Grid stackable={false}>
-                          <Grid.Column width={6} textAlign="center">
+                          <Grid.Column width={8} textAlign="center">
                             <Image
                               src="https://react.semantic-ui.com/images/wireframe/image.png"
                               className="poster-size-image"
                               centered
                             />
                           </Grid.Column>
-                          <Grid.Column width={10}>{eventItem.description}</Grid.Column>
+                          <Grid.Column width={8}><p className="maxlines">{eventItem.description}</p></Grid.Column>
                         </Grid>
                         <Divider></Divider>
                         <Card.Content extra>
@@ -115,7 +115,7 @@ const Homepage = () => {
                     <Card.Content>
                       <Card.Header>{newsItem.title}</Card.Header>
                       <Card.Meta>
-                        {new Date(newsItem.post_date).toDateString()}
+                        {/* {new Date(newsItem.post_date).toDateString()} */}
                       </Card.Meta>
                       <Divider></Divider>
                       <Card.Description>
@@ -128,7 +128,7 @@ const Homepage = () => {
                         />
                         <Card.Content>
                           <br></br>
-                          <Card.Description>{newsItem.description}</Card.Description>
+                          <Card.Description><p className="maxlines">{newsItem.description}</p></Card.Description>
                           <Divider></Divider>
                           <Link to={`/news/${newsItem._id}`}>
                             <Button color="purple" floated="right">
