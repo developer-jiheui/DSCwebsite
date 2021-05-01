@@ -5,6 +5,7 @@ const Post = require("../../model/Post");
 const Event = require("../../model/Event");
 const News = require("../../model/News");
 const config = require("config");
+const auth = require('../../middleware/auth');
 
 /*
  * @route   GET /posts/events
@@ -201,7 +202,7 @@ router.post(
  * @desc    Posts routing to update a News post
  * @access  Public
  */
-router.put("/news", async (req, res) => {
+router.put("/news", auth, async (req, res) => {
         const { id, data } = req.body;
 
         let updatedPost;
@@ -223,8 +224,7 @@ router.put("/news", async (req, res) => {
  * @desc    Posts routing to update an Event post
  * @access  Public
  */
-router.put("/event",
-    async (req, res) => {
+router.put("/event", auth, async (req, res) => {
         const { id, data } = req.body;
         let updatedPost;
         try {
@@ -246,7 +246,7 @@ router.put("/event",
  * @desc    Posts routing to delete a post
  * @access  Public
  */
-router.delete("/", async (req, res) => {
+router.delete("/", auth, async (req, res) => {
     const { id, post_type, post_id } = req.body;
     try {
         switch (post_type) {

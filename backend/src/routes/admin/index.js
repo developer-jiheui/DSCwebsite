@@ -4,6 +4,25 @@ const Login = require("../../model/Login");
 const User = require("../../model/User");
 const route = express.Router();
 
+/* @route   GET /admin/dashboard
+ * @desc    Check access for admin dashboard
+ * @access  private
+ */
+
+route.get("/dashboard", auth, async(req, res) => {
+  try {
+    let user = await User.findOne({ login: req.login.id });
+    if(user.isExec) {
+      return res.status(200).json({ msg: "Yes!", data: user.isExec});
+    } 
+
+    return res.status(400).json({ msg: "User is not an Admin..." });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ msg: "Server error!" });
+  }
+});
+
 /* @route   DELETE /admin/user/:id
  * @desc    Delete user profile and all related data.
  * @access  private

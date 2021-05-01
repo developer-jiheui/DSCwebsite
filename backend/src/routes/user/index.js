@@ -32,8 +32,8 @@ route.get("/self", auth, async (req, res) => {
     let user = await User.findOne({ login: req.login.id });
     res.status(200).json(user);
   } catch (error) {
-    console.error(error.message);
-    res.json({ msg: "Server error!" });
+    console.error("SELF: " + error.message);
+    res.json({ error: "Server error!" });
   }
 });
 
@@ -205,5 +205,6 @@ route.get("/:id", async (req, res) => {
 //     res.status(500).json({ msg: "Server error!" });
 //   }
 // });
+
 
 module.exports = route;

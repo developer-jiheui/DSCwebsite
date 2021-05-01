@@ -19,115 +19,129 @@ import "./index.css";
 
 const MIN_WIDTH = 899;
 
-const items = [
-  {
-    label: "Home",
-    icon: "home",
-    path: "/",
-  },
-  {
-    label: "About Us",
-    icon: "group",
-    path: "#",
-  },
-  {
-    label: "Events",
-    icon: "calendar alternate outline",
-    path: "/events",
-  },
-  {
-    label: "Community",
-    icon: "cubes",
-    path: "#",
-  },
-  {
-    label: "Contact",
-    icon: "address book",
-    path: "# ",
-  },
-  {
-    label: "Login",
-    icon: "sign in",
-    path: "#",
-  },
-];
-
-const itemsDropdownUserMenu = [
-  {
-    label: "Profile",
-    icon: "user",
-    path: "/profile"
-  },
-  {
-    label: "Admin Settings",
-    icon: "cogs",
-    path: "/admin"
-  },
-  {
-    label: "Logout",
-    icon: "sign out",
-    path: "#"
-  },
-];
-
-const itemsDropdownCommunity = [
-  {
-    label: "Welcome!",
-    icon: "bullhorn",
-    path: "/community/welcome",
-  },
-  {
-    label: "Career",
-    icon: "briefcase",
-    path: "/community/career",
-  },
-  {
-    label: "Tips",
-    icon: "comment outline",
-    path: "/community/tips",
-  },
-  {
-    label: "Buy & Sell",
-    icon: "money bill alternate icon",
-    path: "/community/buyandsell",
-  },
-  {
-    label: "Chat",
-    icon: "chat icon",
-    path: "/community/chat",
-  },
-];
-const itemsDropdownAbout = [
-  {
-    label: "Get to Know Us",
-    icon: "globe",
-    path: "/gettoknowus",
-  },
-  {
-    label: "News",
-    icon: "newspaper outline",
-    path: "/news",
-  },
-  {
-    label: "Team",
-    icon: "group",
-    path: "/team",
-  },
-  {
-    label: "Q & A",
-    icon: "question circle outline icon",
-    path: "/qanda"
-  }
-];
-
-const dropdowns = {
-  "About Us": itemsDropdownAbout,
-  "Community": itemsDropdownCommunity,
-  "Login": itemsDropdownUserMenu
-}
-
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("jwt") !== null);
+  const [userFirstName, setUserFirstName] = useState("");
+
+  const handleLogout = () => {
+    fetch("http://localhost:5000/login/logout", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': `${localStorage.getItem("jwt")}`
+      }
+    }).then(response => response.json())
+      .then(res => {
+        if (res.status === 'OK') {
+          console.log("LOGOUT", res);
+          localStorage.clear();
+          setIsLoggedIn(false);
+        }
+      })
+  }
+
+  const items = [
+    {
+      label: "Home",
+      icon: "home",
+      path: "/",
+    },
+    {
+      label: "About Us",
+      icon: "group",
+      path: "#",
+    },
+    {
+      label: "Events",
+      icon: "calendar alternate outline",
+      path: "/events",
+    },
+    {
+      label: "Community",
+      icon: "cubes",
+      path: "#",
+    },
+    {
+      label: "Contact",
+      icon: "address book",
+      path: "# ",
+    },
+    {
+      label: "Login",
+      icon: "sign in",
+      path: "#",
+    },
+  ];
+
+  const itemsDropdownUserMenu = [
+    {
+      label: "Profile",
+      icon: "user",
+      path: "/profile"
+    },
+    {
+      label: "Logout",
+      icon: "sign out",
+      path: "#",
+      onClick: handleLogout
+    },
+  ];
+
+  const itemsDropdownCommunity = [
+    {
+      label: "Welcome!",
+      icon: "bullhorn",
+      path: "/community/welcome",
+    },
+    {
+      label: "Career",
+      icon: "briefcase",
+      path: "/community/career",
+    },
+    {
+      label: "Tips",
+      icon: "comment outline",
+      path: "/community/tips",
+    },
+    {
+      label: "Buy & Sell",
+      icon: "money bill alternate icon",
+      path: "/community/buyandsell",
+    },
+    {
+      label: "Chat",
+      icon: "chat icon",
+      path: "/community/chat",
+    },
+  ];
+  const itemsDropdownAbout = [
+    {
+      label: "Get to Know Us",
+      icon: "globe",
+      path: "/gettoknowus",
+    },
+    {
+      label: "News",
+      icon: "newspaper outline",
+      path: "/news",
+    },
+    {
+      label: "Team",
+      icon: "group",
+      path: "/team",
+    },
+    {
+      label: "Q & A",
+      icon: "question circle outline icon",
+      path: "/qanda"
+    }
+  ];
+
+  const dropdowns = {
+    "About Us": itemsDropdownAbout,
+    "Community": itemsDropdownCommunity,
+    "Login": itemsDropdownUserMenu
+  }
 
   const [width, setWidth] = useState(window.innerWidth);
   const [toggle, setToggle] = useState(false);
@@ -237,14 +251,34 @@ const Navbar = () => {
     const [emailUsernameError, setEmailUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
-    const handleLoginSubmit = (e) => {
-      e.preventDefault();
+    const handleLoginSubmit = () => {
       setEmailUsernameError(emailUsername === "");
       setPasswordError(password === "");
 
-      if (emailUsernameError === false && passwordError === false) {
-        setIsLoggedIn(true);
-        setOpenLoginModal(false);
+      if (emailUsername !== "" && password !== "") {
+        fetch("http://localhost:5000/auth", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
+          },
+          body: JSON.stringify({
+            email: emailUsername,
+            password: password
+          })
+        }).then(response => response.json())
+          .then((res) => {
+            if (res.errors) {
+              alert(res.errors[0].msg);
+            } else if (res.error) {
+              alert(res.error)
+            } else {
+              console.log("JUST LOGGED IN", res);
+              localStorage.setItem("jwt", res.token);
+              setIsLoggedIn(true);
+              setOpenLoginModal(false);
+            }
+          })
       }
     };
 
@@ -299,13 +333,12 @@ const Navbar = () => {
                   </Form.Field>
                   <Button
                     fluid
-                    type="submit"
                     style={{
                       backgroundColor: "var(--douglas-gray)",
                       color: "white",
                     }}
-                    onClick={(e) => {
-                      handleLoginSubmit(e);
+                    onClick={() => {
+                      handleLoginSubmit();
                     }}
                   >
                     Login
@@ -347,8 +380,8 @@ const Navbar = () => {
   }
 
   const itemList = items.map(({ label, icon, path }) => {
-    if (label === "About Us" 
-        || label === "Community") {
+    if (label === "About Us"
+      || label === "Community") {
       return <Dropdown key={label} icon={icon} label={label} itemList={dropdowns[label]} />;
     }
 
@@ -368,7 +401,7 @@ const Navbar = () => {
 
     if (label === "Login") {
       if (isLoggedIn) {
-        return <Dropdown key="usermenu" label={"Hi, bob"} icon="user" itemList={itemsDropdownUserMenu} />
+        return <Dropdown key="usermenu" label={`Hi, ${userFirstName}`} icon="user" itemList={itemsDropdownUserMenu} />
       } else {
         return (
           <div
@@ -392,6 +425,37 @@ const Navbar = () => {
       </NavLink>
     );
   });
+
+  useEffect(() => {
+    fetch("http://localhost:5000/user/self", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': `${localStorage.getItem("jwt")}`
+      }
+    }).then(response => response.json())
+      .then(res => {
+        console.log(res);
+        if(res && res.firstName) {
+          setUserFirstName(res.firstName);
+        }
+        if (res && res.isExec) {
+          //if this is admin, add their special menu
+          itemsDropdownUserMenu.push({
+            label: "Admin Settings",
+            icon: "cogs",
+            path: "/admin"
+          });
+        }
+        if (res && res.msg) {
+          // console.log("Setting isLoggedIn to false", res.error);
+          // setIsLoggedIn(false);
+          // localStorage.clear();
+        } else {
+          setIsLoggedIn(localStorage.getItem("jwt") !== null);
+        }
+      }, []);
+  })
 
   // use Effect to keep track of the browser window width:
   useEffect(() => {
@@ -419,6 +483,7 @@ const Navbar = () => {
       document.removeEventListener("click", onBodyClick);
     };
   }, []);
+
   return (
     <>
       <div
@@ -439,16 +504,16 @@ const Navbar = () => {
             <div className="right menu">{itemList}</div>
           </>
         ) : (
-            <>
-              <div
-                className="item right floated link"
-                onClick={() => { onToggleMenu(); }}
-              >
-                <i className="bars large icon"></i>
-              </div>
-              <Sidebar toggle={toggle} itemList={itemList} />
-            </>
-          )}
+          <>
+            <div
+              className="item right floated link"
+              onClick={() => { onToggleMenu(); }}
+            >
+              <i className="bars large icon"></i>
+            </div>
+            <Sidebar toggle={toggle} itemList={itemList} />
+          </>
+        )}
       </div>
     </>
   );

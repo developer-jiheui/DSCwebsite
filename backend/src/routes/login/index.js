@@ -59,7 +59,7 @@ route.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 3600000 },
+        { expiresIn: 1200 },
         (error, token) => {
           if (error) throw error;
           res.json({ token });
@@ -71,5 +71,23 @@ route.post(
     }
   }
 );
+
+/* @route   POST /logout
+ * @desc    logout the user
+ * @access  public
+ */
+route.post('/logout', async(req, res) => {
+  try{
+      let randomNumberToAppend = toString(Math.floor((Math.random() * 1000) + 1));
+      let randomIndex = Math.floor((Math.random() * 10) + 1);
+      let hashedRandomNumberToAppend = await bcrypt.hash(randomNumberToAppend, 10);
+    console.log(req.token);
+      // now just concat the hashed random number to the end of the token
+      req.token = req.token + hashedRandomNumberToAppend;
+      return res.status(200).json({status: 'OK'});
+  }catch(err){
+      return res.status(500).json("err.message jalkdfj");
+  }
+});
 
 module.exports = route;
