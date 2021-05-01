@@ -20,11 +20,23 @@ import "./index.css";
 const MIN_WIDTH = 899;
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("jwt") !== null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogout = () => {
-    localStorage.clear();
-    setIsLoggedIn(false);    
+    fetch("http://localhost:5000/login/logout", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
+      }
+    }).then(response => response.json())
+    .then(res => {
+      if(res.status === 'OK'){
+        console.log("LOGOUT", res);
+        localStorage.clear();
+        setIsLoggedIn(false);   
+      } 
+    })
   }
 
   const items = [
@@ -247,6 +259,7 @@ const Navbar = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
           }, 
           body: JSON.stringify({
             email: emailUsername,
@@ -257,6 +270,7 @@ const Navbar = () => {
             if(res.errors) {
               alert(res.errors[0].msg);
             } else {
+              console.log("JUST LOGGED IN" , res);
               localStorage.setItem("jwt", res.token);
               setIsLoggedIn(true);
               setOpenLoginModal(false);
@@ -384,7 +398,7 @@ const Navbar = () => {
 
     if (label === "Login") {
       if (isLoggedIn) {
-        return <Dropdown key="usermenu" label={"Hi, bob"} icon="user" itemList={itemsDropdownUserMenu} />
+        return <Dropdown key="usermenu" label={`Hi, ${"bob"}`} icon="user" itemList={itemsDropdownUserMenu} />
       } else {
         return (
           <div
@@ -418,7 +432,7 @@ const Navbar = () => {
         }
     }).then(response => response.json())
     .then(res => {
-        console.log(res);
+        console.log("HAHAHAHHAH", res);
         if(res && res.isExec) {
           //if this is admin, add their special menu
           itemsDropdownUserMenu.push({
@@ -426,7 +440,15 @@ const Navbar = () => {
             icon: "cogs",
             path: "/admin"
           });
-        } 
+        }
+        if(res.msg ) {
+          console.log("Setting isLoggedIn to false", res.error);
+          setIsLoggedIn(false);
+          localStorage.clear();
+        } else {
+          console.log("Setting isLoggedIn to Something: ", localStorage.getItem("jwt"));
+          setIsLoggedIn(localStorage.getItem("jwt") !== null);
+        }
     });
 })
 

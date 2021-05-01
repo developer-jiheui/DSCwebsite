@@ -46,15 +46,13 @@ route.post(
     try {
       let login = await Login.findOne({ email });
       if (!login) {
-        return res.status(400).json({ msg: "Invalid credentials" });
+        return res.status(400).json({ error: "Invalid credentials" });
       }
 
       const isMatch = await bcrypt.compare(password, login.password);
       if (!isMatch) {
-        return res.status(400).json({ msg: "Invalid credentials" });
+        return res.status(400).json({ error: "Invalid credentials" });
       }
-
-      console.log("Here");
 
       // return the jsonwebtokengm
       const payload = {
@@ -67,7 +65,7 @@ route.post(
         payload,
         config.get("jwtSecret"),
         {
-          expiresIn: 360000,
+          expiresIn: 10,
         },
         (err, token) => {
           if (err) throw err;
@@ -76,7 +74,7 @@ route.post(
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).send({ msg: "Server error!" });
+      res.status(500).send({ error: "Server error!" });
     }
   }
 );
