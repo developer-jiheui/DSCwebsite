@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, Tab, Table, Radio, Form, Search, Input, TextArea, Image } from "semantic-ui-react";
+import PhotoUploader from '../../components/PhotoUploader';
 
 const NewsPane = () => {
     const [news, setNews] = useState([]);
@@ -206,7 +207,7 @@ const NewsPane = () => {
                             ? <h1>Edit News</h1>
                             : <h1>Create News</h1>
                         }
-                        <Image className="admin-modal-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                        <PhotoUploader />
                         <Form onSubmit={handleSaveNews}>
                             <Form.Field
                                 control={Input}

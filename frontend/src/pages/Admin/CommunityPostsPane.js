@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal, Tab, Table, Form, Search, Input, TextArea, Image, Select } from "semantic-ui-react";
+import PhotoUploader from '../../components/PhotoUploader';
 
 const CommunityPostsPane = () => {
-    const stubPosts = [
-        { id: 0, title: "Post0", date: "2021-04-01", category: "Buy & Sell", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada sollicitudin consectetur. Ut egestas lobortis venenatis. Pellentesque magna augue, tempor in rhoncus dignissim, congue nec turpis. Nullam vehicula sed orci maximus aliquam. Quisque interdum nec dui eget maximus. Curabitur non massa at risus suscipit ornare. Nam consequat nisl dolor. Nullam scelerisque venenatis nunc vel lobortis." },
-        { id: 3, title: "Post3", date: "2021-04-01", category: "Buy & Sell", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada sollicitudin consectetur. Ut egestas lobortis venenatis. Pellentesque magna augue, tempor in rhoncus dignissim, congue nec turpis. Nullam vehicula sed orci maximus aliquam. Quisque interdum nec dui eget maximus. Curabitur non massa at risus suscipit ornare. Nam consequat nisl dolor. Nullam scelerisque venenatis nunc vel lobortis." }
-    ];
-    const [openPostModal, setOpenPostModal] = useState(false);
-    const [postModalData, setPostModalData] = useState({});    
-    const [posts, setPosts] = useState(stubPosts);
-
     const communityCategories = [
         { key: "Welcome", value: "Welcome", text: "Welcome" },
         { key: "Buy & Sell", value: "Buy & Sell", text: "Buy & Sell" },
@@ -18,16 +11,64 @@ const CommunityPostsPane = () => {
         { key: "Community Chat", value: "Community Chat", text: "Community Chat" },
     ]
 
-    // POSTS
+    const stubPosts = [
+        { id: 0, title: "Post0", date: "2021-04-01", category: "Buy & Sell", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada sollicitudin consectetur. Ut egestas lobortis venenatis. Pellentesque magna augue, tempor in rhoncus dignissim, congue nec turpis. Nullam vehicula sed orci maximus aliquam. Quisque interdum nec dui eget maximus. Curabitur non massa at risus suscipit ornare. Nam consequat nisl dolor. Nullam scelerisque venenatis nunc vel lobortis." },
+        { id: 3, title: "Post3", date: "2021-04-01", category: "Buy & Sell", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada sollicitudin consectetur. Ut egestas lobortis venenatis. Pellentesque magna augue, tempor in rhoncus dignissim, congue nec turpis. Nullam vehicula sed orci maximus aliquam. Quisque interdum nec dui eget maximus. Curabitur non massa at risus suscipit ornare. Nam consequat nisl dolor. Nullam scelerisque venenatis nunc vel lobortis." }
+    ];
+
+    const [openPostModal, setOpenPostModal] = useState(false);
+    const [postModalData, setPostModalData] = useState({});
+    const [posts, setPosts] = useState(stubPosts);
+
+    const [errorTitle, setErrorTitle] = useState(false);
+    const [errorDescription, setErrorDescription] = useState(false);
+    const [errorCategory, setErrorCategory] = useState(false);
+
     const handleEditPost = (p) => {
-        setPostModalData(p);
+        setPostModalData({
+            title: p.title || "",
+            description: p.description || "",
+            category: p.category
+        });
         setOpenPostModal(true);
+        setErrorCategory(false);
+        setErrorDescription(false);
+        setErrorTitle(false);
+    }
+
+    const handleSave = () => {        
+        if(validateData()){
+            // TODO: save the changes/or create new
+            // TODO: add to list/or update
+            setOpenPostModal(false);
+        }
+    }
+
+    const validateData = () => {    
+        let et = postModalData.title === "";
+        let ed = postModalData.description === "";
+        let ce = (communityCategories.find(x => x.key === postModalData.category) === undefined);
+        
+        setErrorTitle(et);
+        setErrorDescription(ed);
+        setErrorCategory(ce);
+
+        return !et && !ed && !ce;
     }
 
     const handleDeletePost = (p) => {
-        if (window.confirm(`Are you sure you want to delete this post?`)) {
+        if (window.confirm(`Are you sure you want to delete "${p.title}"`)) {
+            //TODO: actually delete shit
             setPosts(posts.filter(x => x.id !== p.id));
         }
+    }
+
+    const handlePostDataChange = (e) => {
+        postModalData[e.target.name] = e.target.value;
+    }
+
+    const handlePostCategoryChange = (e) => {
+        postModalData.category = e.target.textContent;
     }
 
     return (
@@ -39,7 +80,6 @@ const CommunityPostsPane = () => {
                         <Table.Row>
                             <Table.HeaderCell width="1">id</Table.HeaderCell>
                             <Table.HeaderCell>Title</Table.HeaderCell>
-                            {/* <Table.HeaderCell>Description</Table.HeaderCell> */}
                             <Table.HeaderCell>Date (yyyy-mm-dd)</Table.HeaderCell>
                             <Table.HeaderCell>Category</Table.HeaderCell>
                             <Table.HeaderCell>Edit</Table.HeaderCell>
@@ -51,7 +91,6 @@ const CommunityPostsPane = () => {
                             <Table.Row key={id}>
                                 <Table.Cell>{p.id}</Table.Cell>
                                 <Table.Cell>{p.title}</Table.Cell>
-                                {/* <Table.Cell>{p.description}</Table.Cell> */}
                                 <Table.Cell>{p.date}</Table.Cell>
                                 <Table.Cell>
                                     {p.category}
@@ -98,16 +137,16 @@ const CommunityPostsPane = () => {
                             ? <h1>Edit Post</h1>
                             : <h1>Create Post</h1>
                         }
-                        <Image className="admin-modal-image" fluid src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                        <PhotoUploader />
                         <Form>
                             <Form.Field
                                 control={Input}
                                 placeholder="What's happening?"
                                 name="title"
                                 label="Title"
-                                value={postModalData.title || ""}
-                            // error={postModalData.title < 0}
-                            // onChange={handlePostDataChange}
+                                defaultValue={postModalData.title || ""}
+                                error={errorTitle}
+                                onChange={handlePostDataChange}
                             />
                             <Form.Field
                                 control={TextArea}
@@ -115,21 +154,20 @@ const CommunityPostsPane = () => {
                                 name="description"
                                 label="Description"
                                 rows="10"
-                                // error={postModalData.description < 0}
-                                value={postModalData.description || ""}
-                            // onChange={handlePostDataChange}
-                            />
-                            <Form.Field
-                                control={Input}
-                                placeholder={new Date().toDateString()}
-                                name="date"
-                                type="date"
-                                label="Date"
-                                value={new Date(postModalData.date) || ""}
-                            // onChange={handlePostDataChange}
+                                error={errorDescription}
+                                defaultValue={postModalData.description || ""}
+                                onChange={handlePostDataChange}
                             />
                             <Form.Field>
-                                <Select className="admin-select" placeholder={postModalData.category} options={communityCategories} />
+                                <label>Community Page Category</label>
+                                <Select
+                                    className="admin-select"
+                                    placeholder="Choose a Category"
+                                    defaultValue={postModalData.category}
+                                    error={errorCategory}
+                                    options={communityCategories}
+                                    onChange={handlePostCategoryChange}
+                                />
                             </Form.Field>
                         </Form>
                     </Modal.Description>
@@ -141,7 +179,7 @@ const CommunityPostsPane = () => {
                     />
                     <Button
                         content="Save"
-                        onClick={() => setOpenPostModal(false)}
+                        onClick={() => handleSave()}
                         positive
                     />
                 </Modal.Actions>
