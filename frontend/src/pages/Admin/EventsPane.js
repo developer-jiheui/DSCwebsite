@@ -20,7 +20,7 @@ const EventsPane = () => {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setEvents(data.data);
             });
     }, []);
@@ -41,7 +41,7 @@ const EventsPane = () => {
                     })                    
                 }).then(response => response.json())
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         let index = events.findIndex(n => n._id === eventModalData._id);
                         events[index] = res.data;
                         setEventModalData({});
@@ -68,7 +68,7 @@ const EventsPane = () => {
                 }).then(response => response.json())
                     .then(data => {
                         // server response
-                        console.log(data);
+                        // console.log(data);
                         // add the new item to our events list
                         events.unshift(data.data)
                         // close the modal and reset our data model
@@ -98,7 +98,7 @@ const EventsPane = () => {
                     post_id: emd.post_id
                 })
             }).then(data => {
-                console.log(data);
+                // console.log(data);
                 // successful return we want to remove it from 
                 // the events list on the front end too
                 setEvents(events.filter(x => x._id !== emd._id));

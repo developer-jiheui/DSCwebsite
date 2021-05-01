@@ -19,7 +19,7 @@ const NewsPane = () => {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setNews(data.data);
             });
     }, []);
@@ -39,7 +39,7 @@ const NewsPane = () => {
                     post_id: n.post_id
                 })
             }).then(data => {
-                console.log(data);
+                // console.log(data);
                 setNews(news.filter(x => x._id !== n._id));
             }).catch(error => {
                 // in case there's a terrible error
@@ -62,15 +62,12 @@ const NewsPane = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        post_type: "News",
                         id: newsModalData._id,
-                        title: newsModalData.title,
-                        description: newsModalData.description,
-                        is_featured: newsModalData.is_featured
+                        data: newsModalData
                     })
                 }).then(response => response.json())
                     .then(data => {
-                        console.log(data);                        
+                        // console.log(data);                        
                         let index = news.findIndex(n => n._id === newsModalData._id);
                         news[index] = data.data;
                         setNewsModalData({});
@@ -95,7 +92,7 @@ const NewsPane = () => {
                 }).then(response => response.json())
                     .then(data => {
                         // server success response
-                        console.log(data);
+                        // console.log(data);
                         // add the new news item to our list
                         news.unshift(data.data)
                         // reset our data model
@@ -121,10 +118,10 @@ const NewsPane = () => {
     const handleOpeningNewsModal = (n) => {
         // initialize the data model
         setNewsModalData({
+            _id: n._id,
             title: n.title || "",
             description: n.description || "",
-            is_featured: n.is_featured || false,
-            _id: n._id
+            is_featured: n.is_featured || false
         });
         // initialize our form errors
         setErrorTitle(false);

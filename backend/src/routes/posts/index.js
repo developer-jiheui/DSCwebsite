@@ -201,27 +201,12 @@ router.post(
  * @desc    Posts routing to update a News post
  * @access  Public
  */
-router.put("/news",
-    [
-        check("title", "A Title is required").not().isEmpty(),
-        check("description", "A description is required").not().isEmpty(),
-        check("post_type", "Post Type is required").not().isEmpty()
-    ],
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
-        const { id, title, description, is_featured } = req.body;
+router.put("/news", async (req, res) => {
+        const { id, data } = req.body;
 
         let updatedPost;
         try {
-            updatedPost = await News.findOneAndUpdate({ _id: id }, {
-                title: title,
-                description: description,
-                is_featured: is_featured
-            }, { new: true, useFindAndModify: false });
+            updatedPost = await News.findOneAndUpdate({ _id: id }, data, { new: true, useFindAndModify: false });
         } catch (error) {
             console.log(error);
             return res.status(500).send("Error saving news!");
@@ -239,14 +224,8 @@ router.put("/news",
  * @access  Public
  */
 router.put("/event",
-    [
-        check("title", "A Title is required").not().isEmpty(),
-        check("description", "A description is required").not().isEmpty(),
-        check("post_type", "Post Type is required").not().isEmpty()
-    ],
     async (req, res) => {
         const { id, data } = req.body;
-
         let updatedPost;
         try {
             let d = new Date(data.event_date);
