@@ -19,7 +19,7 @@ const Admin = () => {
     //         method: 'GET',
     //         headers: {
     //             'Content-Type': 'application/json',
-    //             'x-auth-token': `${localStorage.getItem("jwt")}`
+    //             'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
     //         }
     //     }).then(response => response.json())
     //     .then(res => {

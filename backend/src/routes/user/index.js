@@ -29,6 +29,7 @@ const upload = multer({ storage: storage });
 
 route.get("/self", auth, async (req, res) => {
   try {
+    console.log(req.login);
     let user = await User.findOne({ login: req.login.id });
     res.status(200).json(user);
   } catch (error) {

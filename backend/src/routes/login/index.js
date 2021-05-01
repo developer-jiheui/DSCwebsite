@@ -60,7 +60,7 @@ route.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 10 },
+        { expiresIn: 1200 },
         (error, token) => {
           if (error) throw error;
           res.json({ token });

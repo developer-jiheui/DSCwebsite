@@ -20,7 +20,7 @@ import "./index.css";
 const MIN_WIDTH = 899;
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("jwt") !== null);
 
   const handleLogout = () => {
     fetch("http://localhost:5000/login/logout", {
@@ -30,13 +30,13 @@ const Navbar = () => {
         'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
       }
     }).then(response => response.json())
-    .then(res => {
-      if(res.status === 'OK'){
-        console.log("LOGOUT", res);
-        localStorage.clear();
-        setIsLoggedIn(false);   
-      } 
-    })
+      .then(res => {
+        if (res.status === 'OK') {
+          console.log("LOGOUT", res);
+          localStorage.clear();
+          setIsLoggedIn(false);
+        }
+      })
   }
 
   const items = [
@@ -71,7 +71,7 @@ const Navbar = () => {
       path: "#",
     },
   ];
-  
+
   const itemsDropdownUserMenu = [
     {
       label: "Profile",
@@ -85,7 +85,7 @@ const Navbar = () => {
       onClick: handleLogout
     },
   ];
-  
+
   const itemsDropdownCommunity = [
     {
       label: "Welcome!",
@@ -135,7 +135,7 @@ const Navbar = () => {
       path: "/qanda"
     }
   ];
-  
+
   const dropdowns = {
     "About Us": itemsDropdownAbout,
     "Community": itemsDropdownCommunity,
@@ -260,17 +260,19 @@ const Navbar = () => {
           headers: {
             'Content-Type': 'application/json',
             'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
-          }, 
+          },
           body: JSON.stringify({
             email: emailUsername,
             password: password
           })
         }).then(response => response.json())
           .then((res) => {
-            if(res.errors) {
+            if (res.errors) {
               alert(res.errors[0].msg);
+            } else if (res.error) {
+              alert(res.error)
             } else {
-              console.log("JUST LOGGED IN" , res);
+              console.log("JUST LOGGED IN", res);
               localStorage.setItem("jwt", res.token);
               setIsLoggedIn(true);
               setOpenLoginModal(false);
@@ -424,16 +426,18 @@ const Navbar = () => {
   });
 
   useEffect(() => {
+    console.log("BEFORE: ", localStorage.getItem("jwt"));
     fetch("http://localhost:5000/user/self", {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
-        }
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': `Bearer ${localStorage.getItem("jwt")}`
+      }
     }).then(response => response.json())
-    .then(res => {
+      .then(res => {
+        console.log("AFTER: ", localStorage.getItem("jwt"));
         console.log("HAHAHAHHAH", res);
-        if(res && res.isExec) {
+        if (res && res.isExec) {
           //if this is admin, add their special menu
           itemsDropdownUserMenu.push({
             label: "Admin Settings",
@@ -441,16 +445,16 @@ const Navbar = () => {
             path: "/admin"
           });
         }
-        if(res.msg ) {
-          console.log("Setting isLoggedIn to false", res.error);
-          setIsLoggedIn(false);
-          localStorage.clear();
+        if (res.msg) {
+          // console.log("Setting isLoggedIn to false", res.error);
+          // setIsLoggedIn(false);
+          // localStorage.clear();
         } else {
           console.log("Setting isLoggedIn to Something: ", localStorage.getItem("jwt"));
           setIsLoggedIn(localStorage.getItem("jwt") !== null);
         }
-    });
-})
+      }, []);
+  })
 
   // use Effect to keep track of the browser window width:
   useEffect(() => {
