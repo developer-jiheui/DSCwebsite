@@ -2,20 +2,21 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 module.exports = function (req, res, next) {
-  // get the token from the header
+  // get token form the header:
   const token = req.header("x-auth-token");
 
+  // check if no token:
   if (!token) {
-    res.status(401).json({ msg: "No token, access denied!" });
+    return res.status(401).json({ msg: "No token, authorization denied!" });
   }
 
+  // verify the token:
   try {
-    // if there is a token, just verify (decode) and send to the user
     const decoded = jwt.verify(token, config.get("jwtSecret"));
-    req.user = decoded.user;
-    console.log(req.user);
+    req.login = decoded.login;
     next();
   } catch (error) {
+    console.log(error.message);
     res.status(401).json({ msg: "Token is not valid!" });
   }
 };
