@@ -31,7 +31,6 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 import "./index.css";
-import PhotoUploader from "../../../components/PhotoUploader";
 import { Router } from "react-router-dom";
 
 // TODO user authentication

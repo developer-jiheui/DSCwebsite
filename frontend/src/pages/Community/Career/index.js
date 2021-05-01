@@ -128,18 +128,13 @@ const CareerPage = () => {
     });
         const data = await posts.json();
         var postsList = data;
-//        console.log(data);
+    //        console.log(data);
         setPosts(postsList)
     }, []);
 
     // Posting Modal
     const handleOpenCreateModal = () => {
         setOpenCreateCareerPostModal(true);
-
-    const createJobPost = (e) => {
-        //TODO: validate
-        //TODO: create job post and add to jobs list
-        setOpenCreateCareerPostModal(false);
     }
 
     // Create and add tags
@@ -316,7 +311,8 @@ const CareerPage = () => {
                 <Footer />
             </Navbar>
         </>
-    );
+    );                     
 }
+
 
 export default CareerPage;
