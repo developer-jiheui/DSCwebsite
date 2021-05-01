@@ -43,8 +43,11 @@ const News = () => {
                   size="medium"
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 />
+                <div className ="title_minheight">
                 <h2>{newsItem.title}</h2>
-                <p className="justified-text">{newsItem.description}</p>
+                </div>
+                <div className="body_minheight">
+                <p className="justified-text maxlines">{newsItem.description}</p></div>
                 <Grid columns="2" stackable>
                   <Grid.Column>
                     <h3 style={{ display: "inline" }}>Date</h3>

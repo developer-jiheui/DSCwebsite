@@ -81,8 +81,12 @@ const Events = () => {
                   className="poster-size-image"
                   src="https://react.semantic-ui.com/images/wireframe/image.png"
                 />
+                <div className ="title_minheight ">
                 <h2>{event.title}</h2>
-                <p className="justified-text">{event.description}</p>
+                </div>
+                <div className="body_minheight">
+                <p className="justified-text maxlines">{event.description}</p>
+                </div>
                 <Grid columns="2" stackable>
                   <Grid.Column>
                     <h3 style={{ display: "inline" }}>Date</h3>
