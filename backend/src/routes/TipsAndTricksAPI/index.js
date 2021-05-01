@@ -64,6 +64,28 @@ route.get("/community/posting/tipsandtricks/:id", function(req, res){
 
 });
 
+
+// Method for searching by tag (filtering)
+route.post("/community/tipsandtricks/tag/", function(req, res){
+
+  var textToSearch = req.body.searchWords;
+  if (textToSearch == "All")
+    textToSearch = "";
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+
+    dbo.collection(collectionName).find({tags: new RegExp(textToSearch, 'i')}).toArray(function(err, result) {
+      if (err) throw err;
+      //console.log(result)
+      res.send(result)
+      db.close();
+    });
+  });
+
+});
+
 // Needs error checking.
 // Creates a post for something to sell in the buyandsell feed
 route.post("/community/createpost/", function(req, res){

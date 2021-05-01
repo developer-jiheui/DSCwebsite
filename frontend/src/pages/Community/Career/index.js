@@ -53,18 +53,17 @@ const CareerPage = () => {
 
     // Fetches posts
   //TODO needs interaction with filtering, run specific queries based on our criteria
-  const loadPosts = async () =>
+  const loadPosts = async(word="") =>
   {
-      const posts1 = await fetch("http://localhost:5000/buysell/community/buyandsell/",
-      {
-        method: "GET",
-        headers: {
-            "Content-Type": "text/plain"
-        }
-     });
+    console.log(word);
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({searchWords: word})
+    };
+      const posts1 = await fetch("http://localhost:5000/career/community/career/tag/", requestOptions);
       const data1 = await posts1.json();
-      var postsList1 = data1;
-      setPosts(postsList1)
+      setPosts(data1)
   }
     
     const createJobPost = (e) =>{
@@ -194,7 +193,7 @@ const CareerPage = () => {
 
     return (
         <>
-            <Navbar>
+            {/* <Navbar> */}
                 <Container>
                     <ContentContainer>
                         <h1>Launch Your Career</h1>
@@ -217,7 +216,7 @@ const CareerPage = () => {
                                 <Button icon="filter" color="purple" onClick={toggleDropDown}></Button>
                                 <Button icon="list" color="purple"></Button>
                                 { showDropDown ? 
-                                <DropdownFilter label={["Looking For", "Selling", "Computer Equipment", "Books", "Free"]} components={5} clickFunction={loadPosts}>
+                                <DropdownFilter label={["All", "Selling", "Free", "Books", "Computers"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Selling"), () => loadPosts("Free"), () => loadPosts("Books"), () => loadPosts("Computers")]}>
                                 </DropdownFilter> : null }
                             </Grid.Column>
                         </Grid>
@@ -309,7 +308,7 @@ const CareerPage = () => {
                     </Modal.Actions>
                 </Modal>
                 <Footer />
-            </Navbar>
+            {/* </Navbar> */}
         </>
     );                     
 }

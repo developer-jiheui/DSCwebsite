@@ -194,7 +194,7 @@ const BuyAndSell = () => {
 
   return (
     <>
-      <Navbar>
+      {/* <Navbar> */}
         <Container>
         <ContentContainer>
         <Divider></Divider>
@@ -253,7 +253,7 @@ const BuyAndSell = () => {
               
         </Container>
         <Footer />
-      </Navbar>
+      {/* </Navbar> */}
       </>
   );                  
 }

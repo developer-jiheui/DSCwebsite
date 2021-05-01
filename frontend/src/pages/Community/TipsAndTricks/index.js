@@ -60,24 +60,23 @@ const TipsAndTricks = () => {
   });
     const data = await posts.json();
     var postsList = data;
-    console.log(data);
+    //console.log(data);
     setPosts(postsList)
   }, []);
 
   // Fetches posts
   //TODO needs interaction with filtering, run specific queries based on our criteria
-  const loadPosts = async () =>
+  const loadPosts = async(word="") =>
   {
-      const posts1 = await fetch("http://localhost:5000/tipsandtricks/community/tipsandtricks/",
-      {
-        method: "GET",
-        headers: {
-            "Content-Type": "text/plain"
-        }
-     });
+    console.log(word);
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({searchWords: word})
+    };
+      const posts1 = await fetch("http://localhost:5000/tipsandtricks/community/tipsandtricks/tag/", requestOptions);
       const data1 = await posts1.json();
-      var postsList1 = data1;
-      setPosts(postsList1)
+      setPosts(data1)
   }
 
   // Controls what hapens when user submits post info
@@ -190,7 +189,7 @@ const TipsAndTricks = () => {
 
   return (
     <>
-      <Navbar>
+      {/* <Navbar> */}
         <Container>
           <ContentContainer>
             <h1>Tips & Tricks For Success</h1>
@@ -203,7 +202,7 @@ const TipsAndTricks = () => {
               <Search onSearchChange={handleSearchChange} 
                                 loading={loading} 
                                 onResultSelect={
-                                (e, data) => {window.location.href = "http://localhost:3000/community/postingtipsandtricks/"+ data.result._id;}
+                                (e, data) => {window.location.href = "http://localhost:3000/community/tipsandtricks/"+ data.result._id;}
                                 }
                                 results={results}
                                 value={searchValue} 
@@ -213,7 +212,7 @@ const TipsAndTricks = () => {
                 <Button icon="filter" color="purple" onClick={toggleDropDown}></Button>
                 <Button icon="list" color="purple"></Button>
                 { showDropDown ? 
-                <DropdownFilter label={["Looking For", "Selling", "Computer Equipment", "Books", "Free"]} components={5} clickFunction={loadPosts}>
+                <DropdownFilter label={["All", "Selling", "Free", "Books", "Computers"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Selling"), () => loadPosts("Free"), () => loadPosts("Books"), () => loadPosts("Computers")]}>
                 </DropdownFilter> : null }
               </Grid.Column>
             </Grid>
@@ -226,7 +225,7 @@ const TipsAndTricks = () => {
                     <Card.Header>{post.title}</Card.Header>
                     <Card.Meta>{post.date}</Card.Meta>
                     <Card.Description>
-                      {post.description.slice(0,197) + " ..." + console.log(post)}
+                      {post.description.slice(0,197) + " ..."}
                     </Card.Description>
                     <Card.Meta id="post-tag-list">
                       {post.tags != undefined && post.tags.split(",").map((tag) =>
@@ -294,7 +293,7 @@ const TipsAndTricks = () => {
           </Modal.Actions>
         </Modal>
         <Footer />
-      </Navbar>
+      {/* </Navbar> */}
     </>
   );
 }

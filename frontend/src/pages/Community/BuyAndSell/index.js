@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import _ from 'lodash'
-import { Component } from "react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import ContentContainer from "../../../components/ContentContainer";
@@ -27,7 +26,6 @@ import {
   Label
 } from "semantic-ui-react";
 
-import { Formik } from "formik";
 import * as yup from "yup";
 
 import "./index.css";
@@ -87,10 +85,9 @@ const BuyAndSell = () => {
 
   // Fetches posts
   //TODO needs interaction with filtering, run specific queries based on our criteria
-  const loadPosts = async (word) =>
+  const loadPosts = async(word="") =>
   {
-
-    console.log("HERE " + word);
+    console.log(word);
     const requestOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -98,7 +95,6 @@ const BuyAndSell = () => {
     };
       const posts1 = await fetch("http://localhost:5000/buysell/community/buysell/tag/", requestOptions);
       const data1 = await posts1.json();
-      console.log(data1)
       setPosts(data1)
   }
 
@@ -146,7 +142,7 @@ const BuyAndSell = () => {
     // Post new posting
     fetch("http://localhost:5000/buysell/community/createpost/", requestOptions)
     .then(response => {
-      //console.log(response.json());
+      console.log(response.json());
     });
 
     // Open post modal
@@ -216,7 +212,7 @@ const BuyAndSell = () => {
 
   return (
     <>
-      <Navbar>
+      {/* <Navbar> */}
         <Container>
           <ContentContainer>
             <h1>Buy & Sell</h1>
@@ -236,18 +232,16 @@ const BuyAndSell = () => {
                 className="full-width-search" 
                 placeholder="Search posts"/>
               </Grid.Column>
-
               <Grid.Column textAlign="right" width="4">
                 <Button icon="filter" color="purple" onClick={toggleDropDown}></Button>
                 <Button icon="list" color="purple"></Button>
                 { showDropDown ? 
-                <DropdownFilter label={["Selling", "Free", "Books", "Computer Equipment"]} components={4} clickFunction={loadPosts}>
+                <DropdownFilter label={["All", "Selling", "Free", "Books", "Computers"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Selling"), () => loadPosts("Free"), () => loadPosts("Books"), () => loadPosts("Computers")]}>
                 </DropdownFilter> : null }
               </Grid.Column>
 
             </Grid>
             <Divider></Divider>
-
             <Card.Group centered stackable>
               {posts.length === 0 && <p>No posts to show...</p>} 
               { posts[0] && posts.map((post, id) =>
@@ -362,7 +356,7 @@ const BuyAndSell = () => {
           </Modal.Actions>
         </Modal>
         <Footer />
-      </Navbar>
+      {/* </Navbar> */}
     </>
   );
 }
