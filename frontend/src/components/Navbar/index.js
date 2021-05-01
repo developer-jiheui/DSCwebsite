@@ -21,6 +21,7 @@ const MIN_WIDTH = 899;
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("jwt") !== null);
+  const [userFirstName, setUserFirstName] = useState("");
 
   const handleLogout = () => {
     fetch("http://localhost:5000/login/logout", {
@@ -400,7 +401,7 @@ const Navbar = () => {
 
     if (label === "Login") {
       if (isLoggedIn) {
-        return <Dropdown key="usermenu" label={`Hi, ${"bob"}`} icon="user" itemList={itemsDropdownUserMenu} />
+        return <Dropdown key="usermenu" label={`Hi, ${userFirstName}`} icon="user" itemList={itemsDropdownUserMenu} />
       } else {
         return (
           <div
@@ -425,36 +426,36 @@ const Navbar = () => {
     );
   });
 
-  // useEffect(() => {
-  //   console.log("BEFORE: ", localStorage.getItem("jwt"));
-  //   fetch("http://localhost:5000/user/self", {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'x-auth-token': `${localStorage.getItem("jwt")}`
-  //     }
-  //   }).then(response => response.json())
-  //     .then(res => {
-  //       // console.log("AFTER: ", localStorage.getItem("jwt"));
-  //       // console.log("HAHAHAHHAH", res);
-  //       if (res && res.isExec) {
-  //         //if this is admin, add their special menu
-  //         itemsDropdownUserMenu.push({
-  //           label: "Admin Settings",
-  //           icon: "cogs",
-  //           path: "/admin"
-  //         });
-  //       }
-  //       if (res.msg) {
-  //         // console.log("Setting isLoggedIn to false", res.error);
-  //         // setIsLoggedIn(false);
-  //         // localStorage.clear();
-  //       } else {
-  //         console.log("Setting isLoggedIn to Something: ", localStorage.getItem("jwt"));
-  //         setIsLoggedIn(localStorage.getItem("jwt") !== null);
-  //       }
-  //     }, []);
-  // })
+  useEffect(() => {
+    fetch("http://localhost:5000/user/self", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': `${localStorage.getItem("jwt")}`
+      }
+    }).then(response => response.json())
+      .then(res => {
+        console.log(res);
+        if(res && res.firstName) {
+          setUserFirstName(res.firstName);
+        }
+        if (res && res.isExec) {
+          //if this is admin, add their special menu
+          itemsDropdownUserMenu.push({
+            label: "Admin Settings",
+            icon: "cogs",
+            path: "/admin"
+          });
+        }
+        if (res && res.msg) {
+          // console.log("Setting isLoggedIn to false", res.error);
+          // setIsLoggedIn(false);
+          // localStorage.clear();
+        } else {
+          setIsLoggedIn(localStorage.getItem("jwt") !== null);
+        }
+      }, []);
+  })
 
   // use Effect to keep track of the browser window width:
   useEffect(() => {
