@@ -20,9 +20,9 @@ const Dropdown = ({ icon, label, itemList }) => {
     };
   }, []);
 
-  const renderedItemList = itemList.map(({ label, icon, path }) => {
+  const renderedItemList = itemList.map(({ label, icon, path, onClick }) => {
     return (
-      <NavLink key={`${"dropdown. " + label}`} className="item" to={path}>
+      <NavLink key={`${"dropdown. " + label}`} className="item" to={path} onClick={onClick}>
         <div className={`item`} key={`${"dropdown. " + label}`}>
           <i className={`${icon} icon`}></i> {label}
         </div>

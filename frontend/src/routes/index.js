@@ -18,8 +18,12 @@ import BuyAndSell from "../pages/Community/BuyAndSell";
 import Welcome from "../pages/Community/Welcome";
 import CommunityChat from "../pages/Community/CommunityChat";
 import QandA from "../pages/qanda";
+import LandingPage from "../pages/LandingPage";
 
 export default function Routes() {
+
+  
+
   return (
     <Switch>
       <Route path="/" exact component={Homepage} />
@@ -40,6 +44,7 @@ export default function Routes() {
       <Route path="/qanda" component={QandA} />
       <Route path="/news" exact component={News} />
       <Route path="/news/:id" component={NewsItem} />
+      <Route path="*" component={() => <LandingPage message="404 Not Found"/>} />
     </Switch>
   );
 }
