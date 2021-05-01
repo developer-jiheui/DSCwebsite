@@ -132,7 +132,7 @@ const EventsPane = () => {
             title: emd.title || "",
             description: emd.description || "",
             event_date: emd.event_date ? formatDate(emd.event_date) : formatDate(new Date()),
-            is_featured: emd.is_featured || false,
+            is_featured: emd.is_featured || true,
             is_countdown: emd.is_countdown || false
         });
         // initialize our errors for ui purposes

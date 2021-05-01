@@ -13,7 +13,7 @@ const config = require("config");
  */
 router.get("/events", async (req, res) => {
     try {
-        let posts = await Event.find().sort([['event_date', 1]]);       
+        let posts = await Event.find().sort([['post_date', -1]]);       
         res.status(200).json({
             message: `Retrived ${posts.length} posts of type Event`,
             data: posts
@@ -30,7 +30,7 @@ router.get("/events", async (req, res) => {
  */
 router.get("/events/featured", async (req, res) => {
     try {
-        let posts = await Event.find({is_featured: true}).sort([['event_date', 1]]);       
+        let posts = await Event.find({is_featured: true}).sort([['post_date', -1]]);       
         res.status(200).json({
             message: `Retrived ${posts.length} posts of featured Events`,
             data: posts
@@ -49,7 +49,7 @@ router.get("/events/featured", async (req, res) => {
 router.get("/events/:id", async (req, res) => {
     const post_id = req.params.id;
     try {
-        let posts = await Event.find({_id: post_id}).sort([['event_date', 1]]);       
+        let posts = await Event.find({_id: post_id});       
         res.status(200).json({
             message: `Retrived event ${post_id}`,
             data: posts
@@ -104,7 +104,7 @@ router.get("/news/featured", async (req, res) => {
 router.get("/news/:id", async (req, res) => {
     const post_id = req.params.id;
     try {
-        let posts = await News.find({_id: post_id}).sort([['event_date', 1]]);       
+        let posts = await News.find({_id: post_id});       
         res.status(200).json({
             message: `Retrived news item ${post_id}`,
             data: posts

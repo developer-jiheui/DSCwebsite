@@ -121,7 +121,7 @@ const NewsPane = () => {
             _id: n._id,
             title: n.title || "",
             description: n.description || "",
-            is_featured: n.is_featured || false
+            is_featured: n.is_featured || true
         });
         // initialize our form errors
         setErrorTitle(false);

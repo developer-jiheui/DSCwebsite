@@ -25,7 +25,7 @@ const News = () => {
       }    
     }).then(response => response.json())
     .then(data => {
-      console.log(data.message);
+      // console.log(data.message);
       setNews(data.data);
     });    
   }, []);

@@ -39,7 +39,7 @@ const Event = () => {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setEvent(data.data[0]);
             });
     }, []);
