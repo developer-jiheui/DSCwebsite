@@ -134,7 +134,7 @@ const TipsAndTricks = () => {
     // Set the new tag
     setTag(e.target.value)
 
-    if (e.target.value.length > 1)
+    if (e.target.value.trim().length > 1)
     {
       // When comma entered, add the new tag to the list
       var last = e.target.value[e.target.value.length-1];
