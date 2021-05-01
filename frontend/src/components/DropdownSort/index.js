@@ -3,7 +3,7 @@ import { Label, Form, Radio } from "semantic-ui-react";
 
 import "./index.css";
 
-const DropdownFilter = ({ label, clickFunctions }) => {
+const DropdownSort = ({ label, clickFunctions }) => {
 
   var renderedItemList = [];
 
@@ -17,7 +17,7 @@ const DropdownFilter = ({ label, clickFunctions }) => {
     <>
         <Form>
             <br/>
-            <h5>Filter by:</h5>
+            <h5>Sort by:</h5>
             <div>
             {renderedItemList}
             </div>
@@ -26,4 +26,4 @@ const DropdownFilter = ({ label, clickFunctions }) => {
   );
 };
 
-export default DropdownFilter;
+export default DropdownSort;

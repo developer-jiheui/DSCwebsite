@@ -163,10 +163,7 @@ const BuyAndSell = () => {
     var thePost = data[0];
 
     // Set the new information
-    setPost({post: thePost}, () =>{
-      //console.log(post);
-      
-    });
+    setPost(thePost);
     setTitle(thePost.title);
     setPrice(thePost.price);
     setCommentList(thePost.comments);
@@ -195,28 +192,27 @@ const BuyAndSell = () => {
 
   return (
     <>
-      <Navbar>
+      <Navbar />
         <Container>
         <ContentContainer>
         <Divider></Divider>
             { post != undefined && <>
               <Image size="large" centered src="https://react.semantic-ui.com/images/wireframe/image.png" />
                     <h1>{title} - {price}</h1>
-                    <p>Posted March 2nd, 2021</p>
+                    <p>{post.date}</p>
                     <Card.Description>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      {post.description}
                     </Card.Description>
                     <Card.Meta id="post-tag-list">
-                      <a>#new</a>
-                      <a>#loremtag</a>
-                      <a>#ipsum</a>
-                      <a>#dolor</a>
+                     {post.tags != undefined && post.tags.split(",").map((tag, id) =>
+                     {
+                        return <a> #{tag}</a>
+                     })}
                     </Card.Meta>
                   <Card.Content extra>
                     <Grid columns="2">
                       <Grid.Column>
-                        <Icon name="point" />
-                      Vancouver, BC
+                        <Icon name="" />
                       </Grid.Column>
                       <Grid.Column textAlign="right">
                         <Button onClick={alert} color="purple">Contact</Button>
@@ -255,7 +251,6 @@ const BuyAndSell = () => {
               
         </Container>
         <Footer />
-      </Navbar>
       </>
   );                  
 }

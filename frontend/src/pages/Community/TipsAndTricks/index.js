@@ -23,6 +23,7 @@ import "./index.css";
 import * as yup from "yup";
 import TagItem from "../../../components/TagItem";
 import DropdownFilter from "../../../components/DropdownFilter";
+import DropdownSort from "../../../components/DropdownSort";
 import ReportContentAction from "../../../components/ReportContentAction";
 
 const stubPosts = [
@@ -31,7 +32,8 @@ const stubPosts = [
 
 const TipsAndTricks = () => {
   const [openCreateTipPostModal, setOpenCreateTipPostModal] = useState(false);
-  const [showDropDown, setShowDropDown] = useState(false)
+  const [showDropDownFilter, setShowDropDownFilter] = useState(false)
+  const [showDropDownSort, setShowDropDownSort] = useState(false)
   const [posts, setPosts] = useState([])
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -60,24 +62,23 @@ const TipsAndTricks = () => {
   });
     const data = await posts.json();
     var postsList = data;
-    console.log(data);
+    //console.log(data);
     setPosts(postsList)
   }, []);
 
   // Fetches posts
   //TODO needs interaction with filtering, run specific queries based on our criteria
-  const loadPosts = async () =>
+  const loadPosts = async(word="") =>
   {
-      const posts1 = await fetch("http://localhost:5000/tipsandtricks/community/tipsandtricks/",
-      {
-        method: "GET",
-        headers: {
-            "Content-Type": "text/plain"
-        }
-     });
+    console.log(word);
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({searchWords: word})
+    };
+      const posts1 = await fetch("http://localhost:5000/tipsandtricks/community/tipsandtricks/tag/", requestOptions);
       const data1 = await posts1.json();
-      var postsList1 = data1;
-      setPosts(postsList1)
+      setPosts(data1)
   }
 
   // Controls what hapens when user submits post info
@@ -133,7 +134,7 @@ const TipsAndTricks = () => {
     // Set the new tag
     setTag(e.target.value)
 
-    if (e.target.value.length > 0)
+    if (e.target.value.trim().length > 1)
     {
       // When comma entered, add the new tag to the list
       var last = e.target.value[e.target.value.length-1];
@@ -159,38 +160,68 @@ const TipsAndTricks = () => {
     setOpenCreateTipPostModal(true);
   }
 
-  const toggleDropDown = () => {setShowDropDown(!showDropDown);}
+  const initialState = {
+      loading: false,
+      results: [],
+      value: '',
+    }
+    
+    const handleSearchChange = async(e) => {
+  
+      //console.log(e.target.value);
+      setResults([]);
+  
+      setSearchValue(e.target.value);
+  
+      const requestOptions = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({searchWords: e.target.value})
+      };
+  
+      // Post new posting
+      const dataset = await fetch("http://localhost:5000/tipsandtricks/community/posting/tipsandtricks/q/", requestOptions)
+      const info = await dataset.json();
+  
+      setResults(info);
+    }
 
+    const flipToFilter = () => {
+      setShowDropDownFilter(!showDropDownFilter); 
+      setShowDropDownSort(false)
+    }
+  
+    const flipToSort = () => {
+      setShowDropDownSort(!showDropDownSort); 
+      setShowDropDownFilter(false)
+    }
 
-    const initialState = {
-        loading: false,
-        results: [],
-        value: '',
+  const sortPosts = (value, asc) => {
+    if (posts != undefined)
+    {
+      var sorted = [];
+      if (value == "Price")
+      {
+        if (asc)
+          sorted = [...posts].sort((first, second) => {return (parseFloat(first.price) > parseFloat(second.price)) ? 1 : -1});
+        else
+          sorted = [...posts].sort((first, second) => {return (parseFloat(first.price) < parseFloat(second.price)) ? 1 : -1});
       }
-     
-      const handleSearchChange = async(e) => {
-    
-        //console.log(e.target.value);
-        setResults([]);
-    
-        setSearchValue(e.target.value);
-    
-        const requestOptions = {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({searchWords: e.target.value})
-        };
-    
-        // Post new posting
-        const dataset = await fetch("http://localhost:5000/tipsandtricks/community/posting/tipsandtricks/q/", requestOptions)
-        const info = await dataset.json();
-    
-        setResults(info);
+      else
+      {
+        if (asc)
+          sorted = [...posts].sort((first, second) => {return (first.title > second.title) ? 1 : -1});
+        else
+          sorted = [...posts].sort((first, second) => {return (first.title < second.title) ? 1: -1});
       }
+      
+      setPosts(sorted);
+    }
+  }
 
   return (
     <>
-      <Navbar>
+      <Navbar />
         <Container>
           <ContentContainer>
             <h1>Tips & Tricks For Success</h1>
@@ -203,18 +234,22 @@ const TipsAndTricks = () => {
               <Search onSearchChange={handleSearchChange} 
                                 loading={loading} 
                                 onResultSelect={
-                                (e, data) => {window.location.href = "http://localhost:3000/community/postingtipsandtricks/"+ data.result._id;}
+                                (e, data) => {window.location.href = "http://localhost:3000/community/tipsandtricks/"+ data.result._id;}
                                 }
                                 results={results}
                                 value={searchValue} 
                                 className="full-width-search" 
                                 placeholder="Search posts"/>                </Grid.Column>
               <Grid.Column textAlign="right" width="4">
-                <Button icon="filter" color="purple" onClick={toggleDropDown}></Button>
-                <Button icon="list" color="purple"></Button>
-                { showDropDown ? 
-                <DropdownFilter label={["Looking For", "Selling", "Computer Equipment", "Books", "Free"]} components={5} clickFunction={loadPosts}>
-                </DropdownFilter> : null }
+                <Button icon="filter" color="purple" onClick={flipToFilter}></Button>
+                <Button icon="list" color="purple" onClick={flipToSort}></Button>
+                { showDropDownFilter ? 
+                    <DropdownFilter label={["All", "Tip", "Trick", "Other"]} clickFunctions={[() => loadPosts("All"), () => loadPosts("Tip"), () => loadPosts("Trick"), () => loadPosts("Other")]}>
+                    </DropdownFilter> : null }
+                    
+                    { showDropDownSort ? 
+                      <DropdownSort label={["Alphabetical", "Reverse Alphabetical"]} clickFunctions={[() => sortPosts("Alpha", true), () => sortPosts("Alpha", false),]}>
+                      </DropdownSort> : null }
               </Grid.Column>
             </Grid>
             <Divider />
@@ -226,7 +261,7 @@ const TipsAndTricks = () => {
                     <Card.Header>{post.title}</Card.Header>
                     <Card.Meta>{post.date}</Card.Meta>
                     <Card.Description>
-                      {post.description.slice(0,197) + " ..." + console.log(post)}
+                      {post.description.slice(0,197) + " ..."}
                     </Card.Description>
                     <Card.Meta id="post-tag-list">
                       {post.tags != undefined && post.tags.split(",").map((tag) =>
@@ -294,7 +329,6 @@ const TipsAndTricks = () => {
           </Modal.Actions>
         </Modal>
         <Footer />
-      </Navbar>
     </>
   );
 }

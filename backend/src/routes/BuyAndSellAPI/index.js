@@ -88,14 +88,16 @@ route.post("/community/posting/buysell/q/", function(req, res){
 route.post("/community/buysell/tag/", function(req, res){
 
   var textToSearch = req.body.searchWords;
+  if (textToSearch == "All")
+    textToSearch = "";
 
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db(databaseName);
 
-    dbo.collection(collectionName).find({tags: textToSearch}).toArray(function(err, result) {
+    dbo.collection(collectionName).find({tags: new RegExp(textToSearch, 'i')}).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result)
+      //console.log(result)
       res.send(result)
       db.close();
     });
@@ -121,7 +123,7 @@ route.post("/community/createpost/", function(req, res){
 
 
 // Needs to be filled out, allows updating of a post
-// route.get("/community/updatepost/:id", function(req, res){
+// route.post("/community/updatepost/:id", function(req, res){
   //console.log(req.body);
   //console.log(req.params.id);
 
@@ -130,6 +132,25 @@ route.post("/community/createpost/", function(req, res){
   //   var dbo = db.db("test");
   //   var doc = req.body;
   //   dbo.collection("posts").insertOne(doc, function(err, result) {
+  //     if (err) throw err;
+  //     console.log(result.insertedCount)
+  //     //console.log(result)
+  //     db.close();
+  //   });
+  // });
+// });
+
+// Needs to be filled out, allows deleting of a post
+
+// route.delete("/community/deletePost/:id", function(req, res){
+  //console.log(req.body);
+  //console.log(req.params.id);
+
+  // MongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   var dbo = db.db("test");
+  //   var doc = req.body;
+  //   dbo.collection("posts").remove({req.params.id}, function(err, result) {
   //     if (err) throw err;
   //     console.log(result.insertedCount)
   //     //console.log(result)

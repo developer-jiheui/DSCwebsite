@@ -192,7 +192,7 @@ const BuyAndSell = () => {
 
   return (
     <>
-      <Navbar>
+      <Navbar />
         <Container>
         <ContentContainer>
         <Divider></Divider>
@@ -208,10 +208,10 @@ const BuyAndSell = () => {
                       <a>{post.link == undefined && "job.com"}</a>
                     </Card.Description>
                     <Card.Meta id="post-tag-list">
-                      <a>#new</a>
-                      <a>#loremtag</a>
-                      <a>#ipsum</a>
-                      <a>#dolor</a>
+                    {post.tags != undefined && post.tags.split(",").map((tag, id) =>
+                     {
+                        return <a> #{tag}</a>
+                     })}
                     </Card.Meta>
                   <Card.Content extra>
                     <Grid columns="2">
@@ -255,7 +255,6 @@ const BuyAndSell = () => {
               
         </Container>
         <Footer />
-      </Navbar>
       </>
   );                  
 }
