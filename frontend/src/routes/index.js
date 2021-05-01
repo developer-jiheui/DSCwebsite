@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import Signup from "../pages/Signup";
 import Community from "../pages/Community";
-import Posting from "../pages/Community/Posting";
+import Posting from "../pages/Community/PostingBuySell";
 import CareerPage from "../pages/Community/Career";
 import Events from "../pages/Events";
 import Team from "../pages/Team";
@@ -29,7 +29,7 @@ export default function Routes() {
       <Route path="/community/tips" component={TipsAndTricks} />
 
       <Route path="/community/buyandsell" component={BuyAndSell} />
-      <Route path="/community/posting/:id" component={Posting} />
+      <Route path="/community/postingBuySell/:id" component={Posting} />
       
       <Route path="/community/welcome" component={Welcome} />
       <Route path="/community/chat" component={CommunityChat} />

@@ -20,7 +20,8 @@ app.use("/login", require("./routes/login"));
 app.use("/auth", require("./routes/auth"));
 app.use("/user", require("./routes/user"));
 
-app.use("/post", require("./routes/BuyAndSellAPI"))
+app.use("/buysell", require("./routes/BuyAndSellAPI"))
+app.use("/career", require("./routes/CareerPostingAPI"))
 
 app.get("/", (req, res) => {
   res.send("Hello from Express.js");
