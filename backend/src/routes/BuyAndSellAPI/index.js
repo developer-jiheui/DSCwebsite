@@ -1,4 +1,6 @@
 const express = require("express");
+
+// Validation information
 // const { check, validationResult } = require("express-validator");
 // const bcrypt = require("bcryptjs");
 // const jwt = require("jsonwebtoken");
@@ -6,19 +8,16 @@ const route = express.Router();
 const config = require("config");
 
 var mongo = require('mongodb');
+const c = require("config");
 var ObjectID = mongo.ObjectID;
 var MongoClient = mongo.MongoClient;
-
-
 
 /* @route   POST /login
  * @desc    Register/fetch a user login
  * @access  public
  */
 
-
 // TODO authentication and connection to our mongo db
-
 
 // URL for mongo connection
 var url = "mongodb://localhost:27017/";
@@ -32,20 +31,17 @@ route.get(
   "/community/buyandsell/",
     async(req, res) => {
 
-      
-
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(databaseName);
         dbo.collection(collectionName).find({}).toArray(function(err, result) {
           if (err) throw err;
           //console.log(result)
-          res.send(result)
+          res.status(200).send(result)
           db.close();
         });
-      });
-       
-    });
+      });    
+});
 
 // Route to get the info for a specific post
 route.get("/community/posting/buysell/:id", function(req, res){
@@ -57,11 +53,10 @@ route.get("/community/posting/buysell/:id", function(req, res){
     dbo.collection(collectionName).find({"_id" : o_id}).toArray(function(err, result) {
       if (err) throw err;
       //console.log(result)
-      res.send(result)
+      res.status(200).send(result)
       db.close();
     });
   });
-
 });
 
 // Method for searching
@@ -77,7 +72,7 @@ route.post("/community/posting/buysell/q/", function(req, res){
     dbo.collection(collectionName).find({$or: [{title: new RegExp(textToSearch, 'i')}, {tags: new RegExp(textToSearch, 'i')}]}).toArray(function(err, result) {
       if (err) throw err;
       //console.log(result)
-      res.send(result)
+      res.status(200).send(result)
       db.close();
     });
   });
@@ -98,14 +93,14 @@ route.post("/community/buysell/tag/", function(req, res){
     dbo.collection(collectionName).find({tags: new RegExp(textToSearch, 'i')}).toArray(function(err, result) {
       if (err) throw err;
       //console.log(result)
-      res.send(result)
+      res.status(200).send(result)
       db.close();
     });
   });
 
 });
 
-// Needs error checking.
+// Needs error checking. Change route name?
 // Creates a post for something to sell in the buyandsell feed
 route.post("/community/createpost/", function(req, res){
 
@@ -116,48 +111,51 @@ route.post("/community/createpost/", function(req, res){
     var doc = req.body;
     dbo.collection(collectionName).insertOne(doc, function(err, result) {
       if (err) throw err;
+      res.send(true)
       db.close();
     });
   });
 });
 
-
 // Needs to be filled out, allows updating of a post
-// route.post("/community/updatepost/:id", function(req, res){
-  //console.log(req.body);
-  //console.log(req.params.id);
+route.post("/community/updatebuysellpost/:id", function(req, res){
+  console.log(req.body);
+  console.log(req.params.id);
 
-  // MongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   var dbo = db.db("test");
-  //   var doc = req.body;
-  //   dbo.collection("posts").insertOne(doc, function(err, result) {
-  //     if (err) throw err;
-  //     console.log(result.insertedCount)
-  //     //console.log(result)
-  //     db.close();
-  //   });
-  // });
-// });
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+    var o_id = mongo.ObjectID(req.params.id)
+    delete req.body._id;
+    dbo.collection(collectionName).updateOne({_id: o_id}, {$set: req.body}, {upsert: false}, function(err, result) {
+      if (err) throw err;
+      console.log(result.modifiedCount)
+      //console.log(result)
+      //TODO find what this should return
+      res.send(true)
+      db.close();
+    });
+  });
+});
 
 // Needs to be filled out, allows deleting of a post
+route.delete("/community/deletebuysellpost/:id", function(req, res){
+  console.log(req.body);
+  console.log(req.body.id);
 
-// route.delete("/community/deletePost/:id", function(req, res){
-  //console.log(req.body);
-  //console.log(req.params.id);
-
-  // MongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   var dbo = db.db("test");
-  //   var doc = req.body;
-  //   dbo.collection("posts").remove({req.params.id}, function(err, result) {
-  //     if (err) throw err;
-  //     console.log(result.insertedCount)
-  //     //console.log(result)
-  //     db.close();
-  //   });
-  // });
-// });
+  var o_id = mongo.ObjectID(req.params.id)
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+    dbo.collection(collectionName).deleteOne({_id: o_id}, function(err, result) {
+      if (err) throw err;
+      console.log(result.deletedCount)
+      //console.log(result)
+      res.send(true)
+      db.close();
+    });
+  });
+});
 
 // Adds a new comment or subcomment to the comment feed for a post
 route.post("/community/posting/buysell/comment/:id", function(req, res){
@@ -192,9 +190,7 @@ route.post("/community/posting/buysell/comment/:id", function(req, res){
           db.close();
         });
       }
-     
     });
-
 });
 
 

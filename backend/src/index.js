@@ -4,21 +4,24 @@ const cors = require("cors");
 var bodyParser = require("body-parser");
 
 const app = express();
-app.use(express.json({ extended: false }));
-app.use(
-  cors({
-    origin: "http:://localhost:3000",
-  })
-);
+// app.use(express.json({ extended: false }));
+// app.use(
+//   cors({
+//     origin: "http:://localhost:3000",
+//   })
+// );
 
+//TODO Need to update this to not use depricated bodyParser
 //Added body parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connection with database:
 //connectDB();
+
 //Using cors for testing
 app.use(cors({ origin: "http://localhost:3000" }));
+
 // Routes:
 app.use("/login", require("./routes/login"));
 app.use("/auth", require("./routes/auth"));

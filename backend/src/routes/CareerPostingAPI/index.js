@@ -1,4 +1,6 @@
 const express = require("express");
+
+// Validation information
 // const { check, validationResult } = require("express-validator");
 // const bcrypt = require("bcryptjs");
 // const jwt = require("jsonwebtoken");
@@ -9,16 +11,12 @@ var mongo = require('mongodb');
 var ObjectID = mongo.ObjectID;
 var MongoClient = mongo.MongoClient;
 
-
-
 /* @route   POST /login
  * @desc    Register/fetch a user login
  * @access  public
  */
 
-
 // TODO authentication and connection to our mongo db
-
 
 // URL for mongo connection
 var url = "mongodb://localhost:27017/";
@@ -31,9 +29,6 @@ var collectionName = "career";
 route.get(
   "/community/career/",
     async(req, res) => {
-
-      
-
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(databaseName);
@@ -44,10 +39,9 @@ route.get(
           db.close();
         });
       });
-       
-    });
+});
 
-// Route to get the info for a specific post
+// Route to get the info for a specific post by id
 route.get("/community/posting/career/:id", function(req, res){
 
   MongoClient.connect(url, function(err, db) {
@@ -64,7 +58,7 @@ route.get("/community/posting/career/:id", function(req, res){
 
 });
 
-// Method for searching
+// Method for searching Title and Tags
 route.post("/community/posting/career/q/", function(req, res){
 
   var textToSearch = req.body.searchWords;
@@ -83,7 +77,6 @@ route.post("/community/posting/career/q/", function(req, res){
   });
 
 });
-
 
 // Method for searching by tag (filtering)
 route.post("/community/career/tag/", function(req, res){
@@ -117,29 +110,52 @@ route.post("/community/createcareerpost/", function(req, res){
     var doc = req.body;
     dbo.collection(collectionName).insertOne(doc, function(err, result) {
       if (err) throw err;
+      console.log(result)
+      res.send(true);
       db.close();
     });
   });
 });
 
-
 // Needs to be filled out, allows updating of a post
-// route.get("/community/updatepost/:id", function(req, res){
-  //console.log(req.body);
-  //console.log(req.params.id);
+route.post("/community/updatecareerpost/:id", function(req, res){
+  console.log(req.body);
+  console.log(req.params.id);
 
-  // MongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   var dbo = db.db("test");
-  //   var doc = req.body;
-  //   dbo.collection("posts").insertOne(doc, function(err, result) {
-  //     if (err) throw err;
-  //     console.log(result.insertedCount)
-  //     //console.log(result)
-  //     db.close();
-  //   });
-  // });
-// });
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+    var o_id = mongo.ObjectID(req.params.id)
+    delete req.body._id;
+    dbo.collection(collectionName).updateOne({_id: o_id}, {$set: req.body}, {upsert: false}, function(err, result) {
+      if (err) throw err;
+      console.log(result.modifiedCount)
+      //console.log(result)
+      //TODO find what this should return
+      res.send(true)
+      db.close();
+    });
+  });
+});
+
+// Needs to be filled out, allows deleting of a post
+route.delete("/community/deletecareerpost/:id", function(req, res){
+  console.log(req.body);
+  console.log(req.body.id);
+
+  var o_id = mongo.ObjectID(req.params.id)
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+    dbo.collection(collectionName).deleteOne({_id: o_id}, function(err, result) {
+      if (err) throw err;
+      console.log(result.deletedCount)
+      //console.log(result)
+      res.send(true)
+      db.close();
+    });
+  });
+});
 
 // Adds a new comment or subcomment to the comment feed for a post
 route.post("/community/posting/career/comment/:id", function(req, res){

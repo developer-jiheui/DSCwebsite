@@ -9,16 +9,12 @@ var mongo = require('mongodb');
 var ObjectID = mongo.ObjectID;
 var MongoClient = mongo.MongoClient;
 
-
-
 /* @route   POST /login
  * @desc    Register/fetch a user login
  * @access  public
  */
 
-
 // TODO authentication and connection to our mongo db
-
 
 // URL for mongo connection
 var url = "mongodb://localhost:27017/";
@@ -31,8 +27,6 @@ var collectionName = "tipsandtricks";
 route.get(
   "/community/tipsandtricks/",
     async(req, res) => {
-
-      
 
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
@@ -63,7 +57,6 @@ route.get("/community/posting/tipsandtricks/:id", function(req, res){
   });
 
 });
-
 
 // Method for searching by tag (filtering)
 route.post("/community/tipsandtricks/tag/", function(req, res){
@@ -97,6 +90,7 @@ route.post("/community/createpost/", function(req, res){
     var doc = req.body;
     dbo.collection(collectionName).insertOne(doc, function(err, result) {
       if (err) throw err;
+      res.send(true);
       db.close();
     });
   });
@@ -122,24 +116,45 @@ route.post("/community/posting/tipsandtricks/q/", function(req, res){
 
 });
 
-
 // Needs to be filled out, allows updating of a post
-// route.get("/community/updatepost/:id", function(req, res){
-  //console.log(req.body);
-  //console.log(req.params.id);
+route.post("/community/updatetipsandtrickspost/:id", function(req, res){
+  console.log(req.body);
+  console.log(req.params.id);
 
-  // MongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   var dbo = db.db("test");
-  //   var doc = req.body;
-  //   dbo.collection("posts").insertOne(doc, function(err, result) {
-  //     if (err) throw err;
-  //     console.log(result.insertedCount)
-  //     //console.log(result)
-  //     db.close();
-  //   });
-  // });
-// });
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+    var o_id = mongo.ObjectID(req.params.id)
+    delete req.body._id;
+    dbo.collection(collectionName).updateOne({_id: o_id}, {$set: req.body}, {upsert: false}, function(err, result) {
+      if (err) throw err;
+      console.log(result.modifiedCount)
+      //console.log(result)
+      //TODO find what this should return
+      res.send(true)
+      db.close();
+    });
+  });
+});
+
+// Needs to be filled out, allows deleting of a post
+route.delete("/community/deletetipsandtrickspost/:id", function(req, res){
+  console.log(req.body);
+  console.log(req.body.id);
+
+  var o_id = mongo.ObjectID(req.params.id)
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(databaseName);
+    dbo.collection(collectionName).deleteOne({_id: o_id}, function(err, result) {
+      if (err) throw err;
+      console.log(result.deletedCount)
+      //console.log(result)
+      res.send(true)
+      db.close();
+    });
+  });
+});
 
 // Adds a new comment or subcomment to the comment feed for a post
 route.post("/community/posting/tipsandtricks/comment/:id", function(req, res){
