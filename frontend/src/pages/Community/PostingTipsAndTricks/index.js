@@ -115,27 +115,6 @@ const BuyAndSell = () => {
   // Get all the comments again
   const refetch = async () => {
     window.location.reload();
-    //   // Get the post with all info and comments
-    //   const post = await fetch("http://localhost:5000/post/community/posting/" + id,
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //         "Content-Type": "text/plain"
-    //     }
-    // });
-
-    //   // Wait for data
-    //   const data = await post.json();
-    //   var thePost = data[0];
-
-    //   // Set the new information
-    //   setPost([{post: thePost}, () =>{
-    //     //console.log(post);
-    //   }]);
-    //   console.log(thePost);
-    //   setTitle(thePost.title);
-    //   setPrice(thePost.price);
-    //   setCommentList(thePost.comments);
   };
 
   // Runs initially to get all the comments, works similar to refetch
