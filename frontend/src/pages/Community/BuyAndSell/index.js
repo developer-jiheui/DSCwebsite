@@ -116,6 +116,7 @@ const BuyAndSell = () => {
         title: title,
         email: email,
         description: description,
+        location: "New Westminster",
         tags: tagsList,
         price: price,
       })
@@ -129,6 +130,7 @@ const BuyAndSell = () => {
       title: title,
       email: email,
       description: description,
+      location: "New Westminster",
       date: new Date(),
       tags: tagsList,
       price: price,

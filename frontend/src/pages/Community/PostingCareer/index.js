@@ -211,7 +211,7 @@ const BuyAndSell = () => {
                   refetch={reload}
                 ></CommentFeed>
               )}
-              {commentList == undefined && (
+              {commentList.length == 0 && (
                 <CommentFeed
                   comments={[]}
                   postId={id}
