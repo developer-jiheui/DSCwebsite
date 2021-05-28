@@ -168,8 +168,6 @@ route.post("/community/posting/career/comment/:id", function(req, res){
   if (req.body.replyingTo != undefined)
   {
     // Create new id and add the replyingTo to the document
-    doc._id = new ObjectID();
-    var o_id = mongo.ObjectID(req.params.id);
     doc.replyingTo = req.body.replyingTo;
 
     Career.findOneAndUpdate({_id: o_id, "comments": {$elemMatch: {"_id": ObjectID(doc.replyingTo)}}}, {$push: {"comments.$.subcomments": doc}}, function(err, result) {

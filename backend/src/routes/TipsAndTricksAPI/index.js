@@ -169,7 +169,7 @@ route.post("/community/posting/tipsandtricks/comment/:id", function(req, res){
     });
   }else
   {    
-    TipsandTricks.findOneAndUpdate.updateOne({"_id": o_id}, {$push: {"comments": doc}}, function(err, result) {
+    TipsandTricks.findOneAndUpdate({_id: o_id}, {$push: {"comments": doc}}, function(err, result) {
       if (err) throw err;
       res.send(true);
     });
