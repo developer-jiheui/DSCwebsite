@@ -12,18 +12,20 @@ const TipsAndTricksPost = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   //This may not be a good way to write this, will need to change to array
   tags: {
     type: String,
-    required: true
+    required: true,
   },
   comments: {
     type: Array,
-    required: false
-  }
-
+    required: false,
+  },
 });
 
-module.exports = TipsAndTricks = mongoose.model("TipsAndTricksPost", TipsAndTricksPost);
+module.exports = TipsAndTricks = mongoose.model(
+  "TipsAndTricksPost",
+  TipsAndTricksPost
+);

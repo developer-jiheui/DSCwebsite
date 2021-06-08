@@ -12,22 +12,21 @@ const CareerPost = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   //This may not be a good way to write this, will need to change to array
   tags: {
     type: String,
-    required: true
+    required: true,
   },
-  comments:{
+  comments: {
     type: Array,
-    required: false
-  }
-
+    required: false,
+  },
 });
 
 module.exports = Career = mongoose.model("CareerPost", CareerPost);
