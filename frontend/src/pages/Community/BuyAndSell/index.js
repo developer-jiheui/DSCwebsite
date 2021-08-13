@@ -45,8 +45,8 @@ const BuyAndSell = () => {
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
-  const [price, setPrice] = useState(0);
-  const [images, setImages] = useState(null);
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState(null);
 
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -99,6 +99,11 @@ const BuyAndSell = () => {
     setPosts(data1);
   };
 
+  const changeImage = (e) => {
+    setImage(URL.createObjectURL(e.target.files[0]));
+    //console.log(e.target.files[0]);
+  }
+
   // Controls what hapens when user submits post info
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,6 +124,7 @@ const BuyAndSell = () => {
         location: "New Westminster",
         tags: tagsList,
         price: price,
+        image: image
       })
       .then(function (valid) {
         // alert(valid);
@@ -134,6 +140,7 @@ const BuyAndSell = () => {
       date: new Date(),
       tags: tagsList,
       price: price,
+      image: image
     };
 
     // Set the request options
@@ -335,7 +342,8 @@ const BuyAndSell = () => {
                   />
                   <Card.Content>
                     <Card.Header>
-                      {post._id} {post.title} - {post.price}
+                    {/* {post._id} */}
+                      {post.title} - {post.price}
                     </Card.Header>
                     <Card.Meta>{post.date}</Card.Meta>
                     <Card.Description>
@@ -378,7 +386,7 @@ const BuyAndSell = () => {
             <h1>Create Post</h1>
             <Form>
               <Form.Field>
-                <PhotoUploader />
+                <PhotoUploader changeImageFunction={changeImage} />
               </Form.Field>
               <Form.Field
                 value={title}

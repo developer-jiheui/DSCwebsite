@@ -5,11 +5,12 @@ import './index.css';
 
 const defaultPicURL = "https://react.semantic-ui.com/images/wireframe/image.png";
 
-const PhotoUploader = ({src, circular}) => {
+const PhotoUploader = ({changeImageFunction, src, circular}) => {
     const [fileImage, setFileImage] = useState(src || defaultPicURL);
 
     const handleFileChange = (e) => {
         setFileImage(URL.createObjectURL(e.target.files[0]));
+        changeImageFunction(e)
     }
 
     return (

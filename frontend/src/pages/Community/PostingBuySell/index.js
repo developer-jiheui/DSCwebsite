@@ -161,6 +161,22 @@ const BuyAndSell = () => {
     setUserReplyingTo(user);
   };
 
+  const getDateString = () =>
+  {
+    var d = new Date(post.date);
+
+    console.log(d);
+    var year = d.getUTCFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+
+    console.log(year)
+
+    var dateString = `${year}/${month}/${day}`;
+    return dateString;
+  }
+
+
   return (
     <>
       <Navbar />
@@ -174,17 +190,11 @@ const BuyAndSell = () => {
                 centered
                 src="https://react.semantic-ui.com/images/wireframe/image.png"
               />
-              <h1>
-                {title} - {price}
-              </h1>
-              <p>{post.date}</p>
-              <Card.Description>{post.description}</Card.Description>
-              <Card.Meta id="post-tag-list">
-                {post.tags != undefined &&
-                  post.tags.split(",").map((tag, id) => {
-                    return <a> #{tag}</a>;
-                  })}
-              </Card.Meta>
+              <h1 class="ui large header center aligned">{title} || {price}</h1>
+              
+              <p class="ui tiny header center aligned"><i>{getDateString()}</i></p>
+              <h2 class="ui medium header center aligned">{post.description.toUpperCase()}</h2>
+              
               <Card.Content extra>
                 <Grid columns="2">
                   <Grid.Column>
@@ -196,6 +206,12 @@ const BuyAndSell = () => {
                 </Grid>
               </Card.Content>
               <Divider></Divider>
+              <Card.Meta id="post-tag-list">
+                {post.tags != undefined &&
+                  post.tags.split(",").map((tag, id) => {
+                    return <a> #{tag}</a>;
+                  })}
+              </Card.Meta>
               <h2>Comments</h2>
               {commentList != undefined && commentList.length > 0 && (
                 // Pass in the comment list, postID, and the refetch function
