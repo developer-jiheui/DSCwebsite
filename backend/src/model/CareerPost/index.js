@@ -4,7 +4,7 @@ const CareerPost = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   link: {
     type: String,

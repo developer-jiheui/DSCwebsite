@@ -82,13 +82,38 @@ route.post("/community/buysell/tag/", function (req, res) {
   );
 });
 
-// Needs error checking. Change route name?
+// Needs error checking (id?). Change route name?
 // Creates a post for something to sell in the buyandsell feed
 route.post("/community/createpost/", async function (req, res) {
+
+  // console.log(req.body.image);
+
+  var priceParse = req.body.price;
+  try{
+    priceParseValid = /(^\d+$)|(^\d+\.\d{0,2}$)/.test(priceParse);
+
+    console.log(priceParseValid)
+    if (!priceParseValid)
+      throw new Error();
+
+    priceParse = "$" + parseFloat(priceParse).toFixed(2);
+  }catch(error)
+  {
+    //console.log(error);
+    priceParse = req.body.price;
+  }
+
+  console.log(priceParse)
+
+  // Validate that user is logged in and post their user information
+  id = new ObjectID();
   try {
+
     let BuySell = new BuyAndSell({
+      _id: id,
       title: req.body.title,
-      price: req.body.price,
+      price: priceParse,
+      date: new Date().toUTCString(),
       description: req.body.description,
       location: "New Westminster",
       tags: req.body.tags,
@@ -103,8 +128,10 @@ route.post("/community/createpost/", async function (req, res) {
 
 // // Needs to be filled out, allows updating of a post
 route.post("/community/updatebuysellpost/:id", function (req, res) {
-  console.log(req.body);
-  console.log(req.params.id);
+  //console.log(req.body);
+  //console.log(req.params.id);
+
+  // Validate that user is logged in and post their user information
 
   var o_id = mongo.ObjectID(req.params.id);
   delete req.body._id;
@@ -124,6 +151,9 @@ route.post("/community/updatebuysellpost/:id", function (req, res) {
 
 // Needs to be filled out, allows deleting of a post
 route.delete("/community/deletebuysellpost/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   try {
     var o_id = mongo.ObjectID(req.params.id);
     BuyAndSell.deleteOne({ _id: o_id }, function (err, result) {
@@ -144,6 +174,8 @@ route.delete("/community/deletebuysellpost/:id", function (req, res) {
 route.post("/community/posting/buysell/comment/:id", async function (req, res) {
   var doc = req.body;
 
+  // Validate that user is logged in and post their user information
+
   doc._id = new ObjectID();
   var o_id = mongo.ObjectID(req.params.id);
 
@@ -158,9 +190,9 @@ route.post("/community/posting/buysell/comment/:id", async function (req, res) {
       { $push: { "comments.$.subcomments": doc } },
       function (err, result) {
         if (err) {
-          console.log(err);
+          //console.log(err);
         } else {
-          console.log(result);
+          //console.log(result);
         }
       }
     );
@@ -174,7 +206,7 @@ route.post("/community/posting/buysell/comment/:id", async function (req, res) {
         // } else {
         //   console.log(result);
         // }
-        console.log(result);
+        //console.log(result);
       }
     );
   }

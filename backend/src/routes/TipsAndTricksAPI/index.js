@@ -63,6 +63,9 @@ route.post("/community/tipsandtricks/tag/", function(req, res){
 // Needs error checking.
 // Creates a post for something to sell in the buyandsell feed
 route.post("/community/createpost/", async function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var doc = req.body;
 
   try {
@@ -103,6 +106,9 @@ route.post("/community/posting/tipsandtricks/q/", function(req, res){
 
 // Needs to be filled out, allows updating of a post
 route.post("/community/updatetipsandtrickspost/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var o_id = mongo.ObjectID(req.params.id);
   TipsandTricks.findByIdAndUpdate(
     { _id: o_id },
@@ -120,6 +126,9 @@ route.post("/community/updatetipsandtrickspost/:id", function (req, res) {
 
 // Needs to be filled out, allows deleting of a post
 route.delete("/community/deletetipsandtrickspost/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var o_id = mongo.ObjectID(req.params.id);
   TipsandTricks.deleteOne({ _id: o_id }, function (err, result) {
     if (err) throw err;
@@ -130,6 +139,9 @@ route.delete("/community/deletetipsandtrickspost/:id", function (req, res) {
 
 // Adds a new comment or subcomment to the comment feed for a post
 route.post("/community/posting/tipsandtricks/comment/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var doc = req.body;
   doc._id = new ObjectID();
   var o_id = mongo.ObjectID(req.params.id);

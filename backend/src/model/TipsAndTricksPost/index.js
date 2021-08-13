@@ -4,7 +4,7 @@ const TipsAndTricksPost = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   date: {
     type: String,

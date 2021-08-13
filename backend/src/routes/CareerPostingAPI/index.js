@@ -83,6 +83,9 @@ route.post("/community/career/tag/", function (req, res) {
 // Needs error checking.
 // Creates a post for something to sell in the buyandsell feed
 route.post("/community/createcareerpost/", async function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   try {
     let career = new Career({
       title: req.body.title,
@@ -101,6 +104,9 @@ route.post("/community/createcareerpost/", async function (req, res) {
 
 // // Needs to be filled out, allows updating of a post
 route.post("/community/updatecareerpost/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var o_id = ObjectID(req.params.id);
   delete req.body._id;
 
@@ -117,6 +123,9 @@ route.post("/community/updatecareerpost/:id", function (req, res) {
 
 // Needs to be filled out, allows deleting of a post
 route.delete("/community/deletecareerpost/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var o_id = mongo.ObjectID(req.params.id);
   Career.deleteOne({ _id: o_id }, function (error, result) {
     if (error) throw error;
@@ -126,6 +135,9 @@ route.delete("/community/deletecareerpost/:id", function (req, res) {
 
 // Adds a new comment or subcomment to the comment feed for a post
 route.post("/community/posting/career/comment/:id", function (req, res) {
+
+  // Validate that user is logged in and post their user information
+
   var doc = req.body;
 
   doc._id = new ObjectID();

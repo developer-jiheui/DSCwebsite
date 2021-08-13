@@ -1,13 +1,21 @@
 const mongoose = require("mongoose");
 
 const BuyAndSellPost = new mongoose.Schema({
+  _id:{
+
+  },
+  date: {
+    type: String,
+    required: true,
+    unique: false,
+  },
   title: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   price: {
-    type: Number,
+    type: String,
     required: true,
   },
   description: {
