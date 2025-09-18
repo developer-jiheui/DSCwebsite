@@ -40,53 +40,41 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     data: Buffer,
     contentType: String,
-    required: false,
   },
   bio: {
     type: String,
-    required: false,
   },
   social: {
     website: {
       type: String,
-      required: false,
     },
     linkedin: {
       type: String,
-      required: false,
     },
     github: {
       type: String,
-      required: false,
     },
   },
   codingSkills: {
     type: [String],
-    required: true,
   },
   userType: {
     type: Number,
-    required: true,
   },
   isExec: {
     type: Boolean,
-    required: false,
   },
   program: {
     type: String,
-    required: false,
   },
   expectedGraduationDate: {
     type: Date,
-    required: false,
   },
   courses: {
     type: [String],
-    request: false,
   },
   isWorkingDeveloper: {
     type: Boolean,
-    required: false,
   },
 });
 
